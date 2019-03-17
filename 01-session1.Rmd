@@ -1,0 +1,160 @@
+# Session 1
+
+## R and RStudio
+
+R is a free and open source statistical programming language, great for performing data analysis. RStudio is a free and open source R integrated development environment (IDE) which makes it easier for you to write code. It does this by providing you with auto-completion (of variable names, function names, file paths etc.), helping with formating and keeping track of your variables.
+
+You can think of R as the engine in a car and RStudio as the body & controls. R is doing all the calculations/computations but RStudio makes it easier for you to use R.
+
+When you first open RStudio, there are three panels - see Figure \@ref(fig:RS1) (don't worry if your RStudio does not have the same colours/appearance - different versions of RStudio look slightly different and the text colour I use is not the default one.)
+
+```{r RS1, fig.cap='Three panels in RStudio.', out.width="700px", echo=FALSE}
+knitr::include_graphics("Images/RS1.png")
+```
+
+* Left panel: this panel features two tabs, 'Console', which is where you can type in commands for R to run and 'Terminal', which we won't worry about in this course.
+* Top right panel:
+    * Environment - in this tab you can see all variables you have created.
+    * History - R keeps track of all commands you have run and you can review them in this tab. 
+    * Connections - this tab helps you connect to data sources but we will not be using it in this course.
+* Bottom right:
+    * Files - you can explore your file directory here and we will use it to set our working directory later.
+    * Plots - plots that you create will either appear here or be saved to a file.
+    * Help - help files for R functions can be viewed in this tab. Help files tell you about what a function does and how to use it.
+    * Packages - basic R includes many useful functions. You can add even more functions by downloading packages. A package is a collection of functions, generally with a certain data analysis theme. For example, the package 'limma', which we will use later, includes functions designed for analysing RNA-sequencing data.
+    * Viewer - this tab lets you view local web content but we won't be using it in this course.
+
+## R scripts
+
+To open a R script, go to File > New File > R Script.
+
+```{r RS2, fig.cap='Opening a new R Script.', out.width="700px", echo=FALSE}
+knitr::include_graphics("Images/RS2.png")
+```
+
+This will open a fourth panel on the top left. 
+
+```{r RS3, fig.cap='Four panels, including a R Script.', out.width="700px", echo=FALSE}
+knitr::include_graphics("Images/RS3.png")
+```
+
+A R Script is just a text document. You can type and run commands using a R Script and down in the Console - the difference is that you can't save the commands you run in the Console but you can save the R Script with all your commands. Note that to run a command in the Console press `Enter` key but to run a command in a R Script you must press `Cmd/Cntrl + Enter` keys.
+
+Lastly, you can make 'comments' in your R Script. Comments are notes to yourself that are not interpreted by R and start with `#`:
+
+```{r}
+# this is a note to myself
+1+3-2
+```
+
+
+## Working directory
+
+Every file on your computer is located in a specific location. This location can be referred to by a path. In Mac, paths look something like this: `/Users/Lucy/Documents/`. In Windows, paths look something like this: `C:\Users\Lucy\Documents\`. 
+
+When you open a R session, it launches from a specific location. You can find out where this is using the command `getwd()`. This location called the 'working directory'. R will, by default, look in this directory when reading in data and write out files/plots to this directory. It is often useful to have your data and R Scripts in the same directory and set this as your working directory.
+
+You can set your working directory to be anywhere you like and we will now do this:
+
+1. Make a folder for this course, somewhere sensible on your computer that you will be able to easily find. 
+2. Go back to your RStudio window, go to the bottom right panel, click on the 'Files' tab and then click on the three dots on the top right hand corner (Figure \@ref(fig:wd1)).
+
+```{r wd1, fig.cap='Setting the working directory - 1.', out.width="500px", echo=FALSE, fig.align='center'}
+knitr::include_graphics("Images/wd1.png")
+```
+
+3. This will open up a new window (Figure \@ref(fig:wd2)) which lets you explore the files and folders on your computer. Find the new folder you created, click on it then click 'Open'.
+
+```{r wd2, fig.cap='Setting the working directory - 2.', out.width="500px", echo=FALSE, fig.align='center'}
+knitr::include_graphics("Images/wd2.png")
+```
+
+4. The files tab will now show the contents of your new folder (which should be empty). At the top of the files tab, click on More > Set As Working Directory (Figure \@ref(fig:wd3)).
+
+```{r wd3, fig.cap='Setting the working directory - 3.', out.width="500px", echo=FALSE, fig.align='center'}
+knitr::include_graphics("Images/wd3.png")
+```
+
+## Maths
+
+R performs maths and follows standard order of operations. In order of highest to lowest precedence, here is how mathematical operations are denoted in R:
+
+* `()` - parentheses
+* `**` or `^` - exponents
+* `/` - divide
+* `*` - multiply
+* `+` - add
+* `-` - substract
+
+Another useful function is modulus (`%%`), which gives the remainder after dividing:
+
+```{r}
+8%%3
+```
+
+## Comparisons
+
+You can also compare numbers in R:
+
+```{r}
+1 == 1  # equal to 
+2 > 1   # greater than.
+2 < 1   # less than.
+1 <= 2  # greater or equal to.
+1 >= 2  # less than or equal to.
+```
+
+What do you think will happen if we compare words?
+
+```{r}
+"cat" > "dog"
+```
+
+R will use alphabetical order to determine which word is 'greater':
+
+```{r}
+"a" < "b"
+```
+
+## Data structures
+
+### Reading in data
+
+
+## Data types
+
+
+## Vectorisation
+
+
+challenge
+
+## Writing out data
+
+
+
+## Homework
+
+
+
+
+
+You can label chapter and section titles using `{#label}` after them, e.g., we can reference Chapter \@ref(intro). If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \@ref(methods).
+
+Figures and tables with captions will be placed in `figure` and `table` environments, respectively.
+
+```{r nice-fig, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center'}
+par(mar = c(4, 4, .1, .1))
+plot(pressure, type = 'b', pch = 19)
+```
+
+Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig). Similarly, you can reference tables generated from `knitr::kable()`, e.g., see Table \@ref(tab:nice-tab).
+
+```{r nice-tab, tidy=FALSE}
+knitr::kable(
+  head(iris, 20), caption = 'Here is a nice table!',
+  booktabs = TRUE
+)
+```
+
+You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015].
