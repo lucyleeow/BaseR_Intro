@@ -1,0 +1,15 @@
+--- 
+title: "Introduction to Base R"
+author: "Lucy Liu"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+# bibliography: [book.bib, packages.bib]
+# biblio-style: apalike
+# link-citations: yes
+github-repo: lucyleeow/BaseR_Intro
+description: "Introductory tutorial to base R, with a biological focus. In particular it will focus on analysing RNA-sequencing data with Bioconductor."
+---
+
+# Preface
