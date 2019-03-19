@@ -108,7 +108,7 @@ Another useful function is modulus (`%%`), which gives the remainder after divid
 8%%3
 ```
 
-## Comparisons
+## Comparisons {#comps}
 
 You can also compare numbers in R:
 
