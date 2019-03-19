@@ -6,7 +6,7 @@ R is a free and open source statistical programming language, great for performi
 
 You can think of R as the engine in a car and RStudio as the body & controls. R is doing all the calculations/computations but RStudio makes it easier for you to use R.
 
-When you first open RStudio, there are three panels - see Figure \@ref(fig:RS1) (don't worry if your RStudio does not have the same colours/appearance - different versions of RStudio look slightly different and the text colour I use is not the default one.)
+When you first open RStudio, there will be three panels - see Figure \@ref(fig:RS1) (don't worry if your RStudio does not have the same colours/appearance - different versions of RStudio look slightly different and the text colour I use is not the default one.)
 
 ```{r RS1, fig.cap='Three panels in RStudio.', out.width="700px", echo=FALSE}
 knitr::include_graphics("Images/RS1.png")
@@ -23,6 +23,22 @@ knitr::include_graphics("Images/RS1.png")
     * Help - help files for R functions can be viewed in this tab. Help files tell you about what a function does and how to use it.
     * Packages - basic R includes many useful functions. You can add even more functions by downloading packages. A package is a collection of functions, generally with a certain data analysis theme. For example, the package 'limma', which we will use later, includes functions designed for analysing RNA-sequencing data.
     * Viewer - this tab lets you view local web content but we won't be using it in this course.
+    
+## Help
+
+There are two ways to access help files in RStudio. You can type in the name of the function you want help with, in the top right of help tab (indicated with a red arrow):
+
+```{r help, fig.cap="Accessing help files via 'help' tab.", out.width="500px", echo=FALSE}
+knitr::include_graphics("Images/help.png")
+```
+
+The other option is to run the command `?` followed by the name of the function:
+
+```{r}
+?sum
+```
+
+Help files are very useful but can be difficult to interpret at first due to the technical language used. We won't get too much practice reading help files during this course but I would encourge you to try to use them when figuring out how to use a new function.
 
 ## R scripts
 
@@ -97,7 +113,7 @@ Another useful function is modulus (`%%`), which gives the remainder after divid
 You can also compare numbers in R:
 
 ```{r}
-1 == 1  # equal to 
+1 == 1  # equal to.
 2 > 1   # greater than.
 2 < 1   # less than.
 1 <= 2  # greater or equal to.
@@ -116,45 +132,278 @@ R will use alphabetical order to determine which word is 'greater':
 "a" < "b"
 ```
 
+## Variables
+
+A variable in R is just a name which refers to an 'thing' (more technically an 'object' in R).
+
+For example, I can do some maths:
+
+```{r}
+2 + 6 * 7**2
+```
+
+R outputs the result. However, if I want to 'save' this result to use later, I need to 'assign' the output to a variable. This can be thought of as giving it a name, so that we can refer to it later.
+
+You can this with `<-` (shortcut = `alt + -`) in R. (You can also use `=`, however stylistically `<-` is preferred.)
+
+Here R performs the calculation on the right of `<-` and then saves the result as a variable called `my_num`.
+
+```{r}
+my_num <- 2 + 6 * 7**2
+```
+
+Now if I run the command `my_num`, I see the number I stored earlier:
+
+```{r}
+my_num
+```
+
+R is particular about variable names. Variable names cannot:
+
+* start with a number,
+* contain any spaces.
+
+If we try to create a variable that starts with a number, R will return us an error:
+
+```{r, error=TRUE}
+2myvar <- 2 + 6 * 7**2
+```
+
+### Errors and warnings
+
+This is a good time to talk about 'errors' and 'warnings' in R.
+
+An *error* is R telling you that it couldn't do what you told it to do. Do not be disheartened at seeing an error message - it happens to everyone, including experienced programmers, all the time. DO read the error message, it is often very useful and tells you what you need to do to fix the error.
+
+A *warning* is R telling you that is has done what you told it to do, however the result may not be what you want. Sometimes it is okay to ignore a warning, sometimes it is not!
+
 ## Data structures
 
-### Reading in data
+A data structure can be thought of as a 'container' for data. There are a number of different data structures in R and each have differents specifications about how data is 'contained'. 
 
+Three commonly used data structures are summarised below:
+
+```{r dstruct, fig.cap='Data structures. Source: http://libguides.wellesley.edu.', out.width="700px", echo=FALSE, fig.align='center'}
+knitr::include_graphics("Images/data-structure.png")
+```
+
+Another useful data structure is a 'list', which we will talk about in Session 3.
+
+### Vector
+
+You can think of a vector like a row or column in excel. You can only store one *type* of data in a vector - e.g. all numbers or all text.
+
+You can create vectors with the `c()` function ('c' for 'combine'):
+
+```{r}
+my_vect1 <- c(1,2,3)
+my_vect2 <- c("a", "b", "c")
+```
+
+### Matrix
+
+A matrix is like an excel spreadsheet. It is two dimensional meaning you have columns and rows of data. You can only store one *type* of data in a matrix - e.g. all numbers or all text.
+
+### Dataframe
+
+Dataframes are also two dimensional (has both rows and columns) however, you can store different types of data in a dataframe. The only restriction is that all the data within one column must be of the same type.
+
+## Reading in data
+
+Let's read in some data and start exploring it. 
+
+You should have received the data files via email before the course. Please download these files and make sure they are located in your working directory. Recall, we set our working directory above. You can find the location of your working directory with the function `getwd()`. 
+
+If you are following along outside of the WEHI course, you can download the data files from [Github](https://github.com/lucyleeow/BaseR_Intro/tree/master/data) - instructions for downloading data from GitHub can be found in the Preface.
+
+The file we want to read in is named 'Ses1_genes.tsv'. 
+
+I have put all my data files in a directory called 'data' - thus the path to the file (relative to my working directory) is 'data/Ses1_genes.tsv'. Depending on where you have put your data (in your working directory or in another file in your working directory), the path to your file 'Ses1_genes.tsv' may be different.
+
+Read in your data by typing in the path to your 'Ses1_genes.tsv' file (relative to your working directory), within the brackets `( )`:
+
+```{r}
+read.delim("data/Ses1_genes.tsv")
+```
+
+Note that `read.delim()` also lets you specify what kind of file you are reading in - by this I mean how each value is separated. Two common formats are 'csv' (comma separated values) and 'tsv' (tab separated values).
+
+Example of csv file:
+```
+Name, Age
+Andy, 10
+Bob, 8
+```
+
+Example of tsv file:
+```
+Name  Age
+Andy  10
+Bob   8
+```
+
+Note how the values in each file are separated by a different 'character' in the two file formats.
+
+You can specify what using the `sep` input in `read.delim()`. E.g. if your file was a csv, you can read it in using:
+
+```{r, eval=FALSE}
+read.delim("file.csv", sep = ",")
+```
+
+We don't need to specify the `sep` for our file, which is a tsv, as the default separater `read.delim()` assumes is tab. Thus we only need to specify when we are reading in a file NOT separated by tabs.
+
+Above, we have read in our data as a dataframe and printed it. However, we can't refer to this dataframe again and manipulate it because we haven't assigned it to a variable.
+
+Let's assign our dataframe to a variable called `genes`:
+
+```{r}
+genes <- read.delim("data/Ses1_genes.tsv")
+```
+
+Notice how `genes` now appears in our 'Environment' tab:
+
+```{r import, fig.cap="Variable in 'Environment' tab.", out.width="500px", echo=FALSE, fig.align='center'}
+knitr::include_graphics("Images/import.png")
+```
+
+All variables that we create will be shown in this tab, so it is a useful way to keep track of variables that we have created. Notice how R also tells us that there are 10 observations (rows) and 3 variables (columns) in the `genes` dataframe.
+
+We can further explore our dataframe with the function `str()` (structure):
+
+```{r}
+str(genes)
+```
+
+This tells us that `genes` is a dataframe. It also tells us what *data type* each column is.
 
 ## Data types
 
+Every bit of data in R has a 'data type label'. The label doesn't change the data in any way - it just tells R what kind of data it is and thus what it can and can't do with the data.
+
+For example, it makes sense to perform mathematical functions on numbers but not on words. It makes sense to look for a certain term, like a gene name, in a word but not in a number.
+
+There are five basic types of data in R:
+
+* `logical` - either TRUE or FALSE. This is useful for binary data like if patient has a disease or not.
+* `integer` - number without decimal point e.g. `3`.
+* `double` - number with decimal point e.g. `3.14`.
+* `complex` - complex number with a real and imaginary part e.g. `1 + 3i`
+* `character` - Anything with character(s) within it. Quotes (double or single) signify this data type e.g. `"pi"`. Also known as a 'string'.
+
+In our `genes` dataframe above, we can see that both the `GeneLength` and `Count` columns are integers ('int'). But what is the `SYMBOL` column? It is a 'Factor'.
+
+### Factors
+
+Factor is a data type label used for categorical variables (e.g. small, medium and large OR red, blue and green). Internally, R stores factors as numbers (integers), with each number corresponding to a category.
+
+For example, if your data was:
+
+```
+red, blue, green, red, green
+```
+
+Internally, R would store the data as:
+
+```
+1, 2, 3, 1, 3
+```
+
+Each number corresponds to a category. This information is also stored. R calls the categorical value each number corresponds 'levels'.
+
+The levels for the above data would be:
+
+```
+1 = red
+2 = blue
+3 = green
+```
+
+Factors can be difficult to work with, so we don't want our gene symbols to be 'labelled' as factors. We can do this by specifiying this when reading our data in:
+
+```{r}
+genes <- read.delim("data/Ses1_genes.tsv", stringsAsFactors = FALSE)
+```
+
+By default, R will label all word ('character') data as a 'factor'. Setting `stringsAsFactors` to be `FALSE`, tells R that you DON'T want it to do this.
+
+We can check the structure again:
+
+```{r}
+str(genes)
+```
+
+Note that now the column `SYMBOL` is now a character ('chr').
 
 ## Vectorisation
 
+R is quite efficient at doing calculations or performing a functions on a vector of data.
 
-challenge
+Let's use the `Count` column from our dataframe `genes`. We can access just one column using the `$` symbol:
+
+```{r}
+genes$Count
+```
+
+What do you think will happen if we do this?
+
+```{r}
+genes$Count + 10
+```
+
+R will perform this calculation on all numbers in the `Count` column and return a vector.
+
+We can add this new vector to our dataframe, as a new column.
+
+```{r}
+genes$Count_2 <- genes$Count + 10
+```
+
+There are a few things happening in the command above:
+
+1. The code on the right side of `<-` is evaluated first. It returns a vector as we saw above.
+2. This vector is assigned to a column in `genes` called `Count_2`. Since this column does not yet exist in the `genes` dataframe, a new column called `Count_2` is created first.
+
+**Challenge 1**
+
+Create a new column called `Prop_Count` that contains each count value as a proportion of the total count value of all 10 genes in the dataframe. E.g. if `Count` was 10 and total count of all 10 genes is 100, that row in `Prop_Count` should be 0.1.
+
+*Hint* use the `sum()` function.
 
 ## Writing out data
 
+The last thing we will do this session is to write out our new dataframe using the function `write.table()`.
 
+There are a few things we must tell `write.table()`, for it to be able to write out the data the way we want:
+
+* `x` - the name of this input is not very informative, but first you must tell the function what you want to write out. In our case we want to write out our dataframe `genes`.
+* `file` - the name of the file that we want to write to.
+* `sep` - how each value in our output file is separated. Common file formats are 'csv' and 'tsv' (discussed above). In R, a tab is represented by `"\t"`.
+* `row.names` - this is either `TRUE` or `FALSE`, and let's you specify whether you want to write out row names. If your dataframe does not have row names, put `FALSE`.
+* `col.names` - this is also either `TRUE` or `FALSE`, and let's you specify whether you want to write out column names. If your dataframe has column names, put `TRUE`.
+
+```{r, eval=FALSE}
+write.table(x = genes, file = "Ses1_Genes_output.tsv", sep = "\t",
+            row.names = FALSE, col.names = TRUE)
+```
 
 ## Homework
 
+Read in the data file "Ses1_homework.tsv" using `read.delim()`. This file is similar to the "Ses1_genes.tsv" file but with a different 10 genes.
 
+Create a new column called `Prop_GeneLength` that contains the `Count` value as a proportion of `GeneLength`. E.g. if the count value was 50 and the gene length was 2400, the `Prop_GeneLength` value for that row would be 0.02083333.
 
+Now write out this new dataframe as a file called "Ses1_homework_output.tsv", as a tsv (tab separated values) file.
 
+## Answers
 
-You can label chapter and section titles using `{#label}` after them, e.g., we can reference Chapter \@ref(intro). If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \@ref(methods).
+**Challenge 1**
 
-Figures and tables with captions will be placed in `figure` and `table` environments, respectively.
+The `sum()` function can be used to calculate the total Count of all 10 rows by giving the `genes$Count` vector as the input to `sum()`.
 
-```{r nice-fig, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center'}
-par(mar = c(4, 4, .1, .1))
-plot(pressure, type = 'b', pch = 19)
+```{r}
+genes$Prop_Count <- genes$Count / sum(genes$Count) 
+genes
 ```
 
-Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig). Similarly, you can reference tables generated from `knitr::kable()`, e.g., see Table \@ref(tab:nice-tab).
 
-```{r nice-tab, tidy=FALSE}
-knitr::kable(
-  head(iris, 20), caption = 'Here is a nice table!',
-  booktabs = TRUE
-)
-```
 
-You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015].
