@@ -1,0 +1,104 @@
+# Session 3
+
+In this session we will learn:
+
+* lists, another data structure
+* S4 objects
+* the DGEList object from the package limma
+
+## Lists
+
+Recall that we have previously learnt about the data structures: vectors, matrices and dataframes. Another important data structure is the list. Like a vector, it is 1 dimensional i.e. one row of data. Unlike vectors, you can put several data types in a list. Here, our list includes data of the integer, a character and a double types:
+
+```{r}
+list(1, "a", 1.5)
+```
+
+
+Not only can you put different data types into a list, you can also put a WHOLE data structure into one element in a list. In the list below, the first element is a vector that contains 3 numbers, the second element is a character and the third element is a dataframe that has two columns.
+
+
+```{r}
+list(c(1,2,3), 
+     c("words", "letters"), 
+     data.frame(column1 = c(1,2,3), column2 = c("a","b","c"))
+     )
+```
+
+The output can often help you understand how the list is structured. The double brackets (e.g. `[[1]]`) signifies an element of the list and which index it is at. Here there are three elements in our list so the numbers in the double square brackets go from 1 to 3. Underneath the `[[1]]` and `[[2]]`, there is a `[1]` - this indicates that the first and second elements both contain a vector. Underneath `[[3]]` you see the standard output for a dataframe, which we have seen before.
+
+You even include a list within a list (within a list, within a list....I call this 'listception'). This is where it starts to get confusing.
+
+```{r}
+list(1, list(1,"a"))
+```
+
+* The first element, indicated by `[[1]]`, is a vector, indicated by the `[1]` underneath.
+* The second element, indicated by the first `[[2]]` contains a list:
+    * `[[2]][[1]]` - tells you that the second element is a list, of which the first element of the inner list is the number 1.
+    * `[[2]][[2]]` - tells you that the second element is a list, of which the second element of the inner list is "a".
+    
+Many bioconductor packages, including limma, use lists so it is an important data structure to understand.
+
+**Challenge 3.1**
+
+Below is the output from a list. 
+
+1. How many element of the list are there?
+
+2. Look carefully at each element and answer the following questions about EVERY element of the list:
+
+  * How many elements does the element of the list contain? 
+  * If there are several elements within this element, what does each element contain?
+
+
+```{r, echo=FALSE}
+list(
+  list(c(1,2),  c("b")), 
+  c("a","b"),
+  list(list("a", 1), "b"),
+  "end"
+  )
+```
+
+
+## S4 objects
+
+Everything in R is an 'object' - every function that we have used and every data structure created in R. All the objects we have used so far, are 'S3' objects. 
+
+Many data structures in Bioconductor packages are 'S4' objects. 'S4' objects are much more 'formal' than S3 objects. 
+
+Let's look at an example. The `DGEList` object from limma is an S4 object. It is a data structure specifically designed for storing read count data from sequencing. It is a list that contains two specific components:
+
+* `counts` - which must be a numeric matrix, that stores counts. Each row must be a gene and each column must be a sample.
+* `samples` - which must be a dataframe, that contains information about each sample. Each row must be a sample and must contain information about the group (e.g. treatment group) the sample belongs to, the library size of that sample and the normalisation factor for that sample.
+
+There are a lot more specifications about the type of and how data is stored in the `DGEList` S4 object, than say the S3 list. You can think of S3 objects as very genetic tools (e.g. a spanner) whereas S4 objects tend to be tools designed for a very specific task (e.g. a lug wrench, which is used to loosen and tighten lug nuts on car wheels).
+
+
+You can read more about the S4 objects in [this](https://www.bioconductor.org/help/course-materials/2017/Zurich/S4-classes-and-methods.html#strengths-of-s4-compared-to-s3) Bioconductor tutorial.
+
+
+## DGEList
+
+
+## Answers
+
+**Challenge 3.1**
+
+1. There are 4 elements of this list.
+2.
+
+* Within the first element, there are 2 elements. The first is a vector containing 2 numbers and the second is a vector containing one character type (note there are no 'scalars' in R, thus `"a"` is a vector with 1 element). 
+* The second element contains 1 element. It is a vector containing two character types.
+* The third element contains 2 elements. Within the first element is another list. Within this list there are 2 elements, both being character types. The second element of this nested list is a vector containing one character type.
+* The fourth element is a vector containing one character type.
+
+
+
+
+
+
+
+
+
