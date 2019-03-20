@@ -42,7 +42,7 @@ Later we will learn how to remove the `NA` values from our dataframe.
 Subsetting involves selecting a portion of a data structure and uses square brackets `[ ]`. There are two main ways to subset a data structure:
 
 * Use indices - data structures are all ordered and 'numbered' in R. This means that you can refer to the 4th element in a vector or the element in the 1st row and 3rd column of a dataframe. 
-* Use logicals - recall that a logical is `TRUE` or `FALSE`. You can use comparisons (e.g. equal to `==`, greater than `>`) to determine if each element in your data structure meet your requirements.
+* Use logicals - recall that a logical is `TRUE` or `FALSE`. You can use comparisons (e.g. equal to `==`, greater than `>`) to determine if each element in your data structure meet your requirements and use this to subset your data.
 
 ### Subsetting with indicies
 
@@ -213,10 +213,11 @@ The output is what we would expect.
 What if we wanted check which elements are equal to 5 OR 10? We might try something like this, where put the numbers we are checking for in a vector:
 
 ```{r}
+vect1
 vect1 == c(5,10)
 ```
 
-This output isn't what we want.
+This isn't the output we expected.
 
 Let's try the same task with `%in%`:
 
@@ -280,8 +281,10 @@ merge(
   y =     # name of the second dataframe to merge
   by.x =  # name of the column to match, in the first dataframe
   by.y =  # name of the column to match in the second dataframe
-  all.x = # logical. If TRUE, keep all rows from the first dataframe, even if does not have a matching row in the second dataframe
-  all.y = # logical. If TRUE, keep all rows from the second dataframe, even if does not have a matching row in the second dataframe
+  all.x = # logical. If TRUE, keep all rows from the first dataframe, 
+          # even if does not have a matching row in the second dataframe
+  all.y = # logical. If TRUE, keep all rows from the second dataframe, 
+          # even if does not have a matching row in the second dataframe
 )
 ```
 

@@ -202,7 +202,7 @@ Figure 3.1: Viewing data from the ‘Environment’ tab.
 <p>Subsetting involves selecting a portion of a data structure and uses square brackets <code>[ ]</code>. There are two main ways to subset a data structure:</p>
 <ul>
 <li>Use indices - data structures are all ordered and ‘numbered’ in R. This means that you can refer to the 4th element in a vector or the element in the 1st row and 3rd column of a dataframe.</li>
-<li>Use logicals - recall that a logical is <code>TRUE</code> or <code>FALSE</code>. You can use comparisons (e.g. equal to <code>==</code>, greater than <code>&gt;</code>) to determine if each element in your data structure meet your requirements.</li>
+<li>Use logicals - recall that a logical is <code>TRUE</code> or <code>FALSE</code>. You can use comparisons (e.g. equal to <code>==</code>, greater than <code>&gt;</code>) to determine if each element in your data structure meet your requirements and use this to subset your data.</li>
 </ul>
 <div id="subsetting-with-indicies" class="section level3">
 <h3><span class="header-section-number">3.2.1</span> Subsetting with indicies</h3>
@@ -360,9 +360,11 @@ Figure 3.1: Viewing data from the ‘Environment’ tab.
 <pre><code>## [1] FALSE FALSE  TRUE  TRUE FALSE FALSE</code></pre>
 <p>The output is what we would expect.</p>
 <p>What if we wanted check which elements are equal to 5 OR 10? We might try something like this, where put the numbers we are checking for in a vector:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vect1</code></pre></div>
+<pre><code>## [1] 10 10  5  5  8  8</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vect1 <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">10</span>)</code></pre></div>
 <pre><code>## [1] FALSE  TRUE  TRUE FALSE FALSE FALSE</code></pre>
-<p>This output isn’t what we want.</p>
+<p>This isn’t the output we expected.</p>
 <p>Let’s try the same task with <code>%in%</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vect1 <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">10</span>)</code></pre></div>
 <pre><code>## [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE</code></pre>
@@ -416,8 +418,10 @@ Figure 3.1: Viewing data from the ‘Environment’ tab.
   <span class="dt">y =</span>     <span class="co"># name of the second dataframe to merge</span>
   <span class="dt">by.x =</span>  <span class="co"># name of the column to match, in the first dataframe</span>
   <span class="dt">by.y =</span>  <span class="co"># name of the column to match in the second dataframe</span>
-  <span class="dt">all.x =</span> <span class="co"># logical. If TRUE, keep all rows from the first dataframe, even if does not have a matching row in the second dataframe</span>
-  <span class="dt">all.y =</span> <span class="co"># logical. If TRUE, keep all rows from the second dataframe, even if does not have a matching row in the second dataframe</span>
+  <span class="dt">all.x =</span> <span class="co"># logical. If TRUE, keep all rows from the first dataframe, </span>
+          <span class="co"># even if does not have a matching row in the second dataframe</span>
+  <span class="dt">all.y =</span> <span class="co"># logical. If TRUE, keep all rows from the second dataframe, </span>
+          <span class="co"># even if does not have a matching row in the second dataframe</span>
 )</code></pre></div>
 <p>Merge the two dataframes again, but this time keep all rows from both dataframes.</p>
 </div>
@@ -447,20 +451,20 @@ sd - vector of standard deviations.</code></pre>
 <li>What happens when you give either argument a vector of numbers?</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">4</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>## [1] 11.434223  9.950194  9.277821 11.610673</code></pre>
+<pre><code>## [1]  9.524970 10.401953 10.202806  9.548079</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="kw">c</span>(<span class="dv">100</span>,<span class="dv">0</span>), <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>## [1] 101.7961335  -0.4721942  99.2934842</code></pre>
+<pre><code>## [1] 100.6871521  -0.9455308 100.4756134</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Take a look at the following code:</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">10</span>)</code></pre></div>
-<pre><code>## [1]  8.974071 -1.471909 10.560372</code></pre>
+<pre><code>## [1]  -1.348913   7.631334 -11.347598</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>,<span class="dv">10</span>,<span class="dv">1</span>)</code></pre></div>
-<pre><code>## [1]  8.874519 10.579402  9.620865</code></pre>
+<pre><code>## [1] 10.11129  9.26211  9.58699</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">0</span>)</code></pre></div>
 <pre><code>## [1] 10 10 10</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">sd =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">0</span>)</code></pre></div>
-<pre><code>## [1] -6.455682 11.087951  3.950005</code></pre>
+<pre><code>## [1] -1.174505 27.074352  2.006016</code></pre>
 <p>How does the order of the arguments you input to the function affect the output? What happens when you include the name of the argument before your input?</p>
 <p>Note that as the function generates a random number, the numbers you will get from running the function will be different to the ones generated above.</p>
 </div>
