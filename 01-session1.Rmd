@@ -2,7 +2,7 @@
 
 ## R and RStudio
 
-R is a free and open source statistical programming language, great for performing data analysis. RStudio is a free and open source R integrated development environment (IDE) which makes it easier for you to write code. It does this by providing you with auto-completion (of variable names, function names, file paths etc.), helping with formating and keeping track of your variables.
+R is a free and open source statistical programming language, great for performing data analysis. RStudio is a free and open source R integrated development environment (IDE) which makes it easier for you to write code. It does this by providing you with auto-completion (of variable names, function names, file paths etc.), helping with formatting and keeping track of your variables.
 
 You can think of R as the engine in a car and RStudio as the body & controls. R is doing all the calculations/computations but RStudio makes it easier for you to use R.
 
@@ -38,7 +38,7 @@ The other option is to run the command `?` followed by the name of the function:
 ?sum
 ```
 
-Help files are very useful but can be difficult to interpret at first due to the technical language used. We won't get too much practice reading help files during this course but I would encourge you to try to use them when figuring out how to use a new function.
+Help files are very useful but can be difficult to interpret at first due to the technical language used. We won't get too much practice reading help files during this course but I would encourage you to try to use them when figuring out how to use a new function.
 
 ## R scripts
 
@@ -100,7 +100,7 @@ R performs maths and follows standard order of operations. In order of highest t
 * `/` - divide
 * `*` - multiply
 * `+` - add
-* `-` - substract
+* `-` - subtract
 
 Another useful function is modulus (`%%`), which gives the remainder after dividing:
 
@@ -179,7 +179,7 @@ A *warning* is R telling you that is has done what you told it to do, however th
 
 ## Data structures
 
-A data structure can be thought of as a 'container' for data. There are a number of different data structures in R and each have differents specifications about how data is 'contained'. 
+A data structure can be thought of as a 'container' for data. There are a number of different data structures in R and each have different specifications about how data is 'contained'. 
 
 Three commonly used data structures are summarised below:
 
@@ -284,7 +284,7 @@ For example, it makes sense to perform mathematical functions on numbers but not
 
 There are five basic types of data in R:
 
-* `logical` - either TRUE or FALSE. This is useful for binary data like if patient has a disease or not.
+* `logical` - either TRUE or FALSE. This is useful for data that only has two possible values, like if patient has a disease or not.
 * `integer` - number without decimal point e.g. `3`.
 * `double` - number with decimal point e.g. `3.14`.
 * `complex` - complex number with a real and imaginary part e.g. `1 + 3i`
@@ -318,7 +318,7 @@ The levels for the above data would be:
 3 = green
 ```
 
-Factors can be difficult to work with, so we don't want our gene symbols to be 'labelled' as factors. We can do this by specifiying this when reading our data in:
+Factors can be difficult to work with, so we don't want our gene symbols to be 'labelled' as factors. We can do this by specifying this when reading our data in:
 
 ```{r}
 genes <- read.delim("data/Ses1_genes.tsv", stringsAsFactors = FALSE)
@@ -361,7 +361,7 @@ genes$Count_2 <- genes$Count + 10
 There are a few things happening in the command above:
 
 1. The code on the right side of `<-` is evaluated first. It returns a vector as we saw above.
-2. This vector is assigned to a column in `genes` called `Count_2`. Since this column does not yet exist in the `genes` dataframe, a new column called `Count_2` is created first.
+2. This vector is assigned to a column in `genes` called `Count_2`. Since this column does not yet exist in the `genes` dataframe, a new column called `Count_2` is created first. (If there was already a column name `Count_2`, this command will have overwritten that column with the new vector created in the right side of `<-`)
 
 **Challenge 1**
 
