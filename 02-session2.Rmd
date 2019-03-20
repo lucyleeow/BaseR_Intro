@@ -41,7 +41,7 @@ Later we will learn how to remove the `NA` values from our dataframe.
 
 Subsetting involves selecting a portion of a data structure and uses square brackets `[ ]`. There are two main ways to subset a data structure:
 
-* Use indicies - data structures are all ordered and 'numbered' in R. This means that you can refer to the 4th element in a vector or the element in the 1st row and 3rd column of a dataframe. 
+* Use indices - data structures are all ordered and 'numbered' in R. This means that you can refer to the 4th element in a vector or the element in the 1st row and 3rd column of a dataframe. 
 * Use logicals - recall that a logical is `TRUE` or `FALSE`. You can use comparisons (e.g. equal to `==`, greater than `>`) to determine if each element in your data structure meet your requirements.
 
 ### Subsetting with indicies
@@ -76,7 +76,7 @@ This will give you the 3rd, 5th and 10th elements:
 Counts[c(3,5,100)]
 ```
 
-Note that we have used `c()` within the square brackets. This is because R expects ONE 'object' within the square brackets. Thus, if you want to extract several elements, you must give it ONE vector containing the indicies of the elements. A vector (e.g. `c(3,5,10)`) is considered one 'object' but the numbers `3,5,10` are considered three different 'objects'.
+Note that we have used `c()` within the square brackets. This is because R expects ONE 'object' within the square brackets. Thus, if you want to extract several indices, you must give it ONE vector containing the indices of the elements. A vector (e.g. `c(3,5,10)`) is considered one 'object' but the numbers `3,5,10` are considered three different 'objects'.
 
 Indeed, `3:10`, which we used earlier, is actually a vector of the numbers 3 to 10:
 
@@ -98,13 +98,18 @@ genes[ (which rows you want) , (which columns you want) ]
 
 Within the square brackets, you must first tell R which rows you want LEFT of the comma, then which columns you want RIGHT of the comma.
 
-This will give you the 3rd to 5th rows of the 2nd and 4th columns:
+The code below will give you the 3rd to 5th rows of the 2nd and 4th columns. Note that the output is a dataframe.
 
 ```{r}
 genes[3:5,c(2,4)]
 ```
 
-Note that the output is a dataframe.
+We could have also done this using the names of the columns. Note that column names are enclosed in quotes signifying that they are of the 'character' data type.
+
+```{r}
+genes[3:5,c("SYMBOL","GeneLength")]
+```
+
 
 If you leave the left side of comma empty, R will give you ALL the rows. If you leave the right side of the comma empty, R will give you ALL the columns.
 
@@ -136,67 +141,224 @@ This can be used to subset in R. We will start with our `Counts` vector:
 Counts[Counts < 100]
 ```
 
-`Counts < 100` will return a vector of 200 logicals, which indicate which elements are greater. Putting this inside square brackets will subset `Counts` such that only the elements that are less than 100 remain (the `TRUE`'s).
+`Counts < 100` will return a vector of 200 logicals, which indicate which elements are less than 100. Putting this inside square brackets will subset `Counts` such that only the elements that are less than 100 (the `TRUE`'s) remain.
 
-This is done similarily in dataframes. The command below selects the rows where the `genes$GeneLength` column is greater than 10000, and all the columns.
+This is done similarly in dataframes. The command below selects the rows where the `genes$Count` column equal to 0. 
 
-```{r}
-genes[genes$GeneLength == 2903,]
+```{r, eval=FALSE}
+genes[genes$Count == 0,]
 ```
 
-We can also use the `!` to 
+Because there are so many rows with a `genes$Count` of 0, I'll use the `head()` function to print out just the first 6 rows of the output:
 
 ```{r}
-genes[! genes$GeneLength == ,]
+head(genes[genes$Count == 0,])
 ```
 
+If you add `!` to the start of the `genes$Count == 0` condition statement, you will get all the rows where `genes$Count` is NOT equal to 0. 
 
+Another way to think about it is that `genes$Count == 0` gives you a logical vector of 200 `TRUE`'s and `FALSE`'s and `!` flips everything such that the `TRUE`'s become `FALSE`'s and vice versa.
+
+We do this here and print the first 6 rows of the output:
+
+```{r}
+head(genes[! genes$Count == 0,])
+```
 
 **Challenge 2.1**
 
-Subset the `genes` dataframe to obtain:
+1. Subset the `genes` dataframe to obtain the rows where the `Count` is less than or equal to 10 and the columns `TXCHROM` and `Count`.
+2. The function `is.na()` checks if each element in a vector is `NA`:
 
-1. The rows where the `Count` is less than or equal to 10 and the `TXCHROM` and `Count` columns.
-2. The function `is.na()`
-3. Only the rows where the `TXCHROM` is 'chr1' and all columns. 
+```{r}
+is.na(c(2,5, NA))
+```
 
-*Hint*: refer to section \@ref(comps) to see what syntax is used to perform different comparisons in R.
+Use this function to subset the `genes` dataframe so that all rows where `TXCHROM` column is `NA` is removed.
+
+3. Using the dataframe from above subset to get only the rows where the `TXCHROM` is 'chr1' and all columns. 
+
+*Hint*: you can refer to section \@ref(comps) to check how to perform different types of comparisons in R.
+
+### %in%
+
+In the last challenge, we used `==` to obtain the rows where `TXCHROM` is 'chr1'. Another way to perform 'matching' tasks is with the `%in%` function.
+
+The following command subsets the rows where `TXCHROM` is "chr1" or "chr2" and prints out the first 6 rows.
+
+```{r}
+head(
+  genes[genes$TXCHROM %in% c("chr1", "chr2"),]
+  )
+```
+
+**Challenge 2.2**
+
+There is an important difference between `==` and `%in%`.
+
+Let's start by creating a vector of numbers:
+
+```{r}
+vect1 <- c(10,10,5,5,8,8)
+```
+
+We check which elements in our vector is equal to 5.
+
+```{r}
+vect1 == 5
+```
+
+The output is what we would expect.
+
+What if we wanted check which elements are equal to 5 OR 10? We might try something like this, where put the numbers we are checking for in a vector:
+
+```{r}
+vect1 == c(5,10)
+```
+
+This output isn't what we want.
+
+Let's try the same task with `%in%`:
+
+```{r}
+vect1 %in% c(5,10)
+```
+
+This output IS what we want.
+
+Take a look at the code above and see if you can understand what `==` does and what `%in%` does.
 
 
+*Hint*: The story gets even more interesting if we try to use `==` to look for four numbers:
+
+```{r}
+vect1 == c(5,10,1,3)
+```
+
+This warning message may seem a bit cryptic. The 'longer' object it is referring to is `vect1` which has 6 elements. The shorter object it is referring to is `c(5,10,1,3)`, which has 4 elements. Thus, it is saying that 6 is not a multiple of 4. The reason R wants the longer object to be a multiple of the shorter one, is key to understanding what is happening when we use `==`.
 
 ## Merge
 
+Two dataframes can be combined with the `merge()` function.
 
+First, let's read in the file "Ses2_geneNames.tsv", which contains gene names and their corresponding ENTREZIDs.
 
+```{r}
+gene_names <- read.delim("data/Ses2_geneNames.tsv", 
+                         stringsAsFactors = FALSE)
+```
+
+What we want to do now, is to add the `GENENAME` column from `gene_names` dataframe to the `genes` dataframe. We also want to make sure that when R merges the dataframes, the correct `GENENAME` is added to the correct row. You will notice that both the `genes` and `gene_names` dataframes have a column giving the EntrezIDs. Thus, we want `merge()` to match rows using EntrezIDS while it is merging. 
+
+`merge()` has the following syntax:
+
+```{r, eval=FALSE}
+merge(
+  x =    # name of the first dataframe to merge
+  y =    # name of the second dataframe to merge
+  by.x = # name of the column to match, in the first dataframe
+  by.y = # name of the column to match in the second dataframe
+)
+```
+
+Thus, to merge our two dataframes we can use:
+
+```{r}
+genes2 <- merge(x = genes, y = gene_names, 
+                by.x = "EntrezID", by.y = "ENTREZID")
+
+head(genes2)
+```
+
+**Challenge 2.3**
+
+You may have noticed that there are 200 rows in the `genes` dataframe but 290 rows in the `gene_names` dataframe. This means that there are more gene names contained. We can also specify which rows to keep when merging:
+
+```{r, eval=FALSE}
+merge(
+  x =     # name of the first dataframe to merge
+  y =     # name of the second dataframe to merge
+  by.x =  # name of the column to match, in the first dataframe
+  by.y =  # name of the column to match in the second dataframe
+  all.x = # logical. If TRUE, keep all rows from the first dataframe, even if does not have a matching row in the second dataframe
+  all.y = # logical. If TRUE, keep all rows from the second dataframe, even if does not have a matching row in the second dataframe
+)
+```
+
+Merge the two dataframes again, but this time keep all rows from both dataframes.
 
 ## Functions
 
-won't often have to do this, but it is a good idea to have some understanding of how a function works 'under the hood'.
+A function, as the namne suggests performs a function. We have already used many functions. For example, the `read.delim()` function reads in data, the `sum()` function adds numbers up and the `merge()` function above merges two dataframes.
 
+Formally, when using a function, always include brackets (`( )`) after the name of the function. Within the brackets is where input (technically 'arguments') to the function goes. 
 
-```{r, eval=FALSE}
-gg <- read.delim("data/GSM1545535_10_6_5_11.txt", stringsAsFactors = FALSE)
+For example, 
 
-gg <- gg[1:20000,]
+```{r}
 
-gg <- gg[c(rep(TRUE,10), rep(FALSE, 990)), ]
-
-geneid <- gg$EntrezID
-
-genes <- select(Mus.musculus, keys=geneid, 
-                columns=c("ENTREZID","GENEID", "SYMBOL",
-                          "TXCHROM", "GENENAME"), 
-                keytype="ENTREZID")
-
-gg <- merge(gg, genes, by.x = "EntrezID",
-            by.y = "ENTREZID")
-
-gg <- gg[,c(1,5,6,2,3)]
-
-
-write.table(gg, file = "Ses2_genes.tsv", quote = FALSE,
-            sep = "\t", row.names = FALSE)
 ```
 
+## Homework
+
+## Answers
+
+**Challenge 2.1**
+
+1. This code obtains rows where `Count` is less than or equal to 10 and prints the first 6 rows using `head()`:
+
+```{r}
+head(genes[genes$Count <= 10,])
+```
+
+2. This code removes all rows where the `TXCHROM` column has a NA value (keeping all columns) and prints the first 6 rows:
+
+```{r}
+head(genes[! is.na(genes$TXCHROM),])
+```
+
+3. First we save the dataframe from the above as a variable called `genes_noNA`, then we subset to get only the rows where `TXCHROM` is 'chr1'. Again we only print the first 6 rows of this output.
+
+```{r}
+genes_noNA <- genes[! is.na(genes$TXCHROM),]
+
+head(genes_noNA[genes_noNA$TXCHROM == "chr1",])
+```
+
+**Challenge 2.2**
+
+What `==` does is compare `vect1` with `c(5,10)` one by one. Since `c(5,10)` only has two elements, R repeats this shorter vector until it is the same length as the longer vector. This is called 'recycling'. 
+
+Thus, the comparisons being made is the top row with each corresponding value in the bottom row, with the result being shown in the third row:
+
+```
+10     10    5    5     8     8
+
+5      10    5    10    5    10 
+
+FALSE TRUE TRUE FALSE FALSE FALSE
+```
+
+R gives you a warning whenever the length of the shorter vector is NOT a multiple of the longer vector. 
+
+When there were 4 elements in the shorter vector, it was not repeated a whole number of times - it was repeated 1.5 times. The comparisons being made between `vect1` and `c(5,10,1,3)` are:
+
+```
+10     10    5    5     8     8
+
+5      10    1    3     5    10 
+
+FALSE TRUE FALSE FALSE FALSE FALSE
+```
+
+`%in%` simply performs matching and does not take order of the two vectors into consideration. It checks whether the values in `vect1` matches either number in `c(5,10)`. It thus gives us the result we expect.
+
+**Challenge 2.3**
+
+```{r, eval=FALSE}
+genes2 <- merge(x = genes, y = gene_names, 
+                by.x = "EntrezID", by.y = "ENTREZID",
+                by.x = TRUE, by.y = TRUE)
+```
 
 
