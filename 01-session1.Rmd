@@ -1,5 +1,12 @@
 # Session 1
 
+In this first session we will learn about:
+
+* R and RStudio
+* data types and data structures
+* vectorisation
+* how to read in and write out data
+
 ## R and RStudio
 
 R is a free and open source statistical programming language, great for performing data analysis. RStudio is a free and open source R integrated development environment (IDE) which makes it easier for you to write code. It does this by providing you with auto-completion (of variable names, function names, file paths etc.), helping with formatting and keeping track of your variables.

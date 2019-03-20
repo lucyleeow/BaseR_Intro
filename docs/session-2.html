@@ -446,20 +446,20 @@ sd - vector of standard deviations.</code></pre>
 <li>What happens when you give either argument a vector of numbers?</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">4</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>## [1] 11.846658 10.273662  9.995467  9.873896</code></pre>
+<pre><code>## [1]  9.584970 10.940782  8.687376  8.101249</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="kw">c</span>(<span class="dv">100</span>,<span class="dv">0</span>), <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>## [1] 98.7095460 -0.9280233 97.4347241</code></pre>
+<pre><code>## [1]  99.5218005  -0.9452938 100.1919240</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Take a look at the following code:</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">10</span>)</code></pre></div>
-<pre><code>## [1] -10.11630 -16.50097 -13.26623</code></pre>
+<pre><code>## [1] -1.750183  2.626013 15.361813</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>,<span class="dv">10</span>,<span class="dv">1</span>)</code></pre></div>
-<pre><code>## [1] 10.178110  8.899177  9.882688</code></pre>
+<pre><code>## [1] 10.205009  9.553214  9.243035</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">0</span>)</code></pre></div>
 <pre><code>## [1] 10 10 10</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">sd =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">0</span>)</code></pre></div>
-<pre><code>## [1]  5.644625 -6.933261 -6.913711</code></pre>
+<pre><code>## [1] -7.761133 24.018483  1.330641</code></pre>
 <p>How does the order of the arguments you input to the function affect the output? What happens when you include the name of the argument before your input?</p>
 <p>Note that as the function generates a random number, the numbers you will get from running the function will be different to the ones generated above.</p>
 </div>
