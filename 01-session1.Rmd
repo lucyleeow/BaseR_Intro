@@ -35,7 +35,7 @@ knitr::include_graphics("Images/RS1.png")
 
 There are two ways to access help files in RStudio. You can type in the name of the function you want help with, in the top right of help tab (indicated with a red arrow):
 
-```{r help, fig.cap="Accessing help files via 'help' tab.", out.width="500px", echo=FALSE}
+```{r help, fig.cap="Accessing help files via 'help' tab.", out.width="500px", fig.align='center', echo=FALSE}
 knitr::include_graphics("Images/help.png")
 ```
 
