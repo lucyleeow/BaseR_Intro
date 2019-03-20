@@ -9,7 +9,7 @@ Last session we gained an understanding of R data structures and data types. In 
 
 ## Missing values
 
-First, let's read in some data, then subset it. Recall we use the function `read.delim()` and tell R not to label words as 'Factors' using `stringsAsFactors = FALSE`.
+First, let's read in some data. Recall we use the function `read.delim()` and tell R not to label words as 'Factors' using `stringsAsFactors = FALSE`.
 
 ```{r}
 genes <- read.delim("data/Ses2_genes.tsv", stringsAsFactors = FALSE)
@@ -23,7 +23,7 @@ knitr::include_graphics("Images/RS4.png")
 
 Scrolling down the window, you can see that there are several *NA* entries. `NA` denotes a missing value in R.
 
-`NA`'s have some interesting behaviour - the are 'contagious'. For example, if we wanted to take the mean of a vector numbers, which includes a `NA`, the answer is `NA`. If we think about it, it makes sense that the mean of two numbers and a 'missing' number that could be anything is `NA`.
+`NA`'s have some interesting behaviour - they are 'contagious'. For example, if we wanted to take the mean of a vector numbers, which includes a `NA`, the answer is `NA`. If we think about it, it makes sense that the mean of two numbers and a 'missing' number that could be anything is `NA`.
 
 ```{r}
 mean(c(2,3,NA))
@@ -315,7 +315,7 @@ sd - vector of standard deviations.
 
 **Challenge 2.4**
 
-1. Take a look at what the `rnorm()` function outputs in the following code and have a go plugging various inputs to the function. Then try to answer the following questions:
+1. Take a look at what the `rnorm()` function outputs in the code below and have a go plugging various inputs to the function. Then try to answer the following questions:
 
 * What does `rnorm()` do when you only give it one number to the `mean` and `sd` arguments?
 * What happens when you give either argument a vector of numbers?
@@ -339,6 +339,15 @@ How does the order of the arguments you input to the function affect the output?
 Note that as the function generates a random number, the numbers you will get from running the function will be different to the ones generated above.
 
 ## Homework
+
+We will use the Bioconductor packages 'limma' and 'edgeR' in the next session. Before the next sesssion, please install these packages with the following commands:
+
+```{r, eval=FALSE}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install(c("edgeR", "limma"), version = "3.8")
+```
+
 
 ## Answers
 
