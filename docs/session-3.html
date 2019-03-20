@@ -145,6 +145,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.1" data-path="session-3.html"><a href="session-3.html#lists"><i class="fa fa-check"></i><b>4.1</b> Lists</a></li>
 <li class="chapter" data-level="4.2" data-path="session-3.html"><a href="session-3.html#s4-objects"><i class="fa fa-check"></i><b>4.2</b> S4 objects</a></li>
 <li class="chapter" data-level="4.3" data-path="session-3.html"><a href="session-3.html#dgelist"><i class="fa fa-check"></i><b>4.3</b> DGEList</a></li>
+<li class="chapter" data-level="4.4" data-path="session-3.html"><a href="session-3.html#answers-2"><i class="fa fa-check"></i><b>4.4</b> Answers</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="session-4.html"><a href="session-4.html"><i class="fa fa-check"></i><b>5</b> Session 4</a></li>
 <li class="divider"></li>
@@ -169,14 +170,126 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="session-3" class="section level1">
 <h1><span class="header-section-number">Chapter 4</span> Session 3</h1>
+<p>In this session we will learn:</p>
+<ul>
+<li>lists, another data structure</li>
+<li>S4 objects</li>
+<li>the DGEList object from the package limma</li>
+</ul>
 <div id="lists" class="section level2">
 <h2><span class="header-section-number">4.1</span> Lists</h2>
+<p>Recall that we have previously learnt about the data structures: vectors, matrices and dataframes. Another important data structure is the list. Like a vector, it is 1 dimensional i.e. one row of data. Unlike vectors, you can put several data types in a list. Here, our list includes data of the integer, a character and a double types:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list</span>(<span class="dv">1</span>, <span class="st">&quot;a&quot;</span>, <span class="fl">1.5</span>)</code></pre></div>
+<pre><code>## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] &quot;a&quot;
+## 
+## [[3]]
+## [1] 1.5</code></pre>
+<p>Not only can you put different data types into a list, you can also put a WHOLE data structure into one element in a list. In the list below, the first element is a vector that contains 3 numbers, the second element is a character and the third element is a dataframe that has two columns.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), 
+     <span class="kw">c</span>(<span class="st">&quot;words&quot;</span>, <span class="st">&quot;letters&quot;</span>), 
+     <span class="kw">data.frame</span>(<span class="dt">column1 =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dt">column2 =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>))
+     )</code></pre></div>
+<pre><code>## [[1]]
+## [1] 1 2 3
+## 
+## [[2]]
+## [1] &quot;words&quot;   &quot;letters&quot;
+## 
+## [[3]]
+##   column1 column2
+## 1       1       a
+## 2       2       b
+## 3       3       c</code></pre>
+<p>The output can often help you understand how the list is structured. The double brackets (e.g. <code>[[1]]</code>) signifies an element of the list and which index it is at. Here there are three elements in our list so the numbers in the double square brackets go from 1 to 3. Underneath the <code>[[1]]</code> and <code>[[2]]</code>, there is a <code>[1]</code> - this indicates that the first and second elements both contain a vector. Underneath <code>[[3]]</code> you see the standard output for a dataframe, which we have seen before.</p>
+<p>You even include a list within a list (within a list, within a list….I call this ‘listception’). This is where it starts to get confusing.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list</span>(<span class="dv">1</span>, <span class="kw">list</span>(<span class="dv">1</span>,<span class="st">&quot;a&quot;</span>))</code></pre></div>
+<pre><code>## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [[2]][[1]]
+## [1] 1
+## 
+## [[2]][[2]]
+## [1] &quot;a&quot;</code></pre>
+<ul>
+<li>The first element, indicated by <code>[[1]]</code>, is a vector, indicated by the <code>[1]</code> underneath.</li>
+<li>The second element, indicated by the first <code>[[2]]</code> contains a list:
+<ul>
+<li><code>[[2]][[1]]</code> - tells you that the second element is a list, of which the first element of the inner list is the number 1.</li>
+<li><code>[[2]][[2]]</code> - tells you that the second element is a list, of which the second element of the inner list is “a”.</li>
+</ul></li>
+</ul>
+<p>Many bioconductor packages, including limma, use lists so it is an important data structure to understand.</p>
+<p><strong>Challenge 3.1</strong></p>
+<p>Below is the output from a list.</p>
+<ol style="list-style-type: decimal">
+<li><p>How many element of the list are there?</p></li>
+<li><p>Look carefully at each element and answer the following questions about EVERY element of the list:</p></li>
+</ol>
+<ul>
+<li>How many elements does the element of the list contain?</li>
+<li>If there are several elements within this element, what does each element contain?</li>
+</ul>
+<pre><code>## [[1]]
+## [[1]][[1]]
+## [1] 1 2
+## 
+## [[1]][[2]]
+## [1] &quot;b&quot;
+## 
+## 
+## [[2]]
+## [1] &quot;a&quot; &quot;b&quot;
+## 
+## [[3]]
+## [[3]][[1]]
+## [[3]][[1]][[1]]
+## [1] &quot;a&quot;
+## 
+## [[3]][[1]][[2]]
+## [1] 1
+## 
+## 
+## [[3]][[2]]
+## [1] &quot;b&quot;
+## 
+## 
+## [[4]]
+## [1] &quot;end&quot;</code></pre>
 </div>
 <div id="s4-objects" class="section level2">
 <h2><span class="header-section-number">4.2</span> S4 objects</h2>
+<p>Everything in R is an ‘object’ - every function that we have used and every data structure created in R. All the objects we have used so far, are ‘S3’ objects.</p>
+<p>Many data structures in Bioconductor packages are ‘S4’ objects. ‘S4’ objects are much more ‘formal’ than S3 objects.</p>
+<p>Let’s look at an example. The <code>DGEList</code> object from limma is an S4 object. It is a data structure specifically designed for storing read count data from sequencing. It is a list that contains two specific components:</p>
+<ul>
+<li><code>counts</code> - which must be a numeric matrix, that stores counts. Each row must be a gene and each column must be a sample.</li>
+<li><code>samples</code> - which must be a dataframe, that contains information about each sample. Each row must be a sample and must contain information about the group (e.g. treatment group) the sample belongs to, the library size of that sample and the normalisation factor for that sample.</li>
+</ul>
+<p>There are a lot more specifications about the type of and how data is stored in the <code>DGEList</code> S4 object, than say the S3 list. You can think of S3 objects as very genetic tools (e.g. a spanner) whereas S4 objects tend to be tools designed for a very specific task (e.g. a lug wrench, which is used to loosen and tighten lug nuts on car wheels).</p>
+<p>You can read more about the S4 objects in <a href="https://www.bioconductor.org/help/course-materials/2017/Zurich/S4-classes-and-methods.html#strengths-of-s4-compared-to-s3">this</a> Bioconductor tutorial.</p>
 </div>
 <div id="dgelist" class="section level2">
 <h2><span class="header-section-number">4.3</span> DGEList</h2>
+</div>
+<div id="answers-2" class="section level2">
+<h2><span class="header-section-number">4.4</span> Answers</h2>
+<p><strong>Challenge 3.1</strong></p>
+<ol style="list-style-type: decimal">
+<li>There are 4 elements of this list.</li>
+<li></li>
+</ol>
+<ul>
+<li>Within the first element, there are 2 elements. The first is a vector containing 2 numbers and the second is a vector containing one character type (note there are no ‘scalars’ in R, thus <code>&quot;a&quot;</code> is a vector with 1 element).</li>
+<li>The second element contains 1 element. It is a vector containing two character types.</li>
+<li>The third element contains 2 elements. Within the first element is another list. Within this list there are 2 elements, both being character types. The second element of this nested list is a vector containing one character type.</li>
+<li>The fourth element is a vector containing one character type.</li>
+</ul>
 
 </div>
 </div>
