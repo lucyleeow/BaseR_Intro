@@ -423,8 +423,45 @@ Figure 3.1: Viewing data from the ‘Environment’ tab.
 <div id="functions" class="section level2">
 <h2><span class="header-section-number">3.4</span> Functions</h2>
 <p>A function, as the namne suggests performs a function. We have already used many functions. For example, the <code>read.delim()</code> function reads in data, the <code>sum()</code> function adds numbers up and the <code>merge()</code> function above merges two dataframes.</p>
-<p>Formally, when using a function, always include brackets (<code>( )</code>) after the name of the function. Within the brackets is where input (technically ‘arguments’) to the function goes.</p>
-<p>For example,</p>
+<p>Formally, when using a function, brackets (<code>( )</code>) are always included after the name of the function. Within the brackets is where input (technically ‘arguments’) to the function goes. You can find out what inputs an argument takes by looking at the help file.</p>
+<p>For example, let’s take a look at the <code>rnorm()</code> function help file. This function generates a random number from a normal distribution.</p>
+<div class="figure" style="text-align: center"><span id="fig:rnorm"></span>
+<img src="Images/rnorm_help.png" alt="rnorm help file." width="600px" />
+<p class="caption">
+Figure 3.2: rnorm help file.
+</p>
+</div>
+<p>We can see from the help file that <code>rnorm()</code> takes in 3 arguments:</p>
+<pre><code>rnorm(n, mean = 0, sd = 1)</code></pre>
+<p>The help file also tells us what each of these arguments does:</p>
+<pre><code>n   - number of observations. If length(n) &gt; 1, the length is taken to be the number required.
+mean - vector of means.
+sd - vector of standard deviations.</code></pre>
+<p><strong>Challenge 2.4</strong></p>
+<ol style="list-style-type: decimal">
+<li>Take a look at what the <code>rnorm()</code> function outputs in the following code and have a go plugging various inputs to the function. Then try to answer the following questions:</li>
+</ol>
+<ul>
+<li>What does <code>rnorm()</code> do when you only give it one number to the <code>mean</code> and <code>sd</code> arguments?</li>
+<li>What happens when you give either argument a vector of numbers?</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">4</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
+<pre><code>## [1] 11.846658 10.273662  9.995467  9.873896</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="kw">c</span>(<span class="dv">100</span>,<span class="dv">0</span>), <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
+<pre><code>## [1] 98.7095460 -0.9280233 97.4347241</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Take a look at the following code:</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">10</span>)</code></pre></div>
+<pre><code>## [1] -10.11630 -16.50097 -13.26623</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>,<span class="dv">10</span>,<span class="dv">1</span>)</code></pre></div>
+<pre><code>## [1] 10.178110  8.899177  9.882688</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">0</span>)</code></pre></div>
+<pre><code>## [1] 10 10 10</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">sd =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">0</span>)</code></pre></div>
+<pre><code>## [1]  5.644625 -6.933261 -6.913711</code></pre>
+<p>How does the order of the arguments you input to the function affect the output? What happens when you include the name of the argument before your input?</p>
+<p>Note that as the function generates a random number, the numbers you will get from running the function will be different to the ones generated above.</p>
 </div>
 <div id="homework-1" class="section level2">
 <h2><span class="header-section-number">3.5</span> Homework</h2>
@@ -487,6 +524,21 @@ FALSE TRUE FALSE FALSE FALSE FALSE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes2 &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> genes, <span class="dt">y =</span> gene_names, 
                 <span class="dt">by.x =</span> <span class="st">&quot;EntrezID&quot;</span>, <span class="dt">by.y =</span> <span class="st">&quot;ENTREZID&quot;</span>,
                 <span class="dt">by.x =</span> <span class="ot">TRUE</span>, <span class="dt">by.y =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p><strong>Challenge 2.4</strong></p>
+<ol style="list-style-type: decimal">
+<li>If you provide <code>rnorm()</code> with a vector of inputs to either the <code>mean</code> or <code>sd</code> argument, it will use each element in that vector for successive random numbers generated and recycle the vector if it is shorter than the number of random numbers required.</li>
+</ol>
+<p>Thus, the following code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="kw">c</span>(<span class="dv">100</span>,<span class="dv">0</span>), <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
+<p>will generate 3 random numbers from a normal distribution of:</p>
+<pre><code>1. mean of 100 and sd of 1
+2. mean of 0 and sd of 1
+3. mean of 100 and sd of 1</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>If you do not provide the name of the argument, <code>rnorm()</code> will use the first number provided as the argument to <code>n</code>, the second number provided as the input to <code>mean</code> and the third number provided as the input to <code>sd</code>.</li>
+</ol>
+<p>Thus, <code>rnorm(3,1,10)</code> generates 3 random numbers from a normal distribution with a mean of 1 and a standard deviation of 10 and <code>rnorm(3,10,1)</code> will generate 3 random numbers from a normal distribution with a mean of 10 and a standard deviation of 1.</p>
+<p>If you give the argument name with the input, it does not matter what order you provide the inputs.</p>
 
 </div>
 </div>
