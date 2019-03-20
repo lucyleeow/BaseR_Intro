@@ -18,4 +18,4 @@ This introduction to base R course was designed for biologists with no previous 
 
 It is intended to be delivered over four 2.5 hour workshops.
 
-The html pages was generated using the amazing [bookdown](https://bookdown.org/) package by [YiHui Xie](https://yihui.name/).
+This page was generated using the amazing [bookdown](https://bookdown.org/) package by [YiHui Xie](https://yihui.name/). The source code for this page can be found on [Github](https://github.com/lucyleeow/BaseR_Intro).
