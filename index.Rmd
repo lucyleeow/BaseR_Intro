@@ -12,7 +12,7 @@ github-repo: lucyleeow/BaseR_Intro
 description: "Introductory tutorial to base R, with a biological focus. In particular it will focus on analysing RNA-sequencing data with Bioconductor."
 ---
 
-# Preface
+# Preface {-}
 
 This introduction to base R course was designed for biologists with no previous programming experience. It has a focus on analysing RNA-sequencing data with the [Bioconductor](https://www.bioconductor.org/) package [limma](https://bioconductor.org/packages/release/bioc/html/limma.html). The F1000 paper ['RNA-seq analysis is easy as 1-2-3 with limma, Glimma and edgeR'](https://f1000research.com/articles/5-1408/v3) was used as a guide for the latter sessions.
 
