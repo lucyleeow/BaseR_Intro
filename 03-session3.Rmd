@@ -15,7 +15,7 @@ list(1, "a", 1.5)
 ```
 
 
-Not only can you put different data types into a list, you can also put a WHOLE data structure into one element in a list. In the list below, the first element is a vector that contains 3 numbers, the second element is a character and the third element is a dataframe that has two columns.
+Not only can you put different data types into a list, you can also put a WHOLE data structure into one element of a list. In the list below, the first element is a vector that contains 3 numbers, the second element is a character and the third element is a dataframe that has two columns.
 
 
 ```{r}
@@ -27,7 +27,7 @@ list(c(1,2,3),
 
 The output can often help you understand how the list is structured. The double brackets (e.g. `[[1]]`) signifies an element of the list and which index it is at. Here there are three elements in our list so the numbers in the double square brackets go from 1 to 3. Underneath the `[[1]]` and `[[2]]`, there is a `[1]` - this indicates that the first and second elements both contain a vector. Underneath `[[3]]` you see the standard output for a dataframe, which we have seen before.
 
-You even include a list within a list (within a list, within a list....I call this 'listception'). This is where it starts to get confusing.
+You even include a list within a list (within a list, within a list....I call this 'list - ception'). This is where it starts to get confusing.
 
 ```{r}
 list(1, list(1,"a"))
@@ -54,19 +54,165 @@ Below is the output from a list.
 
 ```{r, echo=FALSE}
 list(
-  list(c(1,2),  c("b")), 
+  list(c(1,2),  "b"), 
   c("a","b"),
   list(list("a", 1), "b"),
   "end"
   )
 ```
 
+We can access elements of a list using square brackets. You may have noticed that there are often double square brackets `[[ ]]`. There is a subtle but important difference between single square brackets and double square brackets when subsetting lists.
+
+Let's make a list:
+
+```{r}
+my_list <- list(
+  c("a","b"),
+  c(1,2,3),
+  c(4,5,6)
+  )
+```
+
+Take a look at the output of obtaining the first element with single square brackets and double square brackets:
+
+```{r}
+my_list[1]
+```
+
+```{r}
+my_list[[1]]
+```
+
+The difference is minor; with `my_list[1]` there is an extra `[[1]]` at the top, with `my_list[[1]]` there is no `[[1]]` at the top.
+
+The `str()` function gives us some more information:
+
+```{r}
+str(my_list[1])
+```
+
+```{r}
+str(my_list[[1]])
+```
+
+This tells us that when you use single brackets, the output is a list containing one element, which is a vector. When you use double brackets, the output is just a vector, NOT contained within a list.
+
+Let's use an analogy to gain a better understanding of this concept. Below is a picture of a cargo train, which contains a box in each segment. This represents a list containing 3 elements, with each element being the box.
+
+```{r train, fig.cap="Cargo train representation of a list.", out.width="700px", fig.align='center', echo=FALSE}
+knitr::include_graphics("Images/train.jpg")
+```
+
+Using a single bracket returns you the train segment with the box inside.
+
+```{r trainS, fig.cap="Single brackets with our cargo train list.", out.width="300px", out.height="350px", fig.align='center', echo=FALSE}
+knitr::include_graphics("Images/train_double.jpeg")
+```
+
+Using double brackets returns you just the box inside.
+
+```{r trainD, fig.cap="Double brackets with our cargo train list.", out.width="300px", fig.align='center', echo=FALSE}
+knitr::include_graphics("Images/box.png")
+```
+
+Back to our list:
+
+```{r}
+my_list
+```
+
+To obtain the first element of the vector contained within the first element of the list (the `"a"`) you can use:
+
+```{r}
+my_list[[1]][1]
+```
+
+The `[[1]]` gives you just the vector contained within the first element of the list:
+
+```{r}
+my_list[[1]]
+```
+
+The second square bracket `[1]` then gives you the first element of the vector:
+
+```{r}
+my_list[[1]][1]
+```
+
+
+**Challenge 3.2**
+
+First create a new list:
+
+```{r}
+my_list2 <- list(
+  c("a","b"),
+  c(1,2,3),
+  data.frame(Name = c("Sally", "Andy"), Age = c(40,32))
+  )
+my_list2
+```
+
+Subset this list to obtain a data structure that gives the following outputs:
+
+1.
+```{r, echo=FALSE}
+my_list2[[1]]
+```
+
+2. 
+```{r, echo=FALSE}
+my_list2[[1]][2]
+```
+
+3.
+```{r, echo=FALSE}
+my_list2[2]
+```
+
+4. 
+```{r, echo=FALSE}
+my_list2[[3]][1,2]
+```
+
+5. 
+```{r, echo=FALSE}
+my_list2[[3]][1,]
+```
+
+6.
+```{r, echo=FALSE}
+my_list2[3]
+```
+
+
+### Named list
+
+You can also have names for each element of your list:
+
+```{r}
+named_list <- list(
+  name = c("Andy", "Sally"),
+  age = c(32,40)
+)
+named_list
+```
+
+If your list is named, you can use `$` to access each element of your list:
+
+```{r}
+named_list$name
+```
+
+
+*Extra*: recall that we access columns in dataframes with the `$` symbol as well. This is because 'under the hood' a dataframe is actually a list - but a list with the specification that each element is a vector of the same length. Each element in the list is thus a column in the 'dataframe'.
+
 
 ## S4 objects
 
 Everything in R is an 'object' - every function that we have used and every data structure created in R. All the objects we have used so far, are 'S3' objects. 
 
-Many data structures in Bioconductor packages are 'S4' objects. 'S4' objects are much more 'formal' than S3 objects. 
+Bioconductor is an open source project to provide tools for the analysis of high-throughput genomic data. There are more than 1,500 R packages on Bioconductor. Most objects in Bioconductor packages are 'S4' objects. 'S4' objects are much more 'formal' than S3 objects. 
 
 Let's look at an example. The `DGEList` object from limma is an S4 object. It is a data structure specifically designed for storing read count data from sequencing. It is a list that contains two specific components:
 
@@ -75,11 +221,24 @@ Let's look at an example. The `DGEList` object from limma is an S4 object. It is
 
 There are a lot more specifications about the type of and how data is stored in the `DGEList` S4 object, than say the S3 list. You can think of S3 objects as very genetic tools (e.g. a spanner) whereas S4 objects tend to be tools designed for a very specific task (e.g. a lug wrench, which is used to loosen and tighten lug nuts on car wheels).
 
-
 You can read more about the S4 objects in [this](https://www.bioconductor.org/help/course-materials/2017/Zurich/S4-classes-and-methods.html#strengths-of-s4-compared-to-s3) Bioconductor tutorial.
 
+## Packages
+
+Last session we installed the packages limma and edgeR. This downloads the files for each package and saves them to your computer. You generally only need to do this once.
+
+To use a package you must 'load' them each time you start a new R session. You do this with the `library()` function. Let's load both limma and edgeR:
+
+```{r}
+library(edgeR)
+library(limma)
+```
 
 ## DGEList
+
+We can now create a `DGEList` object from limma. To do so
+
+
 
 
 ## Answers
@@ -95,8 +254,37 @@ You can read more about the S4 objects in [this](https://www.bioconductor.org/he
 * The fourth element is a vector containing one character type.
 
 
+**Challenge 3.2**
 
+1.
+```{r}
+my_list2[[1]]
+```
 
+2. 
+```{r}
+my_list2[[1]][2]
+```
+
+3.
+```{r}
+my_list2[2]
+```
+
+4. 
+```{r}
+my_list2[[3]][1,2]
+```
+
+5. 
+```{r}
+my_list2[[3]][1,]
+```
+
+6.
+```{r}
+my_list2[3]
+```
 
 
 
