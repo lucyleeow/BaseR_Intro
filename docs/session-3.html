@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Chapter 4 Session 3 | Introduction to Base R</title>
+  <title>Chapter 3 Session 3 | Introduction to Base R</title>
   <meta name="description" content="Introductory tutorial to base R, with a biological focus. In particular it will focus on analysing RNA-sequencing data with Bioconductor.">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Chapter 4 Session 3 | Introduction to Base R" />
+  <meta property="og:title" content="Chapter 3 Session 3 | Introduction to Base R" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="lucyleeow/BaseR_Intro" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Session 3 | Introduction to Base R" />
+  <meta name="twitter:title" content="Chapter 3 Session 3 | Introduction to Base R" />
   
   <meta name="twitter:description" content="Introductory tutorial to base R, with a biological focus. In particular it will focus on analysing RNA-sequencing data with Bioconductor." />
   
@@ -25,7 +25,7 @@
 <meta name="author" content="Lucy Liu">
 
 
-<meta name="date" content="2019-03-20">
+<meta name="date" content="2019-03-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -104,50 +104,53 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./">Introduction to Base R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
-<li class="chapter" data-level="2" data-path="session-1.html"><a href="session-1.html"><i class="fa fa-check"></i><b>2</b> Session 1</a><ul>
-<li class="chapter" data-level="2.1" data-path="session-1.html"><a href="session-1.html#r-and-rstudio"><i class="fa fa-check"></i><b>2.1</b> R and RStudio</a></li>
-<li class="chapter" data-level="2.2" data-path="session-1.html"><a href="session-1.html#help"><i class="fa fa-check"></i><b>2.2</b> Help</a></li>
-<li class="chapter" data-level="2.3" data-path="session-1.html"><a href="session-1.html#r-scripts"><i class="fa fa-check"></i><b>2.3</b> R scripts</a></li>
-<li class="chapter" data-level="2.4" data-path="session-1.html"><a href="session-1.html#working-directory"><i class="fa fa-check"></i><b>2.4</b> Working directory</a></li>
-<li class="chapter" data-level="2.5" data-path="session-1.html"><a href="session-1.html#maths"><i class="fa fa-check"></i><b>2.5</b> Maths</a></li>
-<li class="chapter" data-level="2.6" data-path="session-1.html"><a href="session-1.html#comps"><i class="fa fa-check"></i><b>2.6</b> Comparisons</a></li>
-<li class="chapter" data-level="2.7" data-path="session-1.html"><a href="session-1.html#variables"><i class="fa fa-check"></i><b>2.7</b> Variables</a><ul>
-<li class="chapter" data-level="2.7.1" data-path="session-1.html"><a href="session-1.html#errors-and-warnings"><i class="fa fa-check"></i><b>2.7.1</b> Errors and warnings</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="session-1.html"><a href="session-1.html"><i class="fa fa-check"></i><b>1</b> Session 1</a><ul>
+<li class="chapter" data-level="1.1" data-path="session-1.html"><a href="session-1.html#r-and-rstudio"><i class="fa fa-check"></i><b>1.1</b> R and RStudio</a></li>
+<li class="chapter" data-level="1.2" data-path="session-1.html"><a href="session-1.html#help"><i class="fa fa-check"></i><b>1.2</b> Help</a></li>
+<li class="chapter" data-level="1.3" data-path="session-1.html"><a href="session-1.html#r-scripts"><i class="fa fa-check"></i><b>1.3</b> R scripts</a></li>
+<li class="chapter" data-level="1.4" data-path="session-1.html"><a href="session-1.html#working-directory"><i class="fa fa-check"></i><b>1.4</b> Working directory</a></li>
+<li class="chapter" data-level="1.5" data-path="session-1.html"><a href="session-1.html#maths"><i class="fa fa-check"></i><b>1.5</b> Maths</a></li>
+<li class="chapter" data-level="1.6" data-path="session-1.html"><a href="session-1.html#comps"><i class="fa fa-check"></i><b>1.6</b> Comparisons</a></li>
+<li class="chapter" data-level="1.7" data-path="session-1.html"><a href="session-1.html#variables"><i class="fa fa-check"></i><b>1.7</b> Variables</a><ul>
+<li class="chapter" data-level="1.7.1" data-path="session-1.html"><a href="session-1.html#errors-and-warnings"><i class="fa fa-check"></i><b>1.7.1</b> Errors and warnings</a></li>
 </ul></li>
-<li class="chapter" data-level="2.8" data-path="session-1.html"><a href="session-1.html#data-structures"><i class="fa fa-check"></i><b>2.8</b> Data structures</a><ul>
-<li class="chapter" data-level="2.8.1" data-path="session-1.html"><a href="session-1.html#vector"><i class="fa fa-check"></i><b>2.8.1</b> Vector</a></li>
-<li class="chapter" data-level="2.8.2" data-path="session-1.html"><a href="session-1.html#matrix"><i class="fa fa-check"></i><b>2.8.2</b> Matrix</a></li>
-<li class="chapter" data-level="2.8.3" data-path="session-1.html"><a href="session-1.html#dataframe"><i class="fa fa-check"></i><b>2.8.3</b> Dataframe</a></li>
+<li class="chapter" data-level="1.8" data-path="session-1.html"><a href="session-1.html#data-structures"><i class="fa fa-check"></i><b>1.8</b> Data structures</a><ul>
+<li class="chapter" data-level="1.8.1" data-path="session-1.html"><a href="session-1.html#vector"><i class="fa fa-check"></i><b>1.8.1</b> Vector</a></li>
+<li class="chapter" data-level="1.8.2" data-path="session-1.html"><a href="session-1.html#matrix"><i class="fa fa-check"></i><b>1.8.2</b> Matrix</a></li>
+<li class="chapter" data-level="1.8.3" data-path="session-1.html"><a href="session-1.html#dataframe"><i class="fa fa-check"></i><b>1.8.3</b> Dataframe</a></li>
 </ul></li>
-<li class="chapter" data-level="2.9" data-path="session-1.html"><a href="session-1.html#reading-in-data"><i class="fa fa-check"></i><b>2.9</b> Reading in data</a></li>
-<li class="chapter" data-level="2.10" data-path="session-1.html"><a href="session-1.html#data-types"><i class="fa fa-check"></i><b>2.10</b> Data types</a><ul>
-<li class="chapter" data-level="2.10.1" data-path="session-1.html"><a href="session-1.html#factors"><i class="fa fa-check"></i><b>2.10.1</b> Factors</a></li>
+<li class="chapter" data-level="1.9" data-path="session-1.html"><a href="session-1.html#reading-in-data"><i class="fa fa-check"></i><b>1.9</b> Reading in data</a></li>
+<li class="chapter" data-level="1.10" data-path="session-1.html"><a href="session-1.html#data-types"><i class="fa fa-check"></i><b>1.10</b> Data types</a><ul>
+<li class="chapter" data-level="1.10.1" data-path="session-1.html"><a href="session-1.html#factors"><i class="fa fa-check"></i><b>1.10.1</b> Factors</a></li>
 </ul></li>
-<li class="chapter" data-level="2.11" data-path="session-1.html"><a href="session-1.html#vectorisation"><i class="fa fa-check"></i><b>2.11</b> Vectorisation</a></li>
-<li class="chapter" data-level="2.12" data-path="session-1.html"><a href="session-1.html#writing-out-data"><i class="fa fa-check"></i><b>2.12</b> Writing out data</a></li>
-<li class="chapter" data-level="2.13" data-path="session-1.html"><a href="session-1.html#homework"><i class="fa fa-check"></i><b>2.13</b> Homework</a></li>
-<li class="chapter" data-level="2.14" data-path="session-1.html"><a href="session-1.html#answers"><i class="fa fa-check"></i><b>2.14</b> Answers</a></li>
+<li class="chapter" data-level="1.11" data-path="session-1.html"><a href="session-1.html#vectorisation"><i class="fa fa-check"></i><b>1.11</b> Vectorisation</a></li>
+<li class="chapter" data-level="1.12" data-path="session-1.html"><a href="session-1.html#writing-out-data"><i class="fa fa-check"></i><b>1.12</b> Writing out data</a></li>
+<li class="chapter" data-level="1.13" data-path="session-1.html"><a href="session-1.html#homework"><i class="fa fa-check"></i><b>1.13</b> Homework</a></li>
+<li class="chapter" data-level="1.14" data-path="session-1.html"><a href="session-1.html#answers"><i class="fa fa-check"></i><b>1.14</b> Answers</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="session-2.html"><a href="session-2.html"><i class="fa fa-check"></i><b>3</b> Session 2</a><ul>
-<li class="chapter" data-level="3.1" data-path="session-2.html"><a href="session-2.html#missing-values"><i class="fa fa-check"></i><b>3.1</b> Missing values</a></li>
-<li class="chapter" data-level="3.2" data-path="session-2.html"><a href="session-2.html#subsetting"><i class="fa fa-check"></i><b>3.2</b> Subsetting</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="session-2.html"><a href="session-2.html#subsetting-with-indicies"><i class="fa fa-check"></i><b>3.2.1</b> Subsetting with indicies</a></li>
-<li class="chapter" data-level="3.2.2" data-path="session-2.html"><a href="session-2.html#subsetting-with-logicals"><i class="fa fa-check"></i><b>3.2.2</b> Subsetting with logicals</a></li>
-<li class="chapter" data-level="3.2.3" data-path="session-2.html"><a href="session-2.html#in"><i class="fa fa-check"></i><b>3.2.3</b> %in%</a></li>
+<li class="chapter" data-level="2" data-path="session-2.html"><a href="session-2.html"><i class="fa fa-check"></i><b>2</b> Session 2</a><ul>
+<li class="chapter" data-level="2.1" data-path="session-2.html"><a href="session-2.html#missing-values"><i class="fa fa-check"></i><b>2.1</b> Missing values</a></li>
+<li class="chapter" data-level="2.2" data-path="session-2.html"><a href="session-2.html#subsetting"><i class="fa fa-check"></i><b>2.2</b> Subsetting</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="session-2.html"><a href="session-2.html#subsetting-with-indicies"><i class="fa fa-check"></i><b>2.2.1</b> Subsetting with indicies</a></li>
+<li class="chapter" data-level="2.2.2" data-path="session-2.html"><a href="session-2.html#subsetting-with-logicals"><i class="fa fa-check"></i><b>2.2.2</b> Subsetting with logicals</a></li>
+<li class="chapter" data-level="2.2.3" data-path="session-2.html"><a href="session-2.html#in"><i class="fa fa-check"></i><b>2.2.3</b> %in%</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="session-2.html"><a href="session-2.html#merge"><i class="fa fa-check"></i><b>3.3</b> Merge</a></li>
-<li class="chapter" data-level="3.4" data-path="session-2.html"><a href="session-2.html#functions"><i class="fa fa-check"></i><b>3.4</b> Functions</a></li>
-<li class="chapter" data-level="3.5" data-path="session-2.html"><a href="session-2.html#homework-1"><i class="fa fa-check"></i><b>3.5</b> Homework</a></li>
-<li class="chapter" data-level="3.6" data-path="session-2.html"><a href="session-2.html#answers-1"><i class="fa fa-check"></i><b>3.6</b> Answers</a></li>
+<li class="chapter" data-level="2.3" data-path="session-2.html"><a href="session-2.html#merge"><i class="fa fa-check"></i><b>2.3</b> Merge</a></li>
+<li class="chapter" data-level="2.4" data-path="session-2.html"><a href="session-2.html#functions"><i class="fa fa-check"></i><b>2.4</b> Functions</a></li>
+<li class="chapter" data-level="2.5" data-path="session-2.html"><a href="session-2.html#homework-1"><i class="fa fa-check"></i><b>2.5</b> Homework</a></li>
+<li class="chapter" data-level="2.6" data-path="session-2.html"><a href="session-2.html#answers-1"><i class="fa fa-check"></i><b>2.6</b> Answers</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="session-3.html"><a href="session-3.html"><i class="fa fa-check"></i><b>4</b> Session 3</a><ul>
-<li class="chapter" data-level="4.1" data-path="session-3.html"><a href="session-3.html#lists"><i class="fa fa-check"></i><b>4.1</b> Lists</a></li>
-<li class="chapter" data-level="4.2" data-path="session-3.html"><a href="session-3.html#s4-objects"><i class="fa fa-check"></i><b>4.2</b> S4 objects</a></li>
-<li class="chapter" data-level="4.3" data-path="session-3.html"><a href="session-3.html#dgelist"><i class="fa fa-check"></i><b>4.3</b> DGEList</a></li>
-<li class="chapter" data-level="4.4" data-path="session-3.html"><a href="session-3.html#answers-2"><i class="fa fa-check"></i><b>4.4</b> Answers</a></li>
+<li class="chapter" data-level="3" data-path="session-3.html"><a href="session-3.html"><i class="fa fa-check"></i><b>3</b> Session 3</a><ul>
+<li class="chapter" data-level="3.1" data-path="session-3.html"><a href="session-3.html#lists"><i class="fa fa-check"></i><b>3.1</b> Lists</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="session-3.html"><a href="session-3.html#named-list"><i class="fa fa-check"></i><b>3.1.1</b> Named list</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="session-4.html"><a href="session-4.html"><i class="fa fa-check"></i><b>5</b> Session 4</a></li>
+<li class="chapter" data-level="3.2" data-path="session-3.html"><a href="session-3.html#s4-objects"><i class="fa fa-check"></i><b>3.2</b> S4 objects</a></li>
+<li class="chapter" data-level="3.3" data-path="session-3.html"><a href="session-3.html#packages"><i class="fa fa-check"></i><b>3.3</b> Packages</a></li>
+<li class="chapter" data-level="3.4" data-path="session-3.html"><a href="session-3.html#dgelist"><i class="fa fa-check"></i><b>3.4</b> DGEList</a></li>
+<li class="chapter" data-level="3.5" data-path="session-3.html"><a href="session-3.html#answers-2"><i class="fa fa-check"></i><b>3.5</b> Answers</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="session-4.html"><a href="session-4.html"><i class="fa fa-check"></i><b>4</b> Session 4</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -169,7 +172,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="session-3" class="section level1">
-<h1><span class="header-section-number">Chapter 4</span> Session 3</h1>
+<h1><span class="header-section-number">Chapter 3</span> Session 3</h1>
 <p>In this session we will learn:</p>
 <ul>
 <li>lists, another data structure</li>
@@ -177,7 +180,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>the DGEList object from the package limma</li>
 </ul>
 <div id="lists" class="section level2">
-<h2><span class="header-section-number">4.1</span> Lists</h2>
+<h2><span class="header-section-number">3.1</span> Lists</h2>
 <p>Recall that we have previously learnt about the data structures: vectors, matrices and dataframes. Another important data structure is the list. Like a vector, it is 1 dimensional i.e. one row of data. Unlike vectors, you can put several data types in a list. Here, our list includes data of the integer, a character and a double types:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list</span>(<span class="dv">1</span>, <span class="st">&quot;a&quot;</span>, <span class="fl">1.5</span>)</code></pre></div>
 <pre><code>## [[1]]
@@ -188,7 +191,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 
 ## [[3]]
 ## [1] 1.5</code></pre>
-<p>Not only can you put different data types into a list, you can also put a WHOLE data structure into one element in a list. In the list below, the first element is a vector that contains 3 numbers, the second element is a character and the third element is a dataframe that has two columns.</p>
+<p>Not only can you put different data types into a list, you can also put a WHOLE data structure into one element of a list. In the list below, the first element is a vector that contains 3 numbers, the second element is a character and the third element is a dataframe that has two columns.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), 
      <span class="kw">c</span>(<span class="st">&quot;words&quot;</span>, <span class="st">&quot;letters&quot;</span>), 
      <span class="kw">data.frame</span>(<span class="dt">column1 =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dt">column2 =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>))
@@ -205,7 +208,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 2       2       b
 ## 3       3       c</code></pre>
 <p>The output can often help you understand how the list is structured. The double brackets (e.g. <code>[[1]]</code>) signifies an element of the list and which index it is at. Here there are three elements in our list so the numbers in the double square brackets go from 1 to 3. Underneath the <code>[[1]]</code> and <code>[[2]]</code>, there is a <code>[1]</code> - this indicates that the first and second elements both contain a vector. Underneath <code>[[3]]</code> you see the standard output for a dataframe, which we have seen before.</p>
-<p>You even include a list within a list (within a list, within a list….I call this ‘listception’). This is where it starts to get confusing.</p>
+<p>You even include a list within a list (within a list, within a list….I call this ‘list - ception’). This is where it starts to get confusing.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list</span>(<span class="dv">1</span>, <span class="kw">list</span>(<span class="dv">1</span>,<span class="st">&quot;a&quot;</span>))</code></pre></div>
 <pre><code>## [[1]]
 ## [1] 1
@@ -261,11 +264,138 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 
 ## [[4]]
 ## [1] &quot;end&quot;</code></pre>
+<p>We can access elements of a list using square brackets. You may have noticed that there are often double square brackets <code>[[ ]]</code>. There is a subtle but important difference between single square brackets and double square brackets when subsetting lists.</p>
+<p>Let’s make a list:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list &lt;-<span class="st"> </span><span class="kw">list</span>(
+  <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>),
+  <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),
+  <span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>)
+  )</code></pre></div>
+<p>Take a look at the output of obtaining the first element with single square brackets and double square brackets:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list[<span class="dv">1</span>]</code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;a&quot; &quot;b&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list[[<span class="dv">1</span>]]</code></pre></div>
+<pre><code>## [1] &quot;a&quot; &quot;b&quot;</code></pre>
+<p>The difference is minor; with <code>my_list[1]</code> there is an extra <code>[[1]]</code> at the top, with <code>my_list[[1]]</code> there is no <code>[[1]]</code> at the top.</p>
+<p>The <code>str()</code> function gives us some more information:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(my_list[<span class="dv">1</span>])</code></pre></div>
+<pre><code>## List of 1
+##  $ : chr [1:2] &quot;a&quot; &quot;b&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(my_list[[<span class="dv">1</span>]])</code></pre></div>
+<pre><code>##  chr [1:2] &quot;a&quot; &quot;b&quot;</code></pre>
+<p>This tells us that when you use single brackets, the output is a list containing one element, which is a vector. When you use double brackets, the output is just a vector, NOT contained within a list.</p>
+<p>Let’s use an analogy to gain a better understanding of this concept. Below is a picture of a cargo train, which contains a box in each segment. This represents a list containing 3 elements, with each element being the box.</p>
+<div class="figure" style="text-align: center"><span id="fig:train"></span>
+<img src="Images/train.jpg" alt="Cargo train representation of a list." width="700px" />
+<p class="caption">
+Figure 3.1: Cargo train representation of a list.
+</p>
+</div>
+<p>Using a single bracket returns you the train segment with the box inside.</p>
+<div class="figure" style="text-align: center"><span id="fig:trainS"></span>
+<img src="Images/train_double.jpeg" alt="Single brackets with our cargo train list." width="300px" height="350px" />
+<p class="caption">
+Figure 3.2: Single brackets with our cargo train list.
+</p>
+</div>
+<p>Using double brackets returns you just the box inside.</p>
+<div class="figure" style="text-align: center"><span id="fig:trainD"></span>
+<img src="Images/box.png" alt="Double brackets with our cargo train list." width="300px" />
+<p class="caption">
+Figure 3.3: Double brackets with our cargo train list.
+</p>
+</div>
+<p>Back to our list:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list</code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;a&quot; &quot;b&quot;
+## 
+## [[2]]
+## [1] 1 2 3
+## 
+## [[3]]
+## [1] 4 5 6</code></pre>
+<p>To obtain the first element of the vector contained within the first element of the list (the <code>&quot;a&quot;</code>) you can use:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list[[<span class="dv">1</span>]][<span class="dv">1</span>]</code></pre></div>
+<pre><code>## [1] &quot;a&quot;</code></pre>
+<p>The <code>[[1]]</code> gives you just the vector contained within the first element of the list:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list[[<span class="dv">1</span>]]</code></pre></div>
+<pre><code>## [1] &quot;a&quot; &quot;b&quot;</code></pre>
+<p>The second square bracket <code>[1]</code> then gives you the first element of the vector:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list[[<span class="dv">1</span>]][<span class="dv">1</span>]</code></pre></div>
+<pre><code>## [1] &quot;a&quot;</code></pre>
+<p><strong>Challenge 3.2</strong></p>
+<p>First create a new list:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list2 &lt;-<span class="st"> </span><span class="kw">list</span>(
+  <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>),
+  <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),
+  <span class="kw">data.frame</span>(<span class="dt">Name =</span> <span class="kw">c</span>(<span class="st">&quot;Sally&quot;</span>, <span class="st">&quot;Andy&quot;</span>), <span class="dt">Age =</span> <span class="kw">c</span>(<span class="dv">40</span>,<span class="dv">32</span>))
+  )
+my_list2</code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;a&quot; &quot;b&quot;
+## 
+## [[2]]
+## [1] 1 2 3
+## 
+## [[3]]
+##    Name Age
+## 1 Sally  40
+## 2  Andy  32</code></pre>
+<p>Subset this list to obtain a data structure that gives the following outputs:</p>
+<ol style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre><code>## [1] &quot;a&quot; &quot;b&quot;</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre><code>## [1] &quot;b&quot;</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre><code>## [[1]]
+## [1] 1 2 3</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre><code>## [1] 40</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre><code>##    Name Age
+## 1 Sally  40</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre><code>## [[1]]
+##    Name Age
+## 1 Sally  40
+## 2  Andy  32</code></pre>
+<div id="named-list" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> Named list</h3>
+<p>You can also have names for each element of your list:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">named_list &lt;-<span class="st"> </span><span class="kw">list</span>(
+  <span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;Andy&quot;</span>, <span class="st">&quot;Sally&quot;</span>),
+  <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">32</span>,<span class="dv">40</span>)
+)
+named_list</code></pre></div>
+<pre><code>## $name
+## [1] &quot;Andy&quot;  &quot;Sally&quot;
+## 
+## $age
+## [1] 32 40</code></pre>
+<p>If your list is named, you can use <code>$</code> to access each element of your list:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">named_list<span class="op">$</span>name</code></pre></div>
+<pre><code>## [1] &quot;Andy&quot;  &quot;Sally&quot;</code></pre>
+<p><em>Extra</em>: recall that we access columns in dataframes with the <code>$</code> symbol as well. This is because ‘under the hood’ a dataframe is actually a list - but a list with the specification that each element is a vector of the same length. Each element in the list is thus a column in the ‘dataframe’.</p>
+</div>
 </div>
 <div id="s4-objects" class="section level2">
-<h2><span class="header-section-number">4.2</span> S4 objects</h2>
+<h2><span class="header-section-number">3.2</span> S4 objects</h2>
 <p>Everything in R is an ‘object’ - every function that we have used and every data structure created in R. All the objects we have used so far, are ‘S3’ objects.</p>
-<p>Many data structures in Bioconductor packages are ‘S4’ objects. ‘S4’ objects are much more ‘formal’ than S3 objects.</p>
+<p>Bioconductor is an open source project to provide tools for the analysis of high-throughput genomic data. There are more than 1,500 R packages on Bioconductor. Most objects in Bioconductor packages are ‘S4’ objects. ‘S4’ objects are much more ‘formal’ than S3 objects.</p>
 <p>Let’s look at an example. The <code>DGEList</code> object from limma is an S4 object. It is a data structure specifically designed for storing read count data from sequencing. It is a list that contains two specific components:</p>
 <ul>
 <li><code>counts</code> - which must be a numeric matrix, that stores counts. Each row must be a gene and each column must be a sample.</li>
@@ -274,11 +404,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>There are a lot more specifications about the type of and how data is stored in the <code>DGEList</code> S4 object, than say the S3 list. You can think of S3 objects as very genetic tools (e.g. a spanner) whereas S4 objects tend to be tools designed for a very specific task (e.g. a lug wrench, which is used to loosen and tighten lug nuts on car wheels).</p>
 <p>You can read more about the S4 objects in <a href="https://www.bioconductor.org/help/course-materials/2017/Zurich/S4-classes-and-methods.html#strengths-of-s4-compared-to-s3">this</a> Bioconductor tutorial.</p>
 </div>
+<div id="packages" class="section level2">
+<h2><span class="header-section-number">3.3</span> Packages</h2>
+<p>Last session we installed the packages limma and edgeR. This downloads the files for each package and saves them to your computer. You generally only need to do this once.</p>
+<p>To use a package you must ‘load’ them each time you start a new R session. You do this with the <code>library()</code> function. Let’s load both limma and edgeR:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(edgeR)</code></pre></div>
+<pre><code>## Warning: package &#39;edgeR&#39; was built under R version 3.5.2</code></pre>
+<pre><code>## Loading required package: limma</code></pre>
+<pre><code>## Warning: package &#39;limma&#39; was built under R version 3.5.1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(limma)</code></pre></div>
+</div>
 <div id="dgelist" class="section level2">
-<h2><span class="header-section-number">4.3</span> DGEList</h2>
+<h2><span class="header-section-number">3.4</span> DGEList</h2>
+<p>We can now create a <code>DGEList</code> object from limma. To do so</p>
 </div>
 <div id="answers-2" class="section level2">
-<h2><span class="header-section-number">4.4</span> Answers</h2>
+<h2><span class="header-section-number">3.5</span> Answers</h2>
 <p><strong>Challenge 3.1</strong></p>
 <ol style="list-style-type: decimal">
 <li>There are 4 elements of this list.</li>
@@ -290,6 +431,42 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>The third element contains 2 elements. Within the first element is another list. Within this list there are 2 elements, both being character types. The second element of this nested list is a vector containing one character type.</li>
 <li>The fourth element is a vector containing one character type.</li>
 </ul>
+<p><strong>Challenge 3.2</strong></p>
+<ol style="list-style-type: decimal">
+<li></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list2[[<span class="dv">1</span>]]</code></pre></div>
+<pre><code>## [1] &quot;a&quot; &quot;b&quot;</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list2[[<span class="dv">1</span>]][<span class="dv">2</span>]</code></pre></div>
+<pre><code>## [1] &quot;b&quot;</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list2[<span class="dv">2</span>]</code></pre></div>
+<pre><code>## [[1]]
+## [1] 1 2 3</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list2[[<span class="dv">3</span>]][<span class="dv">1</span>,<span class="dv">2</span>]</code></pre></div>
+<pre><code>## [1] 40</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list2[[<span class="dv">3</span>]][<span class="dv">1</span>,]</code></pre></div>
+<pre><code>##    Name Age
+## 1 Sally  40</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list2[<span class="dv">3</span>]</code></pre></div>
+<pre><code>## [[1]]
+##    Name Age
+## 1 Sally  40
+## 2  Andy  32</code></pre>
 
 </div>
 </div>

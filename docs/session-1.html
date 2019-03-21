@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Chapter 2 Session 1 | Introduction to Base R</title>
+  <title>Chapter 1 Session 1 | Introduction to Base R</title>
   <meta name="description" content="Introductory tutorial to base R, with a biological focus. In particular it will focus on analysing RNA-sequencing data with Bioconductor.">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Chapter 2 Session 1 | Introduction to Base R" />
+  <meta property="og:title" content="Chapter 1 Session 1 | Introduction to Base R" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="lucyleeow/BaseR_Intro" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Session 1 | Introduction to Base R" />
+  <meta name="twitter:title" content="Chapter 1 Session 1 | Introduction to Base R" />
   
   <meta name="twitter:description" content="Introductory tutorial to base R, with a biological focus. In particular it will focus on analysing RNA-sequencing data with Bioconductor." />
   
@@ -25,7 +25,7 @@
 <meta name="author" content="Lucy Liu">
 
 
-<meta name="date" content="2019-03-20">
+<meta name="date" content="2019-03-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -104,50 +104,53 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./">Introduction to Base R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
-<li class="chapter" data-level="2" data-path="session-1.html"><a href="session-1.html"><i class="fa fa-check"></i><b>2</b> Session 1</a><ul>
-<li class="chapter" data-level="2.1" data-path="session-1.html"><a href="session-1.html#r-and-rstudio"><i class="fa fa-check"></i><b>2.1</b> R and RStudio</a></li>
-<li class="chapter" data-level="2.2" data-path="session-1.html"><a href="session-1.html#help"><i class="fa fa-check"></i><b>2.2</b> Help</a></li>
-<li class="chapter" data-level="2.3" data-path="session-1.html"><a href="session-1.html#r-scripts"><i class="fa fa-check"></i><b>2.3</b> R scripts</a></li>
-<li class="chapter" data-level="2.4" data-path="session-1.html"><a href="session-1.html#working-directory"><i class="fa fa-check"></i><b>2.4</b> Working directory</a></li>
-<li class="chapter" data-level="2.5" data-path="session-1.html"><a href="session-1.html#maths"><i class="fa fa-check"></i><b>2.5</b> Maths</a></li>
-<li class="chapter" data-level="2.6" data-path="session-1.html"><a href="session-1.html#comps"><i class="fa fa-check"></i><b>2.6</b> Comparisons</a></li>
-<li class="chapter" data-level="2.7" data-path="session-1.html"><a href="session-1.html#variables"><i class="fa fa-check"></i><b>2.7</b> Variables</a><ul>
-<li class="chapter" data-level="2.7.1" data-path="session-1.html"><a href="session-1.html#errors-and-warnings"><i class="fa fa-check"></i><b>2.7.1</b> Errors and warnings</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="session-1.html"><a href="session-1.html"><i class="fa fa-check"></i><b>1</b> Session 1</a><ul>
+<li class="chapter" data-level="1.1" data-path="session-1.html"><a href="session-1.html#r-and-rstudio"><i class="fa fa-check"></i><b>1.1</b> R and RStudio</a></li>
+<li class="chapter" data-level="1.2" data-path="session-1.html"><a href="session-1.html#help"><i class="fa fa-check"></i><b>1.2</b> Help</a></li>
+<li class="chapter" data-level="1.3" data-path="session-1.html"><a href="session-1.html#r-scripts"><i class="fa fa-check"></i><b>1.3</b> R scripts</a></li>
+<li class="chapter" data-level="1.4" data-path="session-1.html"><a href="session-1.html#working-directory"><i class="fa fa-check"></i><b>1.4</b> Working directory</a></li>
+<li class="chapter" data-level="1.5" data-path="session-1.html"><a href="session-1.html#maths"><i class="fa fa-check"></i><b>1.5</b> Maths</a></li>
+<li class="chapter" data-level="1.6" data-path="session-1.html"><a href="session-1.html#comps"><i class="fa fa-check"></i><b>1.6</b> Comparisons</a></li>
+<li class="chapter" data-level="1.7" data-path="session-1.html"><a href="session-1.html#variables"><i class="fa fa-check"></i><b>1.7</b> Variables</a><ul>
+<li class="chapter" data-level="1.7.1" data-path="session-1.html"><a href="session-1.html#errors-and-warnings"><i class="fa fa-check"></i><b>1.7.1</b> Errors and warnings</a></li>
 </ul></li>
-<li class="chapter" data-level="2.8" data-path="session-1.html"><a href="session-1.html#data-structures"><i class="fa fa-check"></i><b>2.8</b> Data structures</a><ul>
-<li class="chapter" data-level="2.8.1" data-path="session-1.html"><a href="session-1.html#vector"><i class="fa fa-check"></i><b>2.8.1</b> Vector</a></li>
-<li class="chapter" data-level="2.8.2" data-path="session-1.html"><a href="session-1.html#matrix"><i class="fa fa-check"></i><b>2.8.2</b> Matrix</a></li>
-<li class="chapter" data-level="2.8.3" data-path="session-1.html"><a href="session-1.html#dataframe"><i class="fa fa-check"></i><b>2.8.3</b> Dataframe</a></li>
+<li class="chapter" data-level="1.8" data-path="session-1.html"><a href="session-1.html#data-structures"><i class="fa fa-check"></i><b>1.8</b> Data structures</a><ul>
+<li class="chapter" data-level="1.8.1" data-path="session-1.html"><a href="session-1.html#vector"><i class="fa fa-check"></i><b>1.8.1</b> Vector</a></li>
+<li class="chapter" data-level="1.8.2" data-path="session-1.html"><a href="session-1.html#matrix"><i class="fa fa-check"></i><b>1.8.2</b> Matrix</a></li>
+<li class="chapter" data-level="1.8.3" data-path="session-1.html"><a href="session-1.html#dataframe"><i class="fa fa-check"></i><b>1.8.3</b> Dataframe</a></li>
 </ul></li>
-<li class="chapter" data-level="2.9" data-path="session-1.html"><a href="session-1.html#reading-in-data"><i class="fa fa-check"></i><b>2.9</b> Reading in data</a></li>
-<li class="chapter" data-level="2.10" data-path="session-1.html"><a href="session-1.html#data-types"><i class="fa fa-check"></i><b>2.10</b> Data types</a><ul>
-<li class="chapter" data-level="2.10.1" data-path="session-1.html"><a href="session-1.html#factors"><i class="fa fa-check"></i><b>2.10.1</b> Factors</a></li>
+<li class="chapter" data-level="1.9" data-path="session-1.html"><a href="session-1.html#reading-in-data"><i class="fa fa-check"></i><b>1.9</b> Reading in data</a></li>
+<li class="chapter" data-level="1.10" data-path="session-1.html"><a href="session-1.html#data-types"><i class="fa fa-check"></i><b>1.10</b> Data types</a><ul>
+<li class="chapter" data-level="1.10.1" data-path="session-1.html"><a href="session-1.html#factors"><i class="fa fa-check"></i><b>1.10.1</b> Factors</a></li>
 </ul></li>
-<li class="chapter" data-level="2.11" data-path="session-1.html"><a href="session-1.html#vectorisation"><i class="fa fa-check"></i><b>2.11</b> Vectorisation</a></li>
-<li class="chapter" data-level="2.12" data-path="session-1.html"><a href="session-1.html#writing-out-data"><i class="fa fa-check"></i><b>2.12</b> Writing out data</a></li>
-<li class="chapter" data-level="2.13" data-path="session-1.html"><a href="session-1.html#homework"><i class="fa fa-check"></i><b>2.13</b> Homework</a></li>
-<li class="chapter" data-level="2.14" data-path="session-1.html"><a href="session-1.html#answers"><i class="fa fa-check"></i><b>2.14</b> Answers</a></li>
+<li class="chapter" data-level="1.11" data-path="session-1.html"><a href="session-1.html#vectorisation"><i class="fa fa-check"></i><b>1.11</b> Vectorisation</a></li>
+<li class="chapter" data-level="1.12" data-path="session-1.html"><a href="session-1.html#writing-out-data"><i class="fa fa-check"></i><b>1.12</b> Writing out data</a></li>
+<li class="chapter" data-level="1.13" data-path="session-1.html"><a href="session-1.html#homework"><i class="fa fa-check"></i><b>1.13</b> Homework</a></li>
+<li class="chapter" data-level="1.14" data-path="session-1.html"><a href="session-1.html#answers"><i class="fa fa-check"></i><b>1.14</b> Answers</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="session-2.html"><a href="session-2.html"><i class="fa fa-check"></i><b>3</b> Session 2</a><ul>
-<li class="chapter" data-level="3.1" data-path="session-2.html"><a href="session-2.html#missing-values"><i class="fa fa-check"></i><b>3.1</b> Missing values</a></li>
-<li class="chapter" data-level="3.2" data-path="session-2.html"><a href="session-2.html#subsetting"><i class="fa fa-check"></i><b>3.2</b> Subsetting</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="session-2.html"><a href="session-2.html#subsetting-with-indicies"><i class="fa fa-check"></i><b>3.2.1</b> Subsetting with indicies</a></li>
-<li class="chapter" data-level="3.2.2" data-path="session-2.html"><a href="session-2.html#subsetting-with-logicals"><i class="fa fa-check"></i><b>3.2.2</b> Subsetting with logicals</a></li>
-<li class="chapter" data-level="3.2.3" data-path="session-2.html"><a href="session-2.html#in"><i class="fa fa-check"></i><b>3.2.3</b> %in%</a></li>
+<li class="chapter" data-level="2" data-path="session-2.html"><a href="session-2.html"><i class="fa fa-check"></i><b>2</b> Session 2</a><ul>
+<li class="chapter" data-level="2.1" data-path="session-2.html"><a href="session-2.html#missing-values"><i class="fa fa-check"></i><b>2.1</b> Missing values</a></li>
+<li class="chapter" data-level="2.2" data-path="session-2.html"><a href="session-2.html#subsetting"><i class="fa fa-check"></i><b>2.2</b> Subsetting</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="session-2.html"><a href="session-2.html#subsetting-with-indicies"><i class="fa fa-check"></i><b>2.2.1</b> Subsetting with indicies</a></li>
+<li class="chapter" data-level="2.2.2" data-path="session-2.html"><a href="session-2.html#subsetting-with-logicals"><i class="fa fa-check"></i><b>2.2.2</b> Subsetting with logicals</a></li>
+<li class="chapter" data-level="2.2.3" data-path="session-2.html"><a href="session-2.html#in"><i class="fa fa-check"></i><b>2.2.3</b> %in%</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="session-2.html"><a href="session-2.html#merge"><i class="fa fa-check"></i><b>3.3</b> Merge</a></li>
-<li class="chapter" data-level="3.4" data-path="session-2.html"><a href="session-2.html#functions"><i class="fa fa-check"></i><b>3.4</b> Functions</a></li>
-<li class="chapter" data-level="3.5" data-path="session-2.html"><a href="session-2.html#homework-1"><i class="fa fa-check"></i><b>3.5</b> Homework</a></li>
-<li class="chapter" data-level="3.6" data-path="session-2.html"><a href="session-2.html#answers-1"><i class="fa fa-check"></i><b>3.6</b> Answers</a></li>
+<li class="chapter" data-level="2.3" data-path="session-2.html"><a href="session-2.html#merge"><i class="fa fa-check"></i><b>2.3</b> Merge</a></li>
+<li class="chapter" data-level="2.4" data-path="session-2.html"><a href="session-2.html#functions"><i class="fa fa-check"></i><b>2.4</b> Functions</a></li>
+<li class="chapter" data-level="2.5" data-path="session-2.html"><a href="session-2.html#homework-1"><i class="fa fa-check"></i><b>2.5</b> Homework</a></li>
+<li class="chapter" data-level="2.6" data-path="session-2.html"><a href="session-2.html#answers-1"><i class="fa fa-check"></i><b>2.6</b> Answers</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="session-3.html"><a href="session-3.html"><i class="fa fa-check"></i><b>4</b> Session 3</a><ul>
-<li class="chapter" data-level="4.1" data-path="session-3.html"><a href="session-3.html#lists"><i class="fa fa-check"></i><b>4.1</b> Lists</a></li>
-<li class="chapter" data-level="4.2" data-path="session-3.html"><a href="session-3.html#s4-objects"><i class="fa fa-check"></i><b>4.2</b> S4 objects</a></li>
-<li class="chapter" data-level="4.3" data-path="session-3.html"><a href="session-3.html#dgelist"><i class="fa fa-check"></i><b>4.3</b> DGEList</a></li>
-<li class="chapter" data-level="4.4" data-path="session-3.html"><a href="session-3.html#answers-2"><i class="fa fa-check"></i><b>4.4</b> Answers</a></li>
+<li class="chapter" data-level="3" data-path="session-3.html"><a href="session-3.html"><i class="fa fa-check"></i><b>3</b> Session 3</a><ul>
+<li class="chapter" data-level="3.1" data-path="session-3.html"><a href="session-3.html#lists"><i class="fa fa-check"></i><b>3.1</b> Lists</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="session-3.html"><a href="session-3.html#named-list"><i class="fa fa-check"></i><b>3.1.1</b> Named list</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="session-4.html"><a href="session-4.html"><i class="fa fa-check"></i><b>5</b> Session 4</a></li>
+<li class="chapter" data-level="3.2" data-path="session-3.html"><a href="session-3.html#s4-objects"><i class="fa fa-check"></i><b>3.2</b> S4 objects</a></li>
+<li class="chapter" data-level="3.3" data-path="session-3.html"><a href="session-3.html#packages"><i class="fa fa-check"></i><b>3.3</b> Packages</a></li>
+<li class="chapter" data-level="3.4" data-path="session-3.html"><a href="session-3.html#dgelist"><i class="fa fa-check"></i><b>3.4</b> DGEList</a></li>
+<li class="chapter" data-level="3.5" data-path="session-3.html"><a href="session-3.html#answers-2"><i class="fa fa-check"></i><b>3.5</b> Answers</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="session-4.html"><a href="session-4.html"><i class="fa fa-check"></i><b>4</b> Session 4</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -169,7 +172,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="session-1" class="section level1">
-<h1><span class="header-section-number">Chapter 2</span> Session 1</h1>
+<h1><span class="header-section-number">Chapter 1</span> Session 1</h1>
 <p>In this first session we will learn about:</p>
 <ul>
 <li>R and RStudio</li>
@@ -178,14 +181,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>how to read in and write out data</li>
 </ul>
 <div id="r-and-rstudio" class="section level2">
-<h2><span class="header-section-number">2.1</span> R and RStudio</h2>
+<h2><span class="header-section-number">1.1</span> R and RStudio</h2>
 <p>R is a free and open source statistical programming language, great for performing data analysis. RStudio is a free and open source R integrated development environment (IDE) which makes it easier for you to write code. It does this by providing you with auto-completion (of variable names, function names, file paths etc.), helping with formatting and keeping track of your variables.</p>
 <p>You can think of R as the engine in a car and RStudio as the body &amp; controls. R is doing all the calculations/computations but RStudio makes it easier for you to use R.</p>
-<p>When you first open RStudio, there will be three panels - see Figure <a href="session-1.html#fig:RS1">2.1</a> (don’t worry if your RStudio does not have the same colours/appearance - different versions of RStudio look slightly different and the text colour I use is not the default one.)</p>
+<p>When you first open RStudio, there will be three panels - see Figure <a href="session-1.html#fig:RS1">1.1</a> (don’t worry if your RStudio does not have the same colours/appearance - different versions of RStudio look slightly different and the text colour I use is not the default one.)</p>
 <div class="figure"><span id="fig:RS1"></span>
 <img src="Images/RS1.png" alt="Three panels in RStudio." width="700px" />
 <p class="caption">
-Figure 2.1: Three panels in RStudio.
+Figure 1.1: Three panels in RStudio.
 </p>
 </div>
 <ul>
@@ -207,12 +210,12 @@ Figure 2.1: Three panels in RStudio.
 </ul>
 </div>
 <div id="help" class="section level2">
-<h2><span class="header-section-number">2.2</span> Help</h2>
+<h2><span class="header-section-number">1.2</span> Help</h2>
 <p>There are two ways to access help files in RStudio. You can type in the name of the function you want help with, in the top right of help tab (indicated with a red arrow):</p>
 <div class="figure" style="text-align: center"><span id="fig:help"></span>
 <img src="Images/help.png" alt="Accessing help files via 'help' tab." width="500px" />
 <p class="caption">
-Figure 2.2: Accessing help files via ‘help’ tab.
+Figure 1.2: Accessing help files via ‘help’ tab.
 </p>
 </div>
 <p>The other option is to run the command <code>?</code> followed by the name of the function:</p>
@@ -220,19 +223,19 @@ Figure 2.2: Accessing help files via ‘help’ tab.
 <p>Help files are very useful but can be difficult to interpret at first due to the technical language used. We won’t get too much practice reading help files during this course but I would encourage you to try to use them when figuring out how to use a new function.</p>
 </div>
 <div id="r-scripts" class="section level2">
-<h2><span class="header-section-number">2.3</span> R scripts</h2>
+<h2><span class="header-section-number">1.3</span> R scripts</h2>
 <p>To open a R script, go to File &gt; New File &gt; R Script.</p>
 <div class="figure"><span id="fig:RS2"></span>
 <img src="Images/RS2.png" alt="Opening a new R Script." width="700px" />
 <p class="caption">
-Figure 2.3: Opening a new R Script.
+Figure 1.3: Opening a new R Script.
 </p>
 </div>
 <p>This will open a fourth panel on the top left.</p>
 <div class="figure"><span id="fig:RS3"></span>
 <img src="Images/RS3.png" alt="Four panels, including a R Script." width="700px" />
 <p class="caption">
-Figure 2.4: Four panels, including a R Script.
+Figure 1.4: Four panels, including a R Script.
 </p>
 </div>
 <p>A R Script is just a text document. You can type and run commands using a R Script and down in the Console - the difference is that you can’t save the commands you run in the Console but you can save the R Script with all your commands. Note that to run a command in the Console press <code>Enter</code> key but to run a command in a R Script you must press <code>Cmd/Cntrl + Enter</code> keys.</p>
@@ -242,41 +245,41 @@ Figure 2.4: Four panels, including a R Script.
 <pre><code>## [1] 2</code></pre>
 </div>
 <div id="working-directory" class="section level2">
-<h2><span class="header-section-number">2.4</span> Working directory</h2>
+<h2><span class="header-section-number">1.4</span> Working directory</h2>
 <p>Every file on your computer is located in a specific location. This location can be referred to by a path. In Mac, paths look something like this: <code>/Users/Lucy/Documents/</code>. In Windows, paths look something like this: <code>C:\Users\Lucy\Documents\</code>.</p>
 <p>When you open a R session, it launches from a specific location. You can find out where this is using the command <code>getwd()</code>. This location called the ‘working directory’. R will, by default, look in this directory when reading in data and write out files/plots to this directory. It is often useful to have your data and R Scripts in the same directory and set this as your working directory.</p>
 <p>You can set your working directory to be anywhere you like and we will now do this:</p>
 <ol style="list-style-type: decimal">
 <li>Make a folder for this course, somewhere sensible on your computer that you will be able to easily find.</li>
-<li>Go back to your RStudio window, go to the bottom right panel, click on the ‘Files’ tab and then click on the three dots on the top right hand corner (Figure <a href="session-1.html#fig:wd1">2.5</a>).</li>
+<li>Go back to your RStudio window, go to the bottom right panel, click on the ‘Files’ tab and then click on the three dots on the top right hand corner (Figure <a href="session-1.html#fig:wd1">1.5</a>).</li>
 </ol>
 <div class="figure" style="text-align: center"><span id="fig:wd1"></span>
 <img src="Images/wd1.png" alt="Setting the working directory - 1." width="500px" />
 <p class="caption">
-Figure 2.5: Setting the working directory - 1.
+Figure 1.5: Setting the working directory - 1.
 </p>
 </div>
 <ol start="3" style="list-style-type: decimal">
-<li>This will open up a new window (Figure <a href="session-1.html#fig:wd2">2.6</a>) which lets you explore the files and folders on your computer. Find the new folder you created, click on it then click ‘Open’.</li>
+<li>This will open up a new window (Figure <a href="session-1.html#fig:wd2">1.6</a>) which lets you explore the files and folders on your computer. Find the new folder you created, click on it then click ‘Open’.</li>
 </ol>
 <div class="figure" style="text-align: center"><span id="fig:wd2"></span>
 <img src="Images/wd2.png" alt="Setting the working directory - 2." width="500px" />
 <p class="caption">
-Figure 2.6: Setting the working directory - 2.
+Figure 1.6: Setting the working directory - 2.
 </p>
 </div>
 <ol start="4" style="list-style-type: decimal">
-<li>The files tab will now show the contents of your new folder (which should be empty). At the top of the files tab, click on More &gt; Set As Working Directory (Figure <a href="session-1.html#fig:wd3">2.7</a>).</li>
+<li>The files tab will now show the contents of your new folder (which should be empty). At the top of the files tab, click on More &gt; Set As Working Directory (Figure <a href="session-1.html#fig:wd3">1.7</a>).</li>
 </ol>
 <div class="figure" style="text-align: center"><span id="fig:wd3"></span>
 <img src="Images/wd3.png" alt="Setting the working directory - 3." width="500px" />
 <p class="caption">
-Figure 2.7: Setting the working directory - 3.
+Figure 1.7: Setting the working directory - 3.
 </p>
 </div>
 </div>
 <div id="maths" class="section level2">
-<h2><span class="header-section-number">2.5</span> Maths</h2>
+<h2><span class="header-section-number">1.5</span> Maths</h2>
 <p>R performs maths and follows standard order of operations. In order of highest to lowest precedence, here is how mathematical operations are denoted in R:</p>
 <ul>
 <li><code>()</code> - parentheses</li>
@@ -291,7 +294,7 @@ Figure 2.7: Setting the working directory - 3.
 <pre><code>## [1] 2</code></pre>
 </div>
 <div id="comps" class="section level2">
-<h2><span class="header-section-number">2.6</span> Comparisons</h2>
+<h2><span class="header-section-number">1.6</span> Comparisons</h2>
 <p>You can also compare numbers in R:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>  <span class="co"># equal to.</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
@@ -311,7 +314,7 @@ Figure 2.7: Setting the working directory - 3.
 <pre><code>## [1] TRUE</code></pre>
 </div>
 <div id="variables" class="section level2">
-<h2><span class="header-section-number">2.7</span> Variables</h2>
+<h2><span class="header-section-number">1.7</span> Variables</h2>
 <p>A variable in R is just a name which refers to an ‘thing’ (more technically an ‘object’ in R).</p>
 <p>For example, I can do some maths:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">6</span> <span class="op">*</span><span class="st"> </span><span class="dv">7</span><span class="op">**</span><span class="dv">2</span></code></pre></div>
@@ -334,41 +337,41 @@ Figure 2.7: Setting the working directory - 3.
 ## 1: 2myvar
 ##      ^</code></pre>
 <div id="errors-and-warnings" class="section level3">
-<h3><span class="header-section-number">2.7.1</span> Errors and warnings</h3>
+<h3><span class="header-section-number">1.7.1</span> Errors and warnings</h3>
 <p>This is a good time to talk about ‘errors’ and ‘warnings’ in R.</p>
 <p>An <em>error</em> is R telling you that it couldn’t do what you told it to do. Do not be disheartened at seeing an error message - it happens to everyone, including experienced programmers, all the time. DO read the error message, it is often very useful and tells you what you need to do to fix the error.</p>
 <p>A <em>warning</em> is R telling you that is has done what you told it to do, however the result may not be what you want. Sometimes it is okay to ignore a warning, sometimes it is not!</p>
 </div>
 </div>
 <div id="data-structures" class="section level2">
-<h2><span class="header-section-number">2.8</span> Data structures</h2>
+<h2><span class="header-section-number">1.8</span> Data structures</h2>
 <p>A data structure can be thought of as a ‘container’ for data. There are a number of different data structures in R and each have different specifications about how data is ‘contained’.</p>
 <p>Three commonly used data structures are summarised below:</p>
 <div class="figure" style="text-align: center"><span id="fig:dstruct"></span>
 <img src="Images/data-structure.png" alt="Data structures. Source: http://libguides.wellesley.edu." width="700px" />
 <p class="caption">
-Figure 2.8: Data structures. Source: <a href="http://libguides.wellesley.edu" class="uri">http://libguides.wellesley.edu</a>.
+Figure 1.8: Data structures. Source: <a href="http://libguides.wellesley.edu" class="uri">http://libguides.wellesley.edu</a>.
 </p>
 </div>
 <p>Another useful data structure is a ‘list’, which we will talk about in Session 3.</p>
 <div id="vector" class="section level3">
-<h3><span class="header-section-number">2.8.1</span> Vector</h3>
+<h3><span class="header-section-number">1.8.1</span> Vector</h3>
 <p>You can think of a vector like a row or column in excel. You can only store one <em>type</em> of data in a vector - e.g. all numbers or all text.</p>
 <p>You can create vectors with the <code>c()</code> function (‘c’ for ‘combine’):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_vect1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)
 my_vect2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)</code></pre></div>
 </div>
 <div id="matrix" class="section level3">
-<h3><span class="header-section-number">2.8.2</span> Matrix</h3>
+<h3><span class="header-section-number">1.8.2</span> Matrix</h3>
 <p>A matrix is like an excel spreadsheet. It is two dimensional meaning you have columns and rows of data. You can only store one <em>type</em> of data in a matrix - e.g. all numbers or all text.</p>
 </div>
 <div id="dataframe" class="section level3">
-<h3><span class="header-section-number">2.8.3</span> Dataframe</h3>
+<h3><span class="header-section-number">1.8.3</span> Dataframe</h3>
 <p>Dataframes are also two dimensional (has both rows and columns) however, you can store different types of data in a dataframe. The only restriction is that all the data within one column must be of the same type.</p>
 </div>
 </div>
 <div id="reading-in-data" class="section level2">
-<h2><span class="header-section-number">2.9</span> Reading in data</h2>
+<h2><span class="header-section-number">1.9</span> Reading in data</h2>
 <p>Let’s read in some data and start exploring it.</p>
 <p>You should have received the data files via email before the course. Please download these files and make sure they are located in your working directory. Recall, we set our working directory above. You can find the location of your working directory with the function <code>getwd()</code>.</p>
 <p>If you are following along outside of the WEHI course, you can download the data files from <a href="https://github.com/lucyleeow/BaseR_Intro/tree/master/data">Github</a> - instructions for downloading data from GitHub can be found in the Preface.</p>
@@ -407,7 +410,7 @@ Bob   8</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:import"></span>
 <img src="Images/import.png" alt="Variable in 'Environment' tab." width="500px" />
 <p class="caption">
-Figure 2.9: Variable in ‘Environment’ tab.
+Figure 1.9: Variable in ‘Environment’ tab.
 </p>
 </div>
 <p>All variables that we create will be shown in this tab, so it is a useful way to keep track of variables that we have created. Notice how R also tells us that there are 10 observations (rows) and 3 variables (columns) in the <code>genes</code> dataframe.</p>
@@ -420,7 +423,7 @@ Figure 2.9: Variable in ‘Environment’ tab.
 <p>This tells us that <code>genes</code> is a dataframe. It also tells us what <em>data type</em> each column is.</p>
 </div>
 <div id="data-types" class="section level2">
-<h2><span class="header-section-number">2.10</span> Data types</h2>
+<h2><span class="header-section-number">1.10</span> Data types</h2>
 <p>Every bit of data in R has a ‘data type label’. The label doesn’t change the data in any way - it just tells R what kind of data it is and thus what it can and can’t do with the data.</p>
 <p>For example, it makes sense to perform mathematical functions on numbers but not on words. It makes sense to look for a certain term, like a gene name, in a word but not in a number.</p>
 <p>There are five basic types of data in R:</p>
@@ -433,7 +436,7 @@ Figure 2.9: Variable in ‘Environment’ tab.
 </ul>
 <p>In our <code>genes</code> dataframe above, we can see that both the <code>GeneLength</code> and <code>Count</code> columns are integers (‘int’). But what is the <code>SYMBOL</code> column? It is a ‘Factor’.</p>
 <div id="factors" class="section level3">
-<h3><span class="header-section-number">2.10.1</span> Factors</h3>
+<h3><span class="header-section-number">1.10.1</span> Factors</h3>
 <p>Factor is a data type label used for categorical variables (e.g. small, medium and large OR red, blue and green). Internally, R stores factors as numbers (integers), with each number corresponding to a category.</p>
 <p>For example, if your data was:</p>
 <pre><code>red, blue, green, red, green</code></pre>
@@ -457,7 +460,7 @@ Figure 2.9: Variable in ‘Environment’ tab.
 </div>
 </div>
 <div id="vectorisation" class="section level2">
-<h2><span class="header-section-number">2.11</span> Vectorisation</h2>
+<h2><span class="header-section-number">1.11</span> Vectorisation</h2>
 <p>R is quite efficient at doing calculations or performing a functions on a vector of data.</p>
 <p>Let’s use the <code>Count</code> column from our dataframe <code>genes</code>. We can access just one column using the <code>$</code> symbol:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes<span class="op">$</span>Count</code></pre></div>
@@ -478,7 +481,7 @@ Figure 2.9: Variable in ‘Environment’ tab.
 <p><em>Hint</em> use the <code>sum()</code> function.</p>
 </div>
 <div id="writing-out-data" class="section level2">
-<h2><span class="header-section-number">2.12</span> Writing out data</h2>
+<h2><span class="header-section-number">1.12</span> Writing out data</h2>
 <p>The last thing we will do this session is to write out our new dataframe using the function <code>write.table()</code>.</p>
 <p>There are a few things we must tell <code>write.table()</code>, for it to be able to write out the data the way we want:</p>
 <ul>
@@ -492,13 +495,13 @@ Figure 2.9: Variable in ‘Environment’ tab.
             <span class="dt">row.names =</span> <span class="ot">FALSE</span>, <span class="dt">col.names =</span> <span class="ot">TRUE</span>)</code></pre></div>
 </div>
 <div id="homework" class="section level2">
-<h2><span class="header-section-number">2.13</span> Homework</h2>
+<h2><span class="header-section-number">1.13</span> Homework</h2>
 <p>Read in the data file “Ses1_homework.tsv” using <code>read.delim()</code>. This file is similar to the “Ses1_genes.tsv” file but with a different 10 genes.</p>
 <p>Create a new column called <code>Prop_GeneLength</code> that contains the <code>Count</code> value as a proportion of <code>GeneLength</code>. E.g. if the count value was 50 and the gene length was 2400, the <code>Prop_GeneLength</code> value for that row would be 0.02083333.</p>
 <p>Now write out this new dataframe as a file called “Ses1_homework_output.tsv”, as a tsv (tab separated values) file.</p>
 </div>
 <div id="answers" class="section level2">
-<h2><span class="header-section-number">2.14</span> Answers</h2>
+<h2><span class="header-section-number">1.14</span> Answers</h2>
 <p><strong>Challenge 1</strong></p>
 <p>The <code>sum()</code> function can be used to calculate the total Count of all 10 rows by giving the <code>genes$Count</code> vector as the input to <code>sum()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes<span class="op">$</span>Prop_Count &lt;-<span class="st"> </span>genes<span class="op">$</span>Count <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(genes<span class="op">$</span>Count) 

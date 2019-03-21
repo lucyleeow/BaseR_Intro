@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Chapter 3 Session 2 | Introduction to Base R</title>
+  <title>Chapter 2 Session 2 | Introduction to Base R</title>
   <meta name="description" content="Introductory tutorial to base R, with a biological focus. In particular it will focus on analysing RNA-sequencing data with Bioconductor.">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Chapter 3 Session 2 | Introduction to Base R" />
+  <meta property="og:title" content="Chapter 2 Session 2 | Introduction to Base R" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="lucyleeow/BaseR_Intro" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Session 2 | Introduction to Base R" />
+  <meta name="twitter:title" content="Chapter 2 Session 2 | Introduction to Base R" />
   
   <meta name="twitter:description" content="Introductory tutorial to base R, with a biological focus. In particular it will focus on analysing RNA-sequencing data with Bioconductor." />
   
@@ -25,7 +25,7 @@
 <meta name="author" content="Lucy Liu">
 
 
-<meta name="date" content="2019-03-20">
+<meta name="date" content="2019-03-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -104,50 +104,53 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./">Introduction to Base R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
-<li class="chapter" data-level="2" data-path="session-1.html"><a href="session-1.html"><i class="fa fa-check"></i><b>2</b> Session 1</a><ul>
-<li class="chapter" data-level="2.1" data-path="session-1.html"><a href="session-1.html#r-and-rstudio"><i class="fa fa-check"></i><b>2.1</b> R and RStudio</a></li>
-<li class="chapter" data-level="2.2" data-path="session-1.html"><a href="session-1.html#help"><i class="fa fa-check"></i><b>2.2</b> Help</a></li>
-<li class="chapter" data-level="2.3" data-path="session-1.html"><a href="session-1.html#r-scripts"><i class="fa fa-check"></i><b>2.3</b> R scripts</a></li>
-<li class="chapter" data-level="2.4" data-path="session-1.html"><a href="session-1.html#working-directory"><i class="fa fa-check"></i><b>2.4</b> Working directory</a></li>
-<li class="chapter" data-level="2.5" data-path="session-1.html"><a href="session-1.html#maths"><i class="fa fa-check"></i><b>2.5</b> Maths</a></li>
-<li class="chapter" data-level="2.6" data-path="session-1.html"><a href="session-1.html#comps"><i class="fa fa-check"></i><b>2.6</b> Comparisons</a></li>
-<li class="chapter" data-level="2.7" data-path="session-1.html"><a href="session-1.html#variables"><i class="fa fa-check"></i><b>2.7</b> Variables</a><ul>
-<li class="chapter" data-level="2.7.1" data-path="session-1.html"><a href="session-1.html#errors-and-warnings"><i class="fa fa-check"></i><b>2.7.1</b> Errors and warnings</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="session-1.html"><a href="session-1.html"><i class="fa fa-check"></i><b>1</b> Session 1</a><ul>
+<li class="chapter" data-level="1.1" data-path="session-1.html"><a href="session-1.html#r-and-rstudio"><i class="fa fa-check"></i><b>1.1</b> R and RStudio</a></li>
+<li class="chapter" data-level="1.2" data-path="session-1.html"><a href="session-1.html#help"><i class="fa fa-check"></i><b>1.2</b> Help</a></li>
+<li class="chapter" data-level="1.3" data-path="session-1.html"><a href="session-1.html#r-scripts"><i class="fa fa-check"></i><b>1.3</b> R scripts</a></li>
+<li class="chapter" data-level="1.4" data-path="session-1.html"><a href="session-1.html#working-directory"><i class="fa fa-check"></i><b>1.4</b> Working directory</a></li>
+<li class="chapter" data-level="1.5" data-path="session-1.html"><a href="session-1.html#maths"><i class="fa fa-check"></i><b>1.5</b> Maths</a></li>
+<li class="chapter" data-level="1.6" data-path="session-1.html"><a href="session-1.html#comps"><i class="fa fa-check"></i><b>1.6</b> Comparisons</a></li>
+<li class="chapter" data-level="1.7" data-path="session-1.html"><a href="session-1.html#variables"><i class="fa fa-check"></i><b>1.7</b> Variables</a><ul>
+<li class="chapter" data-level="1.7.1" data-path="session-1.html"><a href="session-1.html#errors-and-warnings"><i class="fa fa-check"></i><b>1.7.1</b> Errors and warnings</a></li>
 </ul></li>
-<li class="chapter" data-level="2.8" data-path="session-1.html"><a href="session-1.html#data-structures"><i class="fa fa-check"></i><b>2.8</b> Data structures</a><ul>
-<li class="chapter" data-level="2.8.1" data-path="session-1.html"><a href="session-1.html#vector"><i class="fa fa-check"></i><b>2.8.1</b> Vector</a></li>
-<li class="chapter" data-level="2.8.2" data-path="session-1.html"><a href="session-1.html#matrix"><i class="fa fa-check"></i><b>2.8.2</b> Matrix</a></li>
-<li class="chapter" data-level="2.8.3" data-path="session-1.html"><a href="session-1.html#dataframe"><i class="fa fa-check"></i><b>2.8.3</b> Dataframe</a></li>
+<li class="chapter" data-level="1.8" data-path="session-1.html"><a href="session-1.html#data-structures"><i class="fa fa-check"></i><b>1.8</b> Data structures</a><ul>
+<li class="chapter" data-level="1.8.1" data-path="session-1.html"><a href="session-1.html#vector"><i class="fa fa-check"></i><b>1.8.1</b> Vector</a></li>
+<li class="chapter" data-level="1.8.2" data-path="session-1.html"><a href="session-1.html#matrix"><i class="fa fa-check"></i><b>1.8.2</b> Matrix</a></li>
+<li class="chapter" data-level="1.8.3" data-path="session-1.html"><a href="session-1.html#dataframe"><i class="fa fa-check"></i><b>1.8.3</b> Dataframe</a></li>
 </ul></li>
-<li class="chapter" data-level="2.9" data-path="session-1.html"><a href="session-1.html#reading-in-data"><i class="fa fa-check"></i><b>2.9</b> Reading in data</a></li>
-<li class="chapter" data-level="2.10" data-path="session-1.html"><a href="session-1.html#data-types"><i class="fa fa-check"></i><b>2.10</b> Data types</a><ul>
-<li class="chapter" data-level="2.10.1" data-path="session-1.html"><a href="session-1.html#factors"><i class="fa fa-check"></i><b>2.10.1</b> Factors</a></li>
+<li class="chapter" data-level="1.9" data-path="session-1.html"><a href="session-1.html#reading-in-data"><i class="fa fa-check"></i><b>1.9</b> Reading in data</a></li>
+<li class="chapter" data-level="1.10" data-path="session-1.html"><a href="session-1.html#data-types"><i class="fa fa-check"></i><b>1.10</b> Data types</a><ul>
+<li class="chapter" data-level="1.10.1" data-path="session-1.html"><a href="session-1.html#factors"><i class="fa fa-check"></i><b>1.10.1</b> Factors</a></li>
 </ul></li>
-<li class="chapter" data-level="2.11" data-path="session-1.html"><a href="session-1.html#vectorisation"><i class="fa fa-check"></i><b>2.11</b> Vectorisation</a></li>
-<li class="chapter" data-level="2.12" data-path="session-1.html"><a href="session-1.html#writing-out-data"><i class="fa fa-check"></i><b>2.12</b> Writing out data</a></li>
-<li class="chapter" data-level="2.13" data-path="session-1.html"><a href="session-1.html#homework"><i class="fa fa-check"></i><b>2.13</b> Homework</a></li>
-<li class="chapter" data-level="2.14" data-path="session-1.html"><a href="session-1.html#answers"><i class="fa fa-check"></i><b>2.14</b> Answers</a></li>
+<li class="chapter" data-level="1.11" data-path="session-1.html"><a href="session-1.html#vectorisation"><i class="fa fa-check"></i><b>1.11</b> Vectorisation</a></li>
+<li class="chapter" data-level="1.12" data-path="session-1.html"><a href="session-1.html#writing-out-data"><i class="fa fa-check"></i><b>1.12</b> Writing out data</a></li>
+<li class="chapter" data-level="1.13" data-path="session-1.html"><a href="session-1.html#homework"><i class="fa fa-check"></i><b>1.13</b> Homework</a></li>
+<li class="chapter" data-level="1.14" data-path="session-1.html"><a href="session-1.html#answers"><i class="fa fa-check"></i><b>1.14</b> Answers</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="session-2.html"><a href="session-2.html"><i class="fa fa-check"></i><b>3</b> Session 2</a><ul>
-<li class="chapter" data-level="3.1" data-path="session-2.html"><a href="session-2.html#missing-values"><i class="fa fa-check"></i><b>3.1</b> Missing values</a></li>
-<li class="chapter" data-level="3.2" data-path="session-2.html"><a href="session-2.html#subsetting"><i class="fa fa-check"></i><b>3.2</b> Subsetting</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="session-2.html"><a href="session-2.html#subsetting-with-indicies"><i class="fa fa-check"></i><b>3.2.1</b> Subsetting with indicies</a></li>
-<li class="chapter" data-level="3.2.2" data-path="session-2.html"><a href="session-2.html#subsetting-with-logicals"><i class="fa fa-check"></i><b>3.2.2</b> Subsetting with logicals</a></li>
-<li class="chapter" data-level="3.2.3" data-path="session-2.html"><a href="session-2.html#in"><i class="fa fa-check"></i><b>3.2.3</b> %in%</a></li>
+<li class="chapter" data-level="2" data-path="session-2.html"><a href="session-2.html"><i class="fa fa-check"></i><b>2</b> Session 2</a><ul>
+<li class="chapter" data-level="2.1" data-path="session-2.html"><a href="session-2.html#missing-values"><i class="fa fa-check"></i><b>2.1</b> Missing values</a></li>
+<li class="chapter" data-level="2.2" data-path="session-2.html"><a href="session-2.html#subsetting"><i class="fa fa-check"></i><b>2.2</b> Subsetting</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="session-2.html"><a href="session-2.html#subsetting-with-indicies"><i class="fa fa-check"></i><b>2.2.1</b> Subsetting with indicies</a></li>
+<li class="chapter" data-level="2.2.2" data-path="session-2.html"><a href="session-2.html#subsetting-with-logicals"><i class="fa fa-check"></i><b>2.2.2</b> Subsetting with logicals</a></li>
+<li class="chapter" data-level="2.2.3" data-path="session-2.html"><a href="session-2.html#in"><i class="fa fa-check"></i><b>2.2.3</b> %in%</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="session-2.html"><a href="session-2.html#merge"><i class="fa fa-check"></i><b>3.3</b> Merge</a></li>
-<li class="chapter" data-level="3.4" data-path="session-2.html"><a href="session-2.html#functions"><i class="fa fa-check"></i><b>3.4</b> Functions</a></li>
-<li class="chapter" data-level="3.5" data-path="session-2.html"><a href="session-2.html#homework-1"><i class="fa fa-check"></i><b>3.5</b> Homework</a></li>
-<li class="chapter" data-level="3.6" data-path="session-2.html"><a href="session-2.html#answers-1"><i class="fa fa-check"></i><b>3.6</b> Answers</a></li>
+<li class="chapter" data-level="2.3" data-path="session-2.html"><a href="session-2.html#merge"><i class="fa fa-check"></i><b>2.3</b> Merge</a></li>
+<li class="chapter" data-level="2.4" data-path="session-2.html"><a href="session-2.html#functions"><i class="fa fa-check"></i><b>2.4</b> Functions</a></li>
+<li class="chapter" data-level="2.5" data-path="session-2.html"><a href="session-2.html#homework-1"><i class="fa fa-check"></i><b>2.5</b> Homework</a></li>
+<li class="chapter" data-level="2.6" data-path="session-2.html"><a href="session-2.html#answers-1"><i class="fa fa-check"></i><b>2.6</b> Answers</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="session-3.html"><a href="session-3.html"><i class="fa fa-check"></i><b>4</b> Session 3</a><ul>
-<li class="chapter" data-level="4.1" data-path="session-3.html"><a href="session-3.html#lists"><i class="fa fa-check"></i><b>4.1</b> Lists</a></li>
-<li class="chapter" data-level="4.2" data-path="session-3.html"><a href="session-3.html#s4-objects"><i class="fa fa-check"></i><b>4.2</b> S4 objects</a></li>
-<li class="chapter" data-level="4.3" data-path="session-3.html"><a href="session-3.html#dgelist"><i class="fa fa-check"></i><b>4.3</b> DGEList</a></li>
-<li class="chapter" data-level="4.4" data-path="session-3.html"><a href="session-3.html#answers-2"><i class="fa fa-check"></i><b>4.4</b> Answers</a></li>
+<li class="chapter" data-level="3" data-path="session-3.html"><a href="session-3.html"><i class="fa fa-check"></i><b>3</b> Session 3</a><ul>
+<li class="chapter" data-level="3.1" data-path="session-3.html"><a href="session-3.html#lists"><i class="fa fa-check"></i><b>3.1</b> Lists</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="session-3.html"><a href="session-3.html#named-list"><i class="fa fa-check"></i><b>3.1.1</b> Named list</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="session-4.html"><a href="session-4.html"><i class="fa fa-check"></i><b>5</b> Session 4</a></li>
+<li class="chapter" data-level="3.2" data-path="session-3.html"><a href="session-3.html#s4-objects"><i class="fa fa-check"></i><b>3.2</b> S4 objects</a></li>
+<li class="chapter" data-level="3.3" data-path="session-3.html"><a href="session-3.html#packages"><i class="fa fa-check"></i><b>3.3</b> Packages</a></li>
+<li class="chapter" data-level="3.4" data-path="session-3.html"><a href="session-3.html#dgelist"><i class="fa fa-check"></i><b>3.4</b> DGEList</a></li>
+<li class="chapter" data-level="3.5" data-path="session-3.html"><a href="session-3.html#answers-2"><i class="fa fa-check"></i><b>3.5</b> Answers</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="session-4.html"><a href="session-4.html"><i class="fa fa-check"></i><b>4</b> Session 4</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -169,8 +172,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="session-2" class="section level1">
-<h1><span class="header-section-number">Chapter 3</span> Session 2</h1>
-<p>Last session we gained an understanding of R data structures and data types. In this session we will learn about:</p>
+<h1><span class="header-section-number">Chapter 2</span> Session 2</h1>
+<p>In this session we will learn about:</p>
 <ul>
 <li>missing values</li>
 <li>subsetting data structures</li>
@@ -178,14 +181,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>how functions are created and used</li>
 </ul>
 <div id="missing-values" class="section level2">
-<h2><span class="header-section-number">3.1</span> Missing values</h2>
+<h2><span class="header-section-number">2.1</span> Missing values</h2>
 <p>First, let’s read in some data. Recall we use the function <code>read.delim()</code> and tell R not to label words as ‘Factors’ using <code>stringsAsFactors = FALSE</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses2_genes.tsv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<p>You can see in the environment tab that this dataframe has 200 rows (observations) and 5 columns (variables). You can also click on the <code>genes</code> entry in the Environment tab (red arrow in Figure <a href="session-2.html#fig:RS4">3.1</a>) to display the data in a new window (left):</p>
+<p>You can see in the environment tab that this dataframe has 200 rows (observations) and 5 columns (variables). You can also click on the <code>genes</code> entry in the Environment tab (red arrow in Figure <a href="session-2.html#fig:RS4">2.1</a>) to display the data in a new window (left):</p>
 <div class="figure"><span id="fig:RS4"></span>
 <img src="Images/RS4.png" alt="Viewing data from the 'Environment' tab." width="700px" />
 <p class="caption">
-Figure 3.1: Viewing data from the ‘Environment’ tab.
+Figure 2.1: Viewing data from the ‘Environment’ tab.
 </p>
 </div>
 <p>Scrolling down the window, you can see that there are several <em>NA</em> entries. <code>NA</code> denotes a missing value in R.</p>
@@ -198,14 +201,14 @@ Figure 3.1: Viewing data from the ‘Environment’ tab.
 <p>Later we will learn how to remove the <code>NA</code> values from our dataframe.</p>
 </div>
 <div id="subsetting" class="section level2">
-<h2><span class="header-section-number">3.2</span> Subsetting</h2>
+<h2><span class="header-section-number">2.2</span> Subsetting</h2>
 <p>Subsetting involves selecting a portion of a data structure and uses square brackets <code>[ ]</code>. There are two main ways to subset a data structure:</p>
 <ul>
 <li>Use indices - data structures are all ordered and ‘numbered’ in R. This means that you can refer to the 4th element in a vector or the element in the 1st row and 3rd column of a dataframe.</li>
 <li>Use logicals - recall that a logical is <code>TRUE</code> or <code>FALSE</code>. You can use comparisons (e.g. equal to <code>==</code>, greater than <code>&gt;</code>) to determine if each element in your data structure meet your requirements and use this to subset your data.</li>
 </ul>
 <div id="subsetting-with-indicies" class="section level3">
-<h3><span class="header-section-number">3.2.1</span> Subsetting with indicies</h3>
+<h3><span class="header-section-number">2.2.1</span> Subsetting with indicies</h3>
 <p>Let’s take a look at subsetting vectors first. We can use <code>$</code> to obtain just one column from the <code>genes</code> dataframe. The output will be a vector.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes<span class="op">$</span>Count</code></pre></div>
 <pre><code>##   [1]   979    15   932     0   214     2     2     0  1790    41  1033
@@ -267,8 +270,8 @@ Figure 3.1: Viewing data from the ‘Environment’ tab.
 ## 2    11634   Aire   chr10       1929    15</code></pre>
 </div>
 <div id="subsetting-with-logicals" class="section level3">
-<h3><span class="header-section-number">3.2.2</span> Subsetting with logicals</h3>
-<p>If you recall from section <a href="session-1.html#comps">2.6</a>, you can make comparisons in R. The result of a comparison is either <code>TRUE</code> or <code>FALSE</code>:</p>
+<h3><span class="header-section-number">2.2.2</span> Subsetting with logicals</h3>
+<p>If you recall from section <a href="session-1.html#comps">1.6</a>, you can make comparisons in R. The result of a comparison is either <code>TRUE</code> or <code>FALSE</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>Comparisons are also vectorised:</p>
@@ -335,10 +338,10 @@ Figure 3.1: Viewing data from the ‘Environment’ tab.
 <ol start="3" style="list-style-type: decimal">
 <li>Using the dataframe from above subset to get only the rows where the <code>TXCHROM</code> is ‘chr1’ and all columns.</li>
 </ol>
-<p><em>Hint</em>: you can refer to section <a href="session-1.html#comps">2.6</a> to check how to perform different types of comparisons in R.</p>
+<p><em>Hint</em>: you can refer to section <a href="session-1.html#comps">1.6</a> to check how to perform different types of comparisons in R.</p>
 </div>
 <div id="in" class="section level3">
-<h3><span class="header-section-number">3.2.3</span> %in%</h3>
+<h3><span class="header-section-number">2.2.3</span> %in%</h3>
 <p>In the last challenge, we used <code>==</code> to obtain the rows where <code>TXCHROM</code> is ‘chr1’. Another way to perform ‘matching’ tasks is with the <code>%in%</code> function.</p>
 <p>The following command subsets the rows where <code>TXCHROM</code> is “chr1” or “chr2” and prints out the first 6 rows.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(
@@ -379,7 +382,7 @@ Figure 3.1: Viewing data from the ‘Environment’ tab.
 </div>
 </div>
 <div id="merge" class="section level2">
-<h2><span class="header-section-number">3.3</span> Merge</h2>
+<h2><span class="header-section-number">2.3</span> Merge</h2>
 <p>Two dataframes can be combined with the <code>merge()</code> function.</p>
 <p>First, let’s read in the file “Ses2_geneNames.tsv”, which contains gene names and their corresponding ENTREZIDs.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gene_names &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses2_geneNames.tsv&quot;</span>, 
@@ -426,14 +429,14 @@ Figure 3.1: Viewing data from the ‘Environment’ tab.
 <p>Merge the two dataframes again, but this time keep all rows from both dataframes.</p>
 </div>
 <div id="functions" class="section level2">
-<h2><span class="header-section-number">3.4</span> Functions</h2>
+<h2><span class="header-section-number">2.4</span> Functions</h2>
 <p>A function, as the namne suggests performs a function. We have already used many functions. For example, the <code>read.delim()</code> function reads in data, the <code>sum()</code> function adds numbers up and the <code>merge()</code> function above merges two dataframes.</p>
 <p>Formally, when using a function, brackets (<code>( )</code>) are always included after the name of the function. Within the brackets is where input (technically ‘arguments’) to the function goes. You can find out what inputs an argument takes by looking at the help file.</p>
 <p>For example, let’s take a look at the <code>rnorm()</code> function help file. This function generates a random number from a normal distribution.</p>
 <div class="figure" style="text-align: center"><span id="fig:rnorm"></span>
 <img src="Images/rnorm_help.png" alt="rnorm help file." width="600px" />
 <p class="caption">
-Figure 3.2: rnorm help file.
+Figure 2.2: rnorm help file.
 </p>
 </div>
 <p>We can see from the help file that <code>rnorm()</code> takes in 3 arguments:</p>
@@ -451,32 +454,32 @@ sd - vector of standard deviations.</code></pre>
 <li>What happens when you give either argument a vector of numbers?</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">4</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>## [1]  9.524970 10.401953 10.202806  9.548079</code></pre>
+<pre><code>## [1] 11.574101  8.154697  9.125500  9.799785</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="kw">c</span>(<span class="dv">100</span>,<span class="dv">0</span>), <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>## [1] 100.6871521  -0.9455308 100.4756134</code></pre>
+<pre><code>## [1] 100.144999  -2.046413 101.356360</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Take a look at the following code:</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">10</span>)</code></pre></div>
-<pre><code>## [1]  -1.348913   7.631334 -11.347598</code></pre>
+<pre><code>## [1]  3.383007 17.503905 11.200801</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>,<span class="dv">10</span>,<span class="dv">1</span>)</code></pre></div>
-<pre><code>## [1] 10.11129  9.26211  9.58699</code></pre>
+<pre><code>## [1]  9.625785 11.917576 11.012783</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">0</span>)</code></pre></div>
 <pre><code>## [1] 10 10 10</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">sd =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">0</span>)</code></pre></div>
-<pre><code>## [1] -1.174505 27.074352  2.006016</code></pre>
+<pre><code>## [1]   7.373546   4.595005 -17.904335</code></pre>
 <p>How does the order of the arguments you input to the function affect the output? What happens when you include the name of the argument before your input?</p>
 <p>Note that as the function generates a random number, the numbers you will get from running the function will be different to the ones generated above.</p>
 </div>
 <div id="homework-1" class="section level2">
-<h2><span class="header-section-number">3.5</span> Homework</h2>
+<h2><span class="header-section-number">2.5</span> Homework</h2>
 <p>We will use the Bioconductor packages ‘limma’ and ‘edgeR’ in the next session. Before the next sesssion, please install these packages with the following commands:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">requireNamespace</span>(<span class="st">&quot;BiocManager&quot;</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>))
     <span class="kw">install.packages</span>(<span class="st">&quot;BiocManager&quot;</span>)
 BiocManager<span class="op">::</span><span class="kw">install</span>(<span class="kw">c</span>(<span class="st">&quot;edgeR&quot;</span>, <span class="st">&quot;limma&quot;</span>), <span class="dt">version =</span> <span class="st">&quot;3.8&quot;</span>)</code></pre></div>
 </div>
 <div id="answers-1" class="section level2">
-<h2><span class="header-section-number">3.6</span> Answers</h2>
+<h2><span class="header-section-number">2.6</span> Answers</h2>
 <p><strong>Challenge 2.1</strong></p>
 <ol style="list-style-type: decimal">
 <li>This code obtains rows where <code>Count</code> is less than or equal to 10 and prints the first 6 rows using <code>head()</code>:</li>
