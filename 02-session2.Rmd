@@ -1,6 +1,6 @@
 # Session 2
 
-Last session we gained an understanding of R data structures and data types. In this session we will learn about:
+In this session we will learn about:
 
 * missing values
 * subsetting data structures
