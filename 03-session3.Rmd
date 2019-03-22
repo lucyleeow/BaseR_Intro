@@ -1,4 +1,7 @@
 # Session 3
+```{r, echo=FALSE, warning=FALSE}
+library(knitr)
+```
 
 In this session we will learn:
 
@@ -204,8 +207,46 @@ If your list is named, you can use `$` to access each element of your list:
 named_list$name
 ```
 
+Note that the output is just the vector, NOT a vector within a list. Thus `named_list[[1]]` does the same thing as `named_list$name`.
 
-*Extra*: recall that we access columns in dataframes with the `$` symbol as well. This is because 'under the hood' a dataframe is actually a list - but a list with the specification that each element is a vector of the same length. Each element in the list is thus a column in the 'dataframe'.
+Recall that we access columns in dataframes with the `$` symbol as well. This means that if you have a dataframe within a list, you can obtain a column within the dataframe that is within the list using two `$`'s: 
+
+Let's start with a list that contains a dataframe as its first element
+```{r}
+named_list2 <- list(
+ details = data.frame(name = c("Andy", "Sally"),
+                      age = c(32,40))
+)
+named_list2
+```
+
+We can get the age column using:
+
+```{r}
+named_list2$details$age
+```
+
+*Extra*:The reason you can also access columns in a dataframe with `$` is because 'under the hood' a dataframe is actually a list. It is a list with the constraint that each element is a vector of the same length. Each element in the list is thus a column in the 'dataframe'.
+
+**Challenge 3.3**
+
+Take a look at the named list below:
+
+```{r}
+named_list3 <- list(
+  cats = data.frame(name = c("Garfield", "Hello Kitty"),
+                    age = c(3,10), stringsAsFactors = FALSE),
+  dogs = data.frame(name = c("Spot", "Snoopy"),
+                    age = c(5,14), stringsAsFactors = FALSE)
+)
+named_list3
+```
+
+Using just `$`, obtain:
+
+1. the vector of cat names
+2. the dog dataframe
+3. the vector of dog ages
 
 
 ## S4 objects
@@ -214,7 +255,7 @@ Everything in R is an 'object' - every function that we have used and every data
 
 Bioconductor is an open source project to provide tools for the analysis of high-throughput genomic data. There are more than 1,500 R packages on Bioconductor. Most objects in Bioconductor packages are 'S4' objects. 'S4' objects are much more 'formal' than S3 objects. 
 
-Let's look at an example. The `DGEList` object from limma is an S4 object. It is a data structure specifically designed for storing read count data from sequencing. It is a list that contains two specific components:
+Let's look at an example. The `DGEList` object from limma is a S4 object. It is a data structure specifically designed for storing read count data from sequencing. It is a list that contains two specific components:
 
 * `counts` - which must be a numeric matrix, that stores counts. Each row must be a gene and each column must be a sample.
 * `samples` - which must be a dataframe, that contains information about each sample. Each row must be a sample and must contain information about the group (e.g. treatment group) the sample belongs to, the library size of that sample and the normalisation factor for that sample.
@@ -229,16 +270,121 @@ Last session we installed the packages limma and edgeR. This downloads the files
 
 To use a package you must 'load' them each time you start a new R session. You do this with the `library()` function. Let's load both limma and edgeR:
 
-```{r}
+```{r, warning=FALSE}
 library(edgeR)
 library(limma)
 ```
 
 ## DGEList
 
-We can now create a `DGEList` object from limma. To do so
+The RNA sequencing data we will use is from Sheridan *et al.* [@law2016rna]. It consists of samples from 3 cell populations; basal, luminal progenitor (LP) and mature luminal (ML), which has been sorted from the mammary glands of female virgin mice. The reads have been aligned to the mouse reference genome (mm10) and reads summarised at the gene-level (using mm10 RefSeq-based annotation) to obtain gene counts. Gene level summarisation involves counting the number of reads mapped to each gene - the resulting 'count of reads' is often referred to simply as 'counts'. 
+
+We are going to start our RNA-seq analysis with gene counts. The data files for this session should have been emailed to you (you can also obtain them from [Github](https://github.com/lucyleeow/BaseR_Intro)). Please uncompress (extract) the files and put them in your working directory.
+
+Each data file details the number of reads mapped to a gene for 1 sample. There is 1 data file for each sample. Within each data file, there are 3 columns - EntrezID, GeneLength and Count. 
+
+We will be looking at 9 samples (and 9 data files) in total. Their details are shown below:
 
 
+```{r samps, echo=FALSE}
+files <- c("GSM1545535_10_6_5_11.txt", "GSM1545536_9_6_5_11.txt", 
+   "GSM1545538_purep53.txt", "GSM1545539_JMS8-2.txt", 
+   "GSM1545540_JMS8-3.txt", "GSM1545541_JMS8-4.txt", 
+   "GSM1545542_JMS8-5.txt", "GSM1545544_JMS9-P7c.txt", 
+   "GSM1545545_JMS9-P8c.txt")
+samps <- substring(files, 12, nchar(files))
+
+kable(
+  
+  data.frame(`File name` = files,
+   `Sample name` = samps,
+   `Phenotype group` = c("LP", "ML", "Basal", "Basal", "ML", "LP", "Basal", "ML", "LP")),
+  caption = "Summary of samples."
+  
+)
+```
+
+
+To create a `DGEList` object, we will use the `readDGE()` function. We must gives this function the following arguments:
+
+* `files` - a vector of data file names
+* `path` - the path to the directory that contains your data files. If the data files are in your working directory, don't worry about this argument. If the data files are somewhere else, like a folder called 'data', in your working directory you must give the path to that folder
+* `colums` - the columns of the input files which have the gene names and counts respectively (as the column indices)
+
+First, we will create a vector of the file names. You can simply copy and paste this code into your R script.
+
+```{r}
+files <- c("GSM1545535_10_6_5_11.txt", "GSM1545536_9_6_5_11.txt", 
+   "GSM1545538_purep53.txt", "GSM1545539_JMS8-2.txt", 
+   "GSM1545540_JMS8-3.txt", "GSM1545541_JMS8-4.txt", 
+   "GSM1545542_JMS8-5.txt", "GSM1545544_JMS9-P7c.txt", 
+   "GSM1545545_JMS9-P8c.txt")
+```
+
+Now we will create our `DGEList` object. I have put my data files in a folder called "data" (within my working directory), thus I must specify `path = "data"`. Depending on where you have put your data files, you may need a different input to `path` or not have to include the `path` argument.
+
+```{r}
+x <- readDGE(files, path = "data", columns = c(1,3))
+```
+
+The object we created has 2 elements, one named `samples` and one named `counts`. Let's take a look at each:
+
+
+```{r}
+head(x$counts)
+```
+
+Recall that `DGEList` specifies that the `counts` element of the list must be a numeric matrix, that stores the counts. Each row must be a gene and each column must be a sample. Note that the column names are the file names and the rownames are the EntrezID's.
+
+```{r}
+head(x$samples)
+```
+
+This is a dataframe where each row is 1 sample, and details of each sample is given in the 4 columns. 
+
+* `files` gives the file names.
+* `group` details the phenotype group the sample belongs to. As we have not specified this yet, the default `1` is given for each sample.
+* `lib.size` gives the library size. This is the total sum of all counts for that sample.
+* `norm.factors` this gives the normalisation factor for each sample. As we have not calculated any normalisation factors, this is 1 for each sample.
+
+This dataframe also has rownames, which are currently the file names of each sample. Let's change them to be the sample names (see Table \@ref(tab:samps)).
+
+We can do this by first creating a vector of sample names. You can simply copy and paste the code below into your R script.
+
+```{r}
+samplenames <- c("10_6_5_11", "9_6_5_11", "purep53", "JMS8-2", "JMS8-3",
+                 "JMS8-4", "JMS8-5", "JMS9-P7c", "JMS9-P8c")
+```
+
+We can change the rownames in the `samples` dataframe using the `rownames()` function. This function will give you the row names of a data structure (a dataframe in this instance):
+
+```{r}
+rownames(x$samples) 
+```
+
+We can see that the row names are the file names as we saw above. To replace these file names with the sample names we can run:
+
+```{r}
+rownames(x$samples) <- samplenames
+```
+
+We have seen this type of notation before in session 1 (section \@ref(vect)). This code assigns the `samplenames` vector as the row names of the `samples` dataframe.
+
+
+**Challenge 3.4**
+
+1. Use the `colnames()` function to replace the column names of the count matrix from being file names to sample names.
+2. The code below creates a factor vector (called `group`) that specifies the phenotype group each sample belongs to. It is ordered such that the first element in the vector corresponds to the first row of the `samples` dataframe.
+
+```{r}
+group <- as.factor(c("LP", "ML", "Basal", "Basal", "ML", "LP", "Basal", "ML", "LP")) 
+```
+
+Replace the `group` column of the `samples` dataframe with the `group` factor vector.
+
+*Hint*: you will need to use the list subsetting notation we learnt at the start of this session.
+
+## Homework
 
 
 ## Answers
@@ -246,7 +392,7 @@ We can now create a `DGEList` object from limma. To do so
 **Challenge 3.1**
 
 1. There are 4 elements of this list.
-2.
+2. For each element -
 
 * Within the first element, there are 2 elements. The first is a vector containing 2 numbers and the second is a vector containing one character type (note there are no 'scalars' in R, thus `"a"` is a vector with 1 element). 
 * The second element contains 1 element. It is a vector containing two character types.
@@ -284,6 +430,30 @@ my_list2[[3]][1,]
 6.
 ```{r}
 my_list2[3]
+```
+
+**Challenge 3.3**
+
+```{r}
+# 1. the vector of cat names
+named_list3$cats$name
+
+# 2. the dog dataframe
+named_list3$dogs
+
+# 3. the vector of dog ages
+named_list3$dogs$age
+```
+
+**Challenge 3.4**
+
+```{r}
+# 1
+colnames(x$counts) <- samplenames
+# 2
+x$samples$group <- group
+
+
 ```
 
 
