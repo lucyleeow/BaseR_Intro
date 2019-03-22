@@ -31,22 +31,6 @@ knitr::include_graphics("Images/RS1.png")
     * Packages - basic R includes many useful functions. You can add even more functions by downloading packages. A package is a collection of functions, generally with a certain data analysis theme. For example, the package 'limma', which we will use later, includes functions designed for analysing RNA-sequencing data.
     * Viewer - this tab lets you view local web content but we won't be using it in this course.
     
-## Help
-
-There are two ways to access help files in RStudio. You can type in the name of the function you want help with, in the top right of help tab (indicated with a red arrow):
-
-```{r help, fig.cap="Accessing help files via 'help' tab.", out.width="500px", fig.align='center', echo=FALSE}
-knitr::include_graphics("Images/help.png")
-```
-
-The other option is to run the command `?` followed by the name of the function:
-
-```{r}
-?sum
-```
-
-Help files are very useful but can be difficult to interpret at first due to the technical language used. We won't get too much practice reading help files during this course but I would encourage you to try to use them when figuring out how to use a new function.
-
 ## R scripts
 
 To open a R script, go to File > New File > R Script.
@@ -69,6 +53,22 @@ Lastly, you can make 'comments' in your R Script. Comments are notes to yourself
 # this is a note to myself
 1+3-2
 ```
+
+## Help
+
+There are two ways to access help files in RStudio. You can type in the name of the function you want help with, in the top right of help tab (indicated with a red arrow):
+
+```{r help, fig.cap="Accessing help files via 'help' tab.", out.width="500px", fig.align='center', echo=FALSE}
+knitr::include_graphics("Images/help.png")
+```
+
+The other option is to run the command `?` followed by the name of the function:
+
+```{r}
+?sum
+```
+
+Help files are very useful but can be difficult to interpret at first due to the technical language used. We won't get too much practice reading help files during this course but I would encourage you to try to use them when figuring out how to use a new function.
 
 
 ## Working directory
@@ -97,6 +97,8 @@ knitr::include_graphics("Images/wd2.png")
 ```{r wd3, fig.cap='Setting the working directory - 3.', out.width="500px", echo=FALSE, fig.align='center'}
 knitr::include_graphics("Images/wd3.png")
 ```
+
+Please set your working directory to be this folder at the start of EVERY session.
 
 ## Maths
 
@@ -160,6 +162,18 @@ my_num <- 2 + 6 * 7**2
 ```
 
 Now if I run the command `my_num`, I see the number I stored earlier:
+
+```{r}
+my_num
+```
+
+You can also 'overwrite' variables:
+
+```{r}
+my_num <- 3 * 4
+```
+
+The above code evaluates `3 * 4` and assigns the output to the variable `my_num` - effectivey 'overwritting' the previous value assigned to it.
 
 ```{r}
 my_num
@@ -283,11 +297,32 @@ str(genes)
 
 This tells us that `genes` is a dataframe. It also tells us what *data type* each column is.
 
+### Summary
+
+A useful function for investigating your data is `summary()`. Running this function on our `genes` dataframe provides us with summary statistics on all the numeric columns. For the columns that don't contain numbers, the output simply states the length of that column.
+
+```{r}
+summary(genes)
+```
+
 ## Data types
 
 Every bit of data in R has a 'data type label'. The label doesn't change the data in any way - it just tells R what kind of data it is and thus what it can and can't do with the data.
 
 For example, it makes sense to perform mathematical functions on numbers but not on words. It makes sense to look for a certain term, like a gene name, in a word but not in a number.
+
+For example, you can't add 'characters'. Thus this doesn't work because `"1"` and `"2"` are labelled as 'characters':
+
+```{r, error=TRUE}
+"1" + "2"
+```
+
+This does work:
+
+```{r}
+1 + 2
+```
+
 
 There are five basic types of data in R:
 
@@ -315,7 +350,7 @@ Internally, R would store the data as:
 1, 2, 3, 1, 3
 ```
 
-Each number corresponds to a category. This information is also stored. R calls the categorical value each number corresponds 'levels'.
+Each number corresponds to a category. This information is also stored. In R, the categorical values each number corresponds to, is called 'levels'.
 
 The levels for the above data would be:
 
@@ -341,7 +376,75 @@ str(genes)
 
 Note that now the column `SYMBOL` is now a character ('chr').
 
-## Vectorisation
+Another way to change the labels of data in R is with the following functions:
+
+* `as.logical()`
+* `as.integer()`
+* `as.double()`
+* `as.complex()`
+* `as.character()`
+
+For example, this will turn a integer vector into a character vector:
+
+```{r}
+as.character(c(1,2,3))
+```
+
+Note the quotes, which always signify the character type.
+
+### Type coercion
+
+In some circumstances, R will change the data type label of your data. This is called 'type coercion'. A common scenario in which this will happen is with vector (and dataframe column) labelling.
+
+All elements within a vector (and within a column of a dataframe) must have the same data type label. Thus, if you create a vector like the one below, the whole vector will be labelled as one data type. Which data type do you think it will be?
+
+```{r}
+my_vect3 <- c(1, 2, "a")
+```
+
+We can find out with `str()`:
+
+```{r}
+str(my_vect3)
+```
+
+It has labelled the whole vector as characters. This is because the letter `"a"` cannot be "expressed" as a number but numbers can be "expressed" as characters - thus R will always pick the data type label that does not result in any loss of information. Recall that data type labels NEVER change the data - only the label changes.
+
+There is an order to which data label R will label a vector as. Of all the data types that exist in the vector, the data type of the element that is furtherest right, will be the "final" data type label for the vector.
+
+`logical` > `integer` > `double` > `complex` > `character`
+
+This order makes sense:
+
+* the logicals `TRUE` and `FALSE` can be represented by numbers with `TRUE` = `1` and `FALSE` = `0`. 
+    * when logicals are labelled as the character type, `TRUE` simply becomes `"TRUE"`
+* an integer can easily be represented by a double - `3` becomes `3.0`
+* as we saw above, numbers can easily be represented as a character 
+
+The last thing to note is that you may see the type `num`:
+
+```{r}
+str(c(1,2,3))
+```
+
+`num` stands for numeric and is just the 'number' data types grouped together. R does this for two reasons. First, generally you don't need to know exactly what 'type' of number class your data is. Second, R will often convert between number types depending the type of calculations/function performed.
+
+**Challenge 1.1**
+
+What data type will the following vectors be?
+
+```{r, eval=FALSE}
+# 1
+c(TRUE, 3, 4)
+# 2 
+c("hello", TRUE, 4)
+# 3
+c(4, "5")
+```
+
+
+
+## Vectorisation {#vect}
 
 R is quite efficient at doing calculations or performing a functions on a vector of data.
 
@@ -370,7 +473,7 @@ There are a few things happening in the command above:
 1. The code on the right side of `<-` is evaluated first. It returns a vector as we saw above.
 2. This vector is assigned to a column in `genes` called `Count_2`. Since this column does not yet exist in the `genes` dataframe, a new column called `Count_2` is created first. (If there was already a column name `Count_2`, this command will have overwritten that column with the new vector created in the right side of `<-`)
 
-**Challenge 1**
+**Challenge 1.2**
 
 Create a new column called `Prop_Count` that contains each count value as a proportion of the total count value of all 10 genes in the dataframe. E.g. if `Count` was 10 and total count of all 10 genes is 100, that row in `Prop_Count` should be 0.1.
 
@@ -399,11 +502,21 @@ Read in the data file "Ses1_homework.tsv" using `read.delim()`. This file is sim
 
 Create a new column called `Prop_GeneLength` that contains the `Count` value as a proportion of `GeneLength`. E.g. if the count value was 50 and the gene length was 2400, the `Prop_GeneLength` value for that row would be 0.02083333.
 
-Now write out this new dataframe as a file called "Ses1_homework_output.tsv", as a tsv (tab separated values) file.
+Finally, write out this new dataframe as a file called "Ses1_homework_output.tsv", as a tsv (tab separated values) file.
 
 ## Answers
 
-**Challenge 1**
+**Challenge 1.1**
+```{r}
+str(c(TRUE, 3, 4))
+
+str(c("hello", TRUE, 4))
+
+str(c(4, "5"))
+```
+
+
+**Challenge 1.2**
 
 The `sum()` function can be used to calculate the total Count of all 10 rows by giving the `genes$Count` vector as the input to `sum()`.
 
