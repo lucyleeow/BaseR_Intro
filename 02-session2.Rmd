@@ -11,6 +11,8 @@ In this session we will learn about:
 
 First, let's read in some data. Recall we use the function `read.delim()` and tell R not to label words as 'Factors' using `stringsAsFactors = FALSE`.
 
+We are using the file "Ses2_genes.tsv" today. Again, this would have been emailed to you before the session. Alternatively you can download the data from [GitHub](https://github.com/lucyleeow/BaseR_Intro).
+
 ```{r}
 genes <- read.delim("data/Ses2_genes.tsv", stringsAsFactors = FALSE)
 ```
@@ -23,7 +25,7 @@ knitr::include_graphics("Images/RS4.png")
 
 Scrolling down the window, you can see that there are several *NA* entries. `NA` denotes a missing value in R.
 
-`NA`'s have some interesting behaviour - they are 'contagious'. For example, if we wanted to take the mean of a vector numbers, which includes a `NA`, the answer is `NA`. If we think about it, it makes sense that the mean of two numbers and a 'missing' number that could be anything is `NA`.
+`NA`'s have some interesting behaviour - they are 'contagious'. For example, if we wanted to take the mean of a vector numbers, which includes a `NA`, the answer is `NA`. If we think about it, it makes sense that the mean of two numbers and a 'missing' number, that could be anything, is `NA`.
 
 ```{r}
 mean(c(2,3,NA))
