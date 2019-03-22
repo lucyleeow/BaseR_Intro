@@ -1,0 +1,19 @@
+# Session 4
+
+
+## Filtering
+
+
+
+## Normalisation
+
+## MDS plot
+
+## Linear modelling
+
+### Design matrix
+
+## Statistical testing
+
+
+
