@@ -418,7 +418,7 @@ chrm5 <- geneannot[geneannot$TXCHROM == "chr5",]
 # 1324
 ```
 
-*Hint*: you will need to remove columns where the `TXCHROM` column is `NA`. Revisit section \@ref(miss) to review missing values.
+*Hint*: you will need to remove rows where the `TXCHROM` column is `NA`. Revisit section \@ref(miss) to review missing values.
 
 ## Answers
 
