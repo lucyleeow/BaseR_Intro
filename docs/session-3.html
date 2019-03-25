@@ -25,7 +25,7 @@
 <meta name="author" content="Lucy Liu">
 
 
-<meta name="date" content="2019-03-22">
+<meta name="date" content="2019-03-25">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -133,7 +133,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.14" data-path="session-1.html"><a href="session-1.html#answers"><i class="fa fa-check"></i><b>1.14</b> Answers</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="session-2.html"><a href="session-2.html"><i class="fa fa-check"></i><b>2</b> Session 2</a><ul>
-<li class="chapter" data-level="2.1" data-path="session-2.html"><a href="session-2.html#missing-values"><i class="fa fa-check"></i><b>2.1</b> Missing values</a></li>
+<li class="chapter" data-level="2.1" data-path="session-2.html"><a href="session-2.html#miss"><i class="fa fa-check"></i><b>2.1</b> Missing values</a></li>
 <li class="chapter" data-level="2.2" data-path="session-2.html"><a href="session-2.html#subsetting"><i class="fa fa-check"></i><b>2.2</b> Subsetting</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="session-2.html"><a href="session-2.html#subsetting-with-indicies"><i class="fa fa-check"></i><b>2.2.1</b> Subsetting with indicies</a></li>
 <li class="chapter" data-level="2.2.2" data-path="session-2.html"><a href="session-2.html#subsetting-with-logicals"><i class="fa fa-check"></i><b>2.2.2</b> Subsetting with logicals</a></li>
@@ -452,6 +452,7 @@ named_list3</code></pre></div>
 <li><code>counts</code> - which must be a numeric matrix, that stores counts. Each row must be a gene and each column must be a sample.</li>
 <li><code>samples</code> - which must be a dataframe, that contains information about each sample. Each row must be a sample and must contain information about the group (e.g. treatment group) the sample belongs to, the library size of that sample and the normalisation factor for that sample.</li>
 </ul>
+<p>There are also a number of optional components the <code>DGEList</code>, such as a dataframe containing gene annotation information.</p>
 <p>There are a lot more specifications about the type of and how data is stored in the <code>DGEList</code> S4 object, than say the S3 list. You can think of S3 objects as very genetic tools (e.g. a spanner) whereas S4 objects tend to be tools designed for a very specific task (e.g. a lug wrench, which is used to loosen and tighten lug nuts on car wheels).</p>
 <p>You can read more about the S4 objects in <a href="https://www.bioconductor.org/help/course-materials/2017/Zurich/S4-classes-and-methods.html#strengths-of-s4-compared-to-s3">this</a> Bioconductor tutorial.</p>
 </div>
@@ -464,7 +465,7 @@ named_list3</code></pre></div>
 </div>
 <div id="dgelist" class="section level2">
 <h2><span class="header-section-number">3.4</span> DGEList</h2>
-<p>The RNA sequencing data we will use is from Sheridan <em>et al.</em> <span class="citation">(Law et al. 2016)</span>. It consists of samples from 3 cell populations; basal, luminal progenitor (LP) and mature luminal (ML), which has been sorted from the mammary glands of female virgin mice. The reads have been aligned to the mouse reference genome (mm10) and reads summarised at the gene-level (using mm10 RefSeq-based annotation) to obtain gene counts. Gene level summarisation involves counting the number of reads mapped to each gene - the resulting ‘count of reads’ is often referred to simply as ‘counts’.</p>
+<p>The RNA sequencing analysis you will be guided through is a simplified version of that performed in the article from Law <em>et al.</em> <span class="citation">(Law et al. 2016)</span>. The RNA sequencing data we will use is from Sheridan <em>et al.</em> <span class="citation">(Sheridan et al. 2015)</span>. It consists of samples from 3 cell populations; basal, luminal progenitor (LP) and mature luminal (ML), which has been sorted from the mammary glands of female virgin mice. The reads have been aligned to the mouse reference genome (mm10) and reads summarised at the gene-level (using mm10 RefSeq-based annotation) to obtain gene counts. Gene level summarisation involves counting the number of reads mapped to each gene - the resulting ‘count of reads’ is often referred to simply as ‘counts’.</p>
 <p>We are going to start our RNA-seq analysis with gene counts. The data files for this session should have been emailed to you (you can also obtain them from <a href="https://github.com/lucyleeow/BaseR_Intro">Github</a>). Please uncompress (extract) the files and put them in your working directory.</p>
 <p>Each data file details the number of reads mapped to a gene for 1 sample. There is 1 data file for each sample. Within each data file, there are 3 columns - EntrezID, GeneLength and Count.</p>
 <p>We will be looking at 9 samples (and 9 data files) in total. Their details are shown below:</p>
@@ -601,9 +602,25 @@ named_list3</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">group &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">c</span>(<span class="st">&quot;LP&quot;</span>, <span class="st">&quot;ML&quot;</span>, <span class="st">&quot;Basal&quot;</span>, <span class="st">&quot;Basal&quot;</span>, <span class="st">&quot;ML&quot;</span>, <span class="st">&quot;LP&quot;</span>, <span class="st">&quot;Basal&quot;</span>, <span class="st">&quot;ML&quot;</span>, <span class="st">&quot;LP&quot;</span>)) </code></pre></div>
 <p>Replace the <code>group</code> column of the <code>samples</code> dataframe with the <code>group</code> factor vector.</p>
 <p><em>Hint</em>: you will need to use the list subsetting notation we learnt at the start of this session.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Additional gene annotation information about the genes from our RNA-seq data can be found in the file “Ses3_geneAnnot.tsv”. Read this file in and add it as another element named <code>genes</code> in <code>x</code> (our <code>DGEList</code> object).</li>
+</ol>
+<p><em>Hint</em>: the command for adding an element to a list is similar to the command for adding a column to a dataframe. Take a look at Section <a href="session-1.html#vect">1.11</a> to review the latter.</p>
 </div>
 <div id="homework-2" class="section level2">
 <h2><span class="header-section-number">3.5</span> Homework</h2>
+<ol style="list-style-type: decimal">
+<li>Subset the first column of the <code>count</code> matrix from <code>x</code> (our <code>DGEList</code> object) and ‘save’ (assign) it to a variable called <code>sample1</code>.</li>
+</ol>
+<ul>
+<li>Find out how many genes had a count of ‘0’.</li>
+<li>Find the total sum of all counts for that sample. Compare this number with the corresponding (first) number in the <code>lib.size</code> column from the <code>samples</code>. Is it the same?</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Calculate the total sum of the library sizes, using the <code>lib.size</code> column from the <code>samples</code> dataframe from <code>x</code> (our <code>DGEList</code> object).</p></li>
+<li><p>Using the <code>genes</code> dataframe from <code>x</code> (our <code>DGEList</code> object), find out how many genes are from chromosome 5.</p></li>
+</ol>
+<p><em>Hint</em>: you will need to remove columns where the <code>TXCHROM</code> column is <code>NA</code>. Revisit section <a href="session-2.html#miss">2.1</a> to review missing values.</p>
 </div>
 <div id="answers-2" class="section level2">
 <h2><span class="header-section-number">3.6</span> Answers</h2>
@@ -670,7 +687,10 @@ named_list3<span class="op">$</span>dogs<span class="op">$</span>age</code></pre
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 1</span>
 <span class="kw">colnames</span>(x<span class="op">$</span>counts) &lt;-<span class="st"> </span>samplenames
 <span class="co"># 2</span>
-x<span class="op">$</span>samples<span class="op">$</span>group &lt;-<span class="st"> </span>group</code></pre></div>
+x<span class="op">$</span>samples<span class="op">$</span>group &lt;-<span class="st"> </span>group
+<span class="co"># 3</span>
+geneAnnot &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses3_geneAnnot.tsv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
+x<span class="op">$</span>genes &lt;-<span class="st"> </span>geneAnnot</code></pre></div>
 
 </div>
 </div>
