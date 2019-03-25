@@ -21,7 +21,7 @@ It is intended to be delivered over four 2.5 hour workshops.
 
 **Acknowledgements**
 
-* [Shian Su](https://github.com/Shians) and [Brendan Ansell](https://github.com/bansell) for your suggestions and review of the content of this tutorial.
+* Thank you to [Shian Su](https://github.com/Shians) and [Brendan Ansell](https://github.com/bansell) for your suggestions and review of this tutorial.
 * This page was generated using the [bookdown](https://bookdown.org/) package by [YiHui Xie](https://yihui.name/). 
 
 
