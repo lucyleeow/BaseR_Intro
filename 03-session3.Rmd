@@ -300,7 +300,8 @@ kable(
   
   data.frame(`File name` = files,
    `Sample name` = samps,
-   `Phenotype group` = c("LP", "ML", "Basal", "Basal", "ML", "LP", "Basal", "ML", "LP")),
+   `Phenotype group` = c("LP", "ML", "Basal", "Basal", "ML", "LP", "Basal", "ML", "LP"),
+   check.names = FALSE),
   caption = "Summary of samples."
   
 )
@@ -394,7 +395,7 @@ Replace the `group` column of the `samples` dataframe with the `group` factor ve
 
 1. Subset the first column of the `count` matrix from `x` (our `DGEList` object) and 'save' (assign) it to a variable called `sample1`.
   + Find out how many genes had a count of '0'.
-  + Find the total sum of all counts for that sample. Compare this number with the corresponding (first) number in the `lib.size` column from the `samples`. Is it the same?
+  + Find the total sum of all counts for that sample. Compare this number with the corresponding (first) number in the `lib.size` column from the `samples` dataframe. Is it the same?
 
 ```{r, eval=FALSE, echo=FALSE}
 sample1 <- x$counts[,1]
