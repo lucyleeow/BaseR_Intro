@@ -162,6 +162,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.4.1" data-path="session-4.html"><a href="session-4.html#design-matrix"><i class="fa fa-check"></i><b>4.4.1</b> Design matrix</a></li>
 </ul></li>
 <li class="chapter" data-level="4.5" data-path="session-4.html"><a href="session-4.html#statistical-testing"><i class="fa fa-check"></i><b>4.5</b> Statistical testing</a></li>
+<li class="chapter" data-level="4.6" data-path="session-4.html"><a href="session-4.html#answers-3"><i class="fa fa-check"></i><b>4.6</b> Answers</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -473,55 +474,55 @@ named_list3</code></pre></div>
 <caption><span id="tab:samps">Table 3.1: </span>Summary of samples.</caption>
 <thead>
 <tr class="header">
-<th align="left">File.name</th>
-<th align="left">Sample.name</th>
-<th align="left">Phenotype.group</th>
+<th align="left">File name</th>
+<th align="left">Sample name</th>
+<th align="left">Phenotype group</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">GSM1545535_10_6_5_11.txt</td>
-<td align="left">10_6_5_11.txt</td>
+<td align="left">10_6_5_11</td>
 <td align="left">LP</td>
 </tr>
 <tr class="even">
 <td align="left">GSM1545536_9_6_5_11.txt</td>
-<td align="left">9_6_5_11.txt</td>
+<td align="left">9_6_5_11</td>
 <td align="left">ML</td>
 </tr>
 <tr class="odd">
 <td align="left">GSM1545538_purep53.txt</td>
-<td align="left">purep53.txt</td>
+<td align="left">purep53</td>
 <td align="left">Basal</td>
 </tr>
 <tr class="even">
 <td align="left">GSM1545539_JMS8-2.txt</td>
-<td align="left">JMS8-2.txt</td>
+<td align="left">JMS8-2</td>
 <td align="left">Basal</td>
 </tr>
 <tr class="odd">
 <td align="left">GSM1545540_JMS8-3.txt</td>
-<td align="left">JMS8-3.txt</td>
+<td align="left">JMS8-3</td>
 <td align="left">ML</td>
 </tr>
 <tr class="even">
 <td align="left">GSM1545541_JMS8-4.txt</td>
-<td align="left">JMS8-4.txt</td>
+<td align="left">JMS8-4</td>
 <td align="left">LP</td>
 </tr>
 <tr class="odd">
 <td align="left">GSM1545542_JMS8-5.txt</td>
-<td align="left">JMS8-5.txt</td>
+<td align="left">JMS8-5</td>
 <td align="left">Basal</td>
 </tr>
 <tr class="even">
 <td align="left">GSM1545544_JMS9-P7c.txt</td>
-<td align="left">JMS9-P7c.txt</td>
+<td align="left">JMS9-P7c</td>
 <td align="left">ML</td>
 </tr>
 <tr class="odd">
 <td align="left">GSM1545545_JMS9-P8c.txt</td>
-<td align="left">JMS9-P8c.txt</td>
+<td align="left">JMS9-P8c</td>
 <td align="left">LP</td>
 </tr>
 </tbody>
@@ -614,7 +615,7 @@ named_list3</code></pre></div>
 </ol>
 <ul>
 <li>Find out how many genes had a count of ‘0’.</li>
-<li>Find the total sum of all counts for that sample. Compare this number with the corresponding (first) number in the <code>lib.size</code> column from the <code>samples</code>. Is it the same?</li>
+<li>Find the total sum of all counts for that sample. Compare this number with the corresponding (first) number in the <code>lib.size</code> column from the <code>samples</code> dataframe. Is it the same?</li>
 </ul>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Calculate the total sum of the library sizes, using the <code>lib.size</code> column from the <code>samples</code> dataframe from <code>x</code> (our <code>DGEList</code> object).</p></li>

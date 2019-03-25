@@ -294,12 +294,14 @@ files <- c("GSM1545535_10_6_5_11.txt", "GSM1545536_9_6_5_11.txt",
    "GSM1545540_JMS8-3.txt", "GSM1545541_JMS8-4.txt", 
    "GSM1545542_JMS8-5.txt", "GSM1545544_JMS9-P7c.txt", 
    "GSM1545545_JMS9-P8c.txt")
-samps <- substring(files, 12, nchar(files))
+
+samplenames <- c("10_6_5_11", "9_6_5_11", "purep53", "JMS8-2", "JMS8-3",
+                 "JMS8-4", "JMS8-5", "JMS9-P7c", "JMS9-P8c")
 
 kable(
   
   data.frame(`File name` = files,
-   `Sample name` = samps,
+   `Sample name` = samplenames,
    `Phenotype group` = c("LP", "ML", "Basal", "Basal", "ML", "LP", "Basal", "ML", "LP"),
    check.names = FALSE),
   caption = "Summary of samples."
