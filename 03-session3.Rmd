@@ -310,7 +310,7 @@ kable(
 ```
 
 
-To create a `DGEList` object, we will use the `readDGE()` function. We must gives this function the following arguments:
+To create a `DGEList` object, we will use the `readDGE()` function. There are three important arguments to this function:
 
 * `files` - a vector of data file names
 * `path` - the path to the directory that contains your data files. If the data files are in your working directory, don't worry about this argument. If the data files are somewhere else, like a folder called 'data', in your working directory you must give the path to that folder
@@ -326,7 +326,7 @@ files <- c("GSM1545535_10_6_5_11.txt", "GSM1545536_9_6_5_11.txt",
    "GSM1545545_JMS9-P8c.txt")
 ```
 
-Now we will create our `DGEList` object. I have put my data files in a folder called "data" (within my working directory), thus I must specify `path = "data"`. Depending on where you have put your data files, you may need a different input to `path` or not have to include the `path` argument.
+Next, we will create our `DGEList` object. I have put my data files in a folder called "data" (within my working directory). Thus, I must specify `path = "data"`. Depending on where you have put your data files, you may need a different input to `path` or not have to include the `path` argument.
 
 ```{r}
 x <- readDGE(files, path = "data", columns = c(1,3))
@@ -391,7 +391,7 @@ Replace the `group` column of the `samples` dataframe with the `group` factor ve
 
 3. Additional gene annotation information about the genes from our RNA-seq data can be found in the file "Ses3_geneAnnot.tsv". Read this file in and add it as another element named `genes` in `x` (our `DGEList` object).
 
-*Hint*: the command for adding an element to a list is similar to the command for adding a column to a dataframe. Take a look at Section \@ref(vect) to review the latter.
+*Hint*: the command for adding an element to a list is similar to the command for adding a column to a dataframe. Take a look at Section \@ref(vect) to review how to do the latter.
 
 ## Homework
 

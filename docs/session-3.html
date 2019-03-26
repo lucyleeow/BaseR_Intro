@@ -25,7 +25,7 @@
 <meta name="author" content="Lucy Liu">
 
 
-<meta name="date" content="2019-03-25">
+<meta name="date" content="2019-03-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -527,7 +527,7 @@ named_list3</code></pre></div>
 </tr>
 </tbody>
 </table>
-<p>To create a <code>DGEList</code> object, we will use the <code>readDGE()</code> function. We must gives this function the following arguments:</p>
+<p>To create a <code>DGEList</code> object, we will use the <code>readDGE()</code> function. There are three important arguments to this function:</p>
 <ul>
 <li><code>files</code> - a vector of data file names</li>
 <li><code>path</code> - the path to the directory that contains your data files. If the data files are in your working directory, don’t worry about this argument. If the data files are somewhere else, like a folder called ‘data’, in your working directory you must give the path to that folder</li>
@@ -539,7 +539,7 @@ named_list3</code></pre></div>
    <span class="st">&quot;GSM1545540_JMS8-3.txt&quot;</span>, <span class="st">&quot;GSM1545541_JMS8-4.txt&quot;</span>, 
    <span class="st">&quot;GSM1545542_JMS8-5.txt&quot;</span>, <span class="st">&quot;GSM1545544_JMS9-P7c.txt&quot;</span>, 
    <span class="st">&quot;GSM1545545_JMS9-P8c.txt&quot;</span>)</code></pre></div>
-<p>Now we will create our <code>DGEList</code> object. I have put my data files in a folder called “data” (within my working directory), thus I must specify <code>path = &quot;data&quot;</code>. Depending on where you have put your data files, you may need a different input to <code>path</code> or not have to include the <code>path</code> argument.</p>
+<p>Next, we will create our <code>DGEList</code> object. I have put my data files in a folder called “data” (within my working directory). Thus, I must specify <code>path = &quot;data&quot;</code>. Depending on where you have put your data files, you may need a different input to <code>path</code> or not have to include the <code>path</code> argument.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">readDGE</span>(files, <span class="dt">path =</span> <span class="st">&quot;data&quot;</span>, <span class="dt">columns =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</code></pre></div>
 <p>The object we created has 2 elements, one named <code>samples</code> and one named <code>counts</code>. Let’s take a look at each:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(x<span class="op">$</span>counts)</code></pre></div>
@@ -606,7 +606,7 @@ named_list3</code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Additional gene annotation information about the genes from our RNA-seq data can be found in the file “Ses3_geneAnnot.tsv”. Read this file in and add it as another element named <code>genes</code> in <code>x</code> (our <code>DGEList</code> object).</li>
 </ol>
-<p><em>Hint</em>: the command for adding an element to a list is similar to the command for adding a column to a dataframe. Take a look at Section <a href="session-1.html#vect">1.11</a> to review the latter.</p>
+<p><em>Hint</em>: the command for adding an element to a list is similar to the command for adding a column to a dataframe. Take a look at Section <a href="session-1.html#vect">1.11</a> to review how to do the latter.</p>
 </div>
 <div id="homework-2" class="section level2">
 <h2><span class="header-section-number">3.5</span> Homework</h2>
