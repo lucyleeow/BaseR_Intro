@@ -25,7 +25,7 @@
 <meta name="author" content="Lucy Liu">
 
 
-<meta name="date" content="2019-03-25">
+<meta name="date" content="2019-03-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -162,6 +162,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.4.1" data-path="session-4.html"><a href="session-4.html#design-matrix"><i class="fa fa-check"></i><b>4.4.1</b> Design matrix</a></li>
 </ul></li>
 <li class="chapter" data-level="4.5" data-path="session-4.html"><a href="session-4.html#statistical-testing"><i class="fa fa-check"></i><b>4.5</b> Statistical testing</a></li>
+<li class="chapter" data-level="4.6" data-path="session-4.html"><a href="session-4.html#answers-3"><i class="fa fa-check"></i><b>4.6</b> Answers</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -185,14 +186,113 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="session-4" class="section level1">
 <h1><span class="header-section-number">Chapter 4</span> Session 4</h1>
+<p>In this session we will run through the basic steps for analysing a simply RNA-seq experiment. This includes:</p>
+<ul>
+<li>filtering out lowly expressed genes</li>
+<li>normalisation</li>
+<li>creating a multidimensional scaling plot (MDS)</li>
+<li>creating a design matrix</li>
+<li>fitting gene-wise linear models (with empirical Bayes moderation to more accurately estimate gene-wise variability)</li>
+<li>performing statistical testing for differential expression</li>
+</ul>
+<p>The aim of this session is to give you an basic understanding and intuition about each of the basic RNA-seq analysis steps. It does NOT aim to teach you statistics.</p>
 <div id="filtering" class="section level2">
 <h2><span class="header-section-number">4.1</span> Filtering</h2>
+<p>Let’s start by re-creating our <code>DGEList</code> object:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load required packages</span>
+<span class="kw">library</span>(edgeR)
+<span class="kw">library</span>(limma)
+
+<span class="co"># vector of file names</span>
+files &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;GSM1545535_10_6_5_11.txt&quot;</span>, <span class="st">&quot;GSM1545536_9_6_5_11.txt&quot;</span>, 
+   <span class="st">&quot;GSM1545538_purep53.txt&quot;</span>, <span class="st">&quot;GSM1545539_JMS8-2.txt&quot;</span>, 
+   <span class="st">&quot;GSM1545540_JMS8-3.txt&quot;</span>, <span class="st">&quot;GSM1545541_JMS8-4.txt&quot;</span>, 
+   <span class="st">&quot;GSM1545542_JMS8-5.txt&quot;</span>, <span class="st">&quot;GSM1545544_JMS9-P7c.txt&quot;</span>, 
+   <span class="st">&quot;GSM1545545_JMS9-P8c.txt&quot;</span>)
+
+<span class="co"># creage DGEList object</span>
+x &lt;-<span class="st"> </span><span class="kw">readDGE</span>(files, <span class="dt">path =</span> <span class="st">&quot;data&quot;</span>, <span class="dt">columns =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))
+
+<span class="co"># add sample names</span>
+samplenames &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;10_6_5_11&quot;</span>, <span class="st">&quot;9_6_5_11&quot;</span>, <span class="st">&quot;purep53&quot;</span>, <span class="st">&quot;JMS8-2&quot;</span>, <span class="st">&quot;JMS8-3&quot;</span>,
+                 <span class="st">&quot;JMS8-4&quot;</span>, <span class="st">&quot;JMS8-5&quot;</span>, <span class="st">&quot;JMS9-P7c&quot;</span>, <span class="st">&quot;JMS9-P8c&quot;</span>)
+
+<span class="kw">rownames</span>(x<span class="op">$</span>samples) &lt;-<span class="st"> </span>samplenames
+
+<span class="kw">colnames</span>(x<span class="op">$</span>counts) &lt;-<span class="st"> </span>samplenames
+
+<span class="co"># add phenotype group information</span>
+group &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">c</span>(<span class="st">&quot;LP&quot;</span>, <span class="st">&quot;ML&quot;</span>, <span class="st">&quot;Basal&quot;</span>, <span class="st">&quot;Basal&quot;</span>, <span class="st">&quot;ML&quot;</span>, <span class="st">&quot;LP&quot;</span>, <span class="st">&quot;Basal&quot;</span>, <span class="st">&quot;ML&quot;</span>, <span class="st">&quot;LP&quot;</span>)) 
+x<span class="op">$</span>samples<span class="op">$</span>group &lt;-<span class="st"> </span>group
+
+<span class="co"># add gene annotation information</span>
+geneAnnot &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses3_geneAnnot.tsv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
+x<span class="op">$</span>genes &lt;-<span class="st"> </span>geneAnnot</code></pre></div>
+<p>The first step is to filter out lowly expressed genes. There are two main problems with low abundant genes:</p>
+<ul>
+<li>Technical variation is more problematic for low abundance genes. This variation is thought to be due to two factors; insufficient mixing and low sampling fraction <span class="citation">(McIntyre et al. 2011)</span>.
+<ul>
+<li>Insufficient mixing of solutions during library preparation can result in uneven distribution of reads.</li>
+<li>RNA sequencing can be thought of as sampling. You start with many, many RNA molecules. You sample from this ‘population’ of RNAs by sequencing a small proportion of the RNA molecules you started out with. Your sample consists of the RNA molecules that were sequenced. This is generally a very small proportion of the total ‘population’ of RNAs you started with. For example, if you start with 100ng of mRNA and sequence ~300 million reads, you only sequence 0.0013% of the mRNA that you started with <span class="citation">(McIntyre et al. 2011)</span>. It is difficult to obtain accurate measures of the true abundance of each RNA species when you only sample such a small proportion of the total ‘population’ of mRNAs. Measurement errors will occur simply due to the random nature of the sampling process. This problem affects lowly abundant RNA species more because the proportion of the error relative to the (small) count value for that RNA species, is larger (than it would be for more highly abundant RNA species).</li>
+</ul></li>
+<li>Biologically, genes that are expressed at low, biologicaly not meaningful, levels are not of interest.</li>
+</ul>
+<p>Additionally, genes that have a count of 0 across ALL samples are also removed, simply because they provide no useful information.</p>
+<p>Removing these highly variable, lowly expressed genes increases your ‘power’ to detect differentially expressed genes <span class="citation">(Bourgon, Gentleman, and Huber 2010)</span>. To test for differential expression, a statistical test must be conducted for every gene. There are a large number of genes - meaning that a large number of statistical tests must be performed. When you perform many statistical tests, many will produce small p-values by chance alone. We must account for these false positives. There are a number of methods to do this and these are broadly called ‘adjusting for multiple testing’. This adjustment reduces the about of false positives but comes at the cost of reduced ‘power’ to detect true positives. If we filter out uninteresting, lowly expressed genes, we need to perform fewer statistical tests and reduce the impact that multiple testing adjustment has on detection power.</p>
+<p>The <code>filterByExpr()</code> function provides an automatic way to filter genes.</p>
+<p>By default, it keeps genes with a count of 10 or more in a minimum number of samples. This minimum number of samples is the smallest phenotype group. In our experiment there are 3 phenotype groups each with 3 samples. Filtering is thus performed such that genes that remain are genes with a count of 10 in at least 3 samples.</p>
+<p>Note that the actual filtering is done using counts per million, so there is no bias against samples with small library sizes.</p>
+<p>The output of this function is a vector of logicals, indicating which rows (genes) should be kept and which filtered.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">keep &lt;-<span class="st"> </span><span class="kw">filterByExpr</span>(x, <span class="dt">group =</span> group)
+<span class="kw">head</span>(keep)</code></pre></div>
+<pre><code>##    497097 100503874 100038431     19888     20671     27395 
+##      TRUE     FALSE     FALSE     FALSE      TRUE      TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span>x[keep,, keep.lib.sizes=<span class="ot">FALSE</span>]
+<span class="kw">str</span>(x<span class="op">$</span>counts)</code></pre></div>
+<pre><code>##  num [1:16624, 1:9] 1 1 431 768 810 ...
+##  - attr(*, &quot;dimnames&quot;)=List of 2
+##   ..$ Tags   : chr [1:16624] &quot;497097&quot; &quot;20671&quot; &quot;27395&quot; &quot;18777&quot; ...
+##   ..$ Samples: chr [1:9] &quot;10_6_5_11&quot; &quot;9_6_5_11&quot; &quot;purep53&quot; &quot;JMS8-2&quot; ...</code></pre>
+<p>We can see that we now have 16624 genes. We started with 27179 genes - meaning that ~40% of genes have been filtered out.</p>
 </div>
 <div id="normalisation" class="section level2">
 <h2><span class="header-section-number">4.2</span> Normalisation</h2>
+<p>The aim of normalisation is to remove systematic technical effects. There are two main factors that need to be normalised for in RNA-seq:</p>
+<ul>
+<li>Sequencing depth/library size - technically sequencing a sample to half the depth will give, on average, half the number of reads mapping to each gene <span class="citation">(Robinson and Oshlack 2010)</span>.</li>
+<li>RNA composition - if a large number of genes are unique to, or highly expressed, in one experimental conditon, the sequencing ‘read estate’ available for the remaining genes in that sample is decreased. For example, let’s say we have 2 samples, A and B. Both contain the same set of genes which are also expressed at the same level. In sample A however, there are also many genes that are not expressed in sample B. Each sample is sequenced to the same depth. The genes that are present and actually expressed equally in the two samples will have fewer sequencing reads in sample A. This is because the genes present in sample A but NOT present in sample B are taking up a portion of the sequencing ‘real estate’. As a result there is less reads ‘available’ to the other genes (the ones present in both samples). This means that the ’proportion o reads attributed to a given gene in a library depends on the expression properties of the whole sample rather than just the expression of that gene <span class="citation">(Robinson and Oshlack 2010)</span>.</li>
+</ul>
+<p>Sequencing depth is accounted for by calculating the counts per million (cpm). This metric is calculated by:</p>
+<ol style="list-style-type: decimal">
+<li>taking the library size (sum of all counts for a sample),</li>
+<li>dividing this by 1,000,000 to get the ‘per million’ scaling factor,</li>
+<li>then dividing all read counts for each gene in that sample by the ‘per million’ scaling factor</li>
+</ol>
+<p>RNA composition can be accounted for by using more sophisticated normalisation methodologies. We will use ‘trimmed mean of M-values’ (TMM), whcih estilates relative RNA levels from RNA-seq data <span class="citation">(Robinson and Oshlack 2010)</span>. TMM calculates a library size scaling factor for each library (sample). This is done using the following steps:</p>
+<ol style="list-style-type: decimal">
+<li>calculate the gene expression log fold changes and absolute expression values for pair-wise samples (selecting one sample from the experiment as a reference)</li>
+<li>remove the genes with the highest and lowest fold changes and absolute expression values</li>
+<li>take a weighted mean of the remaining genes (where the weight is the inverse of the approximate asymptotic variances). This gives the normalisation factor for each library (sample)</li>
+</ol>
+<p>TMM, like most normalisation methods, assumes that the majority of genes are NOT differentially expressed.</p>
+<p>Subsequent steps in this analysis will use log-cpm values, calculated using the normalisation factors, which ‘scale’ each library size.</p>
+<p>We can calculate the normalisation factors, specifying that we want to use the <code>&quot;TMM&quot;</code> method:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">calcNormFactors</span>(x, <span class="dt">method =</span> <span class="st">&quot;TMM&quot;</span>)</code></pre></div>
+<p>This function calculates the normalisation factors for each library (sample) and puts this information in the <code>samples</code> dataframe. Note that it takes x (our <code>DGEList</code> object as input) and returns a <code>DGEList</code> object as well.</p>
+<p>Let’s take a look at our normalisation factors:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x<span class="op">$</span>samples<span class="op">$</span>norm.factors</code></pre></div>
+<pre><code>## [1] 0.8943956 1.0250186 1.0459005 1.0458455 1.0162707 0.9217132 0.9961959
+## [8] 1.0861026 0.9839203</code></pre>
+<p>These normalisation factors are all close to 1 for all samples, suggesting minimal difference in ‘relative RNA levels’ between samples.</p>
 </div>
 <div id="mds-plot" class="section level2">
 <h2><span class="header-section-number">4.3</span> MDS plot</h2>
+<p>MDS is a dimension reduction technique. Given a matrix of distances between each pair of objects (each pair of samples in our case), it tries to place each object in a lower dimensional space (usually 2 dimensions, such that a scatter plot is created) such that the distances between each object (sample) is preserved as well as possible.</p>
+<blockquote>
+<p>Note on dimension reduction:</p>
+<p>Dimension reduction is a process of reducing the number of ‘variables’ under consideration. There are a number of reasons why we may want to do this. In RNA-seq experiments specifically, the main advantage of dimension reduction is to better visualise and thus explore your data. Take for example, a gene expression experiment where the expression level of only 2 genes are measured in a number of samples. We can easily visualise this by plotting a scatter graph where gene 1 expression is on the y axis and gene 2 expression is on the x axis (or vice versa) and each point is a sample. In RNA-seq experiments however, we generally measure the expression of over 10,000 genes. It would be very difficult to visualise such data as we would need to have over 10,000 axis (as we have over 10,000 genes). What we want is to reduce the number of dimensions (genes, in this case) such that we can visualise the data on a plot in 2 dimensions. This is the idea behind dimension reduction processes like principal components analysis (PCA) and MDS.</p>
+</blockquote>
+<p><strong>Challenge 4.1</strong></p>
 </div>
 <div id="linear-modelling" class="section level2">
 <h2><span class="header-section-number">4.4</span> Linear modelling</h2>
@@ -202,10 +302,23 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="statistical-testing" class="section level2">
 <h2><span class="header-section-number">4.5</span> Statistical testing</h2>
+</div>
+<div id="answers-3" class="section level2">
+<h2><span class="header-section-number">4.6</span> Answers</h2>
+<p><strong>Challenge 4.1</strong></p>
 
 <div id="refs" class="references">
 <div>
+<p>Bourgon, Richard, Robert Gentleman, and Wolfgang Huber. 2010. “Independent Filtering Increases Detection Power for High-Throughput Experiments.” <em>Proceedings of the National Academy of Sciences</em> 107 (21). National Acad Sciences: 9546–51.</p>
+</div>
+<div>
 <p>Law, Charity W, Monther Alhamdoosh, Shian Su, Gordon K Smyth, and Matthew E Ritchie. 2016. “RNA-Seq Analysis Is Easy as 1-2-3 with Limma, Glimma and edgeR.” <em>F1000Research</em> 5. Faculty of 1000 Ltd.</p>
+</div>
+<div>
+<p>McIntyre, Lauren M, Kenneth K Lopiano, Alison M Morse, Victor Amin, Ann L Oberg, Linda J Young, and Sergey V Nuzhdin. 2011. “RNA-Seq: Technical Variability and Sampling.” <em>BMC Genomics</em> 12 (1). BioMed Central: 293.</p>
+</div>
+<div>
+<p>Robinson, Mark D, and Alicia Oshlack. 2010. “A Scaling Normalization Method for Differential Expression Analysis of Rna-Seq Data.” <em>Genome Biology</em> 11 (3). BioMed Central: R25.</p>
 </div>
 <div>
 <p>Sheridan, Julie M, Matthew E Ritchie, Sarah A Best, Kun Jiang, Tamara J Beck, François Vaillant, Kevin Liu, et al. 2015. “A Pooled shRNA Screen for Regulators of Primary Mammary Stem and Progenitor Cells Identifies Roles for Asap1 and Prox1.” <em>BMC Cancer</em> 15 (1). BioMed Central: 221.</p>
