@@ -214,13 +214,35 @@ There are two *phases* to making plots with base R:
 1. 'Initialising' a new plot, e.g. done with a 'plot' function like `plot()` or `plotMDS`.
 2. Adding to an existing plot, e.g. adding a legend. 
 
-We will explore base R plot annotation in the following challenge.
+We will explore adding base R plot annotation in the following challenge.
 
 **Challenge 4.2**
-1. 
+1. Re-create the MDS plot with the sample names as labels and label coloured by phenotype group.
 
+```{r}
+groupCol <- group
+levels(groupCol) <- c("blue", "green", "red")
+groupCol <- as.character(groupCol)
+groupCol
+plotMDS(x, col = groupCol)
+```
 
+2. Add a title to your graph using the `main` argument to the `plotMDS()` function. Remember to give your title as a character.
 
+3. Notice that the label of sample '9_6_5_11' is cut off. Amend this by changing the 'limits' of the x axis using the `xlim` argument to the `plotMDS()` function. `xlim` takes a numeric vector containing 2 elements, the min and max values of the x axis.
+
+```{r}
+plotMDS(x, col = groupCol, xlim = c(-2.8,4))
+```
+
+4. Add a legend to your plot using the `legend()` function. This function adds to an existing plot and thus should be run after the `plotMDS()` function. Useful arguments to `legend()` include:
+
+* `x` - the position of the legend. It can be one of: "bottomright", "bottom", "bottomleft", "left", "topleft", "top", "topright", "right" or "center".
+(technically you could also specify the position of the legend using `x` and `y` coordinates but we will not do this in the course)
+* `legend` - a character vector specifying the text to display in the legend. Here it would be the names of the phenotype groups.
+*Hint*: you can use function `levels()`, which provides categories of a factor vector.
+* `text.col` - a character vector specifying the colours of the text in the legend. As there are 3 phenotype groups in our case, there should be 3 colours in this vector. These should also be the same colours as the labels within the plot.
+*Hint*: the function `levels()` would also be useful for this argument.
 
 ## Linear modelling
 
@@ -254,6 +276,12 @@ plotMDS(x, labels = group, col = groupCol)
 ```
 
 **Challenge 4.2**
+
+```{r}
+# 2
+plotMDS(x, col = groupCol, xlim = c(-2.8,4))
+```
+
 
 **Challenge 4.3**
 
