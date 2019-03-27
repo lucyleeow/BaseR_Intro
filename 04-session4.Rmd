@@ -1,10 +1,14 @@
 # Session 4
+```{r}
+library(knitr)
+library(kableExtra)
+```
 
 In this session we will run through the basic steps for analysing a simply RNA-seq experiment. This includes:
 
 * filtering out lowly expressed genes
 * normalisation
-* creating a multidimensional scaling plot (MDS)
+* creating a multidimensional scaling (MDS) plot 
 * creating a design matrix
 * fitting gene-wise linear models (with empirical Bayes moderation to more accurately estimate gene-wise variability) 
 * performing statistical testing for differential expression
@@ -119,24 +123,108 @@ x$samples$norm.factors
 
 These normalisation factors are all close to 1 for all samples, suggesting minimal difference in 'relative RNA levels' between samples.
 
-## MDS plot
+## MDS
 
-MDS is a dimension reduction technique. Given a matrix of distances between each pair of objects (each pair of samples in our case), it tries to place each object in a lower dimensional space (usually 2 dimensions, such that a scatter plot is created) such that the distances between each object (sample) is preserved as well as possible.
+MDS is a way to visualise distances between sets of objects (samples in our case). It is also a dimension reduction technique, like principal components analysis (PCA). Given a matrix of distances between each pair of objects (samples in our case), it tries to place each object in a lower dimensional space (usually 2 dimensions, so a scatter plot can be created) such that the distances between each object (sample) is preserved as well as possible.
 
 >Note on dimension reduction:
 >
->Dimension reduction is a process of reducing the number of 'variables' under consideration. There are a number of reasons why we may want to do this. In RNA-seq experiments specifically, the main advantage of dimension reduction is to better visualise and thus explore your data. Take for example, a gene expression experiment where the expression level of only 2 genes are measured in a number of samples. We can easily visualise this by plotting a scatter graph where gene 1 expression is on the y axis and gene 2 expression is on the x axis (or vice versa) and each point is a sample. In RNA-seq experiments however, we generally measure the expression of over 10,000 genes. It would be very difficult to visualise such data as we would need to have over 10,000 axis (as we have over 10,000 genes). What we want is to reduce the number of dimensions (genes, in this case) such that we can visualise the data on a plot in 2 dimensions. This is the idea behind dimension reduction processes like principal components analysis (PCA) and MDS.
+>Dimension reduction is a process of reducing the number of 'variables' under consideration. There are a number of reasons why we may want to do this. In RNA-seq experiments specifically, the main advantage of dimension reduction is to allow visualisation and exploration your data. Take for example, a gene expression experiment where the expression level of only 2 genes are measured in a number of samples. We can easily visualise this by plotting a scatter graph where gene 1 expression is on the y axis and gene 2 expression is on the x axis (or vice versa) and each point is a sample. In RNA-seq experiments however, we generally measure the expression of over 10,000 genes. It would be impossible to visualise such data as we would need to have over 10,000 axes (as we have over 10,000 genes) in our graph. What we want, is to reduce the number of dimensions such that we can visualise the data on a plot in 2 or 3 dimensions. Information is inevitably lost during the dimension reduction process, though all methodologies aim to preserve as much information as possible. 
 
+The `plotMDS()` function performs MDS on a `DGEList` object using metric MDS. The distances between each point (sample) in the resulting plot can be interpreted as the typical log2-fold-change between the samples, for the most different genes (genes that have the most different expression values between that pair of samples).
 
+Let's take a look at the plot created from `x`, our `DGEList` object:
+
+```{r}
+plotMDS(x)
+```
+
+Each point on the plot represents one sample and is 'labelled' using the sample name.
+
+We can change the labelling to use the name of the group the sample belongs to instead. Recall `group` is a vector that, specifies the phenotype group of each sample (in the order the samples are in within `x`):
+
+```{r}
+group
+```
+
+To change the labels we can simply use:
+
+```{r}
+plotMDS(x, labels = group)
+```
+
+This shows us that the phenotype groups tend to 'cluster' together, meaning that the gene expression profiles are similar for samples within a phenotype group. The 'Basal' type samples quite close together whiel the 'LP' (luminal progenitor) and 'ML' (mature luminal) type samples are further apart, signifying that their expression profiles are more variable.
+
+To make the three phenotype groups more distinct in our graph, we are going to colour samples from each group differently. To do this, we will use the `col` argument in `plotMDS()`. `col` takes in a vector the same length as the number of points in the plot (9 in our case, as there are 9 samples). Each element of the vector should be a colour name (R understands [over 600 colour names](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf)), indicating what colour that sample should be.
+
+To make this more clear, take a look at the table below, which lists all the samples and the phenotype group they belong to:
+
+```{r, echo=FALSE}
+kable(
+  data.frame(Samples = rownames(x$samples), Group = x$samples$group)
+) %>%
+  kable_styling(full_width = F)
+```
+
+For example, let's say we wanted LP samples to be coloured green, ML samples to be coloured red and Basal samples to be coloured blue. The `col` argument would then require a vector that looks like this:
+
+```{r, echo=FALSE, eval=TRUE}
+groupCol <- group
+levels(groupCol) <- c("blue", "green", "red")
+groupCol <- as.character(groupCol)
+groupCol
+```
+
+Of course, we dont want to type out this vector ourselves. We want to make R do this. This is less tedious and error prone.
+
+We can do this using the `group` vector. Recall this factor vector gives the phenotype groups of each sample (in the same order as the samples are in within `x`, our `DGEList` object).
+
+```{r}
+group
+```
+
+We don't want to change this vector, so we will create a new vector called `groupCol`, that is the same as `group`:
+
+```{r}
+groupCol <- group
+```
+
+We can now create our character vector. I will guide you through this in the next challenge.
 
 **Challenge 4.1**
+
+1. The `levels` function gives all the 'categories' of a factor vector. If we run it on `groupCol`, it will give our 3 phenotypes:
+
+```{r}
+levels(groupCol)
+```
+
+Replace the current levels (categories) of `groupCol` with a character vector containing 3 colour names of your choosing. Inspect the resulting `groupCol` vector to make sure it has done what you expected it to.
+
+2. We need to give the argument `col` a character vector of colour names, NOT a factor vector. Convert `groupCol` from a factor vector to a character vector. Inspect the resulting `groupCol` vector to make sure it has done what you expected it to.
+
+*Hint*: see section\@ref(factors) to review the commands to convert between data types.
+
+3. Use `plotMDS()` and the `col` argument to re-plot the MDS plot with phenotype colours.
+
+### Plotting
+
+There are two *phases* to making plots with base R: 
+
+1. 'Initialising' a new plot, e.g. done with a 'plot' function like `plot()` or `plotMDS`.
+2. Adding to an existing plot, e.g. adding a legend. 
+
+We will explore base R plot annotation in the following challenge.
+
+**Challenge 4.2**
+1. 
 
 
 
 
 ## Linear modelling
 
-
+**Challenge 4.3**
 
 
 
@@ -147,14 +235,29 @@ MDS is a dimension reduction technique. Given a matrix of distances between each
 
 ## Statistical testing
 
-
-
+**Challenge 4.4**
+write top genes out to file
 
 ## Answers
 
 **Challenge 4.1**
 
+```{r}
+#1 
+levels(groupCol) <- c("blue", "green", "red")
+groupCol
+# 2
+groupCol <- as.character(groupCol)
+groupCol
+# 3
+plotMDS(x, labels = group, col = groupCol)
+```
 
+**Challenge 4.2**
+
+**Challenge 4.3**
+
+**Challenge 4.4**
 
 
 

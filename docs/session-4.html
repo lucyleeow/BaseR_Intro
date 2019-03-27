@@ -25,7 +25,7 @@
 <meta name="author" content="Lucy Liu">
 
 
-<meta name="date" content="2019-03-26">
+<meta name="date" content="2019-03-27">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -48,6 +48,7 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
@@ -157,7 +158,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4" data-path="session-4.html"><a href="session-4.html"><i class="fa fa-check"></i><b>4</b> Session 4</a><ul>
 <li class="chapter" data-level="4.1" data-path="session-4.html"><a href="session-4.html#filtering"><i class="fa fa-check"></i><b>4.1</b> Filtering</a></li>
 <li class="chapter" data-level="4.2" data-path="session-4.html"><a href="session-4.html#normalisation"><i class="fa fa-check"></i><b>4.2</b> Normalisation</a></li>
-<li class="chapter" data-level="4.3" data-path="session-4.html"><a href="session-4.html#mds-plot"><i class="fa fa-check"></i><b>4.3</b> MDS plot</a></li>
+<li class="chapter" data-level="4.3" data-path="session-4.html"><a href="session-4.html#mds"><i class="fa fa-check"></i><b>4.3</b> MDS</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="session-4.html"><a href="session-4.html#plotting"><i class="fa fa-check"></i><b>4.3.1</b> Plotting</a></li>
+</ul></li>
 <li class="chapter" data-level="4.4" data-path="session-4.html"><a href="session-4.html#linear-modelling"><i class="fa fa-check"></i><b>4.4</b> Linear modelling</a><ul>
 <li class="chapter" data-level="4.4.1" data-path="session-4.html"><a href="session-4.html#design-matrix"><i class="fa fa-check"></i><b>4.4.1</b> Design matrix</a></li>
 </ul></li>
@@ -186,11 +189,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="session-4" class="section level1">
 <h1><span class="header-section-number">Chapter 4</span> Session 4</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(knitr)
+<span class="kw">library</span>(kableExtra)</code></pre></div>
 <p>In this session we will run through the basic steps for analysing a simply RNA-seq experiment. This includes:</p>
 <ul>
 <li>filtering out lowly expressed genes</li>
 <li>normalisation</li>
-<li>creating a multidimensional scaling plot (MDS)</li>
+<li>creating a multidimensional scaling (MDS) plot</li>
 <li>creating a design matrix</li>
 <li>fitting gene-wise linear models (with empirical Bayes moderation to more accurately estimate gene-wise variability)</li>
 <li>performing statistical testing for differential expression</li>
@@ -285,27 +290,178 @@ x<span class="op">$</span>genes &lt;-<span class="st"> </span>geneAnnot</code></
 ## [8] 1.0861026 0.9839203</code></pre>
 <p>These normalisation factors are all close to 1 for all samples, suggesting minimal difference in ‘relative RNA levels’ between samples.</p>
 </div>
-<div id="mds-plot" class="section level2">
-<h2><span class="header-section-number">4.3</span> MDS plot</h2>
-<p>MDS is a dimension reduction technique. Given a matrix of distances between each pair of objects (each pair of samples in our case), it tries to place each object in a lower dimensional space (usually 2 dimensions, such that a scatter plot is created) such that the distances between each object (sample) is preserved as well as possible.</p>
+<div id="mds" class="section level2">
+<h2><span class="header-section-number">4.3</span> MDS</h2>
+<p>MDS is a way to visualise distances between sets of objects (samples in our case). It is also a dimension reduction technique, like principal components analysis (PCA). Given a matrix of distances between each pair of objects (samples in our case), it tries to place each object in a lower dimensional space (usually 2 dimensions, so a scatter plot can be created) such that the distances between each object (sample) is preserved as well as possible.</p>
 <blockquote>
 <p>Note on dimension reduction:</p>
-<p>Dimension reduction is a process of reducing the number of ‘variables’ under consideration. There are a number of reasons why we may want to do this. In RNA-seq experiments specifically, the main advantage of dimension reduction is to better visualise and thus explore your data. Take for example, a gene expression experiment where the expression level of only 2 genes are measured in a number of samples. We can easily visualise this by plotting a scatter graph where gene 1 expression is on the y axis and gene 2 expression is on the x axis (or vice versa) and each point is a sample. In RNA-seq experiments however, we generally measure the expression of over 10,000 genes. It would be very difficult to visualise such data as we would need to have over 10,000 axis (as we have over 10,000 genes). What we want is to reduce the number of dimensions (genes, in this case) such that we can visualise the data on a plot in 2 dimensions. This is the idea behind dimension reduction processes like principal components analysis (PCA) and MDS.</p>
+<p>Dimension reduction is a process of reducing the number of ‘variables’ under consideration. There are a number of reasons why we may want to do this. In RNA-seq experiments specifically, the main advantage of dimension reduction is to allow visualisation and exploration your data. Take for example, a gene expression experiment where the expression level of only 2 genes are measured in a number of samples. We can easily visualise this by plotting a scatter graph where gene 1 expression is on the y axis and gene 2 expression is on the x axis (or vice versa) and each point is a sample. In RNA-seq experiments however, we generally measure the expression of over 10,000 genes. It would be impossible to visualise such data as we would need to have over 10,000 axes (as we have over 10,000 genes) in our graph. What we want, is to reduce the number of dimensions such that we can visualise the data on a plot in 2 or 3 dimensions. Information is inevitably lost during the dimension reduction process, though all methodologies aim to preserve as much information as possible.</p>
 </blockquote>
+<p>The <code>plotMDS()</code> function performs MDS on a <code>DGEList</code> object using metric MDS. The distances between each point (sample) in the resulting plot can be interpreted as the typical log2-fold-change between the samples, for the most different genes (genes that have the most different expression values between that pair of samples).</p>
+<p>Let’s take a look at the plot created from <code>x</code>, our <code>DGEList</code> object:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotMDS</span>(x)</code></pre></div>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
+<p>Each point on the plot represents one sample and is ‘labelled’ using the sample name.</p>
+<p>We can change the labelling to use the name of the group the sample belongs to instead. Recall <code>group</code> is a vector that, specifies the phenotype group of each sample (in the order the samples are in within <code>x</code>):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">group</code></pre></div>
+<pre><code>## [1] LP    ML    Basal Basal ML    LP    Basal ML    LP   
+## Levels: Basal LP ML</code></pre>
+<p>To change the labels we can simply use:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotMDS</span>(x, <span class="dt">labels =</span> group)</code></pre></div>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-161-1.png" width="672" /></p>
+<p>This shows us that the phenotype groups tend to ‘cluster’ together, meaning that the gene expression profiles are similar for samples within a phenotype group. The ‘Basal’ type samples quite close together whiel the ‘LP’ (luminal progenitor) and ‘ML’ (mature luminal) type samples are further apart, signifying that their expression profiles are more variable.</p>
+<p>To make the three phenotype groups more distinct in our graph, we are going to colour samples from each group differently. To do this, we will use the <code>col</code> argument in <code>plotMDS()</code>. <code>col</code> takes in a vector the same length as the number of points in the plot (9 in our case, as there are 9 samples). Each element of the vector should be a colour name (R understands <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">over 600 colour names</a>), indicating what colour that sample should be.</p>
+<p>To make this more clear, take a look at the table below, which lists all the samples and the phenotype group they belong to:</p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Samples
+</th>
+<th style="text-align:left;">
+Group
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+10_6_5_11
+</td>
+<td style="text-align:left;">
+LP
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+9_6_5_11
+</td>
+<td style="text-align:left;">
+ML
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+purep53
+</td>
+<td style="text-align:left;">
+Basal
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JMS8-2
+</td>
+<td style="text-align:left;">
+Basal
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JMS8-3
+</td>
+<td style="text-align:left;">
+ML
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JMS8-4
+</td>
+<td style="text-align:left;">
+LP
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JMS8-5
+</td>
+<td style="text-align:left;">
+Basal
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JMS9-P7c
+</td>
+<td style="text-align:left;">
+ML
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JMS9-P8c
+</td>
+<td style="text-align:left;">
+LP
+</td>
+</tr>
+</tbody>
+</table>
+<p>For example, let’s say we wanted LP samples to be coloured green, ML samples to be coloured red and Basal samples to be coloured blue. The <code>col</code> argument would then require a vector that looks like this:</p>
+<pre><code>## [1] &quot;green&quot; &quot;red&quot;   &quot;blue&quot;  &quot;blue&quot;  &quot;red&quot;   &quot;green&quot; &quot;blue&quot;  &quot;red&quot;   &quot;green&quot;</code></pre>
+<p>Of course, we dont want to type out this vector ourselves. We want to make R do this. This is less tedious and error prone.</p>
+<p>We can do this using the <code>group</code> vector. Recall this factor vector gives the phenotype groups of each sample (in the same order as the samples are in within <code>x</code>, our <code>DGEList</code> object).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">group</code></pre></div>
+<pre><code>## [1] LP    ML    Basal Basal ML    LP    Basal ML    LP   
+## Levels: Basal LP ML</code></pre>
+<p>We don’t want to change this vector, so we will create a new vector called <code>groupCol</code>, that is the same as <code>group</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">groupCol &lt;-<span class="st"> </span>group</code></pre></div>
+<p>We can now create our character vector. I will guide you through this in the next challenge.</p>
 <p><strong>Challenge 4.1</strong></p>
+<ol style="list-style-type: decimal">
+<li>The <code>levels</code> function gives all the ‘categories’ of a factor vector. If we run it on <code>groupCol</code>, it will give our 3 phenotypes:</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">levels</span>(groupCol)</code></pre></div>
+<pre><code>## [1] &quot;Basal&quot; &quot;LP&quot;    &quot;ML&quot;</code></pre>
+<p>Replace the current levels (categories) of <code>groupCol</code> with a character vector containing 3 colour names of your choosing. Inspect the resulting <code>groupCol</code> vector to make sure it has done what you expected it to.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>We need to give the argument <code>col</code> a character vector of colour names, NOT a factor vector. Convert <code>groupCol</code> from a factor vector to a character vector. Inspect the resulting <code>groupCol</code> vector to make sure it has done what you expected it to.</li>
+</ol>
+<p><em>Hint</em>: see section<a href="session-1.html#factors">1.10.1</a> to review the commands to convert between data types.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Use <code>plotMDS()</code> and the <code>col</code> argument to re-plot the MDS plot with phenotype colours.</li>
+</ol>
+<div id="plotting" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> Plotting</h3>
+<p>There are two <em>phases</em> to making plots with base R:</p>
+<ol style="list-style-type: decimal">
+<li>‘Initialising’ a new plot, e.g. done with a ‘plot’ function like <code>plot()</code> or <code>plotMDS</code>.</li>
+<li>Adding to an existing plot, e.g. adding a legend.</li>
+</ol>
+<p>We will explore base R plot annotation in the following challenge.</p>
+<p><strong>Challenge 4.2</strong> 1.</p>
+</div>
 </div>
 <div id="linear-modelling" class="section level2">
 <h2><span class="header-section-number">4.4</span> Linear modelling</h2>
+<p><strong>Challenge 4.3</strong></p>
 <div id="design-matrix" class="section level3">
 <h3><span class="header-section-number">4.4.1</span> Design matrix</h3>
 </div>
 </div>
 <div id="statistical-testing" class="section level2">
 <h2><span class="header-section-number">4.5</span> Statistical testing</h2>
+<p><strong>Challenge 4.4</strong> write top genes out to file</p>
 </div>
 <div id="answers-3" class="section level2">
 <h2><span class="header-section-number">4.6</span> Answers</h2>
 <p><strong>Challenge 4.1</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#1 </span>
+<span class="kw">levels</span>(groupCol) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>)
+groupCol</code></pre></div>
+<pre><code>## [1] green red   blue  blue  red   green blue  red   green
+## Levels: blue green red</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 2</span>
+groupCol &lt;-<span class="st"> </span><span class="kw">as.character</span>(groupCol)
+groupCol</code></pre></div>
+<pre><code>## [1] &quot;green&quot; &quot;red&quot;   &quot;blue&quot;  &quot;blue&quot;  &quot;red&quot;   &quot;green&quot; &quot;blue&quot;  &quot;red&quot;   &quot;green&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 3</span>
+<span class="kw">plotMDS</span>(x, <span class="dt">labels =</span> group, <span class="dt">col =</span> groupCol)</code></pre></div>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-167-1.png" width="672" /></p>
+<p><strong>Challenge 4.2</strong></p>
+<p><strong>Challenge 4.3</strong></p>
+<p><strong>Challenge 4.4</strong></p>
 
 <div id="refs" class="references">
 <div>
