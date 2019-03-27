@@ -285,7 +285,7 @@ We are going to start our RNA-seq analysis with gene counts. The data files for 
 
 Each data file details the number of reads mapped to a gene for 1 sample. There is 1 data file for each sample. Within each data file, there are 3 columns - EntrezID, GeneLength and Count. 
 
-We will be looking at 9 samples (and 9 data files) in total. Their details are shown below:
+We will be looking at 9 samples (and using 9 data files) in total. Their details are shown below:
 
 
 ```{r samps, echo=FALSE}

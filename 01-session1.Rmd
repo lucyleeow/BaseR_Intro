@@ -334,7 +334,7 @@ There are five basic types of data in R:
 
 In our `genes` dataframe above, we can see that both the `GeneLength` and `Count` columns are integers ('int'). But what is the `SYMBOL` column? It is a 'Factor'.
 
-### Factors
+### Factors {#factors}
 
 Factor is a data type label used for categorical variables (e.g. small, medium and large OR red, blue and green). Internally, R stores factors as numbers (integers), with each number corresponding to a category.
 
