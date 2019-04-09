@@ -88,7 +88,7 @@ We can see that we now have 16624 genes. We started with 27179 genes - meaning t
 
 The aim of normalisation is to remove systematic technical effects. There are two main factors that need to be normalised for in RNA-seq:
 
-* Sequencing depth/library size - technically sequencing a sample to half the depth will give, on average, half the number of reads mapping to each gene [@robinson2010scaling].
+* Sequencing depth/library size - technically, sequencing a sample to half the depth will give, on average, half the number of reads mapping to each gene [@robinson2010scaling].
 * RNA composition - if a large number of genes are unique to, or highly expressed, in one experimental conditon, the sequencing 'read estate' available for the remaining genes in that sample is decreased. For example, let's say we have 2 samples, A and B. Both contain the same set of genes which are also expressed at the same level. In sample A however, there are also many genes that are not expressed in sample B. Each sample is sequenced to the same depth. The genes that are present and actually expressed equally in the two samples will have fewer sequencing reads in sample A. This is because the genes present in sample A but NOT present in sample B are taking up a portion of the sequencing 'real estate'. As a result there is less reads 'available' to the other genes (the ones present in both samples). This means that the 'proportion o reads attributed to a given gene in a library depends on the expression properties of the whole sample rather than just the expression of that gene [@robinson2010scaling]. 
 
 Sequencing depth is accounted for by calculating the counts per million (cpm). This metric is calculated by:
@@ -175,7 +175,7 @@ groupCol <- as.character(groupCol)
 groupCol
 ```
 
-Of course, we dont want to type out this vector ourselves. We want to make R do this. This is less tedious and error prone.
+Of course, we don't want to type out this vector ourselves. We want to make R do this. This is less tedious and error prone.
 
 We can do this using the `group` vector. Recall this factor vector gives the phenotype groups of each sample (in the same order as the samples are in within `x`, our `DGEList` object).
 
@@ -183,7 +183,7 @@ We can do this using the `group` vector. Recall this factor vector gives the phe
 group
 ```
 
-We don't want to change this vector, so we will create a new vector called `groupCol`, that is the same as `group`:
+We don't want to change this vector, so we will 'copy' the vector `group` to a new variable called `groupCol`:
 
 ```{r}
 groupCol <- group
@@ -201,9 +201,11 @@ levels(groupCol)
 
 Replace the current levels (categories) of `groupCol` with a character vector containing 3 colour names of your choosing. Inspect the resulting `groupCol` vector to make sure it has done what you expected it to.
 
+*Hint*: the notation for this is similar to creating and replacing a new column - see Section \@ref(vect) for details.
+
 2. We need to give the argument `col` a character vector of colour names, NOT a factor vector. Convert `groupCol` from a factor vector to a character vector. Inspect the resulting `groupCol` vector to make sure it has done what you expected it to.
 
-*Hint*: see section\@ref(factors) to review the commands to convert between data types.
+*Hint*: see section \@ref(factors) to review the commands to convert between data types.
 
 3. Use `plotMDS()` and the `col` argument to re-plot the MDS plot with phenotype colours.
 
@@ -217,13 +219,13 @@ There are two *phases* to making plots with base R:
 We will explore adding base R plot annotation in the following challenge.
 
 **Challenge 4.2**
-1. Re-create the MDS plot with the sample names as labels and label coloured by phenotype group.
 
-```{r}
+1. Re-create the MDS plot with the sample names as labels and the labels coloured by phenotype group - i.e. the plot below:
+
+```{r, echo=FALSE}
 groupCol <- group
 levels(groupCol) <- c("blue", "green", "red")
 groupCol <- as.character(groupCol)
-groupCol
 plotMDS(x, col = groupCol)
 ```
 
@@ -231,31 +233,36 @@ plotMDS(x, col = groupCol)
 
 3. Notice that the label of sample '9_6_5_11' is cut off. Amend this by changing the 'limits' of the x axis using the `xlim` argument to the `plotMDS()` function. `xlim` takes a numeric vector containing 2 elements, the min and max values of the x axis.
 
-```{r}
-plotMDS(x, col = groupCol, xlim = c(-2.8,4))
-```
-
 4. Add a legend to your plot using the `legend()` function. This function adds to an existing plot and thus should be run after the `plotMDS()` function. Useful arguments to `legend()` include:
 
 * `x` - the position of the legend. It can be one of: "bottomright", "bottom", "bottomleft", "left", "topleft", "top", "topright", "right" or "center".
 (technically you could also specify the position of the legend using `x` and `y` coordinates but we will not do this in the course)
 * `legend` - a character vector specifying the text to display in the legend. Here it would be the names of the phenotype groups.
+
 *Hint*: you can use function `levels()`, which provides categories of a factor vector.
+
 * `text.col` - a character vector specifying the colours of the text in the legend. As there are 3 phenotype groups in our case, there should be 3 colours in this vector. These should also be the same colours as the labels within the plot.
-*Hint*: the function `levels()` would also be useful for this argument.
+
+*Hint*: this should be the same vector of colour names .
+
+## Design matrix
 
 ## Linear modelling
+
+normalisation
+
+lmfit
+contrasts.fit
+ebays
 
 **Challenge 4.3**
 
 
 
-### Design matrix
-
-
-
-
 ## Statistical testing
+
+decide tests
+
 
 **Challenge 4.4**
 write top genes out to file
@@ -278,8 +285,17 @@ plotMDS(x, labels = group, col = groupCol)
 **Challenge 4.2**
 
 ```{r}
-# 2
-plotMDS(x, col = groupCol, xlim = c(-2.8,4))
+groupCol <- group
+levels(groupCol) <- c("blue", "green", "red")
+groupCol <- as.character(groupCol)
+plotMDS(x, col = groupCol, main = "MDS plot coloured by cell type",
+        xlim = c(-2.8,4))
+legend("topright", legend = levels(group), 
+       text.col = c("blue", "green", "red"))
+```
+
+```{r}
+plotMDS(x, labels = group)
 ```
 
 

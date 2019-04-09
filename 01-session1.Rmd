@@ -473,6 +473,8 @@ There are a few things happening in the command above:
 1. The code on the right side of `<-` is evaluated first. It returns a vector as we saw above.
 2. This vector is assigned to a column in `genes` called `Count_2`. Since this column does not yet exist in the `genes` dataframe, a new column called `Count_2` is created first. (If there was already a column name `Count_2`, this command will have overwritten that column with the new vector created in the right side of `<-`)
 
+Note that you could also REPLACE a column with the same notation. For example, if in the command above, the left side was `genes$Count`, the old column called `Count` would be REPLACED with the new vector of numbers created on the right side.
+
 **Challenge 1.2**
 
 Create a new column called `Prop_Count` that contains each count value as a proportion of the total count value of all 10 genes in the dataframe. E.g. if `Count` was 10 and total count of all 10 genes is 100, that row in `Prop_Count` should be 0.1.

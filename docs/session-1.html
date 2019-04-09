@@ -161,11 +161,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.3" data-path="session-4.html"><a href="session-4.html#mds"><i class="fa fa-check"></i><b>4.3</b> MDS</a><ul>
 <li class="chapter" data-level="4.3.1" data-path="session-4.html"><a href="session-4.html#plotting"><i class="fa fa-check"></i><b>4.3.1</b> Plotting</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="session-4.html"><a href="session-4.html#linear-modelling"><i class="fa fa-check"></i><b>4.4</b> Linear modelling</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="session-4.html"><a href="session-4.html#design-matrix"><i class="fa fa-check"></i><b>4.4.1</b> Design matrix</a></li>
-</ul></li>
-<li class="chapter" data-level="4.5" data-path="session-4.html"><a href="session-4.html#statistical-testing"><i class="fa fa-check"></i><b>4.5</b> Statistical testing</a></li>
-<li class="chapter" data-level="4.6" data-path="session-4.html"><a href="session-4.html#answers-3"><i class="fa fa-check"></i><b>4.6</b> Answers</a></li>
+<li class="chapter" data-level="4.4" data-path="session-4.html"><a href="session-4.html#design-matrix"><i class="fa fa-check"></i><b>4.4</b> Design matrix</a></li>
+<li class="chapter" data-level="4.5" data-path="session-4.html"><a href="session-4.html#linear-modelling"><i class="fa fa-check"></i><b>4.5</b> Linear modelling</a></li>
+<li class="chapter" data-level="4.6" data-path="session-4.html"><a href="session-4.html#statistical-testing"><i class="fa fa-check"></i><b>4.6</b> Statistical testing</a></li>
+<li class="chapter" data-level="4.7" data-path="session-4.html"><a href="session-4.html#answers-3"><i class="fa fa-check"></i><b>4.7</b> Answers</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -562,6 +561,7 @@ Figure 1.9: Variable in ‘Environment’ tab.
 <li>The code on the right side of <code>&lt;-</code> is evaluated first. It returns a vector as we saw above.</li>
 <li>This vector is assigned to a column in <code>genes</code> called <code>Count_2</code>. Since this column does not yet exist in the <code>genes</code> dataframe, a new column called <code>Count_2</code> is created first. (If there was already a column name <code>Count_2</code>, this command will have overwritten that column with the new vector created in the right side of <code>&lt;-</code>)</li>
 </ol>
+<p>Note that you could also REPLACE a column with the same notation. For example, if in the command above, the left side was <code>genes$Count</code>, the old column called <code>Count</code> would be REPLACED with the new vector of numbers created on the right side.</p>
 <p><strong>Challenge 1.2</strong></p>
 <p>Create a new column called <code>Prop_Count</code> that contains each count value as a proportion of the total count value of all 10 genes in the dataframe. E.g. if <code>Count</code> was 10 and total count of all 10 genes is 100, that row in <code>Prop_Count</code> should be 0.1.</p>
 <p><em>Hint</em> use the <code>sum()</code> function.</p>

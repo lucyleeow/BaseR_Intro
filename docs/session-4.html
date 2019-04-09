@@ -161,11 +161,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.3" data-path="session-4.html"><a href="session-4.html#mds"><i class="fa fa-check"></i><b>4.3</b> MDS</a><ul>
 <li class="chapter" data-level="4.3.1" data-path="session-4.html"><a href="session-4.html#plotting"><i class="fa fa-check"></i><b>4.3.1</b> Plotting</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="session-4.html"><a href="session-4.html#linear-modelling"><i class="fa fa-check"></i><b>4.4</b> Linear modelling</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="session-4.html"><a href="session-4.html#design-matrix"><i class="fa fa-check"></i><b>4.4.1</b> Design matrix</a></li>
-</ul></li>
-<li class="chapter" data-level="4.5" data-path="session-4.html"><a href="session-4.html#statistical-testing"><i class="fa fa-check"></i><b>4.5</b> Statistical testing</a></li>
-<li class="chapter" data-level="4.6" data-path="session-4.html"><a href="session-4.html#answers-3"><i class="fa fa-check"></i><b>4.6</b> Answers</a></li>
+<li class="chapter" data-level="4.4" data-path="session-4.html"><a href="session-4.html#design-matrix"><i class="fa fa-check"></i><b>4.4</b> Design matrix</a></li>
+<li class="chapter" data-level="4.5" data-path="session-4.html"><a href="session-4.html#linear-modelling"><i class="fa fa-check"></i><b>4.5</b> Linear modelling</a></li>
+<li class="chapter" data-level="4.6" data-path="session-4.html"><a href="session-4.html#statistical-testing"><i class="fa fa-check"></i><b>4.6</b> Statistical testing</a></li>
+<li class="chapter" data-level="4.7" data-path="session-4.html"><a href="session-4.html#answers-3"><i class="fa fa-check"></i><b>4.7</b> Answers</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -191,7 +190,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">Chapter 4</span> Session 4</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(knitr)
 <span class="kw">library</span>(kableExtra)</code></pre></div>
-<pre><code>## Warning: package &#39;kableExtra&#39; was built under R version 3.5.2</code></pre>
 <p>In this session we will run through the basic steps for analysing a simply RNA-seq experiment. This includes:</p>
 <ul>
 <li>filtering out lowly expressed genes</li>
@@ -265,7 +263,7 @@ x<span class="op">$</span>genes &lt;-<span class="st"> </span>geneAnnot</code></
 <h2><span class="header-section-number">4.2</span> Normalisation</h2>
 <p>The aim of normalisation is to remove systematic technical effects. There are two main factors that need to be normalised for in RNA-seq:</p>
 <ul>
-<li>Sequencing depth/library size - technically sequencing a sample to half the depth will give, on average, half the number of reads mapping to each gene <span class="citation">(Robinson and Oshlack 2010)</span>.</li>
+<li>Sequencing depth/library size - technically, sequencing a sample to half the depth will give, on average, half the number of reads mapping to each gene <span class="citation">(Robinson and Oshlack 2010)</span>.</li>
 <li>RNA composition - if a large number of genes are unique to, or highly expressed, in one experimental conditon, the sequencing ‘read estate’ available for the remaining genes in that sample is decreased. For example, let’s say we have 2 samples, A and B. Both contain the same set of genes which are also expressed at the same level. In sample A however, there are also many genes that are not expressed in sample B. Each sample is sequenced to the same depth. The genes that are present and actually expressed equally in the two samples will have fewer sequencing reads in sample A. This is because the genes present in sample A but NOT present in sample B are taking up a portion of the sequencing ‘real estate’. As a result there is less reads ‘available’ to the other genes (the ones present in both samples). This means that the ’proportion o reads attributed to a given gene in a library depends on the expression properties of the whole sample rather than just the expression of that gene <span class="citation">(Robinson and Oshlack 2010)</span>.</li>
 </ul>
 <p>Sequencing depth is accounted for by calculating the counts per million (cpm). This metric is calculated by:</p>
@@ -301,7 +299,7 @@ x<span class="op">$</span>genes &lt;-<span class="st"> </span>geneAnnot</code></
 <p>The <code>plotMDS()</code> function performs MDS on a <code>DGEList</code> object using metric MDS. The distances between each point (sample) in the resulting plot can be interpreted as the typical log2-fold-change between the samples, for the most different genes (genes that have the most different expression values between that pair of samples).</p>
 <p>Let’s take a look at the plot created from <code>x</code>, our <code>DGEList</code> object:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotMDS</span>(x)</code></pre></div>
-<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-126-1.png" width="672" /></p>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-137-1.png" width="672" /></p>
 <p>Each point on the plot represents one sample and is ‘labelled’ using the sample name.</p>
 <p>We can change the labelling to use the name of the group the sample belongs to instead. Recall <code>group</code> is a vector that, specifies the phenotype group of each sample (in the order the samples are in within <code>x</code>):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">group</code></pre></div>
@@ -309,7 +307,7 @@ x<span class="op">$</span>genes &lt;-<span class="st"> </span>geneAnnot</code></
 ## Levels: Basal LP ML</code></pre>
 <p>To change the labels we can simply use:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotMDS</span>(x, <span class="dt">labels =</span> group)</code></pre></div>
-<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-139-1.png" width="672" /></p>
 <p>This shows us that the phenotype groups tend to ‘cluster’ together, meaning that the gene expression profiles are similar for samples within a phenotype group. The ‘Basal’ type samples quite close together whiel the ‘LP’ (luminal progenitor) and ‘ML’ (mature luminal) type samples are further apart, signifying that their expression profiles are more variable.</p>
 <p>To make the three phenotype groups more distinct in our graph, we are going to colour samples from each group differently. To do this, we will use the <code>col</code> argument in <code>plotMDS()</code>. <code>col</code> takes in a vector the same length as the number of points in the plot (9 in our case, as there are 9 samples). Each element of the vector should be a colour name (R understands <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">over 600 colour names</a>), indicating what colour that sample should be.</p>
 <p>To make this more clear, take a look at the table below, which lists all the samples and the phenotype group they belong to:</p>
@@ -401,12 +399,12 @@ LP
 </table>
 <p>For example, let’s say we wanted LP samples to be coloured green, ML samples to be coloured red and Basal samples to be coloured blue. The <code>col</code> argument would then require a vector that looks like this:</p>
 <pre><code>## [1] &quot;green&quot; &quot;red&quot;   &quot;blue&quot;  &quot;blue&quot;  &quot;red&quot;   &quot;green&quot; &quot;blue&quot;  &quot;red&quot;   &quot;green&quot;</code></pre>
-<p>Of course, we dont want to type out this vector ourselves. We want to make R do this. This is less tedious and error prone.</p>
+<p>Of course, we don’t want to type out this vector ourselves. We want to make R do this. This is less tedious and error prone.</p>
 <p>We can do this using the <code>group</code> vector. Recall this factor vector gives the phenotype groups of each sample (in the same order as the samples are in within <code>x</code>, our <code>DGEList</code> object).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">group</code></pre></div>
 <pre><code>## [1] LP    ML    Basal Basal ML    LP    Basal ML    LP   
 ## Levels: Basal LP ML</code></pre>
-<p>We don’t want to change this vector, so we will create a new vector called <code>groupCol</code>, that is the same as <code>group</code>:</p>
+<p>We don’t want to change this vector, so we will ‘copy’ the vector <code>group</code> to a new variable called <code>groupCol</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">groupCol &lt;-<span class="st"> </span>group</code></pre></div>
 <p>We can now create our character vector. I will guide you through this in the next challenge.</p>
 <p><strong>Challenge 4.1</strong></p>
@@ -416,10 +414,11 @@ LP
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">levels</span>(groupCol)</code></pre></div>
 <pre><code>## [1] &quot;Basal&quot; &quot;LP&quot;    &quot;ML&quot;</code></pre>
 <p>Replace the current levels (categories) of <code>groupCol</code> with a character vector containing 3 colour names of your choosing. Inspect the resulting <code>groupCol</code> vector to make sure it has done what you expected it to.</p>
+<p><em>Hint</em>: the notation for this is similar to creating and replacing a new column - see Section <a href="session-1.html#vect">1.11</a> for details.</p>
 <ol start="2" style="list-style-type: decimal">
 <li>We need to give the argument <code>col</code> a character vector of colour names, NOT a factor vector. Convert <code>groupCol</code> from a factor vector to a character vector. Inspect the resulting <code>groupCol</code> vector to make sure it has done what you expected it to.</li>
 </ol>
-<p><em>Hint</em>: see section<a href="session-1.html#factors">1.10.1</a> to review the commands to convert between data types.</p>
+<p><em>Hint</em>: see section <a href="session-1.html#factors">1.10.1</a> to review the commands to convert between data types.</p>
 <ol start="3" style="list-style-type: decimal">
 <li>Use <code>plotMDS()</code> and the <code>col</code> argument to re-plot the MDS plot with phenotype colours.</li>
 </ol>
@@ -431,43 +430,43 @@ LP
 <li>Adding to an existing plot, e.g. adding a legend.</li>
 </ol>
 <p>We will explore adding base R plot annotation in the following challenge.</p>
-<p><strong>Challenge 4.2</strong> 1. Re-create the MDS plot with the sample names as labels and label coloured by phenotype group.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">groupCol &lt;-<span class="st"> </span>group
-<span class="kw">levels</span>(groupCol) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>)
-groupCol &lt;-<span class="st"> </span><span class="kw">as.character</span>(groupCol)
-groupCol</code></pre></div>
-<pre><code>## [1] &quot;green&quot; &quot;red&quot;   &quot;blue&quot;  &quot;blue&quot;  &quot;red&quot;   &quot;green&quot; &quot;blue&quot;  &quot;red&quot;   &quot;green&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotMDS</span>(x, <span class="dt">col =</span> groupCol)</code></pre></div>
-<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-134-1.png" width="672" /></p>
+<p><strong>Challenge 4.2</strong></p>
+<ol style="list-style-type: decimal">
+<li>Re-create the MDS plot with the sample names as labels and the labels coloured by phenotype group - i.e. the plot below:</li>
+</ol>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Add a title to your graph using the <code>main</code> argument to the <code>plotMDS()</code> function. Remember to give your title as a character.</p></li>
 <li><p>Notice that the label of sample ‘9_6_5_11’ is cut off. Amend this by changing the ‘limits’ of the x axis using the <code>xlim</code> argument to the <code>plotMDS()</code> function. <code>xlim</code> takes a numeric vector containing 2 elements, the min and max values of the x axis.</p></li>
-</ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotMDS</span>(x, <span class="dt">col =</span> groupCol, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">2.8</span>,<span class="dv">4</span>))</code></pre></div>
-<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-135-1.png" width="672" /></p>
-<ol start="4" style="list-style-type: decimal">
-<li>Add a legend to your plot using the <code>legend()</code> function. This function adds to an existing plot and thus should be run after the <code>plotMDS()</code> function. Useful arguments to <code>legend()</code> include:</li>
+<li><p>Add a legend to your plot using the <code>legend()</code> function. This function adds to an existing plot and thus should be run after the <code>plotMDS()</code> function. Useful arguments to <code>legend()</code> include:</p></li>
 </ol>
 <ul>
 <li><code>x</code> - the position of the legend. It can be one of: “bottomright”, “bottom”, “bottomleft”, “left”, “topleft”, “top”, “topright”, “right” or “center”. (technically you could also specify the position of the legend using <code>x</code> and <code>y</code> coordinates but we will not do this in the course)</li>
-<li><code>legend</code> - a character vector specifying the text to display in the legend. Here it would be the names of the phenotype groups. <em>Hint</em>: you can use function <code>levels()</code>, which provides categories of a factor vector.</li>
-<li><code>text.col</code> - a character vector specifying the colours of the text in the legend. As there are 3 phenotype groups in our case, there should be 3 colours in this vector. These should also be the same colours as the labels within the plot. <em>Hint</em>: the function <code>levels()</code> would also be useful for this argument.</li>
+<li><code>legend</code> - a character vector specifying the text to display in the legend. Here it would be the names of the phenotype groups.</li>
 </ul>
+<p><em>Hint</em>: you can use function <code>levels()</code>, which provides categories of a factor vector.</p>
+<ul>
+<li><code>text.col</code> - a character vector specifying the colours of the text in the legend. As there are 3 phenotype groups in our case, there should be 3 colours in this vector. These should also be the same colours as the labels within the plot.</li>
+</ul>
+<p><em>Hint</em>: this should be the same vector of colour names .</p>
 </div>
+</div>
+<div id="design-matrix" class="section level2">
+<h2><span class="header-section-number">4.4</span> Design matrix</h2>
 </div>
 <div id="linear-modelling" class="section level2">
-<h2><span class="header-section-number">4.4</span> Linear modelling</h2>
+<h2><span class="header-section-number">4.5</span> Linear modelling</h2>
+<p>normalisation</p>
+<p>lmfit contrasts.fit ebays</p>
 <p><strong>Challenge 4.3</strong></p>
-<div id="design-matrix" class="section level3">
-<h3><span class="header-section-number">4.4.1</span> Design matrix</h3>
-</div>
 </div>
 <div id="statistical-testing" class="section level2">
-<h2><span class="header-section-number">4.5</span> Statistical testing</h2>
+<h2><span class="header-section-number">4.6</span> Statistical testing</h2>
+<p>decide tests</p>
 <p><strong>Challenge 4.4</strong> write top genes out to file</p>
 </div>
 <div id="answers-3" class="section level2">
-<h2><span class="header-section-number">4.6</span> Answers</h2>
+<h2><span class="header-section-number">4.7</span> Answers</h2>
 <p><strong>Challenge 4.1</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#1 </span>
 <span class="kw">levels</span>(groupCol) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>)
@@ -481,11 +480,18 @@ groupCol</code></pre></div>
 <pre><code>## [1] &quot;green&quot; &quot;red&quot;   &quot;blue&quot;  &quot;blue&quot;  &quot;red&quot;   &quot;green&quot; &quot;blue&quot;  &quot;red&quot;   &quot;green&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 3</span>
 <span class="kw">plotMDS</span>(x, <span class="dt">labels =</span> group, <span class="dt">col =</span> groupCol)</code></pre></div>
-<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-146-1.png" width="672" /></p>
 <p><strong>Challenge 4.2</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 2</span>
-<span class="kw">plotMDS</span>(x, <span class="dt">col =</span> groupCol, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">2.8</span>,<span class="dv">4</span>))</code></pre></div>
-<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-137-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">groupCol &lt;-<span class="st"> </span>group
+<span class="kw">levels</span>(groupCol) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>)
+groupCol &lt;-<span class="st"> </span><span class="kw">as.character</span>(groupCol)
+<span class="kw">plotMDS</span>(x, <span class="dt">col =</span> groupCol, <span class="dt">main =</span> <span class="st">&quot;MDS plot coloured by cell type&quot;</span>,
+        <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">2.8</span>,<span class="dv">4</span>))
+<span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="dt">legend =</span> <span class="kw">levels</span>(group), 
+       <span class="dt">text.col =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>))</code></pre></div>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-147-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotMDS</span>(x, <span class="dt">labels =</span> group)</code></pre></div>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-148-1.png" width="672" /></p>
 <p><strong>Challenge 4.3</strong></p>
 <p><strong>Challenge 4.4</strong></p>
 
