@@ -25,7 +25,7 @@
 <meta name="author" content="Lucy Liu">
 
 
-<meta name="date" content="2019-03-27">
+<meta name="date" content="2019-04-09">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -191,6 +191,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">Chapter 4</span> Session 4</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(knitr)
 <span class="kw">library</span>(kableExtra)</code></pre></div>
+<pre><code>## Warning: package &#39;kableExtra&#39; was built under R version 3.5.2</code></pre>
 <p>In this session we will run through the basic steps for analysing a simply RNA-seq experiment. This includes:</p>
 <ul>
 <li>filtering out lowly expressed genes</li>
@@ -300,7 +301,7 @@ x<span class="op">$</span>genes &lt;-<span class="st"> </span>geneAnnot</code></
 <p>The <code>plotMDS()</code> function performs MDS on a <code>DGEList</code> object using metric MDS. The distances between each point (sample) in the resulting plot can be interpreted as the typical log2-fold-change between the samples, for the most different genes (genes that have the most different expression values between that pair of samples).</p>
 <p>Let’s take a look at the plot created from <code>x</code>, our <code>DGEList</code> object:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotMDS</span>(x)</code></pre></div>
-<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-126-1.png" width="672" /></p>
 <p>Each point on the plot represents one sample and is ‘labelled’ using the sample name.</p>
 <p>We can change the labelling to use the name of the group the sample belongs to instead. Recall <code>group</code> is a vector that, specifies the phenotype group of each sample (in the order the samples are in within <code>x</code>):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">group</code></pre></div>
@@ -308,7 +309,7 @@ x<span class="op">$</span>genes &lt;-<span class="st"> </span>geneAnnot</code></
 ## Levels: Basal LP ML</code></pre>
 <p>To change the labels we can simply use:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotMDS</span>(x, <span class="dt">labels =</span> group)</code></pre></div>
-<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-161-1.png" width="672" /></p>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
 <p>This shows us that the phenotype groups tend to ‘cluster’ together, meaning that the gene expression profiles are similar for samples within a phenotype group. The ‘Basal’ type samples quite close together whiel the ‘LP’ (luminal progenitor) and ‘ML’ (mature luminal) type samples are further apart, signifying that their expression profiles are more variable.</p>
 <p>To make the three phenotype groups more distinct in our graph, we are going to colour samples from each group differently. To do this, we will use the <code>col</code> argument in <code>plotMDS()</code>. <code>col</code> takes in a vector the same length as the number of points in the plot (9 in our case, as there are 9 samples). Each element of the vector should be a colour name (R understands <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">over 600 colour names</a>), indicating what colour that sample should be.</p>
 <p>To make this more clear, take a look at the table below, which lists all the samples and the phenotype group they belong to:</p>
@@ -429,8 +430,29 @@ LP
 <li>‘Initialising’ a new plot, e.g. done with a ‘plot’ function like <code>plot()</code> or <code>plotMDS</code>.</li>
 <li>Adding to an existing plot, e.g. adding a legend.</li>
 </ol>
-<p>We will explore base R plot annotation in the following challenge.</p>
-<p><strong>Challenge 4.2</strong> 1.</p>
+<p>We will explore adding base R plot annotation in the following challenge.</p>
+<p><strong>Challenge 4.2</strong> 1. Re-create the MDS plot with the sample names as labels and label coloured by phenotype group.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">groupCol &lt;-<span class="st"> </span>group
+<span class="kw">levels</span>(groupCol) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>)
+groupCol &lt;-<span class="st"> </span><span class="kw">as.character</span>(groupCol)
+groupCol</code></pre></div>
+<pre><code>## [1] &quot;green&quot; &quot;red&quot;   &quot;blue&quot;  &quot;blue&quot;  &quot;red&quot;   &quot;green&quot; &quot;blue&quot;  &quot;red&quot;   &quot;green&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotMDS</span>(x, <span class="dt">col =</span> groupCol)</code></pre></div>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-134-1.png" width="672" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Add a title to your graph using the <code>main</code> argument to the <code>plotMDS()</code> function. Remember to give your title as a character.</p></li>
+<li><p>Notice that the label of sample ‘9_6_5_11’ is cut off. Amend this by changing the ‘limits’ of the x axis using the <code>xlim</code> argument to the <code>plotMDS()</code> function. <code>xlim</code> takes a numeric vector containing 2 elements, the min and max values of the x axis.</p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotMDS</span>(x, <span class="dt">col =</span> groupCol, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">2.8</span>,<span class="dv">4</span>))</code></pre></div>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-135-1.png" width="672" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li>Add a legend to your plot using the <code>legend()</code> function. This function adds to an existing plot and thus should be run after the <code>plotMDS()</code> function. Useful arguments to <code>legend()</code> include:</li>
+</ol>
+<ul>
+<li><code>x</code> - the position of the legend. It can be one of: “bottomright”, “bottom”, “bottomleft”, “left”, “topleft”, “top”, “topright”, “right” or “center”. (technically you could also specify the position of the legend using <code>x</code> and <code>y</code> coordinates but we will not do this in the course)</li>
+<li><code>legend</code> - a character vector specifying the text to display in the legend. Here it would be the names of the phenotype groups. <em>Hint</em>: you can use function <code>levels()</code>, which provides categories of a factor vector.</li>
+<li><code>text.col</code> - a character vector specifying the colours of the text in the legend. As there are 3 phenotype groups in our case, there should be 3 colours in this vector. These should also be the same colours as the labels within the plot. <em>Hint</em>: the function <code>levels()</code> would also be useful for this argument.</li>
+</ul>
 </div>
 </div>
 <div id="linear-modelling" class="section level2">
@@ -450,16 +472,20 @@ LP
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#1 </span>
 <span class="kw">levels</span>(groupCol) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>)
 groupCol</code></pre></div>
-<pre><code>## [1] green red   blue  blue  red   green blue  red   green
-## Levels: blue green red</code></pre>
+<pre><code>## [1] &quot;green&quot; &quot;red&quot;   &quot;blue&quot;  &quot;blue&quot;  &quot;red&quot;   &quot;green&quot; &quot;blue&quot;  &quot;red&quot;   &quot;green&quot;
+## attr(,&quot;levels&quot;)
+## [1] &quot;blue&quot;  &quot;green&quot; &quot;red&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 2</span>
 groupCol &lt;-<span class="st"> </span><span class="kw">as.character</span>(groupCol)
 groupCol</code></pre></div>
 <pre><code>## [1] &quot;green&quot; &quot;red&quot;   &quot;blue&quot;  &quot;blue&quot;  &quot;red&quot;   &quot;green&quot; &quot;blue&quot;  &quot;red&quot;   &quot;green&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 3</span>
 <span class="kw">plotMDS</span>(x, <span class="dt">labels =</span> group, <span class="dt">col =</span> groupCol)</code></pre></div>
-<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-167-1.png" width="672" /></p>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
 <p><strong>Challenge 4.2</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 2</span>
+<span class="kw">plotMDS</span>(x, <span class="dt">col =</span> groupCol, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">2.8</span>,<span class="dv">4</span>))</code></pre></div>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-137-1.png" width="672" /></p>
 <p><strong>Challenge 4.3</strong></p>
 <p><strong>Challenge 4.4</strong></p>
 

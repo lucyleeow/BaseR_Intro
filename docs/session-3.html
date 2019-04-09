@@ -25,7 +25,7 @@
 <meta name="author" content="Lucy Liu">
 
 
-<meta name="date" content="2019-03-27">
+<meta name="date" content="2019-04-09">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -464,8 +464,9 @@ named_list3</code></pre></div>
 <h2><span class="header-section-number">3.3</span> Packages</h2>
 <p>Last session we installed the packages limma and edgeR. This downloads the files for each package and saves them to your computer. You generally only need to do this once.</p>
 <p>To use a package you must ‘load’ them each time you start a new R session. You do this with the <code>library()</code> function. Let’s load both limma and edgeR:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(edgeR)
-<span class="kw">library</span>(limma)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(edgeR)</code></pre></div>
+<pre><code>## Loading required package: limma</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(limma)</code></pre></div>
 </div>
 <div id="dgelist" class="section level2">
 <h2><span class="header-section-number">3.4</span> DGEList</h2>
@@ -474,121 +475,59 @@ named_list3</code></pre></div>
 <p>Each data file details the number of reads mapped to a gene for 1 sample. There is 1 data file for each sample. Within each data file, there are 3 columns - EntrezID, GeneLength and Count.</p>
 <p>We will be looking at 9 samples (and using 9 data files) in total. Their details are shown below:</p>
 <table>
-<caption>
-<span id="tab:samps">Table 3.1: </span>Summary of samples.
-</caption>
+<caption><span id="tab:samps">Table 3.1: </span>Summary of samples.</caption>
 <thead>
-<tr>
-<th style="text-align:left;">
-File name
-</th>
-<th style="text-align:left;">
-Sample name
-</th>
-<th style="text-align:left;">
-Phenotype group
-</th>
+<tr class="header">
+<th align="left">File name</th>
+<th align="left">Sample name</th>
+<th align="left">Phenotype group</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-GSM1545535_10_6_5_11.txt
-</td>
-<td style="text-align:left;">
-10_6_5_11
-</td>
-<td style="text-align:left;">
-LP
-</td>
+<tr class="odd">
+<td align="left">GSM1545535_10_6_5_11.txt</td>
+<td align="left">10_6_5_11</td>
+<td align="left">LP</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-GSM1545536_9_6_5_11.txt
-</td>
-<td style="text-align:left;">
-9_6_5_11
-</td>
-<td style="text-align:left;">
-ML
-</td>
+<tr class="even">
+<td align="left">GSM1545536_9_6_5_11.txt</td>
+<td align="left">9_6_5_11</td>
+<td align="left">ML</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-GSM1545538_purep53.txt
-</td>
-<td style="text-align:left;">
-purep53
-</td>
-<td style="text-align:left;">
-Basal
-</td>
+<tr class="odd">
+<td align="left">GSM1545538_purep53.txt</td>
+<td align="left">purep53</td>
+<td align="left">Basal</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-GSM1545539_JMS8-2.txt
-</td>
-<td style="text-align:left;">
-JMS8-2
-</td>
-<td style="text-align:left;">
-Basal
-</td>
+<tr class="even">
+<td align="left">GSM1545539_JMS8-2.txt</td>
+<td align="left">JMS8-2</td>
+<td align="left">Basal</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-GSM1545540_JMS8-3.txt
-</td>
-<td style="text-align:left;">
-JMS8-3
-</td>
-<td style="text-align:left;">
-ML
-</td>
+<tr class="odd">
+<td align="left">GSM1545540_JMS8-3.txt</td>
+<td align="left">JMS8-3</td>
+<td align="left">ML</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-GSM1545541_JMS8-4.txt
-</td>
-<td style="text-align:left;">
-JMS8-4
-</td>
-<td style="text-align:left;">
-LP
-</td>
+<tr class="even">
+<td align="left">GSM1545541_JMS8-4.txt</td>
+<td align="left">JMS8-4</td>
+<td align="left">LP</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-GSM1545542_JMS8-5.txt
-</td>
-<td style="text-align:left;">
-JMS8-5
-</td>
-<td style="text-align:left;">
-Basal
-</td>
+<tr class="odd">
+<td align="left">GSM1545542_JMS8-5.txt</td>
+<td align="left">JMS8-5</td>
+<td align="left">Basal</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-GSM1545544_JMS9-P7c.txt
-</td>
-<td style="text-align:left;">
-JMS9-P7c
-</td>
-<td style="text-align:left;">
-ML
-</td>
+<tr class="even">
+<td align="left">GSM1545544_JMS9-P7c.txt</td>
+<td align="left">JMS9-P7c</td>
+<td align="left">ML</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-GSM1545545_JMS9-P8c.txt
-</td>
-<td style="text-align:left;">
-JMS9-P8c
-</td>
-<td style="text-align:left;">
-LP
-</td>
+<tr class="odd">
+<td align="left">GSM1545545_JMS9-P8c.txt</td>
+<td align="left">JMS9-P8c</td>
+<td align="left">LP</td>
 </tr>
 </tbody>
 </table>
