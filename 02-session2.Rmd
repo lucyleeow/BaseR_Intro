@@ -167,7 +167,7 @@ We do this here and print the first 6 rows of the output:
 head(genes[! genes$Count == 0,])
 ```
 
-We can use the `$` shortcut to obtain just one column in a dataframe. We can't do this with matricies - we have to use the `[ ]` notation instead. 
+We can use the `$` shortcut to obtain just one column in a dataframe. We can't do this with matrices - we have to use the `[ ]` notation instead. 
 
 For example, we can create a matrix from our `genes` dataframe. Recall that a matrix can only hold data of ONE data type - thus we will create a dataframe using just the `GeneLength` and `Count` columns of the `genes` dataframe. The first 6 rows are printed out:
 
@@ -313,7 +313,7 @@ Merge the two dataframes again, but this time keep all rows from both dataframes
 
 ## Functions
 
-A function, as the namne suggests performs a function. We have already used many functions. For example, the `read.delim()` function reads in data, the `sum()` function adds numbers up and the `merge()` function above merges two dataframes.
+A function, as the name suggests performs a function. We have already used many functions. For example, the `read.delim()` function reads in data, the `sum()` function adds numbers up and the `merge()` function above merges two dataframes.
 
 Formally, when using a function, brackets (`( )`) are always included after the name of the function. Within the brackets is where input (technically 'arguments') to the function goes. You can find out what inputs an argument takes by looking at the help file.
 
@@ -364,7 +364,7 @@ Note: as the function generates a random number, the numbers you will get from r
 
 ## Homework
 
-We will use the Bioconductor packages 'limma' and 'edgeR' in the next session. Before the next sesssion, please install these packages with the following commands:
+We will use the Bioconductor packages 'limma' and 'edgeR' in the next session. Before the next session, please install these packages with the following commands:
 
 ```{r, eval=FALSE}
 if (!requireNamespace("BiocManager", quietly = TRUE))

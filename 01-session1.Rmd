@@ -173,7 +173,7 @@ You can also 'overwrite' variables:
 my_num <- 3 * 4
 ```
 
-The above code evaluates `3 * 4` and assigns the output to the variable `my_num` - effectivey 'overwritting' the previous value assigned to it.
+The above code evaluates `3 * 4` and assigns the output to the variable `my_num` - effectively 'overwritting' the previous value assigned to it.
 
 ```{r}
 my_num
@@ -394,7 +394,7 @@ Note the quotes, which always signify the character type.
 
 ### Type coercion
 
-In some circumstances, R will change the data type label of your data. This is called 'type coercion'. A common scenario in which this will happen is with vector (and dataframe column) labelling.
+In some circumstances, R will change the data type label of your data. This is called 'type coercion'. A common scenario in which this will happen is with vector (and dataframe column) labeling.
 
 All elements within a vector (and within a column of a dataframe) must have the same data type label. Thus, if you create a vector like the one below, the whole vector will be labelled as one data type. Which data type do you think it will be?
 
@@ -410,7 +410,7 @@ str(my_vect3)
 
 It has labelled the whole vector as characters. This is because the letter `"a"` cannot be "expressed" as a number but numbers can be "expressed" as characters - thus R will always pick the data type label that does not result in any loss of information. Recall that data type labels NEVER change the data - only the label changes.
 
-There is an order to which data label R will label a vector as. Of all the data types that exist in the vector, the data type of the element that is furtherest right, will be the "final" data type label for the vector.
+There is an order to which data label R will label a vector as. Of all the data types that exist in the vector, the data type of the element that is furthermost right, will be the "final" data type label for the vector.
 
 `logical` > `integer` > `double` > `complex` > `character`
 
