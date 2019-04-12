@@ -1,10 +1,10 @@
 # Session 4
-```{r}
+```{r, echo=FALSE}
 library(knitr)
 library(kableExtra)
 ```
 
-In this session we will run through the basic steps for analysing a simply RNA-seq experiment. This includes:
+In this session we will run through the basic steps for analysing a simply RNA-seq experiment using the limma-voom workflow. This includes:
 
 * filtering out lowly expressed genes
 * normalisation
@@ -13,7 +13,7 @@ In this session we will run through the basic steps for analysing a simply RNA-s
 * fitting gene-wise linear models (with empirical Bayes moderation to more accurately estimate gene-wise variability) 
 * performing statistical testing for differential expression
 
-The aim of this session is to give you an basic understanding and intuition about each of the basic RNA-seq analysis steps. It does NOT aim to teach you statistics. 
+The aim of this session is to give you a basic understanding and intuition about each of the basic RNA-seq analysis steps. It does NOT intend to teach you statistics. 
 
 
 ## Filtering
@@ -57,7 +57,7 @@ The first step is to filter out lowly expressed genes. There are two main proble
 * Technical variation is more problematic for low abundance genes. This variation is thought to be due to two factors; insufficient mixing and low sampling fraction [@mcintyre2011rna]. 
     * Insufficient mixing of solutions during library preparation can result in uneven distribution of reads. 
     * RNA sequencing can be thought of as sampling. You start with many, many RNA molecules. You sample from this 'population' of RNAs by sequencing a small proportion of the RNA molecules you started out with. Your sample consists of the RNA molecules that were sequenced. This is generally a very small proportion of the total 'population' of RNAs you started with. For example, if you start with 100ng of mRNA and sequence ~300 million reads, you only sequence 0.0013% of the mRNA that you started with [@mcintyre2011rna]. It is difficult to obtain accurate measures of the true abundance of each RNA species when you only sample such a small proportion of the total 'population' of mRNAs. Measurement errors will occur simply due to the random nature of the sampling process. This problem affects lowly abundant RNA species more because the proportion of the error relative to the (small) count value for that RNA species, is larger (than it would be for more highly abundant RNA species).
-* Biologically, genes that are expressed at low, biologicaly not meaningful, levels are not of interest.
+* Biologically, genes that are expressed at low, biologically not meaningful, levels are not of interest.
 
 Additionally, genes that have a count of 0 across ALL samples are also removed, simply because they provide no useful information.
 
@@ -89,7 +89,7 @@ We can see that we now have 16624 genes. We started with 27179 genes - meaning t
 The aim of normalisation is to remove systematic technical effects. There are two main factors that need to be normalised for in RNA-seq:
 
 * Sequencing depth/library size - technically, sequencing a sample to half the depth will give, on average, half the number of reads mapping to each gene [@robinson2010scaling].
-* RNA composition - if a large number of genes are unique to, or highly expressed, in one experimental conditon, the sequencing 'read estate' available for the remaining genes in that sample is decreased. For example, let's say we have 2 samples, A and B. Both contain the same set of genes which are also expressed at the same level. In sample A however, there are also many genes that are not expressed in sample B. Each sample is sequenced to the same depth. The genes that are present and actually expressed equally in the two samples will have fewer sequencing reads in sample A. This is because the genes present in sample A but NOT present in sample B are taking up a portion of the sequencing 'real estate'. As a result there is less reads 'available' to the other genes (the ones present in both samples). This means that the 'proportion o reads attributed to a given gene in a library depends on the expression properties of the whole sample rather than just the expression of that gene [@robinson2010scaling]. 
+* RNA composition - if a large number of genes are unique to, or highly expressed, in one experimental condition, the sequencing 'read estate' available for the remaining genes in that sample is decreased. For example, let's say we have 2 samples, A and B. Both contain the same set of genes which are also expressed at the same level. In sample A however, there are also many genes that are not expressed in sample B. Each sample is sequenced to the same depth. The genes that are present and actually expressed equally in the two samples will have fewer sequencing reads in sample A. This is because the genes present in sample A but NOT present in sample B are taking up a portion of the sequencing 'real estate'. As a result there is less reads 'available' to the other genes (the ones present in both samples). This means that the 'proportion o reads attributed to a given gene in a library depends on the expression properties of the whole sample rather than just the expression of that gene [@robinson2010scaling]. 
 
 Sequencing depth is accounted for by calculating the counts per million (cpm). This metric is calculated by:
 
@@ -97,7 +97,7 @@ Sequencing depth is accounted for by calculating the counts per million (cpm). T
 2. dividing this by 1,000,000 to get the 'per million' scaling factor,
 3. then dividing all read counts for each gene in that sample by the 'per million' scaling factor
 
-RNA composition can be accounted for by using more sophisticated normalisation methodologies. We will use 'trimmed mean of M-values' (TMM), whcih estilates relative RNA levels from RNA-seq data [@robinson2010scaling]. TMM calculates a library size scaling factor for each library (sample). This is done using the following steps:
+RNA composition can be accounted for by using more sophisticated normalisation methodologies. We will use 'trimmed mean of M-values' (TMM), which estimates relative RNA levels from RNA-seq data [@robinson2010scaling]. TMM calculates a library size scaling factor for each library (sample). This is done using the following steps:
 
 1. calculate the gene expression log fold changes and absolute expression values for pair-wise samples (selecting one sample from the experiment as a reference)
 2. remove the genes with the highest and lowest fold changes and absolute expression values
@@ -141,7 +141,7 @@ plotMDS(x)
 
 Each point on the plot represents one sample and is 'labelled' using the sample name.
 
-We can change the labelling to use the name of the group the sample belongs to instead. Recall `group` is a vector that, specifies the phenotype group of each sample (in the order the samples are in within `x`):
+We can change the labeling to use the name of the group the sample belongs to instead. Recall `group` is a vector that, specifies the phenotype group of each sample (in the order the samples are in within `x`):
 
 ```{r}
 group
@@ -153,7 +153,7 @@ To change the labels we can simply use:
 plotMDS(x, labels = group)
 ```
 
-This shows us that the phenotype groups tend to 'cluster' together, meaning that the gene expression profiles are similar for samples within a phenotype group. The 'Basal' type samples quite close together whiel the 'LP' (luminal progenitor) and 'ML' (mature luminal) type samples are further apart, signifying that their expression profiles are more variable.
+This shows us that the phenotype groups tend to 'cluster' together, meaning that the gene expression profiles are similar for samples within a phenotype group. The 'Basal' type samples quite close together while the 'LP' (luminal progenitor) and 'ML' (mature luminal) type samples are further apart, signifying that their expression profiles are more variable.
 
 To make the three phenotype groups more distinct in our graph, we are going to colour samples from each group differently. To do this, we will use the `col` argument in `plotMDS()`. `col` takes in a vector the same length as the number of points in the plot (9 in our case, as there are 9 samples). Each element of the vector should be a colour name (R understands [over 600 colour names](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf)), indicating what colour that sample should be.
 
@@ -243,13 +243,67 @@ plotMDS(x, col = groupCol)
 
 * `text.col` - a character vector specifying the colours of the text in the legend. As there are 3 phenotype groups in our case, there should be 3 colours in this vector. These should also be the same colours as the labels within the plot.
 
-*Hint*: this should be the same vector of colour names .
+*Hint*: this should be the same vector of colour names used to create the `groupCol` vector.
 
-## Design matrix
 
 ## Linear modelling
 
-normalisation
+The next step of the limma-voom analysis is to fit a linear model for each gene. A linear model is a broad class of statistical models that predict a variable of interest using one or more 'explanatory' (also called 'predictor') variables. The most basic type is linear regression, which models the relationship between a continuous variable and continuous or categorical 'explanatory' variables. It uses an equation that looks like this: 
+
+$Y = \beta_{0} + \beta_{1}X_{1} + \beta_{2}X_{2}...$ 
+
+This equation is essentially saying that a response variable of interest $Y$ is equal to a constant ($\beta_{0}$), plus a parameter multiplied by a predictor variable ($\beta_{1}X_{1}$), plus a second parameter multiplied by a second predictor variable ($\beta_{2}X_{2}$), and so on until there are no more predictor variables. There are many other types of linear models, including logistic regression and analysis of variance, but all predict a response variable of interest using explanatory variable(s).
+
+It is important to note that the word 'linear' in linear model does not mean 'straight line'. 'Linear' actually describes the relationship between the parameters of the model equation and the response variable (technically the response variable must be a linear combination of the parameters but this is outside the scope of this course). A linear model equation can describe a straight line but does not have to.
+
+Although our experiment has a simple design, with 3 different cell types, limma's linear model approach has the ability to accommodate very complex experimental designs. Before we can fit our linear model, information about the experimental design needs to be provided to the model. This is done using a 'design matrix'.
+
+### Design matrix
+
+A design matrix provides your linear model with information about each sample in your experiment. Thus, in our experiment a design matrix would specify which of the 3 cell type 'groups' each sample belongs to. Take a look at the design matrix below: 
+
+```{r}
+design <- model.matrix(~0 + group)
+design
+```
+
+There are 9 rows, one for each sample. Along each row, a '1' indicates the cell type 'group' the sample belongs to and '0' indicates cell type groups the sample does not belong to. You can think about the '1' and '0' as turning a cell type group 'on' or 'off'. Finally, notice how one sample only belongs to one cell type group.
+
+Let's take a look at how to generate a design matrix. We used the function `model.matrix()`, which took the 'expression' `~0 + group`. Recall that `group` is a factor vector that specifies which cell type group each of the 9 samples belongs to:
+
+```{r}
+group
+```
+
+The `~` at the start tells R that we want to model the samples using the 'expression' to the right of the `~`. The `0` at the start tells R not to include an intercept. We have choosen not to include an intercept because it is easier to interpret but including the intercept is just as valid. 
+
+**Challenge 4.3**
+
+Change the name of the columns of our design matrix (`design`) such that the word 'group' is not in front. 
+
+*Hint*: use the function `colnames()`.
+
+
+### Contrasts
+
+Contrasts let us ask specific questions, such as what is the difference between two specific groups. In our experiment, we are interested in the difference between each pairwise group. A contrast matrix can be made using the `makeContrasts()` function. Within this function we specify the name of specific contrasts and the formula for that contrast. For example, the `BasalvsLP` contrasts asks about the difference between the `Basal` and `LP` groups. Note that the name of the groups must be written exactly as they are in the column names of our design matrix above. The final input to the `makeContrasts()` function simply gives the names of each cell type group (recall from above that `colnames(design)` gives the names of each cell type group).
+
+The output of our contrast matrix is shown below:
+
+```{r}
+contr.matrix <- makeContrasts(
+   BasalvsLP = Basal - LP,
+   BasalvsML = Basal - ML, 
+   LPvsML = LP - ML,
+   levels = colnames(design))
+contr.matrix
+```
+
+Notice that the sum of all the numbers along each column is 0. The first column is the contrast for the difference between Basal (1) and LP (-1). 
+
+### Normalising count data
+
+
 
 lmfit
 contrasts.fit
@@ -300,6 +354,11 @@ plotMDS(x, labels = group)
 
 
 **Challenge 4.3**
+
+```{r}
+colnames(design) <- c("Basal", "LP", "ML")
+```
+
 
 **Challenge 4.4**
 
