@@ -1,5 +1,5 @@
 # Session 4
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=FALSE}
 library(knitr)
 library(kableExtra)
 ```
@@ -275,7 +275,7 @@ Let's take a look at how to generate a design matrix. We used the function `mode
 group
 ```
 
-The `~` at the start tells R that we want to model the samples using the 'expression' to the right of the `~`. The `0` at the start tells R not to include an intercept. We have choosen not to include an intercept because it is easier to interpret but including the intercept is just as valid. 
+The `~` at the start tells R that we want to model the samples using the 'expression' to the right of the `~`. The `0` at the start tells R not to include an intercept. We have chosen not to include an intercept because it is easier to interpret but including the intercept is just as valid. 
 
 **Challenge 4.3**
 
@@ -286,9 +286,16 @@ Change the name of the columns of our design matrix (`design`) such that the wor
 
 ### Contrasts
 
-Contrasts let us ask specific questions, such as what is the difference between two specific groups. In our experiment, we are interested in the difference between each pairwise group. A contrast matrix can be made using the `makeContrasts()` function. Within this function we specify the name of specific contrasts and the formula for that contrast. For example, the `BasalvsLP` contrasts asks about the difference between the `Basal` and `LP` groups. Note that the name of the groups must be written exactly as they are in the column names of our design matrix above. The final input to the `makeContrasts()` function simply gives the names of each cell type group (recall from above that `colnames(design)` gives the names of each cell type group).
+'Contrasts' let us ask specific questions, for example, if we want to compare expression between two specific groups. In our experiment, we are interested in the difference between each pairwise group. A contrast matrix can be made using the `makeContrasts()` function. Within this function, we specify the name of each specific contrast and the formula for that contrast. For example, the `BasalvsLP` contrasts compares the difference between the `Basal` and `LP` groups. Note that the name of the phenotype groups must be written exactly as they are in the column names of our design matrix (see above). 
 
-The output of our contrast matrix is shown below:
+The final input to the `makeContrasts()` function is simply the names of each cell type group (recall from above that `colnames(design)` gives the names of each cell type group).
+
+The creation and output of our contrast matrix is shown below:
+
+```{r, echo=FALSE}
+colnames(design) <- c("Basal", "LP", "ML")
+```
+
 
 ```{r}
 contr.matrix <- makeContrasts(
@@ -299,27 +306,95 @@ contr.matrix <- makeContrasts(
 contr.matrix
 ```
 
-Notice that the sum of all the numbers along each column is 0. The first column is the contrast for the difference between Basal (1) and LP (-1). 
+Notice that the sum of all the numbers along each COLUMN is 0. The first column is the contrast for the difference between Basal (1) and LP (-1). 
 
-### Normalising count data
+### Linear model fitting
 
+We are now ready to fit our linear models. Limma fits linear models to the data with the assumption that the underlying data is normally distributed. Count data is however, not normally distributed. We must therefore, 'normalise' our count data first. To do this, limma first transforms the raw count data to log-cpm using library sizes and the normalisation factors we calculated previously. The mean-variance relationship of the log-cpm data is then accommodated using precision weights. These precision weights are calculated using the `voom()` function. 
 
+The `voom()` function takes as arguments, our `DGEList` object and our design matrix. It also optionally outputs a plot of the mean-variance relationship of our data, called the 'voom-plot'. Each point on the voom plot is a gene. On the x and y axes are the log2 of the count value + 0.5 (to prevent taking the log of 0) and the square root of the standard deviation of that gene, respectively. Typically the voom plot shows 'variance' decreasing as expression increases. Variance will generally plateau (i.e. remain at the same level) at high expression values. In experiments with higher biological variation, this plateau will be at a higher variance level. For example, experiments using mice as biological replicates will generally have higher variation than experiments using cell lines as biological replicates. As a result, the plateau will be at a higher variance level.
 
-lmfit
-contrasts.fit
-ebays
+```{r}
+v <- voom(x, design, plot = TRUE)
+```
 
-**Challenge 4.3**
+The output of `voom()` (our variable `v`) is an `EList` object which contains the following elements:
 
+* `E` - numeric matrix of normalised log-cpm values.
+* `weights` - numeric matrix of precision weights.
+* `design` - the design matrix we gave as an argument to `voom()`.
+* `genes` - a dataframe of gene annotation data. This is the same as the element `genes` from our `DGEList` object `x`.
+* `samples` - dataframe of sample data. This is the same as the element `samples` from our `DGEList` object `x`.
 
+The `EList` object can also contain information about the voom plot, if you choose to save this plot when you ran the `voom()` function.
+
+Let's take a look at `E`:
+
+```{r}
+head(v$E)
+```
+
+Each column is a sample and each row is a gene (called a 'Tag').
+
+We are now ready to fit our linear model with `lmFit()`, which calculates coefficients we defined in our design matrix (`design`). The resulting object, `vfit` is a `MArrayLM` object. It contains a information about our genes (the same dataframe as `genes` from our `EList` object `v` above), the design matrix and a number of statistical outputs. Of most interest to us is the coefficients, stored in an element called `coefficients`. The first rows of this matrix is shown below. Each gene is row and is labelled using the EntrezID. Each column gives coefficients for each of our phenotype groups.
+
+```{r}
+vfit <- lmFit(v, design)
+head(vfit$coefficients)
+```
+
+We can then use `contrasts.fit()` to calculate coefficients for each contrast (or 'comparison') we specified in our `contr.matrix`. The output is also a `MArrayLM` object. When we inspect the `coefficients` element now, we can see that each column is a contrast that we specified in our contrast matrix.
+
+```{r}
+vfit <- contrasts.fit(vfit, contrasts = contr.matrix)
+head(vfit$coefficients)
+```
 
 ## Statistical testing
 
-decide tests
+The next step is to carry out statistical testing to determine which genes are differentially expressed. The function `eBayes()` computes moderated t-statistics, moderated F-statistics and log-odds of differential expression for each gene, given a fitted linear model. 'Moderated' refers to empirical Bayes moderation, which borrows information across genes to obtain more accurate measures of variability for each gene. This also increases our power to detect differentially expressed genes. 
+
+```{r}
+efit <- eBayes(vfit)
+```
+
+We can now look at the number of differentially expressed genes using the `decideTests()` function. The output of this function is a matrix where each column is a contrast (comparison of interest) and each row is a gene. The numbers 1, -1 and 0 mean up-regulated, down-regulated or not significantly differentially expressed, respectively. 
+
+Note that `decideTests()` also accounts for multiple testing. The default method is Benjamini and Hochberg [@benjamini1995controlling] but several others are also available.
+
+```{r}
+decideTests(efit)
+```
+
+To obtain the total number of differentially expressed genes for each comparison, we can add the function `summary()`:
+
+```{r}
+summary(decideTests(efit))
+```
+
+The function `topTable()` can be used to obtain more information on the differentially expressed genes for each contrast. `topTable()` takes as arguments the `MArrayLM` object output by `eBayes()` (`efit`), the contrast name of interest and the number of top differentially expressed genes to output. Note that the contrast name must be given in quotes and must be exactly as written in the contrast matrix (`contr.matrix`). 
+
+It outputs a dataframe with the following information:
+
+* **Gene details** - gene information, from the `gene` element of the `MArrayLM` object (`efit`).
+* `logFC` - the log2 fold change of the contrast.
+* `AveExpr` - the average log2 expression of that gene.
+* `t` - moderated t-statistic.
+* `P.Value` - p value.
+* `adj.P.Val` - adjusted p value.
+* `B` - log-odds that the gene is differentially expressed.
+
+```{r}
+topTable(efit, coef = "BasalvsLP", n = 20)
+```
 
 
 **Challenge 4.4**
-write top genes out to file
+
+Using `topTable()`, output a dataframe with the top 100 genes for the LP vs ML comparison and write this out to a tsv file called "LPvsML.tsv".
+
+**Hint**: we did this in the first session in Section \@ref(write).
+
 
 ## Answers
 
@@ -348,20 +423,22 @@ legend("topright", legend = levels(group),
        text.col = c("blue", "green", "red"))
 ```
 
-```{r}
-plotMDS(x, labels = group)
-```
-
 
 **Challenge 4.3**
 
-```{r}
+```{r, eval=FALSE}
 colnames(design) <- c("Basal", "LP", "ML")
 ```
 
 
 **Challenge 4.4**
 
+```{r, eval=FALSE}
+topLPvsML <- topTable(efit, coef = "LPvsML", n = 50)
+
+write.table(x = topLPvsML, file = "LPvsML.tsv", sep = "\t",
+            row.names = FALSE, col.names = TRUE)
+```
 
 
 
