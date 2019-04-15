@@ -481,7 +481,7 @@ Create a new column called `Prop_Count` that contains each count value as a prop
 
 *Hint* use the `sum()` function.
 
-## Writing out data
+## Writing out data {#write}
 
 The last thing we will do this session is to write out our new dataframe using the function `write.table()`.
 

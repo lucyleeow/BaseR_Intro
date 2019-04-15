@@ -25,7 +25,7 @@
 <meta name="author" content="Lucy Liu">
 
 
-<meta name="date" content="2019-04-09">
+<meta name="date" content="2019-04-15">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -129,7 +129,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.10.2" data-path="session-1.html"><a href="session-1.html#type-coercion"><i class="fa fa-check"></i><b>1.10.2</b> Type coercion</a></li>
 </ul></li>
 <li class="chapter" data-level="1.11" data-path="session-1.html"><a href="session-1.html#vect"><i class="fa fa-check"></i><b>1.11</b> Vectorisation</a></li>
-<li class="chapter" data-level="1.12" data-path="session-1.html"><a href="session-1.html#writing-out-data"><i class="fa fa-check"></i><b>1.12</b> Writing out data</a></li>
+<li class="chapter" data-level="1.12" data-path="session-1.html"><a href="session-1.html#write"><i class="fa fa-check"></i><b>1.12</b> Writing out data</a></li>
 <li class="chapter" data-level="1.13" data-path="session-1.html"><a href="session-1.html#homework"><i class="fa fa-check"></i><b>1.13</b> Homework</a></li>
 <li class="chapter" data-level="1.14" data-path="session-1.html"><a href="session-1.html#answers"><i class="fa fa-check"></i><b>1.14</b> Answers</a></li>
 </ul></li>
@@ -161,10 +161,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.3" data-path="session-4.html"><a href="session-4.html#mds"><i class="fa fa-check"></i><b>4.3</b> MDS</a><ul>
 <li class="chapter" data-level="4.3.1" data-path="session-4.html"><a href="session-4.html#plotting"><i class="fa fa-check"></i><b>4.3.1</b> Plotting</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="session-4.html"><a href="session-4.html#design-matrix"><i class="fa fa-check"></i><b>4.4</b> Design matrix</a></li>
-<li class="chapter" data-level="4.5" data-path="session-4.html"><a href="session-4.html#linear-modelling"><i class="fa fa-check"></i><b>4.5</b> Linear modelling</a></li>
-<li class="chapter" data-level="4.6" data-path="session-4.html"><a href="session-4.html#statistical-testing"><i class="fa fa-check"></i><b>4.6</b> Statistical testing</a></li>
-<li class="chapter" data-level="4.7" data-path="session-4.html"><a href="session-4.html#answers-3"><i class="fa fa-check"></i><b>4.7</b> Answers</a></li>
+<li class="chapter" data-level="4.4" data-path="session-4.html"><a href="session-4.html#linear-modelling"><i class="fa fa-check"></i><b>4.4</b> Linear modelling</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="session-4.html"><a href="session-4.html#design-matrix"><i class="fa fa-check"></i><b>4.4.1</b> Design matrix</a></li>
+<li class="chapter" data-level="4.4.2" data-path="session-4.html"><a href="session-4.html#contrasts"><i class="fa fa-check"></i><b>4.4.2</b> Contrasts</a></li>
+<li class="chapter" data-level="4.4.3" data-path="session-4.html"><a href="session-4.html#linear-model-fitting"><i class="fa fa-check"></i><b>4.4.3</b> Linear model fitting</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="session-4.html"><a href="session-4.html#statistical-testing"><i class="fa fa-check"></i><b>4.5</b> Statistical testing</a></li>
+<li class="chapter" data-level="4.6" data-path="session-4.html"><a href="session-4.html#answers-3"><i class="fa fa-check"></i><b>4.6</b> Answers</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -344,7 +347,7 @@ Figure 1.7: Setting the working directory - 3.
 <pre><code>## [1] 296</code></pre>
 <p>You can also ‘overwrite’ variables:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_num &lt;-<span class="st"> </span><span class="dv">3</span> <span class="op">*</span><span class="st"> </span><span class="dv">4</span></code></pre></div>
-<p>The above code evaluates <code>3 * 4</code> and assigns the output to the variable <code>my_num</code> - effectivey ‘overwritting’ the previous value assigned to it.</p>
+<p>The above code evaluates <code>3 * 4</code> and assigns the output to the variable <code>my_num</code> - effectively ‘overwritting’ the previous value assigned to it.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_num</code></pre></div>
 <pre><code>## [1] 12</code></pre>
 <p>R is particular about variable names. Variable names cannot:</p>
@@ -512,14 +515,14 @@ Figure 1.9: Variable in ‘Environment’ tab.
 </div>
 <div id="type-coercion" class="section level3">
 <h3><span class="header-section-number">1.10.2</span> Type coercion</h3>
-<p>In some circumstances, R will change the data type label of your data. This is called ‘type coercion’. A common scenario in which this will happen is with vector (and dataframe column) labelling.</p>
+<p>In some circumstances, R will change the data type label of your data. This is called ‘type coercion’. A common scenario in which this will happen is with vector (and dataframe column) labeling.</p>
 <p>All elements within a vector (and within a column of a dataframe) must have the same data type label. Thus, if you create a vector like the one below, the whole vector will be labelled as one data type. Which data type do you think it will be?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_vect3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&quot;a&quot;</span>)</code></pre></div>
 <p>We can find out with <code>str()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(my_vect3)</code></pre></div>
 <pre><code>##  chr [1:3] &quot;1&quot; &quot;2&quot; &quot;a&quot;</code></pre>
 <p>It has labelled the whole vector as characters. This is because the letter <code>&quot;a&quot;</code> cannot be “expressed” as a number but numbers can be “expressed” as characters - thus R will always pick the data type label that does not result in any loss of information. Recall that data type labels NEVER change the data - only the label changes.</p>
-<p>There is an order to which data label R will label a vector as. Of all the data types that exist in the vector, the data type of the element that is furtherest right, will be the “final” data type label for the vector.</p>
+<p>There is an order to which data label R will label a vector as. Of all the data types that exist in the vector, the data type of the element that is furthermost right, will be the “final” data type label for the vector.</p>
 <p><code>logical</code> &gt; <code>integer</code> &gt; <code>double</code> &gt; <code>complex</code> &gt; <code>character</code></p>
 <p>This order makes sense:</p>
 <ul>
@@ -566,7 +569,7 @@ Figure 1.9: Variable in ‘Environment’ tab.
 <p>Create a new column called <code>Prop_Count</code> that contains each count value as a proportion of the total count value of all 10 genes in the dataframe. E.g. if <code>Count</code> was 10 and total count of all 10 genes is 100, that row in <code>Prop_Count</code> should be 0.1.</p>
 <p><em>Hint</em> use the <code>sum()</code> function.</p>
 </div>
-<div id="writing-out-data" class="section level2">
+<div id="write" class="section level2">
 <h2><span class="header-section-number">1.12</span> Writing out data</h2>
 <p>The last thing we will do this session is to write out our new dataframe using the function <code>write.table()</code>.</p>
 <p>There are a few things we must tell <code>write.table()</code>, for it to be able to write out the data the way we want:</p>
@@ -664,6 +667,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

@@ -25,7 +25,7 @@
 <meta name="author" content="Lucy Liu">
 
 
-<meta name="date" content="2019-04-09">
+<meta name="date" content="2019-04-15">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -129,7 +129,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.10.2" data-path="session-1.html"><a href="session-1.html#type-coercion"><i class="fa fa-check"></i><b>1.10.2</b> Type coercion</a></li>
 </ul></li>
 <li class="chapter" data-level="1.11" data-path="session-1.html"><a href="session-1.html#vect"><i class="fa fa-check"></i><b>1.11</b> Vectorisation</a></li>
-<li class="chapter" data-level="1.12" data-path="session-1.html"><a href="session-1.html#writing-out-data"><i class="fa fa-check"></i><b>1.12</b> Writing out data</a></li>
+<li class="chapter" data-level="1.12" data-path="session-1.html"><a href="session-1.html#write"><i class="fa fa-check"></i><b>1.12</b> Writing out data</a></li>
 <li class="chapter" data-level="1.13" data-path="session-1.html"><a href="session-1.html#homework"><i class="fa fa-check"></i><b>1.13</b> Homework</a></li>
 <li class="chapter" data-level="1.14" data-path="session-1.html"><a href="session-1.html#answers"><i class="fa fa-check"></i><b>1.14</b> Answers</a></li>
 </ul></li>
@@ -161,10 +161,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.3" data-path="session-4.html"><a href="session-4.html#mds"><i class="fa fa-check"></i><b>4.3</b> MDS</a><ul>
 <li class="chapter" data-level="4.3.1" data-path="session-4.html"><a href="session-4.html#plotting"><i class="fa fa-check"></i><b>4.3.1</b> Plotting</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="session-4.html"><a href="session-4.html#design-matrix"><i class="fa fa-check"></i><b>4.4</b> Design matrix</a></li>
-<li class="chapter" data-level="4.5" data-path="session-4.html"><a href="session-4.html#linear-modelling"><i class="fa fa-check"></i><b>4.5</b> Linear modelling</a></li>
-<li class="chapter" data-level="4.6" data-path="session-4.html"><a href="session-4.html#statistical-testing"><i class="fa fa-check"></i><b>4.6</b> Statistical testing</a></li>
-<li class="chapter" data-level="4.7" data-path="session-4.html"><a href="session-4.html#answers-3"><i class="fa fa-check"></i><b>4.7</b> Answers</a></li>
+<li class="chapter" data-level="4.4" data-path="session-4.html"><a href="session-4.html#linear-modelling"><i class="fa fa-check"></i><b>4.4</b> Linear modelling</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="session-4.html"><a href="session-4.html#design-matrix"><i class="fa fa-check"></i><b>4.4.1</b> Design matrix</a></li>
+<li class="chapter" data-level="4.4.2" data-path="session-4.html"><a href="session-4.html#contrasts"><i class="fa fa-check"></i><b>4.4.2</b> Contrasts</a></li>
+<li class="chapter" data-level="4.4.3" data-path="session-4.html"><a href="session-4.html#linear-model-fitting"><i class="fa fa-check"></i><b>4.4.3</b> Linear model fitting</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="session-4.html"><a href="session-4.html#statistical-testing"><i class="fa fa-check"></i><b>4.5</b> Statistical testing</a></li>
+<li class="chapter" data-level="4.6" data-path="session-4.html"><a href="session-4.html#answers-3"><i class="fa fa-check"></i><b>4.6</b> Answers</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -343,7 +346,7 @@ Figure 2.1: Viewing data from the ‘Environment’ tab.
 ## 5    12449   Ccnf   chr17       3099   214
 ## 6    12563   Cdh6   chr15       2632     2
 ## 7    12565   Cdh9   chr15       2903     2</code></pre>
-<p>We can use the <code>$</code> shortcut to obtain just one column in a dataframe. We can’t do this with matricies - we have to use the <code>[ ]</code> notation instead.</p>
+<p>We can use the <code>$</code> shortcut to obtain just one column in a dataframe. We can’t do this with matrices - we have to use the <code>[ ]</code> notation instead.</p>
 <p>For example, we can create a matrix from our <code>genes</code> dataframe. Recall that a matrix can only hold data of ONE data type - thus we will create a dataframe using just the <code>GeneLength</code> and <code>Count</code> columns of the <code>genes</code> dataframe. The first 6 rows are printed out:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gene_matrix &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(genes[,<span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>)])
 <span class="kw">head</span>(gene_matrix)</code></pre></div>
@@ -469,7 +472,7 @@ Figure 2.1: Viewing data from the ‘Environment’ tab.
 </div>
 <div id="functions" class="section level2">
 <h2><span class="header-section-number">2.4</span> Functions</h2>
-<p>A function, as the namne suggests performs a function. We have already used many functions. For example, the <code>read.delim()</code> function reads in data, the <code>sum()</code> function adds numbers up and the <code>merge()</code> function above merges two dataframes.</p>
+<p>A function, as the name suggests performs a function. We have already used many functions. For example, the <code>read.delim()</code> function reads in data, the <code>sum()</code> function adds numbers up and the <code>merge()</code> function above merges two dataframes.</p>
 <p>Formally, when using a function, brackets (<code>( )</code>) are always included after the name of the function. Within the brackets is where input (technically ‘arguments’) to the function goes. You can find out what inputs an argument takes by looking at the help file.</p>
 <p>For example, let’s take a look at the <code>rnorm()</code> function help file. This function generates a random number from a normal distribution.</p>
 <div class="figure" style="text-align: center"><span id="fig:rnorm"></span>
@@ -493,27 +496,27 @@ sd - vector of standard deviations.</code></pre>
 <li>What happens when you give either argument a vector of numbers?</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">4</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>## [1] 11.708613  9.143627  9.245894 10.016528</code></pre>
+<pre><code>## [1] 9.751018 9.741700 9.123294 8.196614</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="kw">c</span>(<span class="dv">100</span>,<span class="dv">0</span>), <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>## [1] 99.9844495  0.3756956 99.5864426</code></pre>
+<pre><code>## [1]  99.3977644   0.5180124 100.0865549</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Take a look at the following code:</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">10</span>)</code></pre></div>
-<pre><code>## [1]  -5.295871  -8.006068 -17.408890</code></pre>
+<pre><code>## [1]  6.5821547 -5.8597831  0.6688605</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>,<span class="dv">1</span>,<span class="dv">3</span>)</code></pre></div>
-<pre><code>##  [1]  0.7362949  1.2319446 -1.4379044  2.6468595 -4.9584601 -2.1963442
-##  [7]  1.2164494  4.1398710 -0.3144422  2.0667822</code></pre>
+<pre><code>##  [1]  4.2785988 -1.1091136 -4.9566570 -1.6519915 -1.0866525 -1.6541498
+##  [7]  2.3224995  5.2848189 -0.6203373 -0.6250786</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">0</span>)</code></pre></div>
 <pre><code>## [1] 10 10 10</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dt">sd =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">n =</span> <span class="dv">3</span>)</code></pre></div>
-<pre><code>## [1]   6.289494  13.809370 -17.234255</code></pre>
+<pre><code>## [1]  8.10539  2.28330 17.58714</code></pre>
 <p>How does the order of the arguments you input to the function affect the output? How does the order of the arguments you input affect the output, when you name each argument (along with the input)?</p>
 <p>Note: as the function generates a random number, the numbers you will get from running the function will be different to the ones generated above.</p>
 </div>
 <div id="homework-1" class="section level2">
 <h2><span class="header-section-number">2.5</span> Homework</h2>
-<p>We will use the Bioconductor packages ‘limma’ and ‘edgeR’ in the next session. Before the next sesssion, please install these packages with the following commands:</p>
+<p>We will use the Bioconductor packages ‘limma’ and ‘edgeR’ in the next session. Before the next session, please install these packages with the following commands:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">requireNamespace</span>(<span class="st">&quot;BiocManager&quot;</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>))
     <span class="kw">install.packages</span>(<span class="st">&quot;BiocManager&quot;</span>)
 BiocManager<span class="op">::</span><span class="kw">install</span>(<span class="kw">c</span>(<span class="st">&quot;edgeR&quot;</span>, <span class="st">&quot;limma&quot;</span>), <span class="dt">version =</span> <span class="st">&quot;3.8&quot;</span>)</code></pre></div>
@@ -645,6 +648,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
