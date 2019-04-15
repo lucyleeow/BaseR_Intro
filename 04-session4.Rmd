@@ -385,7 +385,7 @@ It outputs a dataframe with the following information:
 * `B` - log-odds that the gene is differentially expressed.
 
 ```{r}
-topTable(efit, coef = "BasalvsLP", n = 20)
+topTable(efit, coef = "BasalvsLP", n = 5)
 ```
 
 

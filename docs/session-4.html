@@ -597,49 +597,19 @@ contr.matrix</code></pre></div>
 <li><code>adj.P.Val</code> - adjusted p value.</li>
 <li><code>B</code> - log-odds that the gene is differentially expressed.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">topTable</span>(efit, <span class="dt">coef =</span> <span class="st">&quot;BasalvsLP&quot;</span>, <span class="dt">n =</span> <span class="dv">20</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">topTable</span>(efit, <span class="dt">coef =</span> <span class="st">&quot;BasalvsLP&quot;</span>, <span class="dt">n =</span> <span class="dv">5</span>)</code></pre></div>
 <pre><code>##        ENTREZID   SYMBOL TXCHROM     logFC  AveExpr         t      P.Value
 ## 12521     12521     Cd82    chr2 -4.095479 7.069637 -35.46821 3.383539e-12
 ## 22249     22249   Unc13b    chr4 -4.350553 5.663171 -32.38571 8.648521e-12
 ## 16324     16324    Inhbb    chr1 -4.721417 6.460922 -30.80826 1.447137e-11
 ## 14245     14245    Lpin1   chr12 -3.768977 6.294017 -29.94805 1.937313e-11
 ## 218518   218518 Marveld2   chr13 -5.215232 4.930008 -30.87689 1.414332e-11
-## 12759     12759      Clu   chr14 -5.306847 8.856581 -29.55253 2.221529e-11
-## 20661     20661    Sort1    chr3 -3.824114 6.704459 -29.40919 2.335557e-11
-## 21804     21804  Tgfb1i1    chr7  5.185530 3.747929  28.97746 2.719554e-11
-## 67451     67451     Pkp2   chr16 -5.661813 4.419170 -29.37554 2.363246e-11
-## 53624     53624    Cldn7   chr11 -5.375339 6.295437 -27.97746 3.902924e-11
-## 19253     19253   Ptpn18    chr1 -5.582712 4.128434 -28.89172 2.803761e-11
-## 66871     66871    Cpne8   chr15  4.668175 4.312382  27.95188 3.939799e-11
-## 353499   353499     Tmc4    chr7 -3.492749 7.131569 -27.24522 5.126058e-11
-## 18826     18826     Lcp1   chr14 -4.255683 5.460505 -27.45425 4.738850e-11
-## 224912   224912     Crb3   chr17 -3.966818 4.460216 -27.48204 4.689823e-11
-## 16669     16669    Krt19   chr11 -4.576431 9.870532 -26.60386 6.547259e-11
-## 18260     18260     Ocln   chr13 -5.781729 5.103840 -26.69293 6.326346e-11
-## 20743     20743   Sptbn2   chr19 -4.991702 5.425099 -26.32880 7.284574e-11
-## 269132   269132 Colgalt2    chr1  4.997198 3.256428  26.91457 5.811208e-11
-## 170643   170643   Kirrel    chr3  4.821475 5.295445  25.91619 8.566734e-11
 ##           adj.P.Val        B
 ## 12521  4.660973e-08 18.41326
 ## 22249  4.660973e-08 17.42652
 ## 16324  4.660973e-08 17.06291
 ## 14245  4.660973e-08 16.85869
-## 218518 4.660973e-08 16.76959
-## 12759  4.660973e-08 16.70221
-## 20661  4.660973e-08 16.66444
-## 21804  4.660973e-08 16.20933
-## 67451  4.660973e-08 16.14320
-## 53624  5.264392e-08 16.09422
-## 19253  4.660973e-08 15.98370
-## 66871  5.264392e-08 15.96278
-## 353499 5.264392e-08 15.95529
-## 18826  5.264392e-08 15.90854
-## 224912 5.264392e-08 15.81064
-## 16669  5.264392e-08 15.68953
-## 18260  5.264392e-08 15.46473
-## 20743  5.504489e-08 15.45552
-## 269132 5.264392e-08 15.40109
-## 170643 5.983535e-08 15.37955</code></pre>
+## 218518 4.660973e-08 16.76959</code></pre>
 <p><strong>Challenge 4.4</strong></p>
 <p>Using <code>topTable()</code>, output a dataframe with the top 100 genes for the LP vs ML comparison and write this out to a tsv file called “LPvsML.tsv”.</p>
 <p><strong>Hint</strong>: we did this in the first session in Section <a href="session-1.html#write">1.12</a>.</p>
