@@ -31,13 +31,13 @@ Scrolling down the window, you can see that there are several *NA* entries. `NA`
 mean(c(2,3,NA))
 ```
 
-Luckily many functions have a `na.rm` input, where you can tell it to remove `NA` values:
+Luckily many functions have a `na.rm` option, where you can tell it to remove `NA` values:
 
 ```{r}
 mean(c(2,3,NA), na.rm = TRUE)
 ```
 
-Later we will learn how to remove the `NA` values from our dataframe.
+Later, we will learn how to remove the `NA` values from our dataframe.
 
 ## Subsetting
 
@@ -151,10 +151,10 @@ This is done similarly in 2 dimensional data structures. The command below selec
 genes[genes$Count == 0,]
 ```
 
-Because there are so many rows with a `genes$Count` of 0, I'll use the `head()` function to print out just the first 6 rows of the output:
+The code below will output the ROWS where the `Count` column is equal to 0 and all the COLUMNS (because no input is given after the comma). As there are many rows with a `genes$Count` of 0, I'll use the `head()` function to show just the first 6 rows of the output:
 
 ```{r}
-head(genes[genes$Count == 0,])
+head(genes[genes$Count == 0, ])
 ```
 
 If you add `!` to the start of the `genes$Count == 0` condition statement, you will get all the rows where `genes$Count` is NOT equal to 0. 
@@ -339,7 +339,7 @@ sd - vector of standard deviations.
 
 **Challenge 2.4**
 
-1. Take a look at what the `rnorm()` function outputs in the code below and have a go plugging various inputs to the function. Then try to answer the following questions:
+1. Take a look at what the `rnorm()` function outputs in the code below. Try using various different inputs to the function then, try to answer the following questions:
 
 * What does `rnorm()` do when you only give it one number to the `mean` and `sd` arguments?
 * What happens when you give either argument a vector of numbers?
@@ -364,7 +364,12 @@ Note: as the function generates a random number, the numbers you will get from r
 
 ## Homework
 
-We will use the Bioconductor packages 'limma' and 'edgeR' in the next session. Before the next session, please install these packages with the following commands:
+1. Subset your `genes` dataframe to obtain the rows 5 to 10, 45 and 72 and all the columns EXCEPT column 4.
+2. Subset your `genes` dataframe to obtain only rows where genes with the symbol is "Rab18", "Ripk1" or "Xpr1" and all the columns.
+3. Read in the tsv file "Ses2_PFAM.tsv" (remember to include `stringsAsFactors = FALSE`). This file gives the EntrezID next to the Pfam code for all our genes. 
+    + Remove all rows where the Pfam code is `NA`
+    + Merge this dataframe to `genes`, keeping all rows from both dataframes
+4. We will use the Bioconductor packages 'limma' and 'edgeR' in the next session. Install these packages with the following commands:
 
 ```{r, eval=FALSE}
 if (!requireNamespace("BiocManager", quietly = TRUE))
@@ -443,7 +448,7 @@ Thus, the following code:
 rnorm(3, mean = c(100,0), sd = 1)
 ```
 
-will generate 3 random numbers from a normal distribution of:
+will generate 3 random numbers from the following normal distributions, in order:
 
 ```
 1. mean of 100 and sd of 1

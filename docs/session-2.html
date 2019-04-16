@@ -216,10 +216,10 @@ Figure 2.1: Viewing data from the ‘Environment’ tab.
 <p><code>NA</code>‘s have some interesting behaviour - they are ’contagious’. For example, if we wanted to take the mean of a vector numbers, which includes a <code>NA</code>, the answer is <code>NA</code>. If we think about it, it makes sense that the mean of two numbers and a ‘missing’ number, that could be anything, is <code>NA</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="ot">NA</span>))</code></pre></div>
 <pre><code>## [1] NA</code></pre>
-<p>Luckily many functions have a <code>na.rm</code> input, where you can tell it to remove <code>NA</code> values:</p>
+<p>Luckily many functions have a <code>na.rm</code> option, where you can tell it to remove <code>NA</code> values:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="ot">NA</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <pre><code>## [1] 2.5</code></pre>
-<p>Later we will learn how to remove the <code>NA</code> values from our dataframe.</p>
+<p>Later, we will learn how to remove the <code>NA</code> values from our dataframe.</p>
 </div>
 <div id="subsetting" class="section level2">
 <h2><span class="header-section-number">2.2</span> Subsetting</h2>
@@ -328,8 +328,8 @@ Figure 2.1: Viewing data from the ‘Environment’ tab.
 <p><code>Counts &lt; 100</code> will return a vector of 200 logicals, which indicate which elements are less than 100. Putting this inside square brackets will subset <code>Counts</code> such that only the elements that are less than 100 (the <code>TRUE</code>’s) remain.</p>
 <p>This is done similarly in 2 dimensional data structures. The command below selects the rows where the <code>genes$Count</code> column equal to 0.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes[genes<span class="op">$</span>Count <span class="op">==</span><span class="st"> </span><span class="dv">0</span>,]</code></pre></div>
-<p>Because there are so many rows with a <code>genes$Count</code> of 0, I’ll use the <code>head()</code> function to print out just the first 6 rows of the output:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(genes[genes<span class="op">$</span>Count <span class="op">==</span><span class="st"> </span><span class="dv">0</span>,])</code></pre></div>
+<p>The code below will output the ROWS where the <code>Count</code> column is equal to 0 and all the COLUMNS (because no input is given after the comma). As there are many rows with a <code>genes$Count</code> of 0, I’ll use the <code>head()</code> function to show just the first 6 rows of the output:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(genes[genes<span class="op">$</span>Count <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, ])</code></pre></div>
 <pre><code>##    EntrezID  SYMBOL TXCHROM GeneLength Count
 ## 4     12290 Cacna1e    chr1      12697     0
 ## 8     12647    Chat   chr14       2810     0
@@ -491,34 +491,43 @@ mean - vector of means.
 sd - vector of standard deviations.</code></pre>
 <p><strong>Challenge 2.4</strong></p>
 <ol style="list-style-type: decimal">
-<li>Take a look at what the <code>rnorm()</code> function outputs in the code below and have a go plugging various inputs to the function. Then try to answer the following questions:</li>
+<li>Take a look at what the <code>rnorm()</code> function outputs in the code below. Try using various different inputs to the function then, try to answer the following questions:</li>
 </ol>
 <ul>
 <li>What does <code>rnorm()</code> do when you only give it one number to the <code>mean</code> and <code>sd</code> arguments?</li>
 <li>What happens when you give either argument a vector of numbers?</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">4</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>## [1] 10.275452 10.012740  9.426394 10.552896</code></pre>
+<pre><code>## [1]  9.395924  7.676921 10.264510 10.965582</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="kw">c</span>(<span class="dv">100</span>,<span class="dv">0</span>), <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>## [1] 100.3653094   0.6753122  99.0260517</code></pre>
+<pre><code>## [1] 100.082063   1.415664 100.859010</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Take a look at the following code:</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">10</span>)</code></pre></div>
-<pre><code>## [1]  -3.3430568 -11.1465802  -0.0385043</code></pre>
+<pre><code>## [1]   4.425056   6.391241 -18.722212</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>,<span class="dv">1</span>,<span class="dv">3</span>)</code></pre></div>
-<pre><code>##  [1]  0.9139577 -0.7116676  2.2475415  3.0402005  5.7066658  4.9946898
-##  [7]  3.3077656 -0.7867927 -0.4108761  1.8786232</code></pre>
+<pre><code>##  [1]  4.6590557  0.2614795 -4.8830202  5.5118763 -0.2934945  2.2835668
+##  [7]  4.5136793  2.6013947  2.0087752 -0.4781381</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">0</span>)</code></pre></div>
 <pre><code>## [1] 10 10 10</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dt">sd =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">n =</span> <span class="dv">3</span>)</code></pre></div>
-<pre><code>## [1]  11.39319  12.63384 -11.79009</code></pre>
+<pre><code>## [1]  22.18405819  -0.07323732 -17.86541796</code></pre>
 <p>How does the order of the arguments you input to the function affect the output? How does the order of the arguments you input affect the output, when you name each argument (along with the input)?</p>
 <p>Note: as the function generates a random number, the numbers you will get from running the function will be different to the ones generated above.</p>
 </div>
 <div id="homework-1" class="section level2">
 <h2><span class="header-section-number">2.5</span> Homework</h2>
-<p>We will use the Bioconductor packages ‘limma’ and ‘edgeR’ in the next session. Before the next session, please install these packages with the following commands:</p>
+<ol style="list-style-type: decimal">
+<li>Subset your <code>genes</code> dataframe to obtain the rows 5 to 10, 45 and 72 and all the columns EXCEPT column 4.</li>
+<li>Subset your <code>genes</code> dataframe to obtain only rows where genes with the symbol is “Rab18”, “Ripk1” or “Xpr1” and all the columns.</li>
+<li>Read in the tsv file “Ses2_PFAM.tsv” (remember to include <code>stringsAsFactors = FALSE</code>). This file gives the EntrezID next to the Pfam code for all our genes.
+<ul>
+<li>Remove all rows where the Pfam code is <code>NA</code></li>
+<li>Merge this dataframe to <code>genes</code>, keeping all rows from both dataframes</li>
+</ul></li>
+<li>We will use the Bioconductor packages ‘limma’ and ‘edgeR’ in the next session. Install these packages with the following commands:</li>
+</ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">requireNamespace</span>(<span class="st">&quot;BiocManager&quot;</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>))
     <span class="kw">install.packages</span>(<span class="st">&quot;BiocManager&quot;</span>)
 BiocManager<span class="op">::</span><span class="kw">install</span>(<span class="kw">c</span>(<span class="st">&quot;edgeR&quot;</span>, <span class="st">&quot;limma&quot;</span>), <span class="dt">version =</span> <span class="st">&quot;3.8&quot;</span>)</code></pre></div>
@@ -587,7 +596,7 @@ FALSE TRUE FALSE FALSE FALSE FALSE</code></pre>
 </ol>
 <p>Thus, the following code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="kw">c</span>(<span class="dv">100</span>,<span class="dv">0</span>), <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
-<p>will generate 3 random numbers from a normal distribution of:</p>
+<p>will generate 3 random numbers from the following normal distributions, in order:</p>
 <pre><code>1. mean of 100 and sd of 1
 2. mean of 0 and sd of 1
 3. mean of 100 and sd of 1</code></pre>
