@@ -245,6 +245,28 @@ plotMDS(x, col = groupCol)
 
 *Hint*: this should be the same vector of colour names used to create the `groupCol` vector.
 
+## Saving plots
+
+You can save plots in RStudio in the 'Plots' tab on the bottom right. After creating your plot, click on `Export` > `Save as Image...`:
+
+```{r save1, fig.cap="Saving a plot in RStudio.", out.width="500px", fig.align='center', echo=FALSE}
+knitr::include_graphics("Images/saveim1.png")
+```
+
+This will open up a new window where you can:
+
+1. Specify the image file format you wish to save as. Options include png, tiff and jpeg.
+2. Specify the dimensions of the plot in pixels.
+3. Name your file. The plot will be saved in your working directory.
+
+Each step is indicated by an arrow and number below:
+
+```{r save2, fig.cap="Specifying the file type, dimensions and name of the plot.", out.width="500px", fig.align='center', echo=FALSE}
+knitr::include_graphics("Images/saveim2.png")
+```
+
+Note that you can also save your plot as a pdf using `Export` > `Save as PDF...`.
+
 
 ## Linear modelling
 
@@ -439,7 +461,6 @@ topLPvsML <- topTable(efit, coef = "LPvsML", n = 50)
 write.table(x = topLPvsML, file = "LPvsML.tsv", sep = "\t",
             row.names = FALSE, col.names = TRUE)
 ```
-
 
 
 

@@ -25,7 +25,7 @@
 <meta name="author" content="Lucy Liu">
 
 
-<meta name="date" content="2019-04-15">
+<meta name="date" content="2019-04-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -161,14 +161,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.3" data-path="session-4.html"><a href="session-4.html#mds"><i class="fa fa-check"></i><b>4.3</b> MDS</a><ul>
 <li class="chapter" data-level="4.3.1" data-path="session-4.html"><a href="session-4.html#plotting"><i class="fa fa-check"></i><b>4.3.1</b> Plotting</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="session-4.html"><a href="session-4.html#linear-modelling"><i class="fa fa-check"></i><b>4.4</b> Linear modelling</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="session-4.html"><a href="session-4.html#design-matrix"><i class="fa fa-check"></i><b>4.4.1</b> Design matrix</a></li>
-<li class="chapter" data-level="4.4.2" data-path="session-4.html"><a href="session-4.html#contrasts"><i class="fa fa-check"></i><b>4.4.2</b> Contrasts</a></li>
-<li class="chapter" data-level="4.4.3" data-path="session-4.html"><a href="session-4.html#linear-model-fitting"><i class="fa fa-check"></i><b>4.4.3</b> Linear model fitting</a></li>
+<li class="chapter" data-level="4.4" data-path="session-4.html"><a href="session-4.html#saving-plots"><i class="fa fa-check"></i><b>4.4</b> Saving plots</a></li>
+<li class="chapter" data-level="4.5" data-path="session-4.html"><a href="session-4.html#linear-modelling"><i class="fa fa-check"></i><b>4.5</b> Linear modelling</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="session-4.html"><a href="session-4.html#design-matrix"><i class="fa fa-check"></i><b>4.5.1</b> Design matrix</a></li>
+<li class="chapter" data-level="4.5.2" data-path="session-4.html"><a href="session-4.html#contrasts"><i class="fa fa-check"></i><b>4.5.2</b> Contrasts</a></li>
+<li class="chapter" data-level="4.5.3" data-path="session-4.html"><a href="session-4.html#linear-model-fitting"><i class="fa fa-check"></i><b>4.5.3</b> Linear model fitting</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="session-4.html"><a href="session-4.html#statistical-testing"><i class="fa fa-check"></i><b>4.5</b> Statistical testing</a></li>
-<li class="chapter" data-level="4.6" data-path="session-4.html"><a href="session-4.html#answers-3"><i class="fa fa-check"></i><b>4.6</b> Answers</a></li>
+<li class="chapter" data-level="4.6" data-path="session-4.html"><a href="session-4.html#statistical-testing"><i class="fa fa-check"></i><b>4.6</b> Statistical testing</a></li>
+<li class="chapter" data-level="4.7" data-path="session-4.html"><a href="session-4.html#answers-3"><i class="fa fa-check"></i><b>4.7</b> Answers</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -471,7 +473,7 @@ named_list3</code></pre></div>
 </div>
 <div id="dgelist" class="section level2">
 <h2><span class="header-section-number">3.4</span> DGEList</h2>
-<p>The RNA sequencing analysis you will be guided through is a simplified version of that performed in the article from Law <em>et al.</em> <span class="citation">(Law et al. 2016)</span>. The RNA sequencing data we will use is from Sheridan <em>et al.</em> <span class="citation">(Sheridan et al. 2015)</span>. It consists of samples from 3 cell populations; basal, luminal progenitor (LP) and mature luminal (ML), which has been sorted from the mammary glands of female virgin mice. The reads have been aligned to the mouse reference genome (mm10) and reads summarised at the gene-level (using mm10 RefSeq-based annotation) to obtain gene counts. Gene level summarisation involves counting the number of reads mapped to each gene - the resulting ‘count of reads’ is often referred to simply as ‘counts’.</p>
+<p>The RNA sequencing analysis you will be guided through is a simplified version of that performed in the article from Law <em>et al.</em> <span class="citation">(Law et al. <a href="#ref-law2016rna">2016</a>)</span>. The RNA sequencing data we will use is from Sheridan <em>et al.</em> <span class="citation">(Sheridan et al. <a href="#ref-sheridan2015pooled">2015</a>)</span>. It consists of samples from 3 cell populations; basal, luminal progenitor (LP) and mature luminal (ML), which has been sorted from the mammary glands of female virgin mice. The reads have been aligned to the mouse reference genome (mm10) and reads summarised at the gene-level (using mm10 RefSeq-based annotation) to obtain gene counts. Gene level summarisation involves counting the number of reads mapped to each gene - the resulting ‘count of reads’ is often referred to simply as ‘counts’.</p>
 <p>We are going to start our RNA-seq analysis with gene counts. The data files for this session should have been emailed to you (you can also obtain them from <a href="https://github.com/lucyleeow/BaseR_Intro">Github</a>). Please uncompress (extract) the files and put them in your working directory.</p>
 <p>Each data file details the number of reads mapped to a gene for 1 sample. There is 1 data file for each sample. Within each data file, there are 3 columns - EntrezID, GeneLength and Count.</p>
 <p>We will be looking at 9 samples (and using 9 data files) in total. Their details are shown below:</p>
@@ -760,6 +762,15 @@ x<span class="op">$</span>samples<span class="op">$</span>group &lt;-<span class
 geneAnnot &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses3_geneAnnot.tsv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
 x<span class="op">$</span>genes &lt;-<span class="st"> </span>geneAnnot</code></pre></div>
 
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-law2016rna">
+<p>Law, Charity W, Monther Alhamdoosh, Shian Su, Gordon K Smyth, and Matthew E Ritchie. 2016. “RNA-Seq Analysis Is Easy as 1-2-3 with Limma, Glimma and edgeR.” <em>F1000Research</em> 5. Faculty of 1000 Ltd.</p>
+</div>
+<div id="ref-sheridan2015pooled">
+<p>Sheridan, Julie M, Matthew E Ritchie, Sarah A Best, Kun Jiang, Tamara J Beck, François Vaillant, Kevin Liu, et al. 2015. “A Pooled shRNA Screen for Regulators of Primary Mammary Stem and Progenitor Cells Identifies Roles for Asap1 and Prox1.” <em>BMC Cancer</em> 15 (1). BioMed Central: 221.</p>
 </div>
 </div>
             </section>
