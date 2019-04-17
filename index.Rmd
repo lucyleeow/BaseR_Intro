@@ -20,11 +20,9 @@ It is intended to be delivered over four 2.5 hour workshops.
 
 ## Data files
 
-The data files require for this workshop are available on [Github](https://github.com/lucyleeow/BaseR_Intro/tree/master/data). To download a data file click on the file in Github then right click 'Raw' > 'Save Link As...':
+The data files require for this workshop are available on [Github](https://github.com/lucyleeow/BaseR_Intro/tree/master/data). To download a data file click on the file you wish to downlaod then right click 'Raw' > 'Save Link As...':
 
-```{r githubdata, fig.cap="Saving data files from GitHub.", echo=FALSE}
-knitr::include_graphics("Images/githubdata.png")
-```
+![](Images/githubdata.png)
 
 
 **Acknowledgements**

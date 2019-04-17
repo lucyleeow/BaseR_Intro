@@ -151,7 +151,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.1" data-path="session-3.html"><a href="session-3.html#lists"><i class="fa fa-check"></i><b>3.1</b> Lists</a><ul>
 <li class="chapter" data-level="3.1.1" data-path="session-3.html"><a href="session-3.html#named-list"><i class="fa fa-check"></i><b>3.1.1</b> Named list</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="session-3.html"><a href="session-3.html#s4-objects"><i class="fa fa-check"></i><b>3.2</b> S4 objects</a></li>
+<li class="chapter" data-level="3.2" data-path="session-3.html"><a href="session-3.html#classes"><i class="fa fa-check"></i><b>3.2</b> Classes</a></li>
 <li class="chapter" data-level="3.3" data-path="session-3.html"><a href="session-3.html#packages"><i class="fa fa-check"></i><b>3.3</b> Packages</a></li>
 <li class="chapter" data-level="3.4" data-path="session-3.html"><a href="session-3.html#dgelist"><i class="fa fa-check"></i><b>3.4</b> DGEList</a></li>
 <li class="chapter" data-level="3.5" data-path="session-3.html"><a href="session-3.html#homework-2"><i class="fa fa-check"></i><b>3.5</b> Homework</a></li>
@@ -453,91 +453,154 @@ named_list3</code></pre></div>
 </ol>
 </div>
 </div>
-<div id="s4-objects" class="section level2">
-<h2><span class="header-section-number">3.2</span> S4 objects</h2>
-<p>Everything in R is an ‘object’ - every function that we have used and every data structure created in R. All the objects we have used so far, are ‘S3’ objects.</p>
-<p>Bioconductor is an open source project to provide tools for the analysis of high-throughput genomic data. There are more than 1,500 R packages on Bioconductor. Most objects in Bioconductor packages are ‘S4’ objects. ‘S4’ objects are much more ‘formal’ than S3 objects.</p>
-<p>Let’s look at an example. The <code>DGEList</code> object from limma is a S4 object. It is a data structure specifically designed for storing read count data from sequencing. It is a list that contains two specific components:</p>
+<div id="classes" class="section level2">
+<h2><span class="header-section-number">3.2</span> Classes</h2>
+<p>Everything in R is an ‘object’ - every function that we have used and every data structure we have created in R. Each object falls under a ‘class’. A class defines a type of object and what properties it has. For example, every list created with <code>list()</code> is an object that falls under the class ‘list’. The ‘list’ class describes how ‘list’ objects behave.</p>
+<p>To find out what class an object falls under, use the function <code>class()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(<span class="kw">list</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&quot;a&quot;</span>))</code></pre></div>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(<span class="kw">list</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="dv">4</span>))</code></pre></div>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+<p>Bioconductor packages often use special classes. For example, the limma package uses the <code>DGEList</code> class. This is a class that is specifically designed for storing read count data from RNA sequencing. It is a special ‘list’ that must contain two components:</p>
 <ul>
 <li><code>counts</code> - which must be a numeric matrix, that stores counts. Each row must be a gene and each column must be a sample.</li>
 <li><code>samples</code> - which must be a dataframe, that contains information about each sample. Each row must be a sample and must contain information about the group (e.g. treatment group) the sample belongs to, the library size of that sample and the normalisation factor for that sample.</li>
 </ul>
-<p>There are also a number of optional components the <code>DGEList</code>, such as a dataframe containing gene annotation information.</p>
-<p>There are a lot more specifications about the type of and how data is stored in the <code>DGEList</code> S4 object, than say the S3 list. You can think of S3 objects as very genetic tools (e.g. a spanner) whereas S4 objects tend to be tools designed for a very specific task (e.g. a lug wrench, which is used to loosen and tighten lug nuts on car wheels).</p>
-<p>You can read more about the S4 objects in <a href="https://www.bioconductor.org/help/course-materials/2017/Zurich/S4-classes-and-methods.html#strengths-of-s4-compared-to-s3">this</a> Bioconductor tutorial.</p>
+<p>There are also a number of optional components of the <code>DGEList</code> class, such as a dataframe containing gene annotation information.</p>
 </div>
 <div id="packages" class="section level2">
 <h2><span class="header-section-number">3.3</span> Packages</h2>
 <p>Last session we installed the packages limma and edgeR. This downloads the files for each package and saves them to your computer. You generally only need to do this once.</p>
 <p>To use a package you must ‘load’ them EACH time you start a new R session. You do this with the <code>library()</code> function. Let’s load both limma and edgeR:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(edgeR)</code></pre></div>
-<pre><code>## Loading required package: limma</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(limma)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(edgeR)
+<span class="kw">library</span>(limma)</code></pre></div>
 </div>
 <div id="dgelist" class="section level2">
 <h2><span class="header-section-number">3.4</span> DGEList</h2>
 <p>The RNA sequencing analysis you will be guided through is a simplified version of that performed in the article from Law <em>et al.</em> <span class="citation">(Law et al. <a href="#ref-law2016rna">2016</a>)</span>. The RNA sequencing data we will use is from Sheridan <em>et al.</em> <span class="citation">(Sheridan et al. <a href="#ref-sheridan2015pooled">2015</a>)</span>. It consists of samples from 3 cell populations; basal, luminal progenitor (LP) and mature luminal (ML), which has been sorted from the mammary glands of female virgin mice. The reads have been aligned to the mouse reference genome (mm10) and reads summarised at the gene-level (using mm10 RefSeq-based annotation) to obtain gene counts. Gene level summarisation involves counting the number of reads mapped to each gene - the resulting ‘count of reads’ is often referred to simply as ‘counts’.</p>
-<p>We are going to start our RNA-seq analysis with gene counts. The data files for this session should have been emailed to you (you can also obtain them from <a href="https://github.com/lucyleeow/BaseR_Intro">Github</a>). Please uncompress (extract) the files and put them in your working directory.</p>
-<p>Each data file details the number of reads mapped to a gene for 1 sample. There is 1 data file for each sample. Within each data file, there are 3 columns - EntrezID, GeneLength and Count.</p>
+<p>We are going to start our RNA-seq analysis with gene counts. The data files for this session should have been emailed to you (though you can also obtain them from <a href="https://github.com/lucyleeow/BaseR_Intro">Github</a>). Please uncompress (extract) the files and put them in your working directory.</p>
+<p>Each data file details the number of reads mapped to a gene for 1 sample. There is 1 data file for each sample. Within each data file, there are 3 columns - ‘EntrezID’, ‘GeneLength’ and ‘Count.’</p>
 <p>We will be looking at 9 samples (and using 9 data files) in total. Their details are shown below:</p>
 <table>
-<caption><span id="tab:samps">Table 3.1: </span>Summary of samples.</caption>
+<caption>
+<span id="tab:samps">Table 3.1: </span>Summary of samples.
+</caption>
 <thead>
-<tr class="header">
-<th align="left">File name</th>
-<th align="left">Sample name</th>
-<th align="left">Phenotype group</th>
+<tr>
+<th style="text-align:left;">
+File name
+</th>
+<th style="text-align:left;">
+Sample name
+</th>
+<th style="text-align:left;">
+Phenotype group
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">GSM1545535_10_6_5_11.txt</td>
-<td align="left">10_6_5_11</td>
-<td align="left">LP</td>
+<tr>
+<td style="text-align:left;">
+GSM1545535_10_6_5_11.txt
+</td>
+<td style="text-align:left;">
+10_6_5_11
+</td>
+<td style="text-align:left;">
+LP
+</td>
 </tr>
-<tr class="even">
-<td align="left">GSM1545536_9_6_5_11.txt</td>
-<td align="left">9_6_5_11</td>
-<td align="left">ML</td>
+<tr>
+<td style="text-align:left;">
+GSM1545536_9_6_5_11.txt
+</td>
+<td style="text-align:left;">
+9_6_5_11
+</td>
+<td style="text-align:left;">
+ML
+</td>
 </tr>
-<tr class="odd">
-<td align="left">GSM1545538_purep53.txt</td>
-<td align="left">purep53</td>
-<td align="left">Basal</td>
+<tr>
+<td style="text-align:left;">
+GSM1545538_purep53.txt
+</td>
+<td style="text-align:left;">
+purep53
+</td>
+<td style="text-align:left;">
+Basal
+</td>
 </tr>
-<tr class="even">
-<td align="left">GSM1545539_JMS8-2.txt</td>
-<td align="left">JMS8-2</td>
-<td align="left">Basal</td>
+<tr>
+<td style="text-align:left;">
+GSM1545539_JMS8-2.txt
+</td>
+<td style="text-align:left;">
+JMS8-2
+</td>
+<td style="text-align:left;">
+Basal
+</td>
 </tr>
-<tr class="odd">
-<td align="left">GSM1545540_JMS8-3.txt</td>
-<td align="left">JMS8-3</td>
-<td align="left">ML</td>
+<tr>
+<td style="text-align:left;">
+GSM1545540_JMS8-3.txt
+</td>
+<td style="text-align:left;">
+JMS8-3
+</td>
+<td style="text-align:left;">
+ML
+</td>
 </tr>
-<tr class="even">
-<td align="left">GSM1545541_JMS8-4.txt</td>
-<td align="left">JMS8-4</td>
-<td align="left">LP</td>
+<tr>
+<td style="text-align:left;">
+GSM1545541_JMS8-4.txt
+</td>
+<td style="text-align:left;">
+JMS8-4
+</td>
+<td style="text-align:left;">
+LP
+</td>
 </tr>
-<tr class="odd">
-<td align="left">GSM1545542_JMS8-5.txt</td>
-<td align="left">JMS8-5</td>
-<td align="left">Basal</td>
+<tr>
+<td style="text-align:left;">
+GSM1545542_JMS8-5.txt
+</td>
+<td style="text-align:left;">
+JMS8-5
+</td>
+<td style="text-align:left;">
+Basal
+</td>
 </tr>
-<tr class="even">
-<td align="left">GSM1545544_JMS9-P7c.txt</td>
-<td align="left">JMS9-P7c</td>
-<td align="left">ML</td>
+<tr>
+<td style="text-align:left;">
+GSM1545544_JMS9-P7c.txt
+</td>
+<td style="text-align:left;">
+JMS9-P7c
+</td>
+<td style="text-align:left;">
+ML
+</td>
 </tr>
-<tr class="odd">
-<td align="left">GSM1545545_JMS9-P8c.txt</td>
-<td align="left">JMS9-P8c</td>
-<td align="left">LP</td>
+<tr>
+<td style="text-align:left;">
+GSM1545545_JMS9-P8c.txt
+</td>
+<td style="text-align:left;">
+JMS9-P8c
+</td>
+<td style="text-align:left;">
+LP
+</td>
 </tr>
 </tbody>
 </table>
-<p>To create a <code>DGEList</code> object, we will use the <code>readDGE()</code> function. There are three important arguments to this function:</p>
+<p>To create a <code>DGEList</code> class object (or simply ‘<code>DGEList</code> object’), we will use the <code>readDGE()</code> function. There are three important arguments to this function:</p>
 <ul>
 <li><code>files</code> - a vector of data file names</li>
 <li><code>path</code> - the path to the directory that contains your data files. If the data files are in your working directory, don’t worry about this argument. If the data files are somewhere else, like a folder called ‘data’, in your working directory you must give the path to that folder</li>

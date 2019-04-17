@@ -365,7 +365,7 @@ vfit <- lmFit(v, design)
 head(vfit$coefficients)
 ```
 
-We can then use `contrasts.fit()` to calculate coefficients for each contrast (or 'comparison') we specified in our `contr.matrix`. The output is also a `MArrayLM` object. When we inspect the `coefficients` element now, we can see that each column is a contrast that we specified in our contrast matrix.
+We can then use `contrasts.fit()` to calculate coefficients for each contrast (or 'comparison') we specified in our `contr.matrix`. The output is also an object of the class `MArrayLM` (also known as an `MArrayLM` object). When we inspect the `coefficients` element now, we can see that each column is a contrast that we specified in our contrast matrix.
 
 ```{r}
 vfit <- contrasts.fit(vfit, contrasts = contr.matrix)

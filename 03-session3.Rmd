@@ -249,22 +249,24 @@ Using just `$`, obtain:
 3. the vector of dog ages
 
 
-## S4 objects
+## Classes
 
-Everything in R is an 'object' - every function that we have used and every data structure created in R. All the objects we have used so far, are 'S3' objects. 
+Everything in R is an 'object' - every function that we have used and every data structure we have created in R. Each object falls under a 'class'. A class defines a type of object and what properties it has. For example, every list created with `list()` is an object that falls under the class 'list'. The 'list' class describes how 'list' objects behave. 
 
-Bioconductor is an open source project to provide tools for the analysis of high-throughput genomic data. There are more than 1,500 R packages on Bioconductor. Most objects in Bioconductor packages are 'S4' objects. 'S4' objects are much more 'formal' than S3 objects. 
 
-Let's look at an example. The `DGEList` object from limma is a S4 object. It is a data structure specifically designed for storing read count data from sequencing. It is a list that contains two specific components:
+To find out what class an object falls under, use the function `class()`:
+
+```{r}
+class(list(1, 2, "a"))
+class(list("a", "b", 4))
+```
+
+Bioconductor packages often use special classes. For example, the limma package uses the `DGEList` class. This is a class that is specifically designed for storing read count data from RNA sequencing. It is a special 'list' that must contain two components:
 
 * `counts` - which must be a numeric matrix, that stores counts. Each row must be a gene and each column must be a sample.
 * `samples` - which must be a dataframe, that contains information about each sample. Each row must be a sample and must contain information about the group (e.g. treatment group) the sample belongs to, the library size of that sample and the normalisation factor for that sample.
 
-There are also a number of optional components the `DGEList`, such as a dataframe containing gene annotation information.
-
-There are a lot more specifications about the type of and how data is stored in the `DGEList` S4 object, than say the S3 list. You can think of S3 objects as very genetic tools (e.g. a spanner) whereas S4 objects tend to be tools designed for a very specific task (e.g. a lug wrench, which is used to loosen and tighten lug nuts on car wheels).
-
-You can read more about the S4 objects in [this](https://www.bioconductor.org/help/course-materials/2017/Zurich/S4-classes-and-methods.html#strengths-of-s4-compared-to-s3) Bioconductor tutorial.
+There are also a number of optional components of the `DGEList` class, such as a dataframe containing gene annotation information.
 
 ## Packages
 
@@ -281,9 +283,9 @@ library(limma)
 
 The RNA sequencing analysis you will be guided through is a simplified version of that performed in the article from Law *et al.* [@law2016rna]. The RNA sequencing data we will use is from Sheridan *et al.* [@sheridan2015pooled]. It consists of samples from 3 cell populations; basal, luminal progenitor (LP) and mature luminal (ML), which has been sorted from the mammary glands of female virgin mice. The reads have been aligned to the mouse reference genome (mm10) and reads summarised at the gene-level (using mm10 RefSeq-based annotation) to obtain gene counts. Gene level summarisation involves counting the number of reads mapped to each gene - the resulting 'count of reads' is often referred to simply as 'counts'. 
 
-We are going to start our RNA-seq analysis with gene counts. The data files for this session should have been emailed to you (you can also obtain them from [Github](https://github.com/lucyleeow/BaseR_Intro)). Please uncompress (extract) the files and put them in your working directory.
+We are going to start our RNA-seq analysis with gene counts. The data files for this session should have been emailed to you (though you can also obtain them from [Github](https://github.com/lucyleeow/BaseR_Intro)). Please uncompress (extract) the files and put them in your working directory.
 
-Each data file details the number of reads mapped to a gene for 1 sample. There is 1 data file for each sample. Within each data file, there are 3 columns - EntrezID, GeneLength and Count. 
+Each data file details the number of reads mapped to a gene for 1 sample. There is 1 data file for each sample. Within each data file, there are 3 columns - 'EntrezID', 'GeneLength' and 'Count.' 
 
 We will be looking at 9 samples (and using 9 data files) in total. Their details are shown below:
 
@@ -310,7 +312,7 @@ kable(
 ```
 
 
-To create a `DGEList` object, we will use the `readDGE()` function. There are three important arguments to this function:
+To create a `DGEList` class object (or simply '`DGEList` object'), we will use the `readDGE()` function. There are three important arguments to this function:
 
 * `files` - a vector of data file names
 * `path` - the path to the directory that contains your data files. If the data files are in your working directory, don't worry about this argument. If the data files are somewhere else, like a folder called 'data', in your working directory you must give the path to that folder
