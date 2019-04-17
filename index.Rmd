@@ -18,12 +18,19 @@ This introduction to base R course was designed for biologists with no previous 
 
 It is intended to be delivered over four 2.5 hour workshops.
 
+## Data files
+
+The data files require for this workshop are available on [Github](https://github.com/lucyleeow/BaseR_Intro/tree/master/data). To download a data file click on the file in Github then right click 'Raw' > 'Save Link As...':
+
+```{r githubdata, fig.cap="Saving data files from GitHub.", echo=FALSE}
+knitr::include_graphics("Images/githubdata.png")
+```
+
 
 **Acknowledgements**
 
 * Thank you to [Shian Su](https://github.com/Shians) and [Brendan Ansell](https://github.com/bansell) for your suggestions and review of this tutorial.
 * This page was generated using the [bookdown](https://bookdown.org/) package by [YiHui Xie](https://yihui.name/). 
-
 
 
 The source code for this page can be found on [Github](https://github.com/lucyleeow/BaseR_Intro).

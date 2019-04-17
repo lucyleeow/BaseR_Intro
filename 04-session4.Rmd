@@ -265,7 +265,7 @@ Each step is indicated by an arrow and number below:
 knitr::include_graphics("Images/saveim2.png")
 ```
 
-Note that you can also save your plot as a pdf using `Export` > `Save as PDF...`.
+Note that you can also save your plot as a pdf using 'Export > 'Save as PDF...'.
 
 
 ## Linear modelling
