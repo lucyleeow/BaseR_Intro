@@ -28,7 +28,7 @@ knitr::include_graphics("Images/RS1.png")
     * Files - you can explore your file directory here and we will use it to set our working directory later.
     * Plots - plots that you create will either appear here or be saved to a file.
     * Help - help files for R functions can be viewed in this tab. Help files tell you about what a function does and how to use it.
-    * Packages - basic R includes many useful functions. You can add even more functions by downloading packages. A package is a collection of functions, generally with a certain data analysis theme. For example, the package 'limma', which we will use later, includes functions designed for analysing RNA-sequencing data.
+    * Packages - basic R includes many useful functions. You can add even more functions by downloading packages. A package is a collection of functions, generally with a certain data analysis theme. For example, the package 'limma', which we will use later, includes functions for analysing RNA-sequencing data.
     * Viewer - this tab lets you view local web content but we won't be using it in this course.
     
 ## R scripts
@@ -181,10 +181,10 @@ my_num
 
 R is particular about variable names. Variable names cannot:
 
-* start with a number,
-* contain any spaces.
+* start with a number 
+* contain any spaces
 
-If we try to create a variable that starts with a number, R will return us an error:
+If we try to create a variable that starts with a number, R will return an error:
 
 ```{r, error=TRUE}
 2myvar <- 2 + 6 * 7**2
@@ -200,7 +200,7 @@ A *warning* is R telling you that is has done what you told it to do, however th
 
 ## Data structures
 
-A data structure can be thought of as a 'container' for data. There are a number of different data structures in R and each have different specifications about how data is 'contained'. 
+A data structure can be thought of as a 'container' for data. There are a number of different data structures in R and each have different specifications about how data is stored. 
 
 Three commonly used data structures are summarised below:
 
@@ -228,6 +228,33 @@ A matrix is like an excel spreadsheet. It is two dimensional meaning you have co
 ### Dataframe
 
 Dataframes are also two dimensional (has both rows and columns) however, you can store different types of data in a dataframe. The only restriction is that all the data within one column must be of the same type.
+
+A dataframe is composed of vectors, with each vector being one column. You can create a dataframe using the `data.frame()` function:
+
+```{r}
+my_df <- data.frame(
+  name = c("bob", "amy"), # 'name' becomes the column name of this column
+  age = c(23,34)
+  
+)
+my_df
+```
+
+There are a few important 
+
+1. `name` and `age` become the names of the columns
+2. the `,` at the end of `name = c("bob", "amy")` is important and should not be missed
+3. each column in a dataframe is essentially a vector. Do not forget the `c()` when inputing the values within each column
+
+Finally, you can access a column in a dataframe with the shortcut `$`. Notice that the names of all columns of the dataframe appears after typing in `my_df$`:
+
+```{r df_dollar, fig.cap="Accessing columns in a dataframe using the '$' symbol.", out.width="350px", echo=FALSE, fig.align='center'}
+knitr::include_graphics("Images/df_dollar.png")
+```
+
+**Challenge 1.1**
+
+Create a dataframe called `cats` with 2 columns. The first column named "name" should be a vector with the values: "Garfield", "Hello Kitty". The second column named "weights" should be a vector with the following values: 5.5, 4.8.
 
 ## Reading in data
 
@@ -263,15 +290,15 @@ Andy  10
 Bob   8
 ```
 
-Note how the values in each file are separated by a different 'character' in the two file formats.
+Notice in the above two examples the values are separated by different 'characters'.
 
-You can specify what using the `sep` input in `read.delim()`. E.g. if your file was a csv, you can read it in using:
+You can specify what 'character' separates each value by using the `sep` input in `read.delim()`. E.g. if your file was a csv, you can read it in using:
 
 ```{r, eval=FALSE}
 read.delim("file.csv", sep = ",")
 ```
 
-We don't need to specify the `sep` for our file, which is a tsv, as the default separater `read.delim()` assumes is tab. Thus we only need to specify when we are reading in a file NOT separated by tabs.
+We don't need to specify the `sep` for our file, which is a tsv, as the default separater `read.delim()` is tab. We only need to specify the separater character when we are reading in a file NOT separated by tabs.
 
 Above, we have read in our data as a dataframe and printed it. However, we can't refer to this dataframe again and manipulate it because we haven't assigned it to a variable.
 
@@ -289,14 +316,6 @@ knitr::include_graphics("Images/import.png")
 
 All variables that we create will be shown in this tab, so it is a useful way to keep track of variables that we have created. Notice how R also tells us that there are 10 observations (rows) and 3 variables (columns) in the `genes` dataframe.
 
-We can further explore our dataframe with the function `str()` (structure):
-
-```{r}
-str(genes)
-```
-
-This tells us that `genes` is a dataframe. It also tells us what *data type* each column is.
-
 ### Summary
 
 A useful function for investigating your data is `summary()`. Running this function on our `genes` dataframe provides us with summary statistics on all the numeric columns. For the columns that don't contain numbers, the output simply states the length of that column.
@@ -305,19 +324,29 @@ A useful function for investigating your data is `summary()`. Running this funct
 summary(genes)
 ```
 
+### Structure
+
+A useful function for understanding how our data is stored in R is `str()` (structure). 
+
+```{r}
+str(genes)
+```
+
+The output tells us that `genes` is a dataframe. It also tells us what *data type* each column is. 
+
 ## Data types
 
 Every bit of data in R has a 'data type label'. The label doesn't change the data in any way - it just tells R what kind of data it is and thus what it can and can't do with the data.
 
-For example, it makes sense to perform mathematical functions on numbers but not on words. It makes sense to look for a certain term, like a gene name, in a word but not in a number.
+For example, it makes sense to perform mathematical functions on numbers but not on words. It makes sense to look for a certain term, like a gene name, in words but not in numbers.
 
-For example, you can't add 'characters'. Thus this doesn't work because `"1"` and `"2"` are labelled as 'characters':
+For example, you can't add words so the code belwo doesn't work. Note that quotes (`" "` or `' '`) ALWAYS surround values that are of the 'character' data type:
 
 ```{r, error=TRUE}
-"1" + "2"
+"one" + "two"
 ```
 
-This does work:
+This does work because they are numbers:
 
 ```{r}
 1 + 2
@@ -374,7 +403,7 @@ We can check the structure again:
 str(genes)
 ```
 
-Note that now the column `SYMBOL` is now a character ('chr').
+Notice that now the column `SYMBOL` is now a character ('chr').
 
 Another way to change the labels of data in R is with the following functions:
 
@@ -390,7 +419,6 @@ For example, this will turn a integer vector into a character vector:
 as.character(c(1,2,3))
 ```
 
-Note the quotes, which always signify the character type.
 
 ### Type coercion
 
@@ -429,9 +457,9 @@ str(c(1,2,3))
 
 `num` stands for numeric and is just the 'number' data types grouped together. R does this for two reasons. First, generally you don't need to know exactly what 'type' of number class your data is. Second, R will often convert between number types depending the type of calculations/function performed.
 
-**Challenge 1.1**
+**Challenge 1.2**
 
-What data type will the following vectors be?
+1. What data type will the following vectors be?
 
 ```{r, eval=FALSE}
 # 1
@@ -442,48 +470,12 @@ c("hello", TRUE, 4)
 c(4, "5")
 ```
 
-
-
-## Vectorisation {#vect}
-
-R is quite efficient at doing calculations or performing a functions on a vector of data.
-
-Let's use the `Count` column from our dataframe `genes`. We can access just one column using the `$` symbol:
-
-```{r}
-genes$Count
-```
-
-What do you think will happen if we do this?
-
-```{r}
-genes$Count + 10
-```
-
-R will perform this calculation on all numbers in the `Count` column and return a vector.
-
-We can add this new vector to our dataframe, as a new column.
-
-```{r}
-genes$Count_2 <- genes$Count + 10
-```
-
-There are a few things happening in the command above:
-
-1. The code on the right side of `<-` is evaluated first. It returns a vector as we saw above.
-2. This vector is assigned to a column in `genes` called `Count_2`. Since this column does not yet exist in the `genes` dataframe, a new column called `Count_2` is created first. (If there was already a column name `Count_2`, this command will have overwritten that column with the new vector created in the right side of `<-`)
-
-Note that you could also REPLACE a column with the same notation. For example, if in the command above, the left side was `genes$Count`, the old column called `Count` would be REPLACED with the new vector of numbers created on the right side.
-
-**Challenge 1.2**
-
-Create a new column called `Prop_Count` that contains each count value as a proportion of the total count value of all 10 genes in the dataframe. E.g. if `Count` was 10 and total count of all 10 genes is 100, that row in `Prop_Count` should be 0.1.
-
-*Hint* use the `sum()` function.
+2. Create a vector called `my_vect3` that contains the following numbers: 1,1,2,3,5,8. 
+    * Convert this vector into the character data type. How can you tell that the values are now characters?
 
 ## Writing out data {#write}
 
-The last thing we will do this session is to write out our new dataframe using the function `write.table()`.
+The last thing we will do this session is learn to write out data using the function `write.table()`.
 
 There are a few things we must tell `write.table()`, for it to be able to write out the data the way we want:
 
@@ -493,12 +485,16 @@ There are a few things we must tell `write.table()`, for it to be able to write 
 * `row.names` - this is either `TRUE` or `FALSE`, and let's you specify whether you want to write out row names. If your dataframe does not have row names, put `FALSE`.
 * `col.names` - this is also either `TRUE` or `FALSE`, and let's you specify whether you want to write out column names. If your dataframe has column names, put `TRUE`.
 
+We can write out our `genes` dataframe into a .tsv file using the command below:
+
 ```{r, eval=FALSE}
 write.table(x = genes, file = "Ses1_Genes_output.tsv", sep = "\t",
             row.names = FALSE, col.names = TRUE)
 ```
 
 ## Homework
+
+
 
 Read in the data file "Ses1_homework.tsv" using `read.delim()`. This file is similar to the "Ses1_genes.tsv" file but with a different 10 genes.
 
@@ -509,6 +505,19 @@ Finally, write out this new dataframe as a file called "Ses1_homework_output.tsv
 ## Answers
 
 **Challenge 1.1**
+
+Create a dataframe called `cats` with 2 columns. The first column named "name" should be a vector with the values: "Garfield", "Hello Kitty". The second column named "weights" should be a vector with the following values: 5.5, 4.8.
+```{r}
+cats <- data.frame(
+  name = c("Garfield", "Hello Kitty"),
+  weights = c(5.5,4.8)
+)
+```
+
+
+**Challenge 1.2**
+
+1.
 ```{r}
 str(c(TRUE, 3, 4))
 
@@ -517,15 +526,15 @@ str(c("hello", TRUE, 4))
 str(c(4, "5"))
 ```
 
-
-**Challenge 1.2**
-
-The `sum()` function can be used to calculate the total Count of all 10 rows by giving the `genes$Count` vector as the input to `sum()`.
-
+2.
 ```{r}
-genes$Prop_Count <- genes$Count / sum(genes$Count) 
-genes
+my_vect3 <- c(1,1,2,3,5,8)
+# convert to character
+my_vect3 <- as.character(my_vect3)
+# quotes around each value show that they are of the character type
+my_vect3 
 ```
+
 
 
 
