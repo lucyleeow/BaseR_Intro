@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Introduction to Base R</title>
+  <title>Chapter 5 Extra | Introduction to Base R</title>
   <meta name="description" content="Introductory tutorial to base R, with a biological focus. In particular it will focus on analysing RNA-sequencing data with Bioconductor.">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Introduction to Base R" />
+  <meta property="og:title" content="Chapter 5 Extra | Introduction to Base R" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="lucyleeow/BaseR_Intro" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Introduction to Base R" />
+  <meta name="twitter:title" content="Chapter 5 Extra | Introduction to Base R" />
   
   <meta name="twitter:description" content="Introductory tutorial to base R, with a biological focus. In particular it will focus on analysing RNA-sequencing data with Bioconductor." />
   
@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="session-1.html">
+<link rel="prev" href="session-4.html">
+<link rel="next" href="references.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -197,28 +197,64 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Introduction to Base R</h1>
-<p class="author"><em>Lucy Liu</em></p>
-<p class="date"><em>2019-05-01</em></p>
-</div>
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
-<p>This introduction to base R course was designed for biologists with no previous programming experience. It has a focus on analysing RNA-sequencing data using the <a href="https://www.bioconductor.org/">Bioconductor</a> package <a href="https://bioconductor.org/packages/release/bioc/html/limma.html">limma</a>. The F1000 paper <a href="https://f1000research.com/articles/5-1408/v3">‘RNA-seq analysis is easy as 1-2-3 with limma, Glimma and edgeR’</a> was used as a guide for the latter sessions.</p>
-<p>It is intended to be delivered over four 2.5 hour workshops at the Walter and Eliza Hall Institute of Medical Research (WEHI).</p>
-<div id="data-files" class="section level2">
-<h2><span class="header-section-number">0.1</span> Data files</h2>
-<p>The data files require for this workshop are available on <a href="https://github.com/lucyleeow/BaseR_Intro/tree/master/data">Github</a>. To download a data file click on the file you wish to download then right click ‘Raw’ &gt; ‘Save Link As…’:</p>
-<div class="figure">
-<img src="Images/githubdata.png" />
+<div id="extra" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> Extra</h1>
+<p>Extra topics that are useful but not within the scope of this course are included in this section.</p>
+<div id="merge" class="section level2">
+<h2><span class="header-section-number">5.1</span> Merge</h2>
+<p>Two dataframes can be combined with the <code>merge()</code> function.</p>
+<p>Let’s practice on the files “Ses2_genes.tsv” and “Extra_geneNames.tsv”. “Ses2_genes.tsv” contains gene EntrezIDs, gene symbol, gene chromosome, gene length and their count value. “Extra_geneNames.tsv” contains gene names and their corresponding EntrezIDs.</p>
+<p>First we will read in both files:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses2_genes.tsv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
+gene_names &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Extra_geneNames.tsv&quot;</span>, 
+                         <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p>What we want to do now, is to add the <code>GENENAME</code> column from <code>gene_names</code> dataframe to the <code>genes</code> dataframe. Of course we want to make sure that when R merges the dataframes, the correct <code>GENENAME</code> is added to the correct row. You will notice that both the <code>genes</code> and <code>gene_names</code> dataframes have a column giving the EntrezIDs. This column can be used to ensure the correct <code>GENENAME</code> is added to the correct row in the <code>genes</code> dataframe. We therefore want <code>merge()</code> to match rows in the two dataframes using EntrezIDs while it is merging.</p>
+<p><code>merge()</code> has the following syntax:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">merge</span>(
+  <span class="dt">x =</span>    <span class="co"># name of the first dataframe to merge</span>
+  <span class="dt">y =</span>    <span class="co"># name of the second dataframe to merge</span>
+  <span class="dt">by.x =</span> <span class="co"># name of the column to match, in the first dataframe</span>
+  <span class="dt">by.y =</span> <span class="co"># name of the column to match in the second dataframe</span>
+)</code></pre></div>
+<p>Thus, to merge our two dataframes, using the EntrezID column of each dataframe to match rows, we can use:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes2 &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> genes, <span class="dt">y =</span> gene_names, 
+                <span class="dt">by.x =</span> <span class="st">&quot;EntrezID&quot;</span>, <span class="dt">by.y =</span> <span class="st">&quot;ENTREZID&quot;</span>)
 
+<span class="kw">head</span>(genes2)</code></pre></div>
+<pre><code>##   EntrezID  SYMBOL TXCHROM GeneLength Count
+## 1    11480  Acvr2a    chr2       5681   979
+## 2    11634    Aire   chr10       1929    15
+## 3    12156    Bmp2    chr2       2515   932
+## 4    12290 Cacna1e    chr1      12697     0
+## 5    12449    Ccnf   chr17       3099   214
+## 6    12563    Cdh6   chr15       2632     2
+##                                                                                GENENAME
+## 1                                                                  activin receptor IIA
+## 2 autoimmune regulator (autoimmune polyendocrinopathy candidiasis ectodermal dystrophy)
+## 3                                                          bone morphogenetic protein 2
+## 4                          calcium channel, voltage-dependent, R type, alpha 1E subunit
+## 5                                                                              cyclin F
+## 6                                                                            cadherin 6</code></pre>
+<p><strong>Challenge E.1</strong></p>
+<p>You may have noticed that there are 200 rows in the <code>genes</code> dataframe but 290 rows in the <code>gene_names</code> dataframe. This means that there are more gene names contained. We can also specify which rows to keep when merging:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">merge</span>(
+  <span class="dt">x =</span>     <span class="co"># name of the first dataframe to merge</span>
+  <span class="dt">y =</span>     <span class="co"># name of the second dataframe to merge</span>
+  <span class="dt">by.x =</span>  <span class="co"># name of the column to match, in the first dataframe</span>
+  <span class="dt">by.y =</span>  <span class="co"># name of the column to match in the second dataframe</span>
+  <span class="dt">all.x =</span> <span class="co"># logical. If TRUE, keep all rows from the first dataframe, </span>
+          <span class="co"># even if does not have a matching row in the second dataframe</span>
+  <span class="dt">all.y =</span> <span class="co"># logical. If TRUE, keep all rows from the second dataframe, </span>
+          <span class="co"># even if does not have a matching row in the second dataframe</span>
+)</code></pre></div>
+<p>Merge the two dataframes again, but this time keep all rows from both dataframes.</p>
 </div>
-<p><strong>Acknowledgements</strong></p>
-<ul>
-<li>Thank you to <a href="https://github.com/Shians">Shian Su</a> and <a href="https://github.com/bansell">Brendan Ansell</a> for your suggestions and review of this tutorial.</li>
-<li>This page was generated using the <a href="https://bookdown.org/">bookdown</a> package by <a href="https://yihui.name/">YiHui Xie</a>.</li>
-</ul>
-<p>The source code for this page can be found on <a href="https://github.com/lucyleeow/BaseR_Intro">Github</a>.</p>
+<div id="answers-4" class="section level2">
+<h2><span class="header-section-number">5.2</span> Answers</h2>
+<p><strong>Challenge E.1</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes2 &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> genes, <span class="dt">y =</span> gene_names, 
+                <span class="dt">by.x =</span> <span class="st">&quot;EntrezID&quot;</span>, <span class="dt">by.y =</span> <span class="st">&quot;ENTREZID&quot;</span>,
+                <span class="dt">by.x =</span> <span class="ot">TRUE</span>, <span class="dt">by.y =</span> <span class="ot">TRUE</span>)</code></pre></div>
 
 </div>
 </div>
@@ -227,8 +263,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-
-<a href="session-1.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="session-4.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -258,7 +294,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-extra.Rmd",
 "text": "Edit"
 },
 "history": {
