@@ -1,4 +1,5 @@
 # Session 3
+
 ```{r, echo=FALSE, warning=FALSE}
 library(knitr)
 ```
