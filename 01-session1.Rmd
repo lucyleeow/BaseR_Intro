@@ -494,13 +494,9 @@ write.table(x = genes, file = "Ses1_Genes_output.tsv", sep = "\t",
 
 ## Homework
 
+Create a dataframe called 'dogs' with the columns 'names' and 'weight'. The 'names' column should contain: "Spot", "Snoopy" and the 'weight' column should contain: 5.6, 4.5.
 
-
-Read in the data file "Ses1_homework.tsv" using `read.delim()`. This file is similar to the "Ses1_genes.tsv" file but with a different 10 genes.
-
-Create a new column called `Prop_GeneLength` that contains the `Count` value as a proportion of `GeneLength`. E.g. if the count value was 50 and the gene length was 2400, the `Prop_GeneLength` value for that row would be 0.02083333.
-
-Finally, write out this new dataframe as a file called "Ses1_homework_output.tsv", as a tsv (tab separated values) file.
+Write this dataframe out to a .tsv file named 'Ses1_dogs.tsv'.
 
 ## Answers
 
