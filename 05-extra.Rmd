@@ -1,0 +1,68 @@
+# Extra
+
+Extra topics that are useful but not within the scope of this course are included in this section.
+
+## Merge
+
+Two dataframes can be combined with the `merge()` function.
+
+Let's practice on the files "Ses2_genes.tsv" and "Extra_geneNames.tsv". "Ses2_genes.tsv" contains gene EntrezIDs, gene symbol, gene chromosome, gene length and their count value. "Extra_geneNames.tsv" contains gene names and their corresponding EntrezIDs.
+
+First we will read in both files:
+
+```{r}
+genes <- read.delim("data/Ses2_genes.tsv", stringsAsFactors = FALSE)
+gene_names <- read.delim("data/Extra_geneNames.tsv", 
+                         stringsAsFactors = FALSE)
+```
+
+What we want to do now, is to add the `GENENAME` column from `gene_names` dataframe to the `genes` dataframe. Of course we want to make sure that when R merges the dataframes, the correct `GENENAME` is added to the correct row. You will notice that both the `genes` and `gene_names` dataframes have a column giving the EntrezIDs. This column can be used to ensure the correct `GENENAME` is added to the correct row in the `genes` dataframe. We therefore want `merge()` to match rows in the two dataframes using EntrezIDs while it is merging. 
+
+`merge()` has the following syntax:
+
+```{r, eval=FALSE}
+merge(
+  x =    # name of the first dataframe to merge
+  y =    # name of the second dataframe to merge
+  by.x = # name of the column to match, in the first dataframe
+  by.y = # name of the column to match in the second dataframe
+)
+```
+
+Thus, to merge our two dataframes, using the EntrezID column of each dataframe to match rows, we can use:
+
+```{r}
+genes2 <- merge(x = genes, y = gene_names, 
+                by.x = "EntrezID", by.y = "ENTREZID")
+
+head(genes2)
+```
+
+**Challenge E.1**
+
+You may have noticed that there are 200 rows in the `genes` dataframe but 290 rows in the `gene_names` dataframe. This means that there are more gene names contained. We can also specify which rows to keep when merging:
+
+```{r, eval=FALSE}
+merge(
+  x =     # name of the first dataframe to merge
+  y =     # name of the second dataframe to merge
+  by.x =  # name of the column to match, in the first dataframe
+  by.y =  # name of the column to match in the second dataframe
+  all.x = # logical. If TRUE, keep all rows from the first dataframe, 
+          # even if does not have a matching row in the second dataframe
+  all.y = # logical. If TRUE, keep all rows from the second dataframe, 
+          # even if does not have a matching row in the second dataframe
+)
+```
+
+Merge the two dataframes again, but this time keep all rows from both dataframes.
+
+## Answers
+
+**Challenge E.1**
+
+```{r, eval=FALSE}
+genes2 <- merge(x = genes, y = gene_names, 
+                by.x = "EntrezID", by.y = "ENTREZID",
+                by.x = TRUE, by.y = TRUE)
+```
