@@ -298,7 +298,7 @@ You can specify what 'character' separates each value by using the `sep` input i
 read.delim("file.csv", sep = ",")
 ```
 
-We don't need to specify the `sep` for our file, which is a tsv, as the default separater `read.delim()` is tab. We only need to specify the separater character when we are reading in a file NOT separated by tabs.
+We don't need to specify the `sep` for our file, which is a tsv, as the default separator `read.delim()` assumes is tab. Thus we only need to specify when we are reading in a file NOT separated by tabs.
 
 Above, we have read in our data as a dataframe and printed it. However, we can't refer to this dataframe again and manipulate it because we haven't assigned it to a variable.
 
@@ -422,7 +422,7 @@ as.character(c(1,2,3))
 
 ### Type coercion
 
-In some circumstances, R will change the data type label of your data. This is called 'type coercion'. A common scenario in which this will happen is with vector (and dataframe column) labeling.
+In some circumstances, R will change the data type label of your data. This is called 'type coercion'. A common scenario in which this will happen is with vector (and dataframe column) labelling.
 
 All elements within a vector (and within a column of a dataframe) must have the same data type label. Thus, if you create a vector like the one below, the whole vector will be labelled as one data type. Which data type do you think it will be?
 
