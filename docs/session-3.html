@@ -25,7 +25,7 @@
 <meta name="author" content="Lucy Liu">
 
 
-<meta name="date" content="2019-05-03">
+<meta name="date" content="2019-05-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -52,41 +52,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -158,19 +184,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.6" data-path="session-3.html"><a href="session-3.html#answers-2"><i class="fa fa-check"></i><b>3.6</b> Answers</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="session-4.html"><a href="session-4.html"><i class="fa fa-check"></i><b>4</b> Session 4</a><ul>
-<li class="chapter" data-level="4.1" data-path="session-4.html"><a href="session-4.html#filtering"><i class="fa fa-check"></i><b>4.1</b> Filtering</a></li>
-<li class="chapter" data-level="4.2" data-path="session-4.html"><a href="session-4.html#normalisation"><i class="fa fa-check"></i><b>4.2</b> Normalisation</a></li>
-<li class="chapter" data-level="4.3" data-path="session-4.html"><a href="session-4.html#mds"><i class="fa fa-check"></i><b>4.3</b> MDS</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="session-4.html"><a href="session-4.html#plotting"><i class="fa fa-check"></i><b>4.3.1</b> Plotting</a></li>
+<li class="chapter" data-level="4.1" data-path="session-4.html"><a href="session-4.html#dgelist-1"><i class="fa fa-check"></i><b>4.1</b> DGEList</a></li>
+<li class="chapter" data-level="4.2" data-path="session-4.html"><a href="session-4.html#filtering"><i class="fa fa-check"></i><b>4.2</b> Filtering</a></li>
+<li class="chapter" data-level="4.3" data-path="session-4.html"><a href="session-4.html#normalisation"><i class="fa fa-check"></i><b>4.3</b> Normalisation</a></li>
+<li class="chapter" data-level="4.4" data-path="session-4.html"><a href="session-4.html#mds"><i class="fa fa-check"></i><b>4.4</b> MDS</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="session-4.html"><a href="session-4.html#plotting"><i class="fa fa-check"></i><b>4.4.1</b> Plotting</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="session-4.html"><a href="session-4.html#saving-plots"><i class="fa fa-check"></i><b>4.4</b> Saving plots</a></li>
-<li class="chapter" data-level="4.5" data-path="session-4.html"><a href="session-4.html#linear-modelling"><i class="fa fa-check"></i><b>4.5</b> Linear modelling</a><ul>
-<li class="chapter" data-level="4.5.1" data-path="session-4.html"><a href="session-4.html#design-matrix"><i class="fa fa-check"></i><b>4.5.1</b> Design matrix</a></li>
-<li class="chapter" data-level="4.5.2" data-path="session-4.html"><a href="session-4.html#contrasts"><i class="fa fa-check"></i><b>4.5.2</b> Contrasts</a></li>
-<li class="chapter" data-level="4.5.3" data-path="session-4.html"><a href="session-4.html#linear-model-fitting"><i class="fa fa-check"></i><b>4.5.3</b> Linear model fitting</a></li>
+<li class="chapter" data-level="4.5" data-path="session-4.html"><a href="session-4.html#saving-plots"><i class="fa fa-check"></i><b>4.5</b> Saving plots</a></li>
+<li class="chapter" data-level="4.6" data-path="session-4.html"><a href="session-4.html#linear-modelling"><i class="fa fa-check"></i><b>4.6</b> Linear modelling</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="session-4.html"><a href="session-4.html#design-matrix"><i class="fa fa-check"></i><b>4.6.1</b> Design matrix</a></li>
+<li class="chapter" data-level="4.6.2" data-path="session-4.html"><a href="session-4.html#contrasts"><i class="fa fa-check"></i><b>4.6.2</b> Contrasts</a></li>
+<li class="chapter" data-level="4.6.3" data-path="session-4.html"><a href="session-4.html#linear-model-fitting"><i class="fa fa-check"></i><b>4.6.3</b> Linear model fitting</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="session-4.html"><a href="session-4.html#statistical-testing"><i class="fa fa-check"></i><b>4.6</b> Statistical testing</a></li>
-<li class="chapter" data-level="4.7" data-path="session-4.html"><a href="session-4.html#answers-3"><i class="fa fa-check"></i><b>4.7</b> Answers</a></li>
+<li class="chapter" data-level="4.7" data-path="session-4.html"><a href="session-4.html#statistical-testing"><i class="fa fa-check"></i><b>4.7</b> Statistical testing</a></li>
+<li class="chapter" data-level="4.8" data-path="session-4.html"><a href="session-4.html#answers-3"><i class="fa fa-check"></i><b>4.8</b> Answers</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="extra.html"><a href="extra.html"><i class="fa fa-check"></i><b>5</b> Extra</a><ul>
 <li class="chapter" data-level="5.1" data-path="extra.html"><a href="extra.html#merge"><i class="fa fa-check"></i><b>5.1</b> Merge</a></li>
@@ -208,7 +235,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="lists" class="section level2">
 <h2><span class="header-section-number">3.1</span> Lists</h2>
 <p>Recall that we have previously learnt about the data structures: vectors, matrices and dataframes. Another important data structure is the list. Like a vector, it is 1 dimensional i.e. one row of data. Unlike vectors, you can put several data types in a list. Here, our list includes data of the integer, a character and a double types:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list</span>(<span class="dv">1</span>, <span class="st">&quot;a&quot;</span>, <span class="fl">1.5</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list</span>(<span class="dv">1</span>, <span class="st">&quot;a&quot;</span>, <span class="fl">1.5</span>)</code></pre>
 <pre><code>## [[1]]
 ## [1] 1
 ## 
@@ -218,10 +245,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## [[3]]
 ## [1] 1.5</code></pre>
 <p>Not only can you put different data types into a list, you can also put a WHOLE data structure into one element of a list. In the list below, the first element is a vector that contains 3 numbers, the second element is a character and the third element is a dataframe that has two columns.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), 
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), 
      <span class="kw">c</span>(<span class="st">&quot;words&quot;</span>, <span class="st">&quot;letters&quot;</span>), 
      <span class="kw">data.frame</span>(<span class="dt">column1 =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dt">column2 =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>))
-     )</code></pre></div>
+     )</code></pre>
 <pre><code>## [[1]]
 ## [1] 1 2 3
 ## 
@@ -235,7 +262,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 3       3       c</code></pre>
 <p>The output can often help you understand how the list is structured. The double brackets (e.g. <code>[[1]]</code>) signifies an element of the list and which index it is at. Here there are three elements in our list so the numbers in the double square brackets go from 1 to 3. Underneath the <code>[[1]]</code> and <code>[[2]]</code>, there is a <code>[1]</code> - this indicates that the first and second elements both contain a vector. Underneath <code>[[3]]</code> you see the standard output for a dataframe, which we have seen before.</p>
 <p>You even include a list within a list (within a list, within a list….I call this ‘list - ception’). This is where it starts to get confusing.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list</span>(<span class="dv">1</span>, <span class="kw">list</span>(<span class="dv">1</span>,<span class="st">&quot;a&quot;</span>))</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list</span>(<span class="dv">1</span>, <span class="kw">list</span>(<span class="dv">1</span>,<span class="st">&quot;a&quot;</span>))</code></pre>
 <pre><code>## [[1]]
 ## [1] 1
 ## 
@@ -292,23 +319,23 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## [1] &quot;end&quot;</code></pre>
 <p>We can access elements of a list using square brackets. You may have noticed that there are often double square brackets <code>[[ ]]</code>. There is a subtle but important difference between single square brackets and double square brackets when subsetting lists.</p>
 <p>Let’s make a list:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list &lt;-<span class="st"> </span><span class="kw">list</span>(
+<pre class="sourceCode r"><code class="sourceCode r">my_list &lt;-<span class="st"> </span><span class="kw">list</span>(
   <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>),
   <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),
   <span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>)
-  )</code></pre></div>
+  )</code></pre>
 <p>Take a look at the output of obtaining the first element with single square brackets and double square brackets:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list[<span class="dv">1</span>]</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">my_list[<span class="dv">1</span>]</code></pre>
 <pre><code>## [[1]]
 ## [1] &quot;a&quot; &quot;b&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list[[<span class="dv">1</span>]]</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">my_list[[<span class="dv">1</span>]]</code></pre>
 <pre><code>## [1] &quot;a&quot; &quot;b&quot;</code></pre>
 <p>The difference is minor; with <code>my_list[1]</code> there is an extra <code>[[1]]</code> at the top, with <code>my_list[[1]]</code> there is no <code>[[1]]</code> at the top.</p>
 <p>The <code>str()</code> function gives us some more information:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(my_list[<span class="dv">1</span>])</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(my_list[<span class="dv">1</span>])</code></pre>
 <pre><code>## List of 1
 ##  $ : chr [1:2] &quot;a&quot; &quot;b&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(my_list[[<span class="dv">1</span>]])</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(my_list[[<span class="dv">1</span>]])</code></pre>
 <pre><code>##  chr [1:2] &quot;a&quot; &quot;b&quot;</code></pre>
 <p>This tells us that when you use single brackets, the output is a list containing one element, which is a vector. When you use double brackets, the output is just a vector, NOT contained within a list.</p>
 <p>Let’s use an analogy to gain a better understanding of this concept. Below is a picture of a cargo train, which contains a box in each segment. This represents a list containing 3 elements, with each element being the box.</p>
@@ -333,7 +360,7 @@ Figure 3.3: Double brackets with our cargo train list.
 </p>
 </div>
 <p>Back to our list:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">my_list</code></pre>
 <pre><code>## [[1]]
 ## [1] &quot;a&quot; &quot;b&quot;
 ## 
@@ -343,22 +370,22 @@ Figure 3.3: Double brackets with our cargo train list.
 ## [[3]]
 ## [1] 4 5 6</code></pre>
 <p>To obtain the first element of the vector contained within the first element of the list (the <code>&quot;a&quot;</code>) you can use:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list[[<span class="dv">1</span>]][<span class="dv">1</span>]</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">my_list[[<span class="dv">1</span>]][<span class="dv">1</span>]</code></pre>
 <pre><code>## [1] &quot;a&quot;</code></pre>
 <p>The <code>[[1]]</code> gives you just the vector contained within the first element of the list:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list[[<span class="dv">1</span>]]</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">my_list[[<span class="dv">1</span>]]</code></pre>
 <pre><code>## [1] &quot;a&quot; &quot;b&quot;</code></pre>
 <p>The second square bracket <code>[1]</code> then gives you the first element of the vector:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list[[<span class="dv">1</span>]][<span class="dv">1</span>]</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">my_list[[<span class="dv">1</span>]][<span class="dv">1</span>]</code></pre>
 <pre><code>## [1] &quot;a&quot;</code></pre>
 <p><strong>Challenge 3.2</strong></p>
 <p>First create a new list:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list2 &lt;-<span class="st"> </span><span class="kw">list</span>(
+<pre class="sourceCode r"><code class="sourceCode r">my_list2 &lt;-<span class="st"> </span><span class="kw">list</span>(
   <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>),
   <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),
   <span class="kw">data.frame</span>(<span class="dt">Name =</span> <span class="kw">c</span>(<span class="st">&quot;Sally&quot;</span>, <span class="st">&quot;Andy&quot;</span>), <span class="dt">Age =</span> <span class="kw">c</span>(<span class="dv">40</span>,<span class="dv">32</span>))
   )
-my_list2</code></pre></div>
+my_list2</code></pre>
 <pre><code>## [[1]]
 ## [1] &quot;a&quot; &quot;b&quot;
 ## 
@@ -402,44 +429,44 @@ my_list2</code></pre></div>
 <div id="named-list" class="section level3">
 <h3><span class="header-section-number">3.1.1</span> Named list</h3>
 <p>You can also have names for each element of your list:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">named_list &lt;-<span class="st"> </span><span class="kw">list</span>(
+<pre class="sourceCode r"><code class="sourceCode r">named_list &lt;-<span class="st"> </span><span class="kw">list</span>(
   <span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;Andy&quot;</span>, <span class="st">&quot;Sally&quot;</span>),
   <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">32</span>,<span class="dv">40</span>)
 )
-named_list</code></pre></div>
+named_list</code></pre>
 <pre><code>## $name
 ## [1] &quot;Andy&quot;  &quot;Sally&quot;
 ## 
 ## $age
 ## [1] 32 40</code></pre>
 <p>If your list is named, you can use <code>$</code> to access each element of your list:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">named_list<span class="op">$</span>name</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">named_list<span class="op">$</span>name</code></pre>
 <pre><code>## [1] &quot;Andy&quot;  &quot;Sally&quot;</code></pre>
 <p>Note that the output is just the vector, NOT a vector within a list. Thus <code>named_list[[1]]</code> does the same thing as <code>named_list$name</code>.</p>
 <p>Recall that we access columns in dataframes with the <code>$</code> symbol as well. This means that if you have a dataframe within a list, you can obtain a column within the dataframe that is within the list using two <code>$</code>’s:</p>
 <p>Let’s start with a list that contains a dataframe as its first element</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">named_list2 &lt;-<span class="st"> </span><span class="kw">list</span>(
+<pre class="sourceCode r"><code class="sourceCode r">named_list2 &lt;-<span class="st"> </span><span class="kw">list</span>(
  <span class="dt">details =</span> <span class="kw">data.frame</span>(<span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;Andy&quot;</span>, <span class="st">&quot;Sally&quot;</span>),
                       <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">32</span>,<span class="dv">40</span>))
 )
-named_list2</code></pre></div>
+named_list2</code></pre>
 <pre><code>## $details
 ##    name age
 ## 1  Andy  32
 ## 2 Sally  40</code></pre>
 <p>We can get the age column using:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">named_list2<span class="op">$</span>details<span class="op">$</span>age</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">named_list2<span class="op">$</span>details<span class="op">$</span>age</code></pre>
 <pre><code>## [1] 32 40</code></pre>
 <p><em>Extra</em>:The reason you can also access columns in a dataframe with <code>$</code> is because ‘under the hood’ a dataframe is actually a list. It is a list with the constraint that each element is a vector of the same length. Each element in the list is thus a column in the ‘dataframe’.</p>
 <p><strong>Challenge 3.3</strong></p>
 <p>Take a look at the named list below:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">named_list3 &lt;-<span class="st"> </span><span class="kw">list</span>(
+<pre class="sourceCode r"><code class="sourceCode r">named_list3 &lt;-<span class="st"> </span><span class="kw">list</span>(
   <span class="dt">cats =</span> <span class="kw">data.frame</span>(<span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;Garfield&quot;</span>, <span class="st">&quot;Hello Kitty&quot;</span>),
                     <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">10</span>), <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>),
   <span class="dt">dogs =</span> <span class="kw">data.frame</span>(<span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;Spot&quot;</span>, <span class="st">&quot;Snoopy&quot;</span>),
                     <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">14</span>), <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
 )
-named_list3</code></pre></div>
+named_list3</code></pre>
 <pre><code>## $cats
 ##          name age
 ## 1    Garfield   3
@@ -461,9 +488,9 @@ named_list3</code></pre></div>
 <h2><span class="header-section-number">3.2</span> Classes</h2>
 <p>Everything in R is an ‘object’ - every function that we have used and every data structure we have created in R. Each object falls under a ‘class’. A class defines a type of object and what properties it has. For example, every list created with <code>list()</code> is an object that falls under the class ‘list’. The ‘list’ class describes how ‘list’ objects behave.</p>
 <p>To find out what class an object falls under, use the function <code>class()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(<span class="kw">list</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&quot;a&quot;</span>))</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(<span class="kw">list</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&quot;a&quot;</span>))</code></pre>
 <pre><code>## [1] &quot;list&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(<span class="kw">list</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="dv">4</span>))</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(<span class="kw">list</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="dv">4</span>))</code></pre>
 <pre><code>## [1] &quot;list&quot;</code></pre>
 <p>Bioconductor packages often use special classes. For example, the limma package uses the <code>DGEList</code> class. This is a class that is specifically designed for storing read count data from RNA sequencing. It is a special ‘list’ that must contain two components:</p>
 <ul>
@@ -476,9 +503,9 @@ named_list3</code></pre></div>
 <h2><span class="header-section-number">3.3</span> Packages</h2>
 <p>Last session we installed the packages limma and edgeR. This downloads the files for each package and saves them to your computer. You generally only need to do this once.</p>
 <p>To use a package you must ‘load’ them EACH time you start a new R session. You do this with the <code>library()</code> function. Let’s load both limma and edgeR:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(edgeR)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(edgeR)</code></pre>
 <pre><code>## Loading required package: limma</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(limma)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(limma)</code></pre>
 </div>
 <div id="dgelist" class="section level2">
 <h2><span class="header-section-number">3.4</span> DGEList</h2>
@@ -550,15 +577,15 @@ named_list3</code></pre></div>
 <li><code>colums</code> - the columns of the input files which have the gene names and counts respectively (as the column indices)</li>
 </ul>
 <p>First, we will create a vector of the file names. You can simply copy and paste this code into your R script.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">files &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;GSM1545535_10_6_5_11.txt&quot;</span>, <span class="st">&quot;GSM1545536_9_6_5_11.txt&quot;</span>, 
+<pre class="sourceCode r"><code class="sourceCode r">files &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;GSM1545535_10_6_5_11.txt&quot;</span>, <span class="st">&quot;GSM1545536_9_6_5_11.txt&quot;</span>, 
    <span class="st">&quot;GSM1545538_purep53.txt&quot;</span>, <span class="st">&quot;GSM1545539_JMS8-2.txt&quot;</span>, 
    <span class="st">&quot;GSM1545540_JMS8-3.txt&quot;</span>, <span class="st">&quot;GSM1545541_JMS8-4.txt&quot;</span>, 
    <span class="st">&quot;GSM1545542_JMS8-5.txt&quot;</span>, <span class="st">&quot;GSM1545544_JMS9-P7c.txt&quot;</span>, 
-   <span class="st">&quot;GSM1545545_JMS9-P8c.txt&quot;</span>)</code></pre></div>
+   <span class="st">&quot;GSM1545545_JMS9-P8c.txt&quot;</span>)</code></pre>
 <p>Next, we will create our <code>DGEList</code> object. I have put my data files in a folder called “data” (within my working directory). Thus, I must specify <code>path = &quot;data&quot;</code>. Depending on where you have put your data files, you may need a different input to <code>path</code> or not have to include the <code>path</code> argument.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">readDGE</span>(files, <span class="dt">path =</span> <span class="st">&quot;data&quot;</span>, <span class="dt">columns =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">readDGE</span>(files, <span class="dt">path =</span> <span class="st">&quot;data&quot;</span>, <span class="dt">columns =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</code></pre>
 <p>The object we created has 2 elements, one named <code>samples</code> and one named <code>counts</code>. Let’s take a look at each:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(x<span class="op">$</span>counts)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(x<span class="op">$</span>counts)</code></pre>
 <pre><code>##            Samples
 ## Tags        GSM1545535_10_6_5_11 GSM1545536_9_6_5_11 GSM1545538_purep53
 ##   497097                       1                   2                342
@@ -584,7 +611,7 @@ named_list3</code></pre></div>
 ##   20671                    98                  18                   8
 ##   27395                   818                 468                 342</code></pre>
 <p>Recall that <code>DGEList</code> specifies that the <code>counts</code> element of the list must be a numeric matrix, that stores the counts. Each row must be a gene and each column must be a sample. Note that the column names are the file names and the rownames are the EntrezID’s.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(x<span class="op">$</span>samples)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(x<span class="op">$</span>samples)</code></pre>
 <pre><code>##                                         files group lib.size norm.factors
 ## GSM1545535_10_6_5_11 GSM1545535_10_6_5_11.txt     1 32863052            1
 ## GSM1545536_9_6_5_11   GSM1545536_9_6_5_11.txt     1 35335491            1
@@ -601,22 +628,22 @@ named_list3</code></pre></div>
 </ul>
 <p>This dataframe also has rownames, which are currently the file names of each sample. Let’s change them to be the sample names (see Table <a href="session-3.html#tab:samps">3.1</a>).</p>
 <p>We can do this by first creating a vector of sample names. You can simply copy and paste the code below into your R script.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">samplenames &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;10_6_5_11&quot;</span>, <span class="st">&quot;9_6_5_11&quot;</span>, <span class="st">&quot;purep53&quot;</span>, <span class="st">&quot;JMS8-2&quot;</span>, <span class="st">&quot;JMS8-3&quot;</span>,
-                 <span class="st">&quot;JMS8-4&quot;</span>, <span class="st">&quot;JMS8-5&quot;</span>, <span class="st">&quot;JMS9-P7c&quot;</span>, <span class="st">&quot;JMS9-P8c&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">samplenames &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;10_6_5_11&quot;</span>, <span class="st">&quot;9_6_5_11&quot;</span>, <span class="st">&quot;purep53&quot;</span>, <span class="st">&quot;JMS8-2&quot;</span>, <span class="st">&quot;JMS8-3&quot;</span>,
+                 <span class="st">&quot;JMS8-4&quot;</span>, <span class="st">&quot;JMS8-5&quot;</span>, <span class="st">&quot;JMS9-P7c&quot;</span>, <span class="st">&quot;JMS9-P8c&quot;</span>)</code></pre>
 <p>We can change the rownames in the <code>samples</code> dataframe using the <code>rownames()</code> function. This function will give you the row names of a data structure (a dataframe in this instance):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rownames</span>(x<span class="op">$</span>samples) </code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rownames</span>(x<span class="op">$</span>samples) </code></pre>
 <pre><code>## [1] &quot;GSM1545535_10_6_5_11&quot; &quot;GSM1545536_9_6_5_11&quot;  &quot;GSM1545538_purep53&quot;  
 ## [4] &quot;GSM1545539_JMS8-2&quot;    &quot;GSM1545540_JMS8-3&quot;    &quot;GSM1545541_JMS8-4&quot;   
 ## [7] &quot;GSM1545542_JMS8-5&quot;    &quot;GSM1545544_JMS9-P7c&quot;  &quot;GSM1545545_JMS9-P8c&quot;</code></pre>
 <p>We can see that the row names are the file names as we saw above. To replace these file names with the sample names we can run:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rownames</span>(x<span class="op">$</span>samples) &lt;-<span class="st"> </span>samplenames</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rownames</span>(x<span class="op">$</span>samples) &lt;-<span class="st"> </span>samplenames</code></pre>
 <p>We have seen this type of notation before in session 1 (section <a href="session-2.html#vect">2.3</a>). This code assigns the <code>samplenames</code> vector as the row names of the <code>samples</code> dataframe.</p>
 <p><strong>Challenge 3.4</strong></p>
 <ol style="list-style-type: decimal">
 <li>Use the <code>colnames()</code> function to replace the column names of the count matrix from being file names to sample names.</li>
 <li>The code below creates a factor vector (called <code>group</code>) that specifies the phenotype group each sample belongs to. It is ordered such that the first element in the vector corresponds to the first row of the <code>samples</code> dataframe.</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">group &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">c</span>(<span class="st">&quot;LP&quot;</span>, <span class="st">&quot;ML&quot;</span>, <span class="st">&quot;Basal&quot;</span>, <span class="st">&quot;Basal&quot;</span>, <span class="st">&quot;ML&quot;</span>, <span class="st">&quot;LP&quot;</span>, <span class="st">&quot;Basal&quot;</span>, <span class="st">&quot;ML&quot;</span>, <span class="st">&quot;LP&quot;</span>)) </code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">group &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">c</span>(<span class="st">&quot;LP&quot;</span>, <span class="st">&quot;ML&quot;</span>, <span class="st">&quot;Basal&quot;</span>, <span class="st">&quot;Basal&quot;</span>, <span class="st">&quot;ML&quot;</span>, <span class="st">&quot;LP&quot;</span>, <span class="st">&quot;Basal&quot;</span>, <span class="st">&quot;ML&quot;</span>, <span class="st">&quot;LP&quot;</span>)) </code></pre>
 <p>Replace the <code>group</code> column of the <code>samples</code> dataframe with the <code>group</code> factor vector.</p>
 <p><em>Hint</em>: you will need to use the list subsetting notation we learnt at the start of this session.</p>
 <ol start="3" style="list-style-type: decimal">
@@ -656,58 +683,58 @@ named_list3</code></pre></div>
 <ol style="list-style-type: decimal">
 <li></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list2[[<span class="dv">1</span>]]</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">my_list2[[<span class="dv">1</span>]]</code></pre>
 <pre><code>## [1] &quot;a&quot; &quot;b&quot;</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list2[[<span class="dv">1</span>]][<span class="dv">2</span>]</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">my_list2[[<span class="dv">1</span>]][<span class="dv">2</span>]</code></pre>
 <pre><code>## [1] &quot;b&quot;</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list2[<span class="dv">2</span>]</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">my_list2[<span class="dv">2</span>]</code></pre>
 <pre><code>## [[1]]
 ## [1] 1 2 3</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list2[[<span class="dv">3</span>]][<span class="dv">1</span>,<span class="dv">2</span>]</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">my_list2[[<span class="dv">3</span>]][<span class="dv">1</span>,<span class="dv">2</span>]</code></pre>
 <pre><code>## [1] 40</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list2[[<span class="dv">3</span>]][<span class="dv">1</span>,]</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">my_list2[[<span class="dv">3</span>]][<span class="dv">1</span>,]</code></pre>
 <pre><code>##    Name Age
 ## 1 Sally  40</code></pre>
 <ol start="6" style="list-style-type: decimal">
 <li></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_list2[<span class="dv">3</span>]</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">my_list2[<span class="dv">3</span>]</code></pre>
 <pre><code>## [[1]]
 ##    Name Age
 ## 1 Sally  40
 ## 2  Andy  32</code></pre>
 <p><strong>Challenge 3.3</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 1. the vector of cat names</span>
-named_list3<span class="op">$</span>cats<span class="op">$</span>name</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 1. the vector of cat names</span>
+named_list3<span class="op">$</span>cats<span class="op">$</span>name</code></pre>
 <pre><code>## [1] &quot;Garfield&quot;    &quot;Hello Kitty&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 2. the dog dataframe</span>
-named_list3<span class="op">$</span>dogs</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 2. the dog dataframe</span>
+named_list3<span class="op">$</span>dogs</code></pre>
 <pre><code>##     name age
 ## 1   Spot   5
 ## 2 Snoopy  14</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 3. the vector of dog ages</span>
-named_list3<span class="op">$</span>dogs<span class="op">$</span>age</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 3. the vector of dog ages</span>
+named_list3<span class="op">$</span>dogs<span class="op">$</span>age</code></pre>
 <pre><code>## [1]  5 14</code></pre>
 <p><strong>Challenge 3.4</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 1</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 1</span>
 <span class="kw">colnames</span>(x<span class="op">$</span>counts) &lt;-<span class="st"> </span>samplenames
 <span class="co"># 2</span>
 x<span class="op">$</span>samples<span class="op">$</span>group &lt;-<span class="st"> </span>group
 <span class="co"># 3</span>
 geneAnnot &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses3_geneAnnot.tsv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
-x<span class="op">$</span>genes &lt;-<span class="st"> </span>geneAnnot</code></pre></div>
+x<span class="op">$</span>genes &lt;-<span class="st"> </span>geneAnnot</code></pre>
 
 </div>
 </div>
@@ -776,7 +803,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

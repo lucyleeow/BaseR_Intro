@@ -25,7 +25,7 @@
 <meta name="author" content="Lucy Liu">
 
 
-<meta name="date" content="2019-05-03">
+<meta name="date" content="2019-05-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -52,41 +52,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -158,19 +184,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.6" data-path="session-3.html"><a href="session-3.html#answers-2"><i class="fa fa-check"></i><b>3.6</b> Answers</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="session-4.html"><a href="session-4.html"><i class="fa fa-check"></i><b>4</b> Session 4</a><ul>
-<li class="chapter" data-level="4.1" data-path="session-4.html"><a href="session-4.html#filtering"><i class="fa fa-check"></i><b>4.1</b> Filtering</a></li>
-<li class="chapter" data-level="4.2" data-path="session-4.html"><a href="session-4.html#normalisation"><i class="fa fa-check"></i><b>4.2</b> Normalisation</a></li>
-<li class="chapter" data-level="4.3" data-path="session-4.html"><a href="session-4.html#mds"><i class="fa fa-check"></i><b>4.3</b> MDS</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="session-4.html"><a href="session-4.html#plotting"><i class="fa fa-check"></i><b>4.3.1</b> Plotting</a></li>
+<li class="chapter" data-level="4.1" data-path="session-4.html"><a href="session-4.html#dgelist-1"><i class="fa fa-check"></i><b>4.1</b> DGEList</a></li>
+<li class="chapter" data-level="4.2" data-path="session-4.html"><a href="session-4.html#filtering"><i class="fa fa-check"></i><b>4.2</b> Filtering</a></li>
+<li class="chapter" data-level="4.3" data-path="session-4.html"><a href="session-4.html#normalisation"><i class="fa fa-check"></i><b>4.3</b> Normalisation</a></li>
+<li class="chapter" data-level="4.4" data-path="session-4.html"><a href="session-4.html#mds"><i class="fa fa-check"></i><b>4.4</b> MDS</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="session-4.html"><a href="session-4.html#plotting"><i class="fa fa-check"></i><b>4.4.1</b> Plotting</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="session-4.html"><a href="session-4.html#saving-plots"><i class="fa fa-check"></i><b>4.4</b> Saving plots</a></li>
-<li class="chapter" data-level="4.5" data-path="session-4.html"><a href="session-4.html#linear-modelling"><i class="fa fa-check"></i><b>4.5</b> Linear modelling</a><ul>
-<li class="chapter" data-level="4.5.1" data-path="session-4.html"><a href="session-4.html#design-matrix"><i class="fa fa-check"></i><b>4.5.1</b> Design matrix</a></li>
-<li class="chapter" data-level="4.5.2" data-path="session-4.html"><a href="session-4.html#contrasts"><i class="fa fa-check"></i><b>4.5.2</b> Contrasts</a></li>
-<li class="chapter" data-level="4.5.3" data-path="session-4.html"><a href="session-4.html#linear-model-fitting"><i class="fa fa-check"></i><b>4.5.3</b> Linear model fitting</a></li>
+<li class="chapter" data-level="4.5" data-path="session-4.html"><a href="session-4.html#saving-plots"><i class="fa fa-check"></i><b>4.5</b> Saving plots</a></li>
+<li class="chapter" data-level="4.6" data-path="session-4.html"><a href="session-4.html#linear-modelling"><i class="fa fa-check"></i><b>4.6</b> Linear modelling</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="session-4.html"><a href="session-4.html#design-matrix"><i class="fa fa-check"></i><b>4.6.1</b> Design matrix</a></li>
+<li class="chapter" data-level="4.6.2" data-path="session-4.html"><a href="session-4.html#contrasts"><i class="fa fa-check"></i><b>4.6.2</b> Contrasts</a></li>
+<li class="chapter" data-level="4.6.3" data-path="session-4.html"><a href="session-4.html#linear-model-fitting"><i class="fa fa-check"></i><b>4.6.3</b> Linear model fitting</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="session-4.html"><a href="session-4.html#statistical-testing"><i class="fa fa-check"></i><b>4.6</b> Statistical testing</a></li>
-<li class="chapter" data-level="4.7" data-path="session-4.html"><a href="session-4.html#answers-3"><i class="fa fa-check"></i><b>4.7</b> Answers</a></li>
+<li class="chapter" data-level="4.7" data-path="session-4.html"><a href="session-4.html#statistical-testing"><i class="fa fa-check"></i><b>4.7</b> Statistical testing</a></li>
+<li class="chapter" data-level="4.8" data-path="session-4.html"><a href="session-4.html#answers-3"><i class="fa fa-check"></i><b>4.8</b> Answers</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="extra.html"><a href="extra.html"><i class="fa fa-check"></i><b>5</b> Extra</a><ul>
 <li class="chapter" data-level="5.1" data-path="extra.html"><a href="extra.html#merge"><i class="fa fa-check"></i><b>5.1</b> Merge</a></li>
@@ -253,8 +280,8 @@ Figure 1.3: Four panels, including a R Script.
 </div>
 <p>A R Script is just a text document. You can type and run commands using a R Script and down in the Console - the difference is that you can’t save the commands you run in the Console but you can save the R Script with all your commands. Note that to run a command in the Console press <code>Enter</code> key but to run a command in a R Script you must press <code>Cmd/Cntrl + Enter</code> keys.</p>
 <p>Lastly, you can make ‘comments’ in your R Script. Comments are notes to yourself that are not interpreted by R and start with <code>#</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># this is a note to myself</span>
-<span class="dv">1</span><span class="op">+</span><span class="dv">3</span><span class="op">-</span><span class="dv">2</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># this is a note to myself</span>
+<span class="dv">1</span><span class="op">+</span><span class="dv">3-2</span></code></pre>
 <pre><code>## [1] 2</code></pre>
 </div>
 <div id="help" class="section level2">
@@ -267,7 +294,7 @@ Figure 1.4: Accessing help files via ‘help’ tab.
 </p>
 </div>
 <p>The other option is to run the command <code>?</code> followed by the name of the function:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?sum</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">?sum</code></pre>
 <p>Help files are very useful but can be difficult to interpret at first due to the technical language used. We won’t get too much practice reading help files during this course but I would encourage you to try to use them when figuring out how to use a new function.</p>
 </div>
 <div id="working-directory" class="section level2">
@@ -317,46 +344,46 @@ Figure 1.7: Setting the working directory - 3.
 <li><code>-</code> - subtract</li>
 </ul>
 <p>Another useful function is modulus (<code>%%</code>), which gives the remainder after dividing:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">8</span><span class="op">%%</span><span class="dv">3</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">8</span><span class="op">%%</span><span class="dv">3</span></code></pre>
 <pre><code>## [1] 2</code></pre>
 </div>
 <div id="comps" class="section level2">
 <h2><span class="header-section-number">1.6</span> Comparisons</h2>
 <p>You can also compare numbers in R:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>  <span class="co"># equal to.</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>  <span class="co"># equal to.</span></code></pre>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>   <span class="co"># greater than.</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>   <span class="co"># greater than.</span></code></pre>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span>   <span class="co"># less than.</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span>   <span class="co"># less than.</span></code></pre>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span>  <span class="co"># greater or equal to.</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span>  <span class="co"># greater or equal to.</span></code></pre>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2</span>  <span class="co"># less than or equal to.</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2</span>  <span class="co"># less than or equal to.</span></code></pre>
 <pre><code>## [1] FALSE</code></pre>
 <p>What do you think will happen if we compare words?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;cat&quot;</span> <span class="op">&gt;</span><span class="st"> &quot;dog&quot;</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;cat&quot;</span> <span class="op">&gt;</span><span class="st"> &quot;dog&quot;</span></code></pre>
 <pre><code>## [1] FALSE</code></pre>
 <p>R will use alphabetical order to determine which word is ‘greater’:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;a&quot;</span> <span class="op">&lt;</span><span class="st"> &quot;b&quot;</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;a&quot;</span> <span class="op">&lt;</span><span class="st"> &quot;b&quot;</span></code></pre>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 <div id="variables" class="section level2">
 <h2><span class="header-section-number">1.7</span> Variables</h2>
 <p>A variable in R is just a name which refers to an ‘thing’ (more technically an ‘object’ in R).</p>
 <p>For example, I can do some maths:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">6</span> <span class="op">*</span><span class="st"> </span><span class="dv">7</span><span class="op">**</span><span class="dv">2</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">6</span> <span class="op">*</span><span class="st"> </span><span class="dv">7</span><span class="op">**</span><span class="dv">2</span></code></pre>
 <pre><code>## [1] 296</code></pre>
 <p>R outputs the result. However, if I want to ‘save’ this result to use later, I need to ‘assign’ the output to a variable. This can be thought of as giving it a name, so that we can refer to it later.</p>
 <p>You can this with <code>&lt;-</code> (shortcut = <code>alt + -</code>) in R. (You can also use <code>=</code>, however stylistically <code>&lt;-</code> is preferred.)</p>
 <p>Here R performs the calculation on the right of <code>&lt;-</code> and then saves the result as a variable called <code>my_num</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_num &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">6</span> <span class="op">*</span><span class="st"> </span><span class="dv">7</span><span class="op">**</span><span class="dv">2</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">my_num &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">6</span> <span class="op">*</span><span class="st"> </span><span class="dv">7</span><span class="op">**</span><span class="dv">2</span></code></pre>
 <p>Now if I run the command <code>my_num</code>, I see the number I stored earlier:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_num</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">my_num</code></pre>
 <pre><code>## [1] 296</code></pre>
 <p>You can also ‘overwrite’ variables:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_num &lt;-<span class="st"> </span><span class="dv">3</span> <span class="op">*</span><span class="st"> </span><span class="dv">4</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">my_num &lt;-<span class="st"> </span><span class="dv">3</span> <span class="op">*</span><span class="st"> </span><span class="dv">4</span></code></pre>
 <p>The above code evaluates <code>3 * 4</code> and assigns the output to the variable <code>my_num</code> - effectively ‘overwritting’ the previous value assigned to it.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_num</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">my_num</code></pre>
 <pre><code>## [1] 12</code></pre>
 <p>R is particular about variable names. Variable names cannot:</p>
 <ul>
@@ -364,7 +391,7 @@ Figure 1.7: Setting the working directory - 3.
 <li>contain any spaces</li>
 </ul>
 <p>If we try to create a variable that starts with a number, R will return an error:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">2myvar &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">6</span> <span class="op">*</span><span class="st"> </span><span class="dv">7</span><span class="op">**</span><span class="dv">2</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">2myvar &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">6</span> <span class="op">*</span><span class="st"> </span><span class="dv">7</span><span class="op">**</span><span class="dv">2</span></code></pre>
 <pre><code>## Error: &lt;text&gt;:1:2: unexpected symbol
 ## 1: 2myvar
 ##      ^</code></pre>
@@ -390,8 +417,8 @@ Figure 1.8: Data structures. Source: <a href="http://libguides.wellesley.edu" cl
 <h3><span class="header-section-number">1.8.1</span> Vector</h3>
 <p>You can think of a vector like a row or column in excel. You can only store one <em>type</em> of data in a vector - e.g. all numbers or all text.</p>
 <p>You can create vectors with the <code>c()</code> function (‘c’ for ‘combine’):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_vect1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)
-my_vect2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">my_vect1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)
+my_vect2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)</code></pre>
 </div>
 <div id="matrix" class="section level3">
 <h3><span class="header-section-number">1.8.2</span> Matrix</h3>
@@ -401,12 +428,12 @@ my_vect2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st
 <h3><span class="header-section-number">1.8.3</span> Dataframe</h3>
 <p>Dataframes are also two dimensional (has both rows and columns) however, you can store different types of data in a dataframe. The only restriction is that all the data within one column must be of the same type.</p>
 <p>A dataframe is composed of vectors, with each vector being one column. You can create a dataframe using the <code>data.frame()</code> function:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+<pre class="sourceCode r"><code class="sourceCode r">my_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
   <span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;bob&quot;</span>, <span class="st">&quot;amy&quot;</span>), <span class="co"># &#39;name&#39; becomes the column name of this column</span>
   <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">23</span>,<span class="dv">34</span>)
   
 )
-my_df</code></pre></div>
+my_df</code></pre>
 <pre><code>##   name age
 ## 1  bob  23
 ## 2  amy  34</code></pre>
@@ -435,7 +462,7 @@ my_df</code></pre></div>
 <p>The file we want to read in is named ‘Ses1_genes.tsv’.</p>
 <p>I have put all my data files in a directory called ‘data’ - thus the path to the file (relative to my working directory) is ‘data/Ses1_genes.tsv’. Depending on where you have put your data (in your working directory or in another file in your working directory), the path to your file ‘Ses1_genes.tsv’ may be different.</p>
 <p>Read in your data by typing in the path to your ‘Ses1_genes.tsv’ file (relative to your working directory), within the brackets <code>( )</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses1_genes.tsv&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses1_genes.tsv&quot;</span>)</code></pre>
 <pre><code>##     SYMBOL GeneLength Count
 ## 1  Gm10568       1634     0
 ## 2  Gm19860        799     4
@@ -458,11 +485,11 @@ Andy  10
 Bob   8</code></pre>
 <p>Notice in the above two examples the values are separated by different ‘characters’.</p>
 <p>You can specify what ‘character’ separates each value by using the <code>sep</code> input in <code>read.delim()</code>. E.g. if your file was a csv, you can read it in using:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read.delim</span>(<span class="st">&quot;file.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)</code></pre></div>
-<p>We don’t need to specify the <code>sep</code> for our file, which is a tsv, as the default separater <code>read.delim()</code> is tab. We only need to specify the separater character when we are reading in a file NOT separated by tabs.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read.delim</span>(<span class="st">&quot;file.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)</code></pre>
+<p>We don’t need to specify the <code>sep</code> for our file, which is a tsv, as the default separator <code>read.delim()</code> assumes is tab. Thus we only need to specify when we are reading in a file NOT separated by tabs.</p>
 <p>Above, we have read in our data as a dataframe and printed it. However, we can’t refer to this dataframe again and manipulate it because we haven’t assigned it to a variable.</p>
 <p>Let’s assign our dataframe to a variable called <code>genes</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses1_genes.tsv&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">genes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses1_genes.tsv&quot;</span>)</code></pre>
 <p>Notice how <code>genes</code> now appears in our ‘Environment’ tab:</p>
 <div class="figure" style="text-align: center"><span id="fig:import"></span>
 <img src="Images/import.png" alt="Variable in 'Environment' tab." width="500px" />
@@ -474,7 +501,7 @@ Figure 1.9: Variable in ‘Environment’ tab.
 <div id="summary" class="section level3">
 <h3><span class="header-section-number">1.9.1</span> Summary</h3>
 <p>A useful function for investigating your data is <code>summary()</code>. Running this function on our <code>genes</code> dataframe provides us with summary statistics on all the numeric columns. For the columns that don’t contain numbers, the output simply states the length of that column.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(genes)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(genes)</code></pre>
 <pre><code>##      SYMBOL    GeneLength       Count       
 ##  Gm10568:1   Min.   : 799   Min.   :  0.00  
 ##  Gm19860:1   1st Qu.:2289   1st Qu.:  0.25  
@@ -487,7 +514,7 @@ Figure 1.9: Variable in ‘Environment’ tab.
 <div id="structure" class="section level3">
 <h3><span class="header-section-number">1.9.2</span> Structure</h3>
 <p>A useful function for understanding how our data is stored in R is <code>str()</code> (structure).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(genes)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(genes)</code></pre>
 <pre><code>## &#39;data.frame&#39;:    10 obs. of  3 variables:
 ##  $ SYMBOL    : Factor w/ 10 levels &quot;Gm10568&quot;,&quot;Gm19860&quot;,..: 1 2 3 4 7 8 9 5 10 6
 ##  $ GeneLength: int  1634 799 3259 2433 9747 3130 2847 4203 3634 2241
@@ -500,10 +527,10 @@ Figure 1.9: Variable in ‘Environment’ tab.
 <p>Every bit of data in R has a ‘data type label’. The label doesn’t change the data in any way - it just tells R what kind of data it is and thus what it can and can’t do with the data.</p>
 <p>For example, it makes sense to perform mathematical functions on numbers but not on words. It makes sense to look for a certain term, like a gene name, in words but not in numbers.</p>
 <p>For example, you can’t add words so the code belwo doesn’t work. Note that quotes (<code>&quot; &quot;</code> or <code>' '</code>) ALWAYS surround values that are of the ‘character’ data type:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;one&quot;</span> <span class="op">+</span><span class="st"> &quot;two&quot;</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;one&quot;</span> <span class="op">+</span><span class="st"> &quot;two&quot;</span></code></pre>
 <pre><code>## Error in &quot;one&quot; + &quot;two&quot;: non-numeric argument to binary operator</code></pre>
 <p>This does work because they are numbers:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></code></pre>
 <pre><code>## [1] 3</code></pre>
 <p>There are five basic types of data in R:</p>
 <ul>
@@ -527,10 +554,10 @@ Figure 1.9: Variable in ‘Environment’ tab.
 2 = blue
 3 = green</code></pre>
 <p>Factors can be difficult to work with, so we don’t want our gene symbols to be ‘labelled’ as factors. We can do this by specifying this when reading our data in:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses1_genes.tsv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">genes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses1_genes.tsv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</code></pre>
 <p>By default, R will label all word (‘character’) data as a ‘factor’. Setting <code>stringsAsFactors</code> to be <code>FALSE</code>, tells R that you DON’T want it to do this.</p>
 <p>We can check the structure again:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(genes)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(genes)</code></pre>
 <pre><code>## &#39;data.frame&#39;:    10 obs. of  3 variables:
 ##  $ SYMBOL    : chr  &quot;Gm10568&quot; &quot;Gm19860&quot; &quot;Gm19938&quot; &quot;Lypla1&quot; ...
 ##  $ GeneLength: int  1634 799 3259 2433 9747 3130 2847 4203 3634 2241
@@ -545,16 +572,16 @@ Figure 1.9: Variable in ‘Environment’ tab.
 <li><code>as.character()</code></li>
 </ul>
 <p>For example, this will turn a integer vector into a character vector:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.character</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.character</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</code></pre>
 <pre><code>## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot;</code></pre>
 </div>
 <div id="type-coercion" class="section level3">
 <h3><span class="header-section-number">1.10.2</span> Type coercion</h3>
-<p>In some circumstances, R will change the data type label of your data. This is called ‘type coercion’. A common scenario in which this will happen is with vector (and dataframe column) labeling.</p>
+<p>In some circumstances, R will change the data type label of your data. This is called ‘type coercion’. A common scenario in which this will happen is with vector (and dataframe column) labelling.</p>
 <p>All elements within a vector (and within a column of a dataframe) must have the same data type label. Thus, if you create a vector like the one below, the whole vector will be labelled as one data type. Which data type do you think it will be?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_vect3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&quot;a&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">my_vect3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&quot;a&quot;</span>)</code></pre>
 <p>We can find out with <code>str()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(my_vect3)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(my_vect3)</code></pre>
 <pre><code>##  chr [1:3] &quot;1&quot; &quot;2&quot; &quot;a&quot;</code></pre>
 <p>It has labelled the whole vector as characters. This is because the letter <code>&quot;a&quot;</code> cannot be “expressed” as a number but numbers can be “expressed” as characters - thus R will always pick the data type label that does not result in any loss of information. Recall that data type labels NEVER change the data - only the label changes.</p>
 <p>There is an order to which data label R will label a vector as. Of all the data types that exist in the vector, the data type of the element that is furthermost right, will be the “final” data type label for the vector.</p>
@@ -569,19 +596,19 @@ Figure 1.9: Variable in ‘Environment’ tab.
 <li>as we saw above, numbers can easily be represented as a character</li>
 </ul>
 <p>The last thing to note is that you may see the type <code>num</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</code></pre>
 <pre><code>##  num [1:3] 1 2 3</code></pre>
 <p><code>num</code> stands for numeric and is just the ‘number’ data types grouped together. R does this for two reasons. First, generally you don’t need to know exactly what ‘type’ of number class your data is. Second, R will often convert between number types depending the type of calculations/function performed.</p>
 <p><strong>Challenge 1.2</strong></p>
 <ol style="list-style-type: decimal">
 <li>What data type will the following vectors be?</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 1</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 1</span>
 <span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="dv">3</span>, <span class="dv">4</span>)
 <span class="co"># 2 </span>
 <span class="kw">c</span>(<span class="st">&quot;hello&quot;</span>, <span class="ot">TRUE</span>, <span class="dv">4</span>)
 <span class="co"># 3</span>
-<span class="kw">c</span>(<span class="dv">4</span>, <span class="st">&quot;5&quot;</span>)</code></pre></div>
+<span class="kw">c</span>(<span class="dv">4</span>, <span class="st">&quot;5&quot;</span>)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Create a vector called <code>my_vect3</code> that contains the following numbers: 1,1,2,3,5,8.
 <ul>
@@ -602,8 +629,8 @@ Figure 1.9: Variable in ‘Environment’ tab.
 <li><code>col.names</code> - this is also either <code>TRUE</code> or <code>FALSE</code>, and let’s you specify whether you want to write out column names. If your dataframe has column names, put <code>TRUE</code>.</li>
 </ul>
 <p>We can write out our <code>genes</code> dataframe into a .tsv file using the command below:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.table</span>(<span class="dt">x =</span> genes, <span class="dt">file =</span> <span class="st">&quot;Ses1_Genes_output.tsv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>,
-            <span class="dt">row.names =</span> <span class="ot">FALSE</span>, <span class="dt">col.names =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.table</span>(<span class="dt">x =</span> genes, <span class="dt">file =</span> <span class="st">&quot;Ses1_Genes_output.tsv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>,
+            <span class="dt">row.names =</span> <span class="ot">FALSE</span>, <span class="dt">col.names =</span> <span class="ot">TRUE</span>)</code></pre>
 </div>
 <div id="homework" class="section level2">
 <h2><span class="header-section-number">1.12</span> Homework</h2>
@@ -614,28 +641,28 @@ Figure 1.9: Variable in ‘Environment’ tab.
 <h2><span class="header-section-number">1.13</span> Answers</h2>
 <p><strong>Challenge 1.1</strong></p>
 <p>Create a dataframe called <code>cats</code> with 2 columns. The first column named “name” should be a vector with the values: “Garfield”, “Hello Kitty”. The second column named “weights” should be a vector with the following values: 5.5, 4.8.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cats &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+<pre class="sourceCode r"><code class="sourceCode r">cats &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
   <span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;Garfield&quot;</span>, <span class="st">&quot;Hello Kitty&quot;</span>),
   <span class="dt">weights =</span> <span class="kw">c</span>(<span class="fl">5.5</span>,<span class="fl">4.8</span>)
-)</code></pre></div>
+)</code></pre>
 <p><strong>Challenge 1.2</strong></p>
 <ol style="list-style-type: decimal">
 <li></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="dv">3</span>, <span class="dv">4</span>))</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="dv">3</span>, <span class="dv">4</span>))</code></pre>
 <pre><code>##  num [1:3] 1 3 4</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">c</span>(<span class="st">&quot;hello&quot;</span>, <span class="ot">TRUE</span>, <span class="dv">4</span>))</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">c</span>(<span class="st">&quot;hello&quot;</span>, <span class="ot">TRUE</span>, <span class="dv">4</span>))</code></pre>
 <pre><code>##  chr [1:3] &quot;hello&quot; &quot;TRUE&quot; &quot;4&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">c</span>(<span class="dv">4</span>, <span class="st">&quot;5&quot;</span>))</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">c</span>(<span class="dv">4</span>, <span class="st">&quot;5&quot;</span>))</code></pre>
 <pre><code>##  chr [1:2] &quot;4&quot; &quot;5&quot;</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_vect3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">8</span>)
+<pre class="sourceCode r"><code class="sourceCode r">my_vect3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">8</span>)
 <span class="co"># convert to character</span>
 my_vect3 &lt;-<span class="st"> </span><span class="kw">as.character</span>(my_vect3)
 <span class="co"># quotes around each value show that they are of the character type</span>
-my_vect3 </code></pre></div>
+my_vect3 </code></pre>
 <pre><code>## [1] &quot;1&quot; &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;5&quot; &quot;8&quot;</code></pre>
 
 </div>
@@ -696,7 +723,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

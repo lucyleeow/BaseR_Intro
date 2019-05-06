@@ -25,7 +25,7 @@
 <meta name="author" content="Lucy Liu">
 
 
-<meta name="date" content="2019-05-03">
+<meta name="date" content="2019-05-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -52,41 +52,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -158,19 +184,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.6" data-path="session-3.html"><a href="session-3.html#answers-2"><i class="fa fa-check"></i><b>3.6</b> Answers</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="session-4.html"><a href="session-4.html"><i class="fa fa-check"></i><b>4</b> Session 4</a><ul>
-<li class="chapter" data-level="4.1" data-path="session-4.html"><a href="session-4.html#filtering"><i class="fa fa-check"></i><b>4.1</b> Filtering</a></li>
-<li class="chapter" data-level="4.2" data-path="session-4.html"><a href="session-4.html#normalisation"><i class="fa fa-check"></i><b>4.2</b> Normalisation</a></li>
-<li class="chapter" data-level="4.3" data-path="session-4.html"><a href="session-4.html#mds"><i class="fa fa-check"></i><b>4.3</b> MDS</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="session-4.html"><a href="session-4.html#plotting"><i class="fa fa-check"></i><b>4.3.1</b> Plotting</a></li>
+<li class="chapter" data-level="4.1" data-path="session-4.html"><a href="session-4.html#dgelist-1"><i class="fa fa-check"></i><b>4.1</b> DGEList</a></li>
+<li class="chapter" data-level="4.2" data-path="session-4.html"><a href="session-4.html#filtering"><i class="fa fa-check"></i><b>4.2</b> Filtering</a></li>
+<li class="chapter" data-level="4.3" data-path="session-4.html"><a href="session-4.html#normalisation"><i class="fa fa-check"></i><b>4.3</b> Normalisation</a></li>
+<li class="chapter" data-level="4.4" data-path="session-4.html"><a href="session-4.html#mds"><i class="fa fa-check"></i><b>4.4</b> MDS</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="session-4.html"><a href="session-4.html#plotting"><i class="fa fa-check"></i><b>4.4.1</b> Plotting</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="session-4.html"><a href="session-4.html#saving-plots"><i class="fa fa-check"></i><b>4.4</b> Saving plots</a></li>
-<li class="chapter" data-level="4.5" data-path="session-4.html"><a href="session-4.html#linear-modelling"><i class="fa fa-check"></i><b>4.5</b> Linear modelling</a><ul>
-<li class="chapter" data-level="4.5.1" data-path="session-4.html"><a href="session-4.html#design-matrix"><i class="fa fa-check"></i><b>4.5.1</b> Design matrix</a></li>
-<li class="chapter" data-level="4.5.2" data-path="session-4.html"><a href="session-4.html#contrasts"><i class="fa fa-check"></i><b>4.5.2</b> Contrasts</a></li>
-<li class="chapter" data-level="4.5.3" data-path="session-4.html"><a href="session-4.html#linear-model-fitting"><i class="fa fa-check"></i><b>4.5.3</b> Linear model fitting</a></li>
+<li class="chapter" data-level="4.5" data-path="session-4.html"><a href="session-4.html#saving-plots"><i class="fa fa-check"></i><b>4.5</b> Saving plots</a></li>
+<li class="chapter" data-level="4.6" data-path="session-4.html"><a href="session-4.html#linear-modelling"><i class="fa fa-check"></i><b>4.6</b> Linear modelling</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="session-4.html"><a href="session-4.html#design-matrix"><i class="fa fa-check"></i><b>4.6.1</b> Design matrix</a></li>
+<li class="chapter" data-level="4.6.2" data-path="session-4.html"><a href="session-4.html#contrasts"><i class="fa fa-check"></i><b>4.6.2</b> Contrasts</a></li>
+<li class="chapter" data-level="4.6.3" data-path="session-4.html"><a href="session-4.html#linear-model-fitting"><i class="fa fa-check"></i><b>4.6.3</b> Linear model fitting</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="session-4.html"><a href="session-4.html#statistical-testing"><i class="fa fa-check"></i><b>4.6</b> Statistical testing</a></li>
-<li class="chapter" data-level="4.7" data-path="session-4.html"><a href="session-4.html#answers-3"><i class="fa fa-check"></i><b>4.7</b> Answers</a></li>
+<li class="chapter" data-level="4.7" data-path="session-4.html"><a href="session-4.html#statistical-testing"><i class="fa fa-check"></i><b>4.7</b> Statistical testing</a></li>
+<li class="chapter" data-level="4.8" data-path="session-4.html"><a href="session-4.html#answers-3"><i class="fa fa-check"></i><b>4.8</b> Answers</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="extra.html"><a href="extra.html"><i class="fa fa-check"></i><b>5</b> Extra</a><ul>
 <li class="chapter" data-level="5.1" data-path="extra.html"><a href="extra.html#merge"><i class="fa fa-check"></i><b>5.1</b> Merge</a></li>
@@ -209,7 +236,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">2.1</span> Missing values</h2>
 <p>First, let’s read in some data. Recall we use the function <code>read.delim()</code> and tell R not to label words (character type data) as ‘Factors’ using <code>stringsAsFactors = FALSE</code>.</p>
 <p>We are using the file “Ses2_genes.tsv” today. This would have been emailed to you before the session. (Alternatively you can download the data from <a href="https://github.com/lucyleeow/BaseR_Intro">GitHub</a>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses2_genes.tsv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">genes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses2_genes.tsv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</code></pre>
 <p>You can see in the environment tab that this dataframe has 200 rows (observations) and 5 columns (variables). You can also click on the <code>genes</code> entry in the Environment tab (red arrow in Figure <a href="session-2.html#fig:RS4">2.1</a>) to display the data in a new window (left):</p>
 <div class="figure"><span id="fig:RS4"></span>
 <img src="Images/RS4.png" alt="Viewing data from the 'Environment' tab." width="700px" />
@@ -219,10 +246,10 @@ Figure 2.1: Viewing data from the ‘Environment’ tab.
 </div>
 <p>Scrolling down the window, you can see that there are several <em>NA</em> entries. <code>NA</code> denotes a missing value in R.</p>
 <p><code>NA</code>‘s have some interesting behaviour - they are ’contagious’. For example, if we wanted to take the mean of a vector numbers, which includes a <code>NA</code>, the answer is <code>NA</code>. If we think about it, it makes sense that the mean of two numbers and a ‘missing’ number, that could be anything, is <code>NA</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="ot">NA</span>))</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="ot">NA</span>))</code></pre>
 <pre><code>## [1] NA</code></pre>
 <p>Luckily many functions have a <code>na.rm</code> option, where you can tell it to remove <code>NA</code> values:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="ot">NA</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="ot">NA</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre>
 <pre><code>## [1] 2.5</code></pre>
 <p>Later, we will learn how to remove the <code>NA</code> values from our dataframe.</p>
 </div>
@@ -236,7 +263,7 @@ Figure 2.1: Viewing data from the ‘Environment’ tab.
 <div id="subsetting-with-indicies" class="section level3">
 <h3><span class="header-section-number">2.2.1</span> Subsetting with indicies</h3>
 <p>Let’s take a look at subsetting vectors first. We can use <code>$</code> to obtain just one column from the <code>genes</code> dataframe. The output will be a vector.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes<span class="op">$</span>Count</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">genes<span class="op">$</span>Count</code></pre>
 <pre><code>##   [1]   979    15   932     0   214     2     2     0  1790    41  1033
 ##  [12]   700  2075   351    22     0     0   893     3   100 32100   269
 ##  [23]    34 20005  5751     0   275     9   849  7175   768   358   234
@@ -257,51 +284,51 @@ Figure 2.1: Viewing data from the ‘Environment’ tab.
 ## [188]     0     0   301     0     0     0     0     0     0     0     0
 ## [199]     0    59</code></pre>
 <p>We will assign this to a variable called <code>Counts</code>. <code>Counts</code> is now a variable that refers to a vector containing 200 integers.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Counts &lt;-<span class="st"> </span>genes<span class="op">$</span>Count</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">Counts &lt;-<span class="st"> </span>genes<span class="op">$</span>Count</code></pre>
 <p>This will give you the 3rd element of the vector <code>Counts</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Counts[<span class="dv">3</span>]</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">Counts[<span class="dv">3</span>]</code></pre>
 <pre><code>## [1] 932</code></pre>
 <p>This will give you all the elements from the 3rd to the 10th:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Counts[<span class="dv">3</span><span class="op">:</span><span class="dv">10</span>]</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">Counts[<span class="dv">3</span><span class="op">:</span><span class="dv">10</span>]</code></pre>
 <pre><code>## [1]  932    0  214    2    2    0 1790   41</code></pre>
 <p>This will give you the 3rd, 5th and 10th elements:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Counts[<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">100</span>)]</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">Counts[<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">100</span>)]</code></pre>
 <pre><code>## [1] 932 214 221</code></pre>
 <p>Note that we have used <code>c()</code> within the square brackets. This is because R expects ONE ‘object’ within the square brackets. Thus, if you want to extract several indices, you must give it ONE vector containing the indices of the elements. A vector (e.g. <code>c(3,5,10)</code>) is considered one ‘object’ but the numbers <code>3,5,10</code> are considered three different ‘objects’.</p>
 <p>Indeed, <code>3:10</code>, which we used earlier, is actually a vector of the numbers 3 to 10:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span><span class="op">:</span><span class="dv">10</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span><span class="op">:</span><span class="dv">10</span></code></pre>
 <pre><code>## [1]  3  4  5  6  7  8  9 10</code></pre>
 <p>Lastly, this gives you all the elements EXCEPT the elements 10 through to 200:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Counts[<span class="op">-</span>(<span class="dv">10</span><span class="op">:</span><span class="dv">200</span>)]</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">Counts[<span class="op">-</span>(<span class="dv">10</span><span class="op">:</span><span class="dv">200</span>)]</code></pre>
 <pre><code>## [1]  979   15  932    0  214    2    2    0 1790</code></pre>
 <p>Subsetting a 2 dimensional data structure (e.g. a dataframe or matrix) is similar to subsetting a vector, except you now must specify which rows AND which columns you want. The syntax for the <code>genes</code> dataframe looks like this:</p>
 <pre><code>genes[ (which rows you want) , (which columns you want) ]</code></pre>
 <p>Within the square brackets, you must first tell R which rows you want LEFT of the comma, then which columns you want RIGHT of the comma.</p>
 <p>The code below will give you the 3rd to 5th rows of the 2nd and 4th columns. Note that the output is a dataframe.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes[<span class="dv">3</span><span class="op">:</span><span class="dv">5</span>,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)]</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">genes[<span class="dv">3</span><span class="op">:</span><span class="dv">5</span>,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)]</code></pre>
 <pre><code>##    SYMBOL GeneLength
 ## 3    Bmp2       2515
 ## 4 Cacna1e      12697
 ## 5    Ccnf       3099</code></pre>
 <p>We could have also done this using the names of the columns. Note that column names are enclosed in quotes signifying that they are of the ‘character’ data type.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes[<span class="dv">3</span><span class="op">:</span><span class="dv">5</span>,<span class="kw">c</span>(<span class="st">&quot;SYMBOL&quot;</span>,<span class="st">&quot;GeneLength&quot;</span>)]</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">genes[<span class="dv">3</span><span class="op">:</span><span class="dv">5</span>,<span class="kw">c</span>(<span class="st">&quot;SYMBOL&quot;</span>,<span class="st">&quot;GeneLength&quot;</span>)]</code></pre>
 <pre><code>##    SYMBOL GeneLength
 ## 3    Bmp2       2515
 ## 4 Cacna1e      12697
 ## 5    Ccnf       3099</code></pre>
 <p>If you leave the left side of comma empty, R will give you ALL the rows. If you leave the right side of the comma empty, R will give you ALL the columns.</p>
 <p>This will give you the 2nd row and all the columns.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes[<span class="dv">2</span>,]</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">genes[<span class="dv">2</span>,]</code></pre>
 <pre><code>##   EntrezID SYMBOL TXCHROM GeneLength Count
 ## 2    11634   Aire   chr10       1929    15</code></pre>
 </div>
 <div id="subsetting-with-logicals" class="section level3">
 <h3><span class="header-section-number">2.2.2</span> Subsetting with logicals</h3>
 <p>If you recall from section <a href="session-1.html#comps">1.6</a>, you can make comparisons in R. The result of a comparison is either <code>TRUE</code> or <code>FALSE</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span></code></pre>
 <pre><code>## [1] TRUE</code></pre>
 <p>Comparisons are also vectorised:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes<span class="op">$</span>Count <span class="op">&lt;</span><span class="st"> </span><span class="dv">100</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">genes<span class="op">$</span>Count <span class="op">&lt;</span><span class="st"> </span><span class="dv">100</span></code></pre>
 <pre><code>##   [1] FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE
 ##  [12] FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE
 ##  [23]  TRUE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
@@ -323,7 +350,7 @@ Figure 2.1: Viewing data from the ‘Environment’ tab.
 ## [199]  TRUE  TRUE</code></pre>
 <p>For each element in the vector <code>genes$Count</code>, R checks if it is less than 100, then returns either <code>TRUE</code> or <code>FALSE</code>. The output is a vector of logicals.</p>
 <p>This can be used to subset in R. We will start with our <code>Counts</code> vector:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Counts[Counts <span class="op">&lt;</span><span class="st"> </span><span class="dv">100</span>]</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">Counts[Counts <span class="op">&lt;</span><span class="st"> </span><span class="dv">100</span>]</code></pre>
 <pre><code>##   [1] 15  0  2  2  0 41 22  0  0  3 34  0  9  0  0  1  0 30  1 33  0  2  2
 ##  [24] 70  2 99 35  0 92  0 20  7  0  1 17 21  1  1  0  0 67  1  0  0  0  0
 ##  [47]  0  1  0 47  2  2  0  2  0 11 92  0 17  0  0  0  0  0  0  0  0  0  0
@@ -332,9 +359,9 @@ Figure 2.1: Viewing data from the ‘Environment’ tab.
 ## [116] 59</code></pre>
 <p><code>Counts &lt; 100</code> will return a vector of 200 logicals, which indicate which elements are less than 100. Putting this inside square brackets will subset <code>Counts</code> such that only the elements that are less than 100 (the <code>TRUE</code>’s) remain.</p>
 <p>This is done similarly in 2 dimensional data structures. The command below selects the rows where the <code>genes$Count</code> column equal to 0.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes[genes<span class="op">$</span>Count <span class="op">==</span><span class="st"> </span><span class="dv">0</span>,]</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">genes[genes<span class="op">$</span>Count <span class="op">==</span><span class="st"> </span><span class="dv">0</span>,]</code></pre>
 <p>The code below will output the ROWS where the <code>Count</code> column is equal to 0 and all the COLUMNS (because no input is given after the comma). As there are many rows with a <code>genes$Count</code> of 0, I’ll use the <code>head()</code> function to show just the first 6 rows of the output:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(genes[genes<span class="op">$</span>Count <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, ])</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(genes[genes<span class="op">$</span>Count <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, ])</code></pre>
 <pre><code>##    EntrezID  SYMBOL TXCHROM GeneLength Count
 ## 4     12290 Cacna1e    chr1      12697     0
 ## 8     12647    Chat   chr14       2810     0
@@ -345,7 +372,7 @@ Figure 2.1: Viewing data from the ‘Environment’ tab.
 <p>If you add <code>!</code> to the start of the <code>genes$Count == 0</code> condition statement, you will get all the rows where <code>genes$Count</code> is NOT equal to 0.</p>
 <p>Another way to think about it is that <code>genes$Count == 0</code> gives you a logical vector of 200 <code>TRUE</code>’s and <code>FALSE</code>’s and <code>!</code> flips everything such that the <code>TRUE</code>’s become <code>FALSE</code>’s and vice versa.</p>
 <p>We do this here and print the first 6 rows of the output:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(genes[<span class="op">!</span><span class="st"> </span>genes<span class="op">$</span>Count <span class="op">==</span><span class="st"> </span><span class="dv">0</span>,])</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(genes[<span class="op">!</span><span class="st"> </span>genes<span class="op">$</span>Count <span class="op">==</span><span class="st"> </span><span class="dv">0</span>,])</code></pre>
 <pre><code>##   EntrezID SYMBOL TXCHROM GeneLength Count
 ## 1    11480 Acvr2a    chr2       5681   979
 ## 2    11634   Aire   chr10       1929    15
@@ -355,8 +382,8 @@ Figure 2.1: Viewing data from the ‘Environment’ tab.
 ## 7    12565   Cdh9   chr15       2903     2</code></pre>
 <p>We can use the <code>$</code> shortcut to obtain just one column in a dataframe. We can’t do this with matrices - we have to use the <code>[ ]</code> notation instead.</p>
 <p>For example, we can create a matrix from our <code>genes</code> dataframe. Recall that a matrix can only hold data of ONE data type - thus we will create a dataframe using just the <code>GeneLength</code> and <code>Count</code> columns of the <code>genes</code> dataframe. The first 6 rows are printed out:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gene_matrix &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(genes[,<span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>)])
-<span class="kw">head</span>(gene_matrix)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">gene_matrix &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(genes[,<span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>)])
+<span class="kw">head</span>(gene_matrix)</code></pre>
 <pre><code>##      GeneLength Count
 ## [1,]       5681   979
 ## [2,]       1929    15
@@ -365,9 +392,9 @@ Figure 2.1: Viewing data from the ‘Environment’ tab.
 ## [5,]       3099   214
 ## [6,]       2632     2</code></pre>
 <p>If we wanted just the rows where <code>Count</code> was equal to 0, this is the notation we could use:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(
   gene_matrix[gene_matrix[,<span class="dv">2</span>] <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, ]
-)</code></pre></div>
+)</code></pre>
 <pre><code>##      GeneLength Count
 ## [1,]      12697     0
 ## [2,]       2810     0
@@ -381,7 +408,7 @@ Figure 2.1: Viewing data from the ‘Environment’ tab.
 <li>Subset the <code>genes</code> dataframe to obtain the rows where the <code>Count</code> is less than or equal to 10 and the columns <code>TXCHROM</code> and <code>Count</code>.</li>
 <li>The function <code>is.na()</code> checks if each element in a vector is <code>NA</code>:</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.na</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">5</span>, <span class="ot">NA</span>))</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.na</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">5</span>, <span class="ot">NA</span>))</code></pre>
 <pre><code>## [1] FALSE FALSE  TRUE</code></pre>
 <p>Use this function to subset the <code>genes</code> dataframe so that all rows where <code>TXCHROM</code> column is <code>NA</code> is removed.</p>
 <ol start="3" style="list-style-type: decimal">
@@ -393,9 +420,9 @@ Figure 2.1: Viewing data from the ‘Environment’ tab.
 <h3><span class="header-section-number">2.2.3</span> %in%</h3>
 <p>In the last challenge, we used <code>==</code> to obtain the rows where <code>TXCHROM</code> is ‘chr1’. Another way to perform ‘matching’ tasks is with the <code>%in%</code> function.</p>
 <p>The following command subsets the rows where <code>TXCHROM</code> is “chr1” or “chr2” and prints out the first 6 rows.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(
   genes[genes<span class="op">$</span>TXCHROM <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;chr1&quot;</span>, <span class="st">&quot;chr2&quot;</span>),]
-  )</code></pre></div>
+  )</code></pre>
 <pre><code>##    EntrezID  SYMBOL TXCHROM GeneLength Count
 ## 1     11480  Acvr2a    chr2       5681   979
 ## 3     12156    Bmp2    chr2       2515   932
@@ -406,24 +433,24 @@ Figure 2.1: Viewing data from the ‘Environment’ tab.
 <p><strong>Challenge 2.2</strong></p>
 <p>There is an important difference between <code>==</code> and <code>%in%</code>.</p>
 <p>Let’s start by creating a vector of numbers:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vect1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">10</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">8</span>,<span class="dv">8</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">vect1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">10</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">8</span>,<span class="dv">8</span>)</code></pre>
 <p>We check which elements in our vector is equal to 5.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vect1 <span class="op">==</span><span class="st"> </span><span class="dv">5</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">vect1 <span class="op">==</span><span class="st"> </span><span class="dv">5</span></code></pre>
 <pre><code>## [1] FALSE FALSE  TRUE  TRUE FALSE FALSE</code></pre>
 <p>The output is what we would expect.</p>
 <p>What if we wanted check which elements are equal to 5 OR 10? We might try something like this, where put the numbers we are checking for in a vector:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vect1</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">vect1</code></pre>
 <pre><code>## [1] 10 10  5  5  8  8</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vect1 <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">10</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">vect1 <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">10</span>)</code></pre>
 <pre><code>## [1] FALSE  TRUE  TRUE FALSE FALSE FALSE</code></pre>
 <p>This isn’t the output we expected.</p>
 <p>Let’s try the same task with <code>%in%</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vect1 <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">10</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">vect1 <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">10</span>)</code></pre>
 <pre><code>## [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE</code></pre>
 <p>This output IS what we want.</p>
 <p>Take a look at the code above and see if you can understand what <code>==</code> does and what <code>%in%</code> does.</p>
 <p><em>Hint</em>: The story gets even more interesting if we try to use <code>==</code> to look for four numbers:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vect1 <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">1</span>,<span class="dv">3</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">vect1 <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">1</span>,<span class="dv">3</span>)</code></pre>
 <pre><code>## Warning in vect1 == c(5, 10, 1, 3): longer object length is not a multiple
 ## of shorter object length</code></pre>
 <pre><code>## [1] FALSE  TRUE FALSE FALSE FALSE FALSE</code></pre>
@@ -434,7 +461,7 @@ Figure 2.1: Viewing data from the ‘Environment’ tab.
 <h2><span class="header-section-number">2.3</span> Vectorisation</h2>
 <p>R is quite efficient at doing calculations or performing a functions on a vector of data.</p>
 <p>Let’s use the <code>Count</code> column from our dataframe <code>genes</code>. We can access just one column using the <code>$</code> symbol:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes<span class="op">$</span>Count</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">genes<span class="op">$</span>Count</code></pre>
 <pre><code>##   [1]   979    15   932     0   214     2     2     0  1790    41  1033
 ##  [12]   700  2075   351    22     0     0   893     3   100 32100   269
 ##  [23]    34 20005  5751     0   275     9   849  7175   768   358   234
@@ -455,7 +482,7 @@ Figure 2.1: Viewing data from the ‘Environment’ tab.
 ## [188]     0     0   301     0     0     0     0     0     0     0     0
 ## [199]     0    59</code></pre>
 <p>What do you think will happen if we do this?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes<span class="op">$</span>Count <span class="op">+</span><span class="st"> </span><span class="dv">10</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">genes<span class="op">$</span>Count <span class="op">+</span><span class="st"> </span><span class="dv">10</span></code></pre>
 <pre><code>##   [1]   989    25   942    10   224    12    12    10  1800    51  1043
 ##  [12]   710  2085   361    32    10    10   903    13   110 32110   279
 ##  [23]    44 20015  5761    10   285    19   859  7185   778   368   244
@@ -477,7 +504,7 @@ Figure 2.1: Viewing data from the ‘Environment’ tab.
 ## [199]    10    69</code></pre>
 <p>R will perform this calculation on all numbers in the <code>Count</code> column and return a vector.</p>
 <p>We can add this new vector to our dataframe, as a new column.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes<span class="op">$</span>Count_<span class="dv">2</span> &lt;-<span class="st"> </span>genes<span class="op">$</span>Count <span class="op">+</span><span class="st"> </span><span class="dv">10</span></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">genes<span class="op">$</span>Count_<span class="dv">2</span> &lt;-<span class="st"> </span>genes<span class="op">$</span>Count <span class="op">+</span><span class="st"> </span><span class="dv">10</span></code></pre>
 <p>There are a few things happening in the above code:</p>
 <ol style="list-style-type: decimal">
 <li>The code on the right side of <code>&lt;-</code> is evaluated first. It returns a vector as we saw above.</li>
@@ -513,22 +540,22 @@ sd - vector of standard deviations.</code></pre>
 <li>What does <code>rnorm()</code> do when you only give it one number to the <code>mean</code> and <code>sd</code> arguments?</li>
 <li>What happens when you give either argument a vector of numbers?</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">4</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>## [1] 9.571717 9.565344 8.295983 8.217714</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="kw">c</span>(<span class="dv">100</span>,<span class="dv">0</span>), <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>## [1] 99.620372  0.578422 98.945629</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">4</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre>
+<pre><code>## [1] 10.225508  9.704846 10.671781  9.828818</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="kw">c</span>(<span class="dv">100</span>,<span class="dv">0</span>), <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre>
+<pre><code>## [1] 99.926630  1.358638 98.105555</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Take a look at the following code:</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">10</span>)</code></pre></div>
-<pre><code>## [1]  7.062551 -2.985521 -5.175196</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>,<span class="dv">1</span>,<span class="dv">3</span>)</code></pre></div>
-<pre><code>##  [1] -1.60508881  0.58642704  2.03866788  1.77418878  0.88207414
-##  [6] -5.41611687 -1.37876646  0.41526125 -1.15847522  0.03233098</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">0</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">10</span>)</code></pre>
+<pre><code>## [1]  0.0503249  3.8525982 -9.6009293</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>,<span class="dv">1</span>,<span class="dv">3</span>)</code></pre>
+<pre><code>##  [1] -1.6100404 -1.4546552  0.9555076  2.0760025  1.9799932  0.3601243
+##  [7]  1.0797027  2.0352980 -0.0941240  0.5554749</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">0</span>)</code></pre>
 <pre><code>## [1] 10 10 10</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dt">sd =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">n =</span> <span class="dv">3</span>)</code></pre></div>
-<pre><code>## [1]  1.8740025 -0.3973872 -2.3227732</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dt">sd =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">n =</span> <span class="dv">3</span>)</code></pre>
+<pre><code>## [1] 13.600023 -5.786126 13.258339</code></pre>
 <p>How does the order of the arguments you input to the function affect the output? How does the order of the arguments you input affect the output, when you name each argument (along with the input)?</p>
 <p>Note: as the function generates a random number, the numbers you will get from running the function will be different to the ones generated above.</p>
 </div>
@@ -540,9 +567,9 @@ sd - vector of standard deviations.</code></pre>
 <li>Read in the data file “Ses2_homework.tsv” using <code>read.delim()</code>. Create a new column called <code>Prop_GeneLength</code> that contains the <code>Count</code> value as a proportion of <code>GeneLength</code>. E.g. if the count value was 50 and the gene length was 2400, the <code>Prop_GeneLength</code> value for that row would be 0.02083333. Finally, write out this new dataframe as a file called “Ses2_homework_output.tsv”, as a tsv (tab separated values) file.</li>
 <li>We will use the Bioconductor packages ‘limma’ and ‘edgeR’ in the next session. Install these packages with the following commands:</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">requireNamespace</span>(<span class="st">&quot;BiocManager&quot;</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>))
+<pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">requireNamespace</span>(<span class="st">&quot;BiocManager&quot;</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>))
     <span class="kw">install.packages</span>(<span class="st">&quot;BiocManager&quot;</span>)
-BiocManager<span class="op">::</span><span class="kw">install</span>(<span class="kw">c</span>(<span class="st">&quot;edgeR&quot;</span>, <span class="st">&quot;limma&quot;</span>), <span class="dt">version =</span> <span class="st">&quot;3.8&quot;</span>)</code></pre></div>
+BiocManager<span class="op">::</span><span class="kw">install</span>(<span class="kw">c</span>(<span class="st">&quot;edgeR&quot;</span>, <span class="st">&quot;limma&quot;</span>), <span class="dt">version =</span> <span class="st">&quot;3.8&quot;</span>)</code></pre>
 </div>
 <div id="answers-1" class="section level2">
 <h2><span class="header-section-number">2.6</span> Answers</h2>
@@ -550,7 +577,7 @@ BiocManager<span class="op">::</span><span class="kw">install</span>(<span class
 <ol style="list-style-type: decimal">
 <li>This code obtains rows where <code>Count</code> is less than or equal to 10 and prints the first 6 rows using <code>head()</code>:</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(genes[genes<span class="op">$</span>Count <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>,])</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(genes[genes<span class="op">$</span>Count <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>,])</code></pre>
 <pre><code>##    EntrezID  SYMBOL TXCHROM GeneLength Count Count_2
 ## 4     12290 Cacna1e    chr1      12697     0      10
 ## 6     12563    Cdh6   chr15       2632     2      12
@@ -561,7 +588,7 @@ BiocManager<span class="op">::</span><span class="kw">install</span>(<span class
 <ol start="2" style="list-style-type: decimal">
 <li>This code removes all rows where the <code>TXCHROM</code> column has a NA value (keeping all columns) and prints the first 6 rows:</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(genes[<span class="op">!</span><span class="st"> </span><span class="kw">is.na</span>(genes<span class="op">$</span>TXCHROM),])</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(genes[<span class="op">!</span><span class="st"> </span><span class="kw">is.na</span>(genes<span class="op">$</span>TXCHROM),])</code></pre>
 <pre><code>##   EntrezID  SYMBOL TXCHROM GeneLength Count Count_2
 ## 1    11480  Acvr2a    chr2       5681   979     989
 ## 2    11634    Aire   chr10       1929    15      25
@@ -572,9 +599,9 @@ BiocManager<span class="op">::</span><span class="kw">install</span>(<span class
 <ol start="3" style="list-style-type: decimal">
 <li>First we save the dataframe from the above as a variable called <code>genes_noNA</code>, then we subset to get only the rows where <code>TXCHROM</code> is ‘chr1’. Again we only print the first 6 rows of this output.</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes_noNA &lt;-<span class="st"> </span>genes[<span class="op">!</span><span class="st"> </span><span class="kw">is.na</span>(genes<span class="op">$</span>TXCHROM),]
+<pre class="sourceCode r"><code class="sourceCode r">genes_noNA &lt;-<span class="st"> </span>genes[<span class="op">!</span><span class="st"> </span><span class="kw">is.na</span>(genes<span class="op">$</span>TXCHROM),]
 
-<span class="kw">head</span>(genes_noNA[genes_noNA<span class="op">$</span>TXCHROM <span class="op">==</span><span class="st"> &quot;chr1&quot;</span>,])</code></pre></div>
+<span class="kw">head</span>(genes_noNA[genes_noNA<span class="op">$</span>TXCHROM <span class="op">==</span><span class="st"> &quot;chr1&quot;</span>,])</code></pre>
 <pre><code>##    EntrezID  SYMBOL TXCHROM GeneLength Count Count_2
 ## 4     12290 Cacna1e    chr1      12697     0      10
 ## 18    15064     Mr1    chr1       2509   893     903
@@ -600,8 +627,8 @@ FALSE TRUE FALSE FALSE FALSE FALSE</code></pre>
 <p><code>%in%</code> simply performs matching and does not take order of the two vectors into consideration. It checks whether the values in <code>vect1</code> matches either number in <code>c(5,10)</code>. It thus gives us the result we expect.</p>
 <p><strong>Challenge 2.3</strong></p>
 <p>The <code>sum()</code> function can be used to calculate the total Count of all 10 rows by giving the <code>genes$Count</code> vector as the input to <code>sum()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes<span class="op">$</span>Prop_Count &lt;-<span class="st"> </span>genes<span class="op">$</span>Count <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(genes<span class="op">$</span>Count) 
-genes</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">genes<span class="op">$</span>Prop_Count &lt;-<span class="st"> </span>genes<span class="op">$</span>Count <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(genes<span class="op">$</span>Count) 
+genes</code></pre>
 <pre><code>##      EntrezID         SYMBOL TXCHROM GeneLength Count Count_2   Prop_Count
 ## 1       11480         Acvr2a    chr2       5681   979     989 4.951672e-03
 ## 2       11634           Aire   chr10       1929    15      25 7.586831e-05
@@ -745,13 +772,70 @@ genes</code></pre></div>
 ## 140    258151       Olfr1505   chr19        951     0      10 0.000000e+00
 ## 141    258341       Olfr1495   chr19        960     0      10 0.000000e+00
 ## 142    258626       Olfr1501   chr19        948     0      10 0.000000e+00
-##  [ reached getOption(&quot;max.print&quot;) -- omitted 58 rows ]</code></pre>
+## 143    258627       Olfr1504   chr19        948     0      10 0.000000e+00
+## 144    258736       Olfr1497   chr19        945     0      10 0.000000e+00
+## 145    258792       Olfr1499   chr19        945     0      10 0.000000e+00
+## 146    258793       Olfr1502   chr19        951     0      10 0.000000e+00
+## 147    258991       Olfr1496   chr19       1067     0      10 0.000000e+00
+## 148    258992       Olfr1494   chr19        948     0      10 0.000000e+00
+## 149    268783         Mtmr12   chr15       4518  2442    2452 1.235136e-02
+## 150    272009         Srsf12    chr4       2939    30      40 1.517366e-04
+## 151    319955          Ercc6   chr14       8422  1610    1620 8.143199e-03
+## 152    320321  9430077A04Rik    &lt;NA&gt;       2780     0      10 0.000000e+00
+## 153    320684  9630028H03Rik    chr2       2288     0      10 0.000000e+00
+## 154    320872     Arhgap15os    chr2       1761     0      10 0.000000e+00
+## 155    381072         Abca17   chr17       5202    16      26 8.092620e-05
+## 156    381489          Rxfp1    chr3       2277     1      11 5.057888e-06
+## 157    386753         Dbpht2   chr12       2995     2      12 1.011578e-05
+## 158    432555         Gm5431   chr11       2971     0      10 0.000000e+00
+## 159    432999  A930007A09Rik    &lt;NA&gt;       2645    47      57 2.377207e-04
+## 160    433424         Zeb2os    chr2       1388     0      10 0.000000e+00
+## 161    433693        Akirin2    chr4       1719  1118    1128 5.654718e-03
+## 162    435350      Serpinb6e   chr13       1494     0      10 0.000000e+00
+## 163    497097           Xkr4    chr1       3634     1      11 5.057888e-06
+## 164    544923        Gm11397    &lt;NA&gt;       8413     0      10 0.000000e+00
+## 165    620913        Gm12185   chr11       5264     2      12 1.011578e-05
+## 166    636187        Gm20764    &lt;NA&gt;        483     3      13 1.517366e-05
+## 167    654822  D330041H03Rik   chr17       1484    22      32 1.112735e-04
+## 168    665186         Gm7534    chr4       2338     0      10 0.000000e+00
+## 169    665521       BC080696    &lt;NA&gt;       1765     0      10 0.000000e+00
+## 170    665755      LOC665755    &lt;NA&gt;       1446     0      10 0.000000e+00
+## 171    667214 9930111J21Rik1   chr11       3863     0      10 0.000000e+00
+## 172    669751        Gm17756    &lt;NA&gt;        207     0      10 0.000000e+00
+## 173    723899       Mir365-1   chr16         87     0      10 0.000000e+00
+## 174 100038431        Gm10568    &lt;NA&gt;       1634     0      10 0.000000e+00
+## 175 100040052         Gm2573    &lt;NA&gt;        321   431     441 2.179950e-03
+## 176 100041351         Gm3285   chr10        664     0      10 0.000000e+00
+## 177 100124432        Mir193b   chr16         79     0      10 0.000000e+00
+## 178 100302498        Snora21   chr11        128    16      26 8.092620e-05
+## 179 100503184        Gm19583    chr5       1366     0      10 0.000000e+00
+## 180 100503198        Gm19590    &lt;NA&gt;       1195     1      11 5.057888e-06
+## 181 100503411           &lt;NA&gt;    &lt;NA&gt;       2791     0      10 0.000000e+00
+## 182 100503730        Gm19860    &lt;NA&gt;        799     4      14 2.023155e-05
+## 183 100503843           &lt;NA&gt;    &lt;NA&gt;        615     0      10 0.000000e+00
+## 184 100503874        Gm19938    &lt;NA&gt;       3259     0      10 0.000000e+00
+## 185 100504244           &lt;NA&gt;    &lt;NA&gt;       1157     1      11 5.057888e-06
+## 186 100504476           &lt;NA&gt;    &lt;NA&gt;       1161     0      10 0.000000e+00
+## 187 100526500        Mir3090    chr2         87     0      10 0.000000e+00
+## 188 100628598        Mir5129    chr2         78     0      10 0.000000e+00
+## 189 100628603        Mir5134   chr17         78     0      10 0.000000e+00
+## 190 100861855        Gm16170    &lt;NA&gt;       3754   301     311 1.522424e-03
+## 191 100861882           &lt;NA&gt;    &lt;NA&gt;        573     0      10 0.000000e+00
+## 192 100862115   LOC100862115    &lt;NA&gt;       2064     0      10 0.000000e+00
+## 193 100862150   LOC100862150    &lt;NA&gt;       1860     0      10 0.000000e+00
+## 194 100862166           &lt;NA&gt;    &lt;NA&gt;       1446     0      10 0.000000e+00
+## 195 100862180   LOC100862180    &lt;NA&gt;       1446     0      10 0.000000e+00
+## 196 100862192   LOC100862192    &lt;NA&gt;       1545     0      10 0.000000e+00
+## 197 100862202   LOC100862202    &lt;NA&gt;       2064     0      10 0.000000e+00
+## 198 100862230           &lt;NA&gt;    &lt;NA&gt;       1446     0      10 0.000000e+00
+## 199 100862245   LOC100862245    &lt;NA&gt;       2047     0      10 0.000000e+00
+## 200 100862396           &lt;NA&gt;    &lt;NA&gt;       1265    59      69 2.984154e-04</code></pre>
 <p><strong>Challenge 2.4</strong></p>
 <ol style="list-style-type: decimal">
 <li>If you provide <code>rnorm()</code> with a vector of inputs to either the <code>mean</code> or <code>sd</code> argument, it will use each element in that vector for successive random numbers generated and recycle the vector if it is shorter than the number of random numbers required.</li>
 </ol>
 <p>Thus, the following code:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="kw">c</span>(<span class="dv">100</span>,<span class="dv">0</span>), <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="kw">c</span>(<span class="dv">100</span>,<span class="dv">0</span>), <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre>
 <p>will generate 3 random numbers from the following normal distributions, in order:</p>
 <pre><code>1. mean of 100 and sd of 1
 2. mean of 0 and sd of 1
@@ -820,7 +904,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');
