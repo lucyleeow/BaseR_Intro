@@ -229,32 +229,6 @@ A matrix is like an excel spreadsheet. It is two dimensional meaning you have co
 
 Dataframes are also two dimensional (has both rows and columns) however, you can store different types of data in a dataframe. The only restriction is that all the data within one column must be of the same type.
 
-A dataframe is composed of vectors, with each vector being one column. You can create a dataframe using the `data.frame()` function:
-
-```{r}
-my_df <- data.frame(
-  name = c("bob", "amy"), # 'name' becomes the column name of this column
-  age = c(23,34)
-  
-)
-my_df
-```
-
-There are a few important 
-
-1. `name` and `age` become the names of the columns
-2. the `,` at the end of `name = c("bob", "amy")` is important and should not be missed
-3. each column in a dataframe is essentially a vector. Do not forget the `c()` when inputing the values within each column
-
-Finally, you can access a column in a dataframe with the shortcut `$`. Notice that the names of all columns of the dataframe appears after typing in `my_df$`:
-
-```{r df_dollar, fig.cap="Accessing columns in a dataframe using the '$' symbol.", out.width="350px", echo=FALSE, fig.align='center'}
-knitr::include_graphics("Images/df_dollar.png")
-```
-
-**Challenge 1.1**
-
-Create a dataframe called `cats` with 2 columns. The first column named "name" should be a vector with the values: "Garfield", "Hello Kitty". The second column named "weights" should be a vector with the following values: 5.5, 4.8.
 
 ## Reading in data
 
@@ -494,24 +468,37 @@ write.table(x = genes, file = "Ses1_Genes_output.tsv", sep = "\t",
 
 ## Homework
 
-Create a dataframe called 'dogs' with the columns 'names' and 'weight'. The 'names' column should contain: "Spot", "Snoopy" and the 'weight' column should contain: 5.6, 4.5.
+A dataframe is composed of vectors, with each vector being one column. You can create a dataframe using the `data.frame()` function:
 
-Write this dataframe out to a .tsv file named 'Ses1_dogs.tsv'.
+```{r}
+my_df <- data.frame(
+  name = c("bob", "amy"), 
+  age = c(23,34)
+)
+my_df
+```
+
+There are a few important things to note:
+
+1. `name` and `age` become the names of the columns.
+2. the `,` at the end of `name = c("bob", "amy")` is important and should not be missed.
+3. each column in a dataframe is essentially a vector. Do not forget the `c()` when inputing the values within each column.
+
+You can access a column in a dataframe with the shortcut `$`. Notice that the names of all columns of the dataframe appears after typing in `my_df$`:
+
+```{r df_dollar, fig.cap="Accessing columns in a dataframe using the '$' symbol.", out.width="350px", echo=FALSE, fig.align='center'}
+knitr::include_graphics("Images/df_dollar.png")
+```
+
+Create a dataframe called `cats` with 2 columns. The first column named "name" should be a vector with the values: "Garfield", "Hello Kitty". The second column named "weights" should be a vector with the following values: 5.5, 4.8.
+
+Write this dataframe out to a .tsv file named 'Ses1_cats.tsv'.
+
+
 
 ## Answers
 
 **Challenge 1.1**
-
-Create a dataframe called `cats` with 2 columns. The first column named "name" should be a vector with the values: "Garfield", "Hello Kitty". The second column named "weights" should be a vector with the following values: 5.5, 4.8.
-```{r}
-cats <- data.frame(
-  name = c("Garfield", "Hello Kitty"),
-  weights = c(5.5,4.8)
-)
-```
-
-
-**Challenge 1.2**
 
 1.
 ```{r}
@@ -531,6 +518,17 @@ my_vect3 <- as.character(my_vect3)
 my_vect3 
 ```
 
+```{r, eval=FALSE, echo=FALSE}
+# Homework
+
+cats <- data.frame(
+  name = c("Garfield", "Hello Kitty"),
+  weights = c(5.5,4.8)
+)
+
+
+
+```
 
 
 

@@ -25,7 +25,7 @@
 <meta name="author" content="Lucy Liu">
 
 
-<meta name="date" content="2019-05-03">
+<meta name="date" content="2019-05-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -400,31 +400,6 @@ my_vect2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st
 <div id="dataframe" class="section level3">
 <h3><span class="header-section-number">1.8.3</span> Dataframe</h3>
 <p>Dataframes are also two dimensional (has both rows and columns) however, you can store different types of data in a dataframe. The only restriction is that all the data within one column must be of the same type.</p>
-<p>A dataframe is composed of vectors, with each vector being one column. You can create a dataframe using the <code>data.frame()</code> function:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
-  <span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;bob&quot;</span>, <span class="st">&quot;amy&quot;</span>), <span class="co"># &#39;name&#39; becomes the column name of this column</span>
-  <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">23</span>,<span class="dv">34</span>)
-  
-)
-my_df</code></pre></div>
-<pre><code>##   name age
-## 1  bob  23
-## 2  amy  34</code></pre>
-<p>There are a few important</p>
-<ol style="list-style-type: decimal">
-<li><code>name</code> and <code>age</code> become the names of the columns</li>
-<li>the <code>,</code> at the end of <code>name = c(&quot;bob&quot;, &quot;amy&quot;)</code> is important and should not be missed</li>
-<li>each column in a dataframe is essentially a vector. Do not forget the <code>c()</code> when inputing the values within each column</li>
-</ol>
-<p>Finally, you can access a column in a dataframe with the shortcut <code>$</code>. Notice that the names of all columns of the dataframe appears after typing in <code>my_df$</code>:</p>
-<div class="figure" style="text-align: center">
-<img src="Images/df_dollar.png" alt="Accessing columns in a dataframe using the '$' symbol." width="350px" />
-<p class="caption">
-(#fig:df_dollar)Accessing columns in a dataframe using the ‘$’ symbol.
-</p>
-</div>
-<p><strong>Challenge 1.1</strong></p>
-<p>Create a dataframe called <code>cats</code> with 2 columns. The first column named “name” should be a vector with the values: “Garfield”, “Hello Kitty”. The second column named “weights” should be a vector with the following values: 5.5, 4.8.</p>
 </div>
 </div>
 <div id="reading-in-data" class="section level2">
@@ -607,18 +582,34 @@ Figure 1.9: Variable in ‘Environment’ tab.
 </div>
 <div id="homework" class="section level2">
 <h2><span class="header-section-number">1.12</span> Homework</h2>
-<p>Create a dataframe called ‘dogs’ with the columns ‘names’ and ‘weight’. The ‘names’ column should contain: “Spot”, “Snoopy” and the ‘weight’ column should contain: 5.6, 4.5.</p>
-<p>Write this dataframe out to a .tsv file named ‘Ses1_dogs.tsv’.</p>
+<p>A dataframe is composed of vectors, with each vector being one column. You can create a dataframe using the <code>data.frame()</code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;bob&quot;</span>, <span class="st">&quot;amy&quot;</span>), 
+  <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">23</span>,<span class="dv">34</span>)
+)
+my_df</code></pre></div>
+<pre><code>##   name age
+## 1  bob  23
+## 2  amy  34</code></pre>
+<p>There are a few important things to note:</p>
+<ol style="list-style-type: decimal">
+<li><code>name</code> and <code>age</code> become the names of the columns.</li>
+<li>the <code>,</code> at the end of <code>name = c(&quot;bob&quot;, &quot;amy&quot;)</code> is important and should not be missed.</li>
+<li>each column in a dataframe is essentially a vector. Do not forget the <code>c()</code> when inputing the values within each column.</li>
+</ol>
+<p>You can access a column in a dataframe with the shortcut <code>$</code>. Notice that the names of all columns of the dataframe appears after typing in <code>my_df$</code>:</p>
+<div class="figure" style="text-align: center">
+<img src="Images/df_dollar.png" alt="Accessing columns in a dataframe using the '$' symbol." width="350px" />
+<p class="caption">
+(#fig:df_dollar)Accessing columns in a dataframe using the ‘$’ symbol.
+</p>
+</div>
+<p>Create a dataframe called <code>cats</code> with 2 columns. The first column named “name” should be a vector with the values: “Garfield”, “Hello Kitty”. The second column named “weights” should be a vector with the following values: 5.5, 4.8.</p>
+<p>Write this dataframe out to a .tsv file named ‘Ses1_cats.tsv’.</p>
 </div>
 <div id="answers" class="section level2">
 <h2><span class="header-section-number">1.13</span> Answers</h2>
 <p><strong>Challenge 1.1</strong></p>
-<p>Create a dataframe called <code>cats</code> with 2 columns. The first column named “name” should be a vector with the values: “Garfield”, “Hello Kitty”. The second column named “weights” should be a vector with the following values: 5.5, 4.8.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cats &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
-  <span class="dt">name =</span> <span class="kw">c</span>(<span class="st">&quot;Garfield&quot;</span>, <span class="st">&quot;Hello Kitty&quot;</span>),
-  <span class="dt">weights =</span> <span class="kw">c</span>(<span class="fl">5.5</span>,<span class="fl">4.8</span>)
-)</code></pre></div>
-<p><strong>Challenge 1.2</strong></p>
 <ol style="list-style-type: decimal">
 <li></li>
 </ol>
