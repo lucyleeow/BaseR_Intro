@@ -486,7 +486,7 @@ There are a few important things to note:
 
 You can access a column in a dataframe with the shortcut `$`. Notice that the names of all columns of the dataframe appears after typing in `my_df$`:
 
-```{r df_dollar, fig.cap="Accessing columns in a dataframe using the '$' symbol.", out.width="350px", echo=FALSE, fig.align='center'}
+```{r dfdollar, fig.cap="Accessing columns in a dataframe using the '$' symbol.", out.width="350px", echo=FALSE, fig.align='center'}
 knitr::include_graphics("Images/df_dollar.png")
 ```
 
