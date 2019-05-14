@@ -25,7 +25,7 @@
 <meta name="author" content="Lucy Liu">
 
 
-<meta name="date" content="2019-05-10">
+<meta name="date" content="2019-05-13">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -131,9 +131,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.10.1" data-path="session-1.html"><a href="session-1.html#factors"><i class="fa fa-check"></i><b>1.10.1</b> Factors</a></li>
 <li class="chapter" data-level="1.10.2" data-path="session-1.html"><a href="session-1.html#type-coercion"><i class="fa fa-check"></i><b>1.10.2</b> Type coercion</a></li>
 </ul></li>
-<li class="chapter" data-level="1.11" data-path="session-1.html"><a href="session-1.html#write"><i class="fa fa-check"></i><b>1.11</b> Writing out data</a></li>
-<li class="chapter" data-level="1.12" data-path="session-1.html"><a href="session-1.html#homework"><i class="fa fa-check"></i><b>1.12</b> Homework</a></li>
-<li class="chapter" data-level="1.13" data-path="session-1.html"><a href="session-1.html#answers"><i class="fa fa-check"></i><b>1.13</b> Answers</a></li>
+<li class="chapter" data-level="1.11" data-path="session-1.html"><a href="session-1.html#vect"><i class="fa fa-check"></i><b>1.11</b> Vectorisation</a></li>
+<li class="chapter" data-level="1.12" data-path="session-1.html"><a href="session-1.html#write"><i class="fa fa-check"></i><b>1.12</b> Writing out data</a></li>
+<li class="chapter" data-level="1.13" data-path="session-1.html"><a href="session-1.html#homework"><i class="fa fa-check"></i><b>1.13</b> Homework</a></li>
+<li class="chapter" data-level="1.14" data-path="session-1.html"><a href="session-1.html#answers"><i class="fa fa-check"></i><b>1.14</b> Answers</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="session-2.html"><a href="session-2.html"><i class="fa fa-check"></i><b>2</b> Session 2</a><ul>
 <li class="chapter" data-level="2.1" data-path="session-2.html"><a href="session-2.html#miss"><i class="fa fa-check"></i><b>2.1</b> Missing values</a></li>
@@ -142,7 +143,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.2.2" data-path="session-2.html"><a href="session-2.html#subsetting-with-logicals"><i class="fa fa-check"></i><b>2.2.2</b> Subsetting with logicals</a></li>
 <li class="chapter" data-level="2.2.3" data-path="session-2.html"><a href="session-2.html#in"><i class="fa fa-check"></i><b>2.2.3</b> %in%</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="session-2.html"><a href="session-2.html#vect"><i class="fa fa-check"></i><b>2.3</b> Vectorisation</a></li>
+<li class="chapter" data-level="2.3" data-path="session-1.html"><a href="session-1.html#vect"><i class="fa fa-check"></i><b>2.3</b> Vectorisation</a></li>
 <li class="chapter" data-level="2.4" data-path="session-2.html"><a href="session-2.html#functions"><i class="fa fa-check"></i><b>2.4</b> Functions</a></li>
 <li class="chapter" data-level="2.5" data-path="session-2.html"><a href="session-2.html#homework-1"><i class="fa fa-check"></i><b>2.5</b> Homework</a></li>
 <li class="chapter" data-level="2.6" data-path="session-2.html"><a href="session-2.html#answers-1"><i class="fa fa-check"></i><b>2.6</b> Answers</a></li>
@@ -505,7 +506,7 @@ Figure 2.2: rnorm help file.
 <pre><code>n   - number of observations. If length(n) &gt; 1, the length is taken to be the number required.
 mean - vector of means.
 sd - vector of standard deviations.</code></pre>
-<p><strong>Challenge 2.4</strong></p>
+<p><strong>Challenge 2.3</strong></p>
 <ol style="list-style-type: decimal">
 <li>Take a look at what the <code>rnorm()</code> function outputs in the code below. Try using various different inputs to the function then, try to answer the following questions:</li>
 </ol>
@@ -514,21 +515,21 @@ sd - vector of standard deviations.</code></pre>
 <li>What happens when you give either argument a vector of numbers?</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">4</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>## [1]  9.481465  9.972253 11.796336 11.182545</code></pre>
+<pre><code>## [1]  9.681337 11.186002  9.171499 11.728824</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="kw">c</span>(<span class="dv">100</span>,<span class="dv">0</span>), <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>## [1] 99.628302 -0.622949 99.685378</code></pre>
+<pre><code>## [1]  98.3128029  -0.2797005 101.2332528</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Take a look at the following code:</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">10</span>)</code></pre></div>
-<pre><code>## [1] -2.193133 -6.326486 -1.543058</code></pre>
+<pre><code>## [1]  2.384001 12.428344  2.855490</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>,<span class="dv">1</span>,<span class="dv">3</span>)</code></pre></div>
-<pre><code>##  [1] -0.4552095 -2.6263586 -0.2753075 -1.5723757  1.2919112  5.3792455
-##  [7]  3.0016173  2.9871224  0.4301195  0.4948438</code></pre>
+<pre><code>##  [1]  4.79746321 -3.29812683  3.62611797 -2.77238341 -1.09358805
+##  [6] -0.08656223  0.91493423  3.27442640  0.91552996  1.91370722</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">0</span>)</code></pre></div>
 <pre><code>## [1] 10 10 10</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dt">sd =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">n =</span> <span class="dv">3</span>)</code></pre></div>
-<pre><code>## [1]  2.991483  5.785020 14.104628</code></pre>
+<pre><code>## [1]  -3.140062  -4.356232 -11.588764</code></pre>
 <p>How does the order of the arguments you input to the function affect the output? How does the order of the arguments you input affect the output, when you name each argument (along with the input)?</p>
 <p>Note: as the function generates a random number, the numbers you will get from running the function will be different to the ones generated above.</p>
 </div>
@@ -599,154 +600,6 @@ FALSE TRUE TRUE FALSE FALSE FALSE</code></pre>
 FALSE TRUE FALSE FALSE FALSE FALSE</code></pre>
 <p><code>%in%</code> simply performs matching and does not take order of the two vectors into consideration. It checks whether the values in <code>vect1</code> matches either number in <code>c(5,10)</code>. It thus gives us the result we expect.</p>
 <p><strong>Challenge 2.3</strong></p>
-<p>The <code>sum()</code> function can be used to calculate the total Count of all 10 rows by giving the <code>genes$Count</code> vector as the input to <code>sum()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes<span class="op">$</span>Prop_Count &lt;-<span class="st"> </span>genes<span class="op">$</span>Count <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(genes<span class="op">$</span>Count) 
-genes</code></pre></div>
-<pre><code>##      EntrezID         SYMBOL TXCHROM GeneLength Count Count_2   Prop_Count
-## 1       11480         Acvr2a    chr2       5681   979     989 4.951672e-03
-## 2       11634           Aire   chr10       1929    15      25 7.586831e-05
-## 3       12156           Bmp2    chr2       2515   932     942 4.713951e-03
-## 4       12290        Cacna1e    chr1      12697     0      10 0.000000e+00
-## 5       12449           Ccnf   chr17       3099   214     224 1.082388e-03
-## 6       12563           Cdh6   chr15       2632     2      12 1.011578e-05
-## 7       12565           Cdh9   chr15       2903     2      12 1.011578e-05
-## 8       12647           Chat   chr14       2810     0      10 0.000000e+00
-## 9       12753          Clock    chr5       7478  1790    1800 9.053619e-03
-## 10      12801           Cnr1    chr4       5807    41      51 2.073734e-04
-## 11      13177           Eci1   chr17       1091  1033    1043 5.224798e-03
-## 12      13560           E4f1   chr17       2574   700     710 3.540521e-03
-## 13      14000         Drosha   chr15       4571  2075    2085 1.049512e-02
-## 14      14370           Fzd8   chr18       3346   351     361 1.775319e-03
-## 15      14658           Glrb    chr3       2988    22      32 1.112735e-04
-## 16      14800          Gria2    chr3       7749     0      10 0.000000e+00
-## 17      14843           Gsx2    chr5       1665     0      10 0.000000e+00
-## 18      15064            Mr1    chr1       2509   893     903 4.516694e-03
-## 19      15112           Hao1    chr2       2029     3      13 1.517366e-05
-## 20      15331          Hmgn2    chr4       1254   100     110 5.057888e-04
-## 21      15939           Ier5    chr1       3270 32100   32110 1.623582e-01
-## 22      15944          Irgm1   chr11       2227   269     279 1.360572e-03
-## 23      16542            Kdr    chr5       5456    34      44 1.719682e-04
-## 24      16590            Kit    chr5       5182 20005   20015 1.011830e-01
-## 25      16796          Lasp1   chr11       3433  5751    5761 2.908791e-02
-## 26      17695           Msmb   chr14        522     0      10 0.000000e+00
-## 27      18105           Nqo2   chr13       4045   275     285 1.390919e-03
-## 28      18356         Olfr56   chr11       1930     9      19 4.552099e-05
-## 29      18595         Pdgfra    chr5       6737   849     859 4.294147e-03
-## 30      18641           Pfkl   chr10       3719  7175    7185 3.629034e-02
-## 31      18777         Lypla1    chr1       2433   768     778 3.884458e-03
-## 32      18795          Plcb1    chr2       7116   358     368 1.810724e-03
-## 33      18798          Plcb4    chr2       3692   234     244 1.183546e-03
-## 34      19330          Rab18   chr18       2257  5065    5075 2.561820e-02
-## 35      19766          Ripk1   chr13       4495  2096    2106 1.060133e-02
-## 36      19775           Xpr1    chr1       7651  1994    2004 1.008543e-02
-## 37      19826          Rnps1   chr17       1923   757     767 3.828821e-03
-## 38      19888            Rp1    chr1       9747     0      10 0.000000e+00
-## 39      20111        Rps6ka1    chr4       3137  2310    2320 1.168372e-02
-## 40      20508        Slc18a3   chr14       2414     0      10 0.000000e+00
-## 41      20671          Sox17    chr1       3130     1      11 5.057888e-06
-## 42      20709      Serpinb9f   chr13       1912     0      10 0.000000e+00
-## 43      20719      Serpinb6a   chr13       1888  3091    3101 1.563393e-02
-## 44      21399          Tcea1    chr1       2847   810     820 4.096889e-03
-## 45      21822          Tgtp1   chr11       2809    30      40 1.517366e-04
-## 46      21982        Tmem165    chr5       1896   816     826 4.127236e-03
-## 47      22658          Pcgf2   chr11       2836   817     827 4.132294e-03
-## 48      23833           Cd52    chr4        503     1      11 5.057888e-06
-## 49      24018          Rngtt    chr4       4153   580     590 2.933575e-03
-## 50      24136           Zeb2    chr2       9113    33      43 1.669103e-04
-## 51      26369          Cetn1   chr18       1051     0      10 0.000000e+00
-## 52      26428           Orc4    chr2       4978   941     951 4.759472e-03
-## 53      26430           Parg   chr14       4391  1445    1455 7.308647e-03
-## 54      26446          Psmb3   chr11        731   522     532 2.640217e-03
-## 55      26565        Pla2g10   chr16       1022     2      12 1.011578e-05
-## 56      26932        Ppp2r5e   chr12       4810  2346    2356 1.186580e-02
-## 57      27057          Ncoa4   chr14       3577   572     582 2.893112e-03
-## 58      27395         Mrpl15    chr1       4203   431     441 2.179950e-03
-## 59      27410          Abca3   chr17       6453  5797    5807 2.932057e-02
-## 60      28240          Trpm2   chr10       7292     2      12 1.011578e-05
-## 61      50723          Icosl   chr10       2748    70      80 3.540521e-04
-## 62      50793           Orc3    chr4       6313  1236    1246 6.251549e-03
-## 63      52837           Tmx4    chr2       5148   966     976 4.885919e-03
-## 64      53600         Timm23   chr14       1162   235     245 1.188604e-03
-## 65      54427         Dnmt3l   chr10       1885     2      12 1.011578e-05
-## 66      54635          Pdgfc    chr3       3512  3009    3019 1.521918e-02
-## 67      57357         Srd5a3    chr5       1769   431     441 2.179950e-03
-## 68      58175          Rgs20    chr1       2241   452     462 2.286165e-03
-## 69      58244           Stx6    chr1       2459  2602    2612 1.316062e-02
-## 70      65019          Rpl23   chr11       1062  3481    3491 1.760651e-02
-## 71      66598           &lt;NA&gt;    &lt;NA&gt;       1611    99     109 5.007309e-04
-## 72      66629         Golph3   chr15       2608 11857   11867 5.997137e-02
-## 73      66705       Dnase1l2   chr17       1236    35      45 1.770261e-04
-## 74      66841          Etfdh    chr3       2281  1952    1962 9.872996e-03
-## 75      67085  1700024G13Rik   chr14        398     0      10 0.000000e+00
-## 76      67118           Bfar   chr16       3003   706     716 3.570869e-03
-## 77      67422          Dhdds    chr4       3110  1317    1327 6.661238e-03
-## 78      67480          Cwc25   chr11       3307  1130    1140 5.715413e-03
-## 79      67586         Ubxn11    chr4       1577    92     102 4.653257e-04
-## 80      67652         Spaca1    chr4       1073     0      10 0.000000e+00
-## 81      67738           Ppid    chr3       1728   871     881 4.405420e-03
-## 82      67884  1810043G02Rik   chr10       1696   730     740 3.692258e-03
-## 83      67974           Ccny   chr18       4017  3892    3902 1.968530e-02
-## 84      68070          Pdzd2   chr15      13413  3772    3782 1.907835e-02
-## 85      68659        Fam198b    chr3       6627    20      30 1.011578e-04
-## 86      68808  1110046J04Rik   chr13        777     7      17 3.540521e-05
-## 87      69405  1700019E08Rik    chr2        635     0      10 0.000000e+00
-## 88      70012          Cep85    chr4       3866   756     766 3.823763e-03
-## 89      70100  2310015D24Rik   chr16       2917     1      11 5.057888e-06
-## 90      70652        Tmem144    chr3       2292   210     220 1.062156e-03
-## 91      72016          Tedc2   chr17       2145   101     111 5.108466e-04
-## 92      72215  1700001P01Rik   chr11        624    17      27 8.598409e-05
-## 93      72338          Wdr89   chr12       2981    21      31 1.062156e-04
-## 94      73723       Sh3bgrl3    chr4        707   537     547 2.716086e-03
-## 95      74108           Parn   chr16       2902  1240    1250 6.271781e-03
-## 96      74277          Chic2    chr5       1115   930     940 4.703835e-03
-## 97      74284  1700086L19Rik   chr12       1046     1      11 5.057888e-06
-## 98      74934          Armc4   chr18       3477     1      11 5.057888e-06
-## 99      75188  1700009J07Rik   chr10        914     0      10 0.000000e+00
-## 100     75627         Snapc1   chr12       2125   221     231 1.117793e-03
-## 101     75739           Mpp7   chr18       5315  1599    1609 8.087562e-03
-## 102     75879  4930589L23Rik    &lt;NA&gt;       1364     0      10 0.000000e+00
-## 103     75939  4930579G24Rik    chr3       1970    67      77 3.388785e-04
-## 104     76161          Lamp5    chr2       1955     1      11 5.057888e-06
-## 105     76684      Pla2g10os   chr16        331     0      10 0.000000e+00
-## 106     77877  6030458C11Rik   chr15       5474   315     325 1.593235e-03
-## 107     78112  4930452N14Rik    chr1        613     0      10 0.000000e+00
-## 108     78805  4930545L23Rik    chr2       2502     0      10 0.000000e+00
-## 109     80837           Rhoj   chr12       2358   739     749 3.737779e-03
-## 110     83557         Lin28a    chr4       3480     0      10 0.000000e+00
-## 111     93806      Serpinb9g   chr13       1925     0      10 0.000000e+00
-## 112     94089          Trim7   chr11       1366   976     986 4.936498e-03
-## 113     97848      Serpinb6c   chr13       1328     1      11 5.057888e-06
-## 114    108083        Pip4k2b   chr11       5053   715     725 3.616390e-03
-## 115    108767          Pnrc1    chr4       1925 18636   18646 9.425879e-02
-## 116    109093          Rars2    chr4       1867   289     299 1.461729e-03
-## 117    109241           Mbd5    chr2       7055  1396    1406 7.060811e-03
-## 118    207678           &lt;NA&gt;    &lt;NA&gt;       1877     0      10 0.000000e+00
-## 119    207792       BC034090    &lt;NA&gt;       4611   101     111 5.108466e-04
-## 120    210719            Mkx   chr18       3201   285     295 1.441498e-03
-## 121    211007         Trim41   chr11       3470  1665    1675 8.421383e-03
-## 122    217149          Cisd3   chr11        742    47      57 2.377207e-04
-## 123    217674          Gphb5   chr12       1614     2      12 1.011578e-05
-## 124    225131            Wac   chr18       5441  4483    4493 2.267451e-02
-## 125    225152           Gjd4   chr18       2661     2      12 1.011578e-05
-## 126    227835          Gtdc1    chr2       2554   363     373 1.836013e-03
-## 127    230806         Crybg2    chr4       4761   169     179 8.547830e-04
-## 128    237387          Lrrc3   chr10       4296   135     145 6.828148e-04
-## 129    238266          Syt16   chr12       2705     0      10 0.000000e+00
-## 130    238271          Kcnh5   chr12       4061     2      12 1.011578e-05
-## 131    238568      Serpinb6d   chr13       1467     0      10 0.000000e+00
-## 132    239017          Ogdhl   chr14       3449    11      21 5.563676e-05
-## 133    239719           Mkl2   chr16       8997  4088    4098 2.067664e-02
-## 134    241639         Fermt1    chr2       5255  1082    1092 5.472634e-03
-## 135    242377         Pm20d2    chr4       5578    92     102 4.653257e-04
-## 136    245240 9930111J21Rik2   chr11       2403     0      10 0.000000e+00
-## 137    246198          Mllt6   chr11       7271  3888    3898 1.966507e-02
-## 138    252974         Tspear   chr10       2163    17      27 8.598409e-05
-## 139    258097       Olfr1500   chr19        936     0      10 0.000000e+00
-## 140    258151       Olfr1505   chr19        951     0      10 0.000000e+00
-## 141    258341       Olfr1495   chr19        960     0      10 0.000000e+00
-## 142    258626       Olfr1501   chr19        948     0      10 0.000000e+00
-##  [ reached getOption(&quot;max.print&quot;) -- omitted 58 rows ]</code></pre>
-<p><strong>Challenge 2.4</strong></p>
 <ol style="list-style-type: decimal">
 <li>If you provide <code>rnorm()</code> with a vector of inputs to either the <code>mean</code> or <code>sd</code> argument, it will use each element in that vector for successive random numbers generated and recycle the vector if it is shorter than the number of random numbers required.</li>
 </ol>

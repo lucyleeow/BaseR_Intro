@@ -25,7 +25,7 @@
 <meta name="author" content="Lucy Liu">
 
 
-<meta name="date" content="2019-05-10">
+<meta name="date" content="2019-05-13">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -131,9 +131,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.10.1" data-path="session-1.html"><a href="session-1.html#factors"><i class="fa fa-check"></i><b>1.10.1</b> Factors</a></li>
 <li class="chapter" data-level="1.10.2" data-path="session-1.html"><a href="session-1.html#type-coercion"><i class="fa fa-check"></i><b>1.10.2</b> Type coercion</a></li>
 </ul></li>
-<li class="chapter" data-level="1.11" data-path="session-1.html"><a href="session-1.html#write"><i class="fa fa-check"></i><b>1.11</b> Writing out data</a></li>
-<li class="chapter" data-level="1.12" data-path="session-1.html"><a href="session-1.html#homework"><i class="fa fa-check"></i><b>1.12</b> Homework</a></li>
-<li class="chapter" data-level="1.13" data-path="session-1.html"><a href="session-1.html#answers"><i class="fa fa-check"></i><b>1.13</b> Answers</a></li>
+<li class="chapter" data-level="1.11" data-path="session-1.html"><a href="session-1.html#vect"><i class="fa fa-check"></i><b>1.11</b> Vectorisation</a></li>
+<li class="chapter" data-level="1.12" data-path="session-1.html"><a href="session-1.html#write"><i class="fa fa-check"></i><b>1.12</b> Writing out data</a></li>
+<li class="chapter" data-level="1.13" data-path="session-1.html"><a href="session-1.html#homework"><i class="fa fa-check"></i><b>1.13</b> Homework</a></li>
+<li class="chapter" data-level="1.14" data-path="session-1.html"><a href="session-1.html#answers"><i class="fa fa-check"></i><b>1.14</b> Answers</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="session-2.html"><a href="session-2.html"><i class="fa fa-check"></i><b>2</b> Session 2</a><ul>
 <li class="chapter" data-level="2.1" data-path="session-2.html"><a href="session-2.html#miss"><i class="fa fa-check"></i><b>2.1</b> Missing values</a></li>
@@ -142,7 +143,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.2.2" data-path="session-2.html"><a href="session-2.html#subsetting-with-logicals"><i class="fa fa-check"></i><b>2.2.2</b> Subsetting with logicals</a></li>
 <li class="chapter" data-level="2.2.3" data-path="session-2.html"><a href="session-2.html#in"><i class="fa fa-check"></i><b>2.2.3</b> %in%</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="session-2.html"><a href="session-2.html#vect"><i class="fa fa-check"></i><b>2.3</b> Vectorisation</a></li>
+<li class="chapter" data-level="2.3" data-path="session-1.html"><a href="session-1.html#vect"><i class="fa fa-check"></i><b>2.3</b> Vectorisation</a></li>
 <li class="chapter" data-level="2.4" data-path="session-2.html"><a href="session-2.html#functions"><i class="fa fa-check"></i><b>2.4</b> Functions</a></li>
 <li class="chapter" data-level="2.5" data-path="session-2.html"><a href="session-2.html#homework-1"><i class="fa fa-check"></i><b>2.5</b> Homework</a></li>
 <li class="chapter" data-level="2.6" data-path="session-2.html"><a href="session-2.html#answers-1"><i class="fa fa-check"></i><b>2.6</b> Answers</a></li>
@@ -610,7 +611,7 @@ named_list3</code></pre></div>
 ## [7] &quot;GSM1545542_JMS8-5&quot;    &quot;GSM1545544_JMS9-P7c&quot;  &quot;GSM1545545_JMS9-P8c&quot;</code></pre>
 <p>We can see that the row names are the file names as we saw above. To replace these file names with the sample names we can run:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rownames</span>(x<span class="op">$</span>samples) &lt;-<span class="st"> </span>samplenames</code></pre></div>
-<p>We have seen this type of notation before in session 1 (section <a href="session-2.html#vect">2.3</a>). This code assigns the <code>samplenames</code> vector as the row names of the <code>samples</code> dataframe.</p>
+<p>We have seen this type of notation before in session 1 (section <a href="session-1.html#vect">1.11</a>). This code assigns the <code>samplenames</code> vector as the row names of the <code>samples</code> dataframe.</p>
 <p><strong>Challenge 3.4</strong></p>
 <ol style="list-style-type: decimal">
 <li>Use the <code>colnames()</code> function to replace the column names of the count matrix from being file names to sample names.</li>
@@ -622,7 +623,7 @@ named_list3</code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Additional gene annotation information about the genes from our RNA-seq data can be found in the file “Ses3_geneAnnot.tsv”. Read this file in and add it as another element named <code>genes</code> in <code>x</code> (our <code>DGEList</code> object).</li>
 </ol>
-<p><em>Hint</em>: the command for adding an element to a list is similar to the command for adding a column to a dataframe. Take a look at Section <a href="session-2.html#vect">2.3</a> to review how to do the latter.</p>
+<p><em>Hint</em>: the command for adding an element to a list is similar to the command for adding a column to a dataframe. Take a look at Section <a href="session-1.html#vect">1.11</a> to review how to do the latter.</p>
 </div>
 <div id="homework-2" class="section level2">
 <h2><span class="header-section-number">3.5</span> Homework</h2>
