@@ -295,7 +295,6 @@ Create a new column called `Prop_Count` that contains each count value as a prop
 
 *Hint* use the `sum()` function.
 
-
 ## Functions
 
 A function, as the name suggests performs a function. We have already used many functions. For example, the `read.delim()` function reads in data, the `sum()` function adds numbers up and the `merge()` function above merges two dataframes.
@@ -322,7 +321,7 @@ mean - vector of means.
 sd - vector of standard deviations.
 ```
 
-**Challenge 2.4**
+**Challenge 2.3**
 
 1. Take a look at what the `rnorm()` function outputs in the code below. Try using various different inputs to the function then, try to answer the following questions:
 
@@ -414,15 +413,6 @@ FALSE TRUE FALSE FALSE FALSE FALSE
 `%in%` simply performs matching and does not take order of the two vectors into consideration. It checks whether the values in `vect1` matches either number in `c(5,10)`. It thus gives us the result we expect.
 
 **Challenge 2.3**
-
-The `sum()` function can be used to calculate the total Count of all 10 rows by giving the `genes$Count` vector as the input to `sum()`.
-
-```{r}
-genes$Prop_Count <- genes$Count / sum(genes$Count) 
-genes
-```
-
-**Challenge 2.4**
 
 1. If you provide `rnorm()` with a vector of inputs to either the `mean` or `sd` argument, it will use each element in that vector for successive random numbers generated and recycle the vector if it is shorter than the number of random numbers required.
 
