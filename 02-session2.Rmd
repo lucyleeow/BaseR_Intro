@@ -2,13 +2,64 @@
 
 In this session we will learn about:
 
+* how functions work
 * missing values
 * subsetting data structures
-* how functions are created and used
+
+## Functions
+
+A function, as the name suggests performs a function. We have already used many functions. For example, the `read.delim()` function reads in data, the `sum()` function adds numbers up and the `merge()` function above merges two dataframes. In this section we will look at functions more formally.
+
+When using a function, brackets (`( )`) always need to be included after the name of the function. Inputs (technically 'arguments') to the function are give within the brackets. You can find out what inputs an argument takes by looking at the help file.
+
+For example, let's take a look at the `rnorm()` function help file. This function generates a random number from a normal distribution.
+
+```{r rnorm, fig.cap='rnorm help file.', out.width="600px", echo=FALSE, fig.align='center'}
+knitr::include_graphics("Images/rnorm_help.png")
+```
+
+We can see from the help file that `rnorm()` takes in 3 arguments:
+
+```
+rnorm(n, mean = 0, sd = 1)
+```
+
+The help file also tells us what each of these arguments does:
+
+```
+n	- number of observations. If length(n) > 1, the length is taken to be the number required.
+mean - vector of means.
+sd - vector of standard deviations.
+```
+
+**Challenge 2.1**
+
+1. Take a look at what the `rnorm()` function outputs in the code below. Try using various different inputs to the function then, try to answer the following questions:
+
+* What does `rnorm()` do when you only give it one number to the `mean` and `sd` arguments?
+* What happens when you give either argument a vector of numbers?
+
+```{r}
+rnorm(4, mean = 10, sd = 1)
+rnorm(3, mean = c(100,0), sd = 1)
+```
+
+2. Take a look at the following code:
+
+```{r}
+rnorm(3,1,10)
+rnorm(10,1,3)
+rnorm(3, mean = 10, sd = 0)
+rnorm(sd = 10, mean = 0, n = 3)
+```
+
+How does the order of the arguments you input to the function affect the output? How does the order of the arguments you input affect the output, when you name each argument (along with the input)?
+
+Note: as the function generates a random number, the numbers you will get from running the function will be different to the ones generated above.
 
 ## Missing values {#miss}
 
-First, let's read in some data. Recall we use the function `read.delim()` and tell R not to label words (character type data) as 'Factors' using `stringsAsFactors = FALSE`.
+Missing values are fairly common in data and in this section, we will look at how to deal with missing values in R. First, let's read in some data. Recall we use the function `read.delim()` and tell R not to label words (character type data) as 'Factors' using `stringsAsFactors = FALSE`.
 
 We are using the file "Ses2_genes.tsv" today. This would have been emailed to you before the session. (Alternatively you can download the data from [GitHub](https://github.com/lucyleeow/BaseR_Intro)).
 
@@ -37,6 +88,25 @@ mean(c(2,3,NA), na.rm = TRUE)
 ```
 
 Later, we will learn how to remove the `NA` values from our dataframe.
+
+### Missing codes
+
+You may have also noticed that in the `SYMBOL` column, there is a value "missing" on row 3 and a value "Missing" on row 25. These have been used to denote missing values. 
+
+It is not uncommon for some people to denote missing values with some character (e.g. "x" or "none" or 999) when performing data entry. It is thus a good idea for us to learn how to deal with this. 
+
+We will learn how to do this in the next challenge. This challenge is designed for you to practice how to read help files and gain an understanding of an important computing concept.
+
+**Challenge 2.2**
+
+1. Using the "help" tab in RStudio, find the help file for the function `read.delim()`. You will notice that this help file describes several functions but all perform the function of reading data into R. It is not uncommon for functions that perform similar tasks to be grouped together in one help file. 
+
+Read the "Arguments" section of the help file and find which argument could be used to tell R that "missing" and "Missing" should be interpreted as a missing value (i.e. a `NA`).
+
+2. Read in the file "Ses2_genes.tsv" again but use the argument identified above to tell R that "missing" should be a `NA`.
+
+3. Amend your command above so that both "missing" and "Missing" are both interpreted as `NA`s.
+
 
 ## Subsetting
 
@@ -167,7 +237,6 @@ head(genes[! genes$Count == 0,])
 ```
 
 We can use the `$` shortcut to obtain just one column in a dataframe. We can't do this with matrices - we have to use the `[ ]` notation instead. 
-
 For example, we can create a matrix from our `genes` dataframe. Recall that a matrix can only hold data of ONE data type - thus we will create a dataframe using just the `GeneLength` and `Count` columns of the `genes` dataframe. The first 6 rows are printed out:
 
 ```{r}
@@ -185,7 +254,7 @@ head(
 
 We used the `[ ]` to specify that we want to use the 2nd column of the matrix, which is the `Count` column. Like above, the `==` checks if each element in the `Count` column is 0. There is nothing entered to the right of the comma, indicating that we want all the columns.
 
-**Challenge 2.1**
+**Challenge 2.3**
 
 1. Subset the `genes` dataframe to obtain the rows where the `Count` is less than or equal to 10 and the columns `TXCHROM` and `Count`.
 2. The function `is.na()` checks if each element in a vector is `NA`:
@@ -212,7 +281,7 @@ head(
   )
 ```
 
-**Challenge 2.2**
+**Challenge 2.4**
 
 There is an important difference between `==` and `%in%`.
 
@@ -247,7 +316,7 @@ vect1 %in% c(5,10)
 
 This output IS what we want.
 
-Take a look at the code above and see if you can understand what `==` does and what `%in%` does.
+Take a look at the code above and see if you can understand what `==` does and what `%in%` does. This challenge is designed to make you think and be difficult.
 
 
 *Hint*: The story gets even more interesting if we try to use `==` to look for four numbers:
@@ -258,111 +327,134 @@ vect1 == c(5,10,1,3)
 
 This warning message may seem a bit cryptic. The 'longer' object it is referring to is `vect1` which has 6 elements. The shorter object it is referring to is `c(5,10,1,3)`, which has 4 elements. Thus, it is saying that 6 is not a multiple of 4. The reason R wants the longer object to be a multiple of the shorter one, is key to understanding what is happening when we use `==`.
 
-## Vectorisation {#vect}
 
-R is quite efficient at doing calculations or performing a functions on a vector of data.
+## Merge
 
-Let's use the `Count` column from our dataframe `genes`. We can access just one column using the `$` symbol:
+Two dataframes can be combined with the `merge()` function.
+
+For example, let's say we have two dataframes (dataframe1 and dataframe2), each containing different information about 3 genes: 
+
+```{r merge1, fig.cap='The two dataframes to merge.', out.width="750px", echo=FALSE}
+knitr::include_graphics("Images/merge1.png")
+```
+
+We can merge these dataframes together into one dataframe that contains all the information about genes. Notice that the order of the genes is not the same in the two dataframes. During the merge we want R to match each row according to the `Gene` column in each dataframe such that the correct information is added to the correct row. The result would have 4 columns, 3 rows and the correct information along each row.
+
+```{r merge2, fig.cap='The two dataframes merged.', out.width="750px", echo=FALSE}
+knitr::include_graphics("Images/merge2.png")
+```
+
+Let's practice merging on the files "Ses2_genes.tsv" and "Extra_geneNames.tsv". "Ses2_genes.tsv" contains gene EntrezIDs, gene symbol, gene chromosome, gene length and their count value. "Extra_geneNames.tsv" contains gene names and their corresponding EntrezIDs.
+
+First we will read in both files:
 
 ```{r}
-genes$Count
+genes <- read.delim("data/Ses2_genes.tsv", stringsAsFactors = FALSE)
+gene_names <- read.delim("data/Ses2_geneNames.tsv", 
+                         stringsAsFactors = FALSE)
 ```
 
-What do you think will happen if we do this?
+What we want to do now, is to merge the two dataframes into one dataframe with 6 columns, containing the information from both dataframes. We also want to make sure that when R merges the dataframes, the correct information is added to the correct row. You will notice that both the `genes` and `gene_names` dataframes have a column giving the EntrezIDs. This column can be used as the "index" or "ID" column to make sure the correct information is added to each row. We can do this by telling `merge()` to match rows in the two dataframes using EntrezIDs during the merge. 
+
+`merge()` has the following syntax:
+
+```{r, eval=FALSE}
+merge(
+  x =    # name of the first dataframe to merge
+  y =    # name of the second dataframe to merge
+  by.x = # name of the column to match, in the first dataframe
+  by.y = # name of the column to match in the second dataframe
+)
+```
+
+Thus, to merge our two dataframes, using the EntrezID column of each dataframe to match rows, we can use:
 
 ```{r}
-genes$Count + 10
+genes2 <- merge(x = genes, y = gene_names, 
+                by.x = "EntrezID", by.y = "ENTREZID")
+
+head(genes2)
 ```
 
-R will perform this calculation on all numbers in the `Count` column and return a vector.
+You may have noticed that there are 200 rows in the `genes` dataframe but 290 rows in the `gene_names` dataframe. This means that there are more genes in the `gene_names` dataframe than there are in the `genes` dataframe. This means that there are a few ways to merge the two dataframes. We can either keep all rows from both dataframes, keep only rows where there is a corresponding "index" value in both dataframes or keep only rows from one of the two dataframes. 
 
-We can add this new vector to our dataframe, as a new column.
+We can specify which rows to keep using the following additional arguments in `merge()`:
 
-```{r}
-genes$Count_2 <- genes$Count + 10
+```{r, eval=FALSE}
+merge(
+  x =     # name of the first dataframe to merge
+  y =     # name of the second dataframe to merge
+  by.x =  # name of the column to match, in the first dataframe
+  by.y =  # name of the column to match in the second dataframe
+  all.x = # logical. If TRUE, keep all rows from the first dataframe, 
+          # even if does not have a matching row in the second dataframe
+  all.y = # logical. If TRUE, keep all rows from the second dataframe, 
+          # even if does not have a matching row in the second dataframe
+)
 ```
 
-There are a few things happening in the above code: 
+By default, `merge()` will only keep rows that have corresponding "index" values in both dataframes.
 
-1. The code on the right side of `<-` is evaluated first. It returns a vector as we saw above.
-2. This vector is assigned to a column in `genes` called `Count_2`. Since this column does not yet exist in the `genes` dataframe, a new column called `Count_2` is created first. (If there was already a column name `Count_2`, this command will have overwritten that column with the new vector created in the right side of `<-`)
+**Challenge 2.5**
 
-Note that you could also REPLACE a column using the same notation. For example, if, in the command above, the left side was `genes$Count`, the old column called `Count` would be REPLACED with the new vector of numbers created on the right side.
+Merge the two dataframes again, but this time keep all rows from both dataframes.
 
-**Challenge 2.3**
-
-Create a new column called `Prop_Count` that contains each count value as a proportion of the total count value of all 10 genes in the dataframe. E.g. if `Count` was 10 and total count of all 10 genes is 100, that row in `Prop_Count` should be 0.1.
-
-*Hint* use the `sum()` function.
-
-## Functions
-
-A function, as the name suggests performs a function. We have already used many functions. For example, the `read.delim()` function reads in data, the `sum()` function adds numbers up and the `merge()` function above merges two dataframes.
-
-Formally, when using a function, brackets (`( )`) are always included after the name of the function. Within the brackets is where input (technically 'arguments') to the function goes. You can find out what inputs an argument takes by looking at the help file.
-
-For example, let's take a look at the `rnorm()` function help file. This function generates a random number from a normal distribution.
-
-```{r rnorm, fig.cap='rnorm help file.', out.width="600px", echo=FALSE, fig.align='center'}
-knitr::include_graphics("Images/rnorm_help.png")
-```
-
-We can see from the help file that `rnorm()` takes in 3 arguments:
-
-```
-rnorm(n, mean = 0, sd = 1)
-```
-
-The help file also tells us what each of these arguments does:
-
-```
-n	- number of observations. If length(n) > 1, the length is taken to be the number required.
-mean - vector of means.
-sd - vector of standard deviations.
-```
-
-**Challenge 2.3**
-
-1. Take a look at what the `rnorm()` function outputs in the code below. Try using various different inputs to the function then, try to answer the following questions:
-
-* What does `rnorm()` do when you only give it one number to the `mean` and `sd` arguments?
-* What happens when you give either argument a vector of numbers?
-
-```{r}
-rnorm(4, mean = 10, sd = 1)
-rnorm(3, mean = c(100,0), sd = 1)
-```
-
-2. Take a look at the following code:
-
-```{r}
-rnorm(3,1,10)
-rnorm(10,1,3)
-rnorm(3, mean = 10, sd = 0)
-rnorm(sd = 10, mean = 0, n = 3)
-```
-
-How does the order of the arguments you input to the function affect the output? How does the order of the arguments you input affect the output, when you name each argument (along with the input)?
-
-Note: as the function generates a random number, the numbers you will get from running the function will be different to the ones generated above.
 
 ## Homework
 
 1. Subset your `genes` dataframe to obtain the rows 5 to 10, 45 and 72 and all the columns EXCEPT column 4.
 2. Subset your `genes` dataframe to obtain only rows where genes with the symbol is "Rab18", "Ripk1" or "Xpr1" and all the columns.
-3. Read in the data file "Ses2_homework.tsv" using `read.delim()`. Create a new column called `Prop_GeneLength` that contains the `Count` value as a proportion of `GeneLength`. E.g. if the count value was 50 and the gene length was 2400, the `Prop_GeneLength` value for that row would be 0.02083333. Finally, write out this new dataframe as a file called "Ses2_homework_output.tsv", as a tsv (tab separated values) file.
-4. We will use the Bioconductor packages 'limma' and 'edgeR' in the next session. Install these packages with the following commands:
-
-```{r, eval=FALSE}
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-BiocManager::install(c("edgeR", "limma"), version = "3.8")
-```
 
 
 ## Answers
 
 **Challenge 2.1**
+
+1. If you provide `rnorm()` with a vector of inputs to either the `mean` or `sd` argument, it will use each element in that vector for successive random numbers generated and recycle the vector if it is shorter than the number of random numbers required.
+
+Thus, the following code:
+
+```{r, eval=FALSE}
+rnorm(3, mean = c(100,0), sd = 1)
+```
+
+will generate 3 random numbers from the following normal distributions, in order:
+
+```
+1. mean of 100 and sd of 1
+2. mean of 0 and sd of 1
+3. mean of 100 and sd of 1
+```
+
+2. If you do not provide the name of the argument, `rnorm()` will use the first number provided as the argument to `n`, the second number provided as the input to `mean` and the third number provided as the input to `sd`.
+
+Thus, `rnorm(3,1,10)` generates 3 random numbers from a normal distribution with a mean of 1 and a standard deviation of 10 and `rnorm(3,10,1)` will generate 3 random numbers from a normal distribution with a mean of 10 and a standard deviation of 1.
+
+If you give the argument name with the input, it does not matter what order you provide the inputs.
+
+**Challenge 2.2**
+
+1. The `na.strings` argument.
+2. 
+
+```{r, eval=FALSE}
+genes <- read.delim("data/Ses2_genes.tsv", stringsAsFactors = FALSE,
+                    na.strings = "missing")
+```
+
+3. 
+
+```{r, eval=FALSE}
+genes <- read.delim("data/Ses2_genes.tsv", stringsAsFactors = FALSE,
+                    na.strings = c("missing", "Missing"))
+```
+
+The reason you need to give `c("missing", "Missing")` to the argument `na.strings` is quite complex. First, R expects only one "thing" (the technical term is "object" and we will discuss this more indepthly next session) for each argument. Notice that for the other arguments of `read.delim()`, only one "object" as been given. `"missing", "Missing"` is interpreted as two "objects" (two character values), whereas `c("missing", "Missing")` is one "object" (one vector that contains two values).
+
+The other concept to note here is that `,` has a special meaning in functions. It is used to separate each argument. Thus, the comma in `"missing", "Missing"` causes R to interpret the `"Missing"` after the comma to be another argument to `read.delim()`. However, there is no argument called `"Missing"` and further, arguments should NEVER have quotes around them. The error you get `Error in !header : invalid argument type` is essentially saying this - arguments should not be characters.
+
+
+**Challenge 2.3**
 
 1. This code obtains rows where `Count` is less than or equal to 10 and prints the first 6 rows using `head()`:
 
@@ -384,7 +476,7 @@ genes_noNA <- genes[! is.na(genes$TXCHROM),]
 head(genes_noNA[genes_noNA$TXCHROM == "chr1",])
 ```
 
-**Challenge 2.2**
+**Challenge 2.4**
 
 What `==` does is compare `vect1` with `c(5,10)` one by one. Since `c(5,10)` only has two elements, R repeats this shorter vector until it is the same length as the longer vector. This is called 'recycling'. 
 
@@ -412,29 +504,13 @@ FALSE TRUE FALSE FALSE FALSE FALSE
 
 `%in%` simply performs matching and does not take order of the two vectors into consideration. It checks whether the values in `vect1` matches either number in `c(5,10)`. It thus gives us the result we expect.
 
-**Challenge 2.3**
-
-1. If you provide `rnorm()` with a vector of inputs to either the `mean` or `sd` argument, it will use each element in that vector for successive random numbers generated and recycle the vector if it is shorter than the number of random numbers required.
-
-Thus, the following code:
+**Challenge 2.5**
 
 ```{r, eval=FALSE}
-rnorm(3, mean = c(100,0), sd = 1)
+genes2 <- merge(x = genes, y = gene_names, 
+                by.x = "EntrezID", by.y = "ENTREZID",
+                by.x = TRUE, by.y = TRUE)
 ```
-
-will generate 3 random numbers from the following normal distributions, in order:
-
-```
-1. mean of 100 and sd of 1
-2. mean of 0 and sd of 1
-3. mean of 100 and sd of 1
-```
-
-2. If you do not provide the name of the argument, `rnorm()` will use the first number provided as the argument to `n`, the second number provided as the input to `mean` and the third number provided as the input to `sd`.
-
-Thus, `rnorm(3,1,10)` generates 3 random numbers from a normal distribution with a mean of 1 and a standard deviation of 10 and `rnorm(3,10,1)` will generate 3 random numbers from a normal distribution with a mean of 10 and a standard deviation of 1.
-
-If you give the argument name with the input, it does not matter what order you provide the inputs.
 
 
 

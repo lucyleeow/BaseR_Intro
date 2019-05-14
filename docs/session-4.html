@@ -25,7 +25,7 @@
 <meta name="author" content="Lucy Liu">
 
 
-<meta name="date" content="2019-05-13">
+<meta name="date" content="2019-05-14">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="session-3.html">
-<link rel="next" href="extra.html">
+<link rel="next" href="references.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -137,14 +137,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.14" data-path="session-1.html"><a href="session-1.html#answers"><i class="fa fa-check"></i><b>1.14</b> Answers</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="session-2.html"><a href="session-2.html"><i class="fa fa-check"></i><b>2</b> Session 2</a><ul>
-<li class="chapter" data-level="2.1" data-path="session-2.html"><a href="session-2.html#miss"><i class="fa fa-check"></i><b>2.1</b> Missing values</a></li>
-<li class="chapter" data-level="2.2" data-path="session-2.html"><a href="session-2.html#subsetting"><i class="fa fa-check"></i><b>2.2</b> Subsetting</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="session-2.html"><a href="session-2.html#subsetting-with-indicies"><i class="fa fa-check"></i><b>2.2.1</b> Subsetting with indicies</a></li>
-<li class="chapter" data-level="2.2.2" data-path="session-2.html"><a href="session-2.html#subsetting-with-logicals"><i class="fa fa-check"></i><b>2.2.2</b> Subsetting with logicals</a></li>
-<li class="chapter" data-level="2.2.3" data-path="session-2.html"><a href="session-2.html#in"><i class="fa fa-check"></i><b>2.2.3</b> %in%</a></li>
+<li class="chapter" data-level="2.1" data-path="session-2.html"><a href="session-2.html#functions"><i class="fa fa-check"></i><b>2.1</b> Functions</a></li>
+<li class="chapter" data-level="2.2" data-path="session-2.html"><a href="session-2.html#miss"><i class="fa fa-check"></i><b>2.2</b> Missing values</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="session-2.html"><a href="session-2.html#missing-codes"><i class="fa fa-check"></i><b>2.2.1</b> Missing codes</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="session-1.html"><a href="session-1.html#vect"><i class="fa fa-check"></i><b>2.3</b> Vectorisation</a></li>
-<li class="chapter" data-level="2.4" data-path="session-2.html"><a href="session-2.html#functions"><i class="fa fa-check"></i><b>2.4</b> Functions</a></li>
+<li class="chapter" data-level="2.3" data-path="session-2.html"><a href="session-2.html#subsetting"><i class="fa fa-check"></i><b>2.3</b> Subsetting</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="session-2.html"><a href="session-2.html#subsetting-with-indicies"><i class="fa fa-check"></i><b>2.3.1</b> Subsetting with indicies</a></li>
+<li class="chapter" data-level="2.3.2" data-path="session-2.html"><a href="session-2.html#subsetting-with-logicals"><i class="fa fa-check"></i><b>2.3.2</b> Subsetting with logicals</a></li>
+<li class="chapter" data-level="2.3.3" data-path="session-2.html"><a href="session-2.html#in"><i class="fa fa-check"></i><b>2.3.3</b> %in%</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="session-2.html"><a href="session-2.html#merge"><i class="fa fa-check"></i><b>2.4</b> Merge</a></li>
 <li class="chapter" data-level="2.5" data-path="session-2.html"><a href="session-2.html#homework-1"><i class="fa fa-check"></i><b>2.5</b> Homework</a></li>
 <li class="chapter" data-level="2.6" data-path="session-2.html"><a href="session-2.html#answers-1"><i class="fa fa-check"></i><b>2.6</b> Answers</a></li>
 </ul></li>
@@ -172,10 +174,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="4.6" data-path="session-4.html"><a href="session-4.html#statistical-testing"><i class="fa fa-check"></i><b>4.6</b> Statistical testing</a></li>
 <li class="chapter" data-level="4.7" data-path="session-4.html"><a href="session-4.html#answers-3"><i class="fa fa-check"></i><b>4.7</b> Answers</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="extra.html"><a href="extra.html"><i class="fa fa-check"></i><b>5</b> Extra</a><ul>
-<li class="chapter" data-level="5.1" data-path="extra.html"><a href="extra.html#merge"><i class="fa fa-check"></i><b>5.1</b> Merge</a></li>
-<li class="chapter" data-level="5.2" data-path="extra.html"><a href="extra.html#answers-4"><i class="fa fa-check"></i><b>5.2</b> Answers</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -309,7 +307,7 @@ x<span class="op">$</span>genes &lt;-<span class="st"> </span>geneAnnot</code></
 <p>The <code>plotMDS()</code> function performs MDS on a <code>DGEList</code> object using metric MDS. The distances between each point (sample) in the resulting plot can be interpreted as the typical log2-fold-change between the samples, for the most different genes (genes that have the most different expression values between that pair of samples).</p>
 <p>Let’s take a look at the plot created from <code>x</code>, our <code>DGEList</code> object:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotMDS</span>(x)</code></pre></div>
-<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-134-1.png" width="672" /></p>
 <p>Each point on the plot represents one sample and is ‘labelled’ using the sample name.</p>
 <p>We can change the labeling to use the name of the group the sample belongs to instead. Recall <code>group</code> is a vector that, specifies the phenotype group of each sample (in the order the samples are in within <code>x</code>):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">group</code></pre></div>
@@ -317,7 +315,7 @@ x<span class="op">$</span>genes &lt;-<span class="st"> </span>geneAnnot</code></
 ## Levels: Basal LP ML</code></pre>
 <p>To change the labels we can simply use:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotMDS</span>(x, <span class="dt">labels =</span> group)</code></pre></div>
-<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
 <p>This shows us that the phenotype groups tend to ‘cluster’ together, meaning that the gene expression profiles are similar for samples within a phenotype group. The ‘Basal’ type samples quite close together while the ‘LP’ (luminal progenitor) and ‘ML’ (mature luminal) type samples are further apart, signifying that their expression profiles are more variable.</p>
 <p>To make the three phenotype groups more distinct in our graph, we are going to colour samples from each group differently. To do this, we will use the <code>col</code> argument in <code>plotMDS()</code>. <code>col</code> takes in a vector the same length as the number of points in the plot (9 in our case, as there are 9 samples). Each element of the vector should be a colour name (R understands <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">over 600 colour names</a>), indicating what colour that sample should be.</p>
 <p>To make this more clear, take a look at the table below, which lists all the samples and the phenotype group they belong to:</p>
@@ -444,7 +442,7 @@ LP
 <ol style="list-style-type: decimal">
 <li>Re-create the MDS plot with the sample names as labels and the labels coloured by phenotype group - i.e. the plot below:</li>
 </ol>
-<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-137-1.png" width="672" /></p>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-142-1.png" width="672" /></p>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Add a title to your graph using the <code>main</code> argument to the <code>plotMDS()</code> function. Remember to give your title as a character.</p></li>
 <li><p>Notice that the label of sample ‘9_6_5_11’ is cut off. Amend this by changing the ‘limits’ of the x axis using the <code>xlim</code> argument to the <code>plotMDS()</code> function. <code>xlim</code> takes a numeric vector containing 2 elements, the min and max values of the x axis.</p></li>
@@ -545,7 +543,7 @@ contr.matrix</code></pre></div>
 <p>We are now ready to fit our linear models. Limma fits linear models to the data with the assumption that the underlying data is normally distributed. Count data is however, not normally distributed. We must therefore, ‘normalise’ our count data first. To do this, limma first transforms the raw count data to log-cpm using library sizes and the normalisation factors we calculated previously. The mean-variance relationship of the log-cpm data is then accommodated using precision weights. These precision weights are calculated using the <code>voom()</code> function.</p>
 <p>The <code>voom()</code> function takes as arguments, our <code>DGEList</code> object and our design matrix. It also optionally outputs a plot of the mean-variance relationship of our data, called the ‘voom-plot’. Each point on the voom plot is a gene. On the x and y axes are the log2 of the count value + 0.5 (to prevent taking the log of 0) and the square root of the standard deviation of that gene, respectively. Typically the voom plot shows ‘variance’ decreasing as expression increases. Variance will generally plateau (i.e. remain at the same level) at high expression values. In experiments with higher biological variation, this plateau will be at a higher variance level. For example, experiments using mice as biological replicates will generally have higher variation than experiments using cell lines as biological replicates. As a result, the plateau will be at a higher variance level.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v &lt;-<span class="st"> </span><span class="kw">voom</span>(x, design, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-142-1.png" width="672" /></p>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-147-1.png" width="672" /></p>
 <p>The output of <code>voom()</code> (our variable <code>v</code>) is an <code>EList</code> object which contains the following elements:</p>
 <ul>
 <li><code>E</code> - numeric matrix of normalised log-cpm values.</li>
@@ -662,7 +660,7 @@ groupCol</code></pre></div>
 <pre><code>## [1] &quot;green&quot; &quot;red&quot;   &quot;blue&quot;  &quot;blue&quot;  &quot;red&quot;   &quot;green&quot; &quot;blue&quot;  &quot;red&quot;   &quot;green&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 3</span>
 <span class="kw">plotMDS</span>(x, <span class="dt">labels =</span> group, <span class="dt">col =</span> groupCol)</code></pre></div>
-<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-150-1.png" width="672" /></p>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
 <p><strong>Challenge 4.2</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">groupCol &lt;-<span class="st"> </span>group
 <span class="kw">levels</span>(groupCol) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>)
@@ -671,7 +669,7 @@ groupCol &lt;-<span class="st"> </span><span class="kw">as.character</span>(grou
         <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">2.8</span>,<span class="dv">4</span>))
 <span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="dt">legend =</span> <span class="kw">levels</span>(group), 
        <span class="dt">text.col =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>))</code></pre></div>
-<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-151-1.png" width="672" /></p>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-156-1.png" width="672" /></p>
 <p><strong>Challenge 4.3</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colnames</span>(design) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Basal&quot;</span>, <span class="st">&quot;LP&quot;</span>, <span class="st">&quot;ML&quot;</span>)</code></pre></div>
 <p><strong>Challenge 4.4</strong></p>
@@ -703,7 +701,7 @@ groupCol &lt;-<span class="st"> </span><span class="kw">as.character</span>(grou
         </div>
       </div>
 <a href="session-3.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="extra.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

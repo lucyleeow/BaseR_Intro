@@ -25,7 +25,7 @@
 <meta name="author" content="Lucy Liu">
 
 
-<meta name="date" content="2019-05-13">
+<meta name="date" content="2019-05-14">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -137,14 +137,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.14" data-path="session-1.html"><a href="session-1.html#answers"><i class="fa fa-check"></i><b>1.14</b> Answers</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="session-2.html"><a href="session-2.html"><i class="fa fa-check"></i><b>2</b> Session 2</a><ul>
-<li class="chapter" data-level="2.1" data-path="session-2.html"><a href="session-2.html#miss"><i class="fa fa-check"></i><b>2.1</b> Missing values</a></li>
-<li class="chapter" data-level="2.2" data-path="session-2.html"><a href="session-2.html#subsetting"><i class="fa fa-check"></i><b>2.2</b> Subsetting</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="session-2.html"><a href="session-2.html#subsetting-with-indicies"><i class="fa fa-check"></i><b>2.2.1</b> Subsetting with indicies</a></li>
-<li class="chapter" data-level="2.2.2" data-path="session-2.html"><a href="session-2.html#subsetting-with-logicals"><i class="fa fa-check"></i><b>2.2.2</b> Subsetting with logicals</a></li>
-<li class="chapter" data-level="2.2.3" data-path="session-2.html"><a href="session-2.html#in"><i class="fa fa-check"></i><b>2.2.3</b> %in%</a></li>
+<li class="chapter" data-level="2.1" data-path="session-2.html"><a href="session-2.html#functions"><i class="fa fa-check"></i><b>2.1</b> Functions</a></li>
+<li class="chapter" data-level="2.2" data-path="session-2.html"><a href="session-2.html#miss"><i class="fa fa-check"></i><b>2.2</b> Missing values</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="session-2.html"><a href="session-2.html#missing-codes"><i class="fa fa-check"></i><b>2.2.1</b> Missing codes</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="session-1.html"><a href="session-1.html#vect"><i class="fa fa-check"></i><b>2.3</b> Vectorisation</a></li>
-<li class="chapter" data-level="2.4" data-path="session-2.html"><a href="session-2.html#functions"><i class="fa fa-check"></i><b>2.4</b> Functions</a></li>
+<li class="chapter" data-level="2.3" data-path="session-2.html"><a href="session-2.html#subsetting"><i class="fa fa-check"></i><b>2.3</b> Subsetting</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="session-2.html"><a href="session-2.html#subsetting-with-indicies"><i class="fa fa-check"></i><b>2.3.1</b> Subsetting with indicies</a></li>
+<li class="chapter" data-level="2.3.2" data-path="session-2.html"><a href="session-2.html#subsetting-with-logicals"><i class="fa fa-check"></i><b>2.3.2</b> Subsetting with logicals</a></li>
+<li class="chapter" data-level="2.3.3" data-path="session-2.html"><a href="session-2.html#in"><i class="fa fa-check"></i><b>2.3.3</b> %in%</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="session-2.html"><a href="session-2.html#merge"><i class="fa fa-check"></i><b>2.4</b> Merge</a></li>
 <li class="chapter" data-level="2.5" data-path="session-2.html"><a href="session-2.html#homework-1"><i class="fa fa-check"></i><b>2.5</b> Homework</a></li>
 <li class="chapter" data-level="2.6" data-path="session-2.html"><a href="session-2.html#answers-1"><i class="fa fa-check"></i><b>2.6</b> Answers</a></li>
 </ul></li>
@@ -173,10 +175,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.6" data-path="session-4.html"><a href="session-4.html#statistical-testing"><i class="fa fa-check"></i><b>4.6</b> Statistical testing</a></li>
 <li class="chapter" data-level="4.7" data-path="session-4.html"><a href="session-4.html#answers-3"><i class="fa fa-check"></i><b>4.7</b> Answers</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="extra.html"><a href="extra.html"><i class="fa fa-check"></i><b>5</b> Extra</a><ul>
-<li class="chapter" data-level="5.1" data-path="extra.html"><a href="extra.html#merge"><i class="fa fa-check"></i><b>5.1</b> Merge</a></li>
-<li class="chapter" data-level="5.2" data-path="extra.html"><a href="extra.html#answers-4"><i class="fa fa-check"></i><b>5.2</b> Answers</a></li>
-</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -202,20 +200,64 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">Chapter 2</span> Session 2</h1>
 <p>In this session we will learn about:</p>
 <ul>
+<li>how functions work</li>
 <li>missing values</li>
 <li>subsetting data structures</li>
-<li>how functions are created and used</li>
 </ul>
+<div id="functions" class="section level2">
+<h2><span class="header-section-number">2.1</span> Functions</h2>
+<p>A function, as the name suggests performs a function. We have already used many functions. For example, the <code>read.delim()</code> function reads in data, the <code>sum()</code> function adds numbers up and the <code>merge()</code> function above merges two dataframes. In this section we will look at functions more formally.</p>
+<p>When using a function, brackets (<code>( )</code>) always need to be included after the name of the function. Inputs (technically ‘arguments’) to the function are give within the brackets. You can find out what inputs an argument takes by looking at the help file.</p>
+<p>For example, let’s take a look at the <code>rnorm()</code> function help file. This function generates a random number from a normal distribution.</p>
+<div class="figure" style="text-align: center"><span id="fig:rnorm"></span>
+<img src="Images/rnorm_help.png" alt="rnorm help file." width="600px" />
+<p class="caption">
+Figure 2.1: rnorm help file.
+</p>
+</div>
+<p>We can see from the help file that <code>rnorm()</code> takes in 3 arguments:</p>
+<pre><code>rnorm(n, mean = 0, sd = 1)</code></pre>
+<p>The help file also tells us what each of these arguments does:</p>
+<pre><code>n   - number of observations. If length(n) &gt; 1, the length is taken to be the number required.
+mean - vector of means.
+sd - vector of standard deviations.</code></pre>
+<p><strong>Challenge 2.1</strong></p>
+<ol style="list-style-type: decimal">
+<li>Take a look at what the <code>rnorm()</code> function outputs in the code below. Try using various different inputs to the function then, try to answer the following questions:</li>
+</ol>
+<ul>
+<li>What does <code>rnorm()</code> do when you only give it one number to the <code>mean</code> and <code>sd</code> arguments?</li>
+<li>What happens when you give either argument a vector of numbers?</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">4</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
+<pre><code>## [1]  8.520085  9.308502 10.697325 10.579907</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="kw">c</span>(<span class="dv">100</span>,<span class="dv">0</span>), <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
+<pre><code>## [1]  99.3846394  -0.2472932 101.4169788</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Take a look at the following code:</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">10</span>)</code></pre></div>
+<pre><code>## [1] -2.57112875 -0.01868724  5.84995284</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>,<span class="dv">1</span>,<span class="dv">3</span>)</code></pre></div>
+<pre><code>##  [1]  4.8758521  0.8657375  1.8666632 -2.7538524  2.0754516  3.0948847
+##  [7]  0.6455761  1.9190934  2.7098089  2.1568969</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">0</span>)</code></pre></div>
+<pre><code>## [1] 10 10 10</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dt">sd =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">n =</span> <span class="dv">3</span>)</code></pre></div>
+<pre><code>## [1]  11.470347 -12.198650  -3.183314</code></pre>
+<p>How does the order of the arguments you input to the function affect the output? How does the order of the arguments you input affect the output, when you name each argument (along with the input)?</p>
+<p>Note: as the function generates a random number, the numbers you will get from running the function will be different to the ones generated above.</p>
+</div>
 <div id="miss" class="section level2">
-<h2><span class="header-section-number">2.1</span> Missing values</h2>
-<p>First, let’s read in some data. Recall we use the function <code>read.delim()</code> and tell R not to label words (character type data) as ‘Factors’ using <code>stringsAsFactors = FALSE</code>.</p>
+<h2><span class="header-section-number">2.2</span> Missing values</h2>
+<p>Missing values are fairly common in data and in this section, we will look at how to deal with missing values in R. First, let’s read in some data. Recall we use the function <code>read.delim()</code> and tell R not to label words (character type data) as ‘Factors’ using <code>stringsAsFactors = FALSE</code>.</p>
 <p>We are using the file “Ses2_genes.tsv” today. This would have been emailed to you before the session. (Alternatively you can download the data from <a href="https://github.com/lucyleeow/BaseR_Intro">GitHub</a>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses2_genes.tsv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<p>You can see in the environment tab that this dataframe has 200 rows (observations) and 5 columns (variables). You can also click on the <code>genes</code> entry in the Environment tab (red arrow in Figure <a href="session-2.html#fig:RS4">2.1</a>) to display the data in a new window (left):</p>
+<p>You can see in the environment tab that this dataframe has 200 rows (observations) and 5 columns (variables). You can also click on the <code>genes</code> entry in the Environment tab (red arrow in Figure <a href="session-2.html#fig:RS4">2.2</a>) to display the data in a new window (left):</p>
 <div class="figure"><span id="fig:RS4"></span>
 <img src="Images/RS4.png" alt="Viewing data from the 'Environment' tab." width="700px" />
 <p class="caption">
-Figure 2.1: Viewing data from the ‘Environment’ tab.
+Figure 2.2: Viewing data from the ‘Environment’ tab.
 </p>
 </div>
 <p>Scrolling down the window, you can see that there are several <em>NA</em> entries. <code>NA</code> denotes a missing value in R.</p>
@@ -226,16 +268,31 @@ Figure 2.1: Viewing data from the ‘Environment’ tab.
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="ot">NA</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <pre><code>## [1] 2.5</code></pre>
 <p>Later, we will learn how to remove the <code>NA</code> values from our dataframe.</p>
+<div id="missing-codes" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Missing codes</h3>
+<p>You may have also noticed that in the <code>SYMBOL</code> column, there is a value “missing” on row 3 and a value “Missing” on row 25. These have been used to denote missing values.</p>
+<p>It is not uncommon for some people to denote missing values with some character (e.g. “x” or “none” or 999) when performing data entry. It is thus a good idea for us to learn how to deal with this.</p>
+<p>We will learn how to do this in the next challenge. This challenge is designed for you to practice how to read help files and gain an understanding of an important computing concept.</p>
+<p><strong>Challenge 2.2</strong></p>
+<ol style="list-style-type: decimal">
+<li>Using the “help” tab in RStudio, find the help file for the function <code>read.delim()</code>. You will notice that this help file describes several functions but all perform the function of reading data into R. It is not uncommon for functions that perform similar tasks to be grouped together in one help file.</li>
+</ol>
+<p>Read the “Arguments” section of the help file and find which argument could be used to tell R that “missing” and “Missing” should be interpreted as a missing value (i.e. a <code>NA</code>).</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Read in the file “Ses2_genes.tsv” again but use the argument identified above to tell R that “missing” should be a <code>NA</code>.</p></li>
+<li><p>Amend your command above so that both “missing” and “Missing” are both interpreted as <code>NA</code>s.</p></li>
+</ol>
+</div>
 </div>
 <div id="subsetting" class="section level2">
-<h2><span class="header-section-number">2.2</span> Subsetting</h2>
+<h2><span class="header-section-number">2.3</span> Subsetting</h2>
 <p>Subsetting involves selecting a portion of a data structure and uses square brackets <code>[ ]</code>. There are two main ways to subset a data structure:</p>
 <ul>
 <li>Use indices - data structures are all ordered and ‘numbered’ in R. This means that you can refer to the 4th element in a vector or the element in the 1st row and 3rd column of a dataframe.</li>
 <li>Use logicals - recall that a logical is <code>TRUE</code> or <code>FALSE</code>. You can use comparisons (e.g. equal to <code>==</code>, greater than <code>&gt;</code>) to determine if each element in your data structure meet your requirements and use this to subset your data.</li>
 </ul>
 <div id="subsetting-with-indicies" class="section level3">
-<h3><span class="header-section-number">2.2.1</span> Subsetting with indicies</h3>
+<h3><span class="header-section-number">2.3.1</span> Subsetting with indicies</h3>
 <p>Let’s take a look at subsetting vectors first. We can use <code>$</code> to obtain just one column from the <code>genes</code> dataframe. The output will be a vector.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes<span class="op">$</span>Count</code></pre></div>
 <pre><code>##   [1]   979    15   932     0   214     2     2     0  1790    41  1033
@@ -281,13 +338,13 @@ Figure 2.1: Viewing data from the ‘Environment’ tab.
 <p>The code below will give you the 3rd to 5th rows of the 2nd and 4th columns. Note that the output is a dataframe.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes[<span class="dv">3</span><span class="op">:</span><span class="dv">5</span>,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)]</code></pre></div>
 <pre><code>##    SYMBOL GeneLength
-## 3    Bmp2       2515
+## 3 missing       2515
 ## 4 Cacna1e      12697
 ## 5    Ccnf       3099</code></pre>
 <p>We could have also done this using the names of the columns. Note that column names are enclosed in quotes signifying that they are of the ‘character’ data type.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes[<span class="dv">3</span><span class="op">:</span><span class="dv">5</span>,<span class="kw">c</span>(<span class="st">&quot;SYMBOL&quot;</span>,<span class="st">&quot;GeneLength&quot;</span>)]</code></pre></div>
 <pre><code>##    SYMBOL GeneLength
-## 3    Bmp2       2515
+## 3 missing       2515
 ## 4 Cacna1e      12697
 ## 5    Ccnf       3099</code></pre>
 <p>If you leave the left side of comma empty, R will give you ALL the rows. If you leave the right side of the comma empty, R will give you ALL the columns.</p>
@@ -297,7 +354,7 @@ Figure 2.1: Viewing data from the ‘Environment’ tab.
 ## 2    11634   Aire   chr10       1929    15</code></pre>
 </div>
 <div id="subsetting-with-logicals" class="section level3">
-<h3><span class="header-section-number">2.2.2</span> Subsetting with logicals</h3>
+<h3><span class="header-section-number">2.3.2</span> Subsetting with logicals</h3>
 <p>If you recall from section <a href="session-1.html#comps">1.6</a>, you can make comparisons in R. The result of a comparison is either <code>TRUE</code> or <code>FALSE</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
@@ -347,15 +404,14 @@ Figure 2.1: Viewing data from the ‘Environment’ tab.
 <p>Another way to think about it is that <code>genes$Count == 0</code> gives you a logical vector of 200 <code>TRUE</code>’s and <code>FALSE</code>’s and <code>!</code> flips everything such that the <code>TRUE</code>’s become <code>FALSE</code>’s and vice versa.</p>
 <p>We do this here and print the first 6 rows of the output:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(genes[<span class="op">!</span><span class="st"> </span>genes<span class="op">$</span>Count <span class="op">==</span><span class="st"> </span><span class="dv">0</span>,])</code></pre></div>
-<pre><code>##   EntrezID SYMBOL TXCHROM GeneLength Count
-## 1    11480 Acvr2a    chr2       5681   979
-## 2    11634   Aire   chr10       1929    15
-## 3    12156   Bmp2    chr2       2515   932
-## 5    12449   Ccnf   chr17       3099   214
-## 6    12563   Cdh6   chr15       2632     2
-## 7    12565   Cdh9   chr15       2903     2</code></pre>
-<p>We can use the <code>$</code> shortcut to obtain just one column in a dataframe. We can’t do this with matrices - we have to use the <code>[ ]</code> notation instead.</p>
-<p>For example, we can create a matrix from our <code>genes</code> dataframe. Recall that a matrix can only hold data of ONE data type - thus we will create a dataframe using just the <code>GeneLength</code> and <code>Count</code> columns of the <code>genes</code> dataframe. The first 6 rows are printed out:</p>
+<pre><code>##   EntrezID  SYMBOL TXCHROM GeneLength Count
+## 1    11480  Acvr2a    chr2       5681   979
+## 2    11634    Aire   chr10       1929    15
+## 3    12156 missing    chr2       2515   932
+## 5    12449    Ccnf   chr17       3099   214
+## 6    12563    Cdh6   chr15       2632     2
+## 7    12565    Cdh9   chr15       2903     2</code></pre>
+<p>We can use the <code>$</code> shortcut to obtain just one column in a dataframe. We can’t do this with matrices - we have to use the <code>[ ]</code> notation instead. For example, we can create a matrix from our <code>genes</code> dataframe. Recall that a matrix can only hold data of ONE data type - thus we will create a dataframe using just the <code>GeneLength</code> and <code>Count</code> columns of the <code>genes</code> dataframe. The first 6 rows are printed out:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gene_matrix &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(genes[,<span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>)])
 <span class="kw">head</span>(gene_matrix)</code></pre></div>
 <pre><code>##      GeneLength Count
@@ -377,7 +433,7 @@ Figure 2.1: Viewing data from the ‘Environment’ tab.
 ## [5,]        522     0
 ## [6,]       9747     0</code></pre>
 <p>We used the <code>[ ]</code> to specify that we want to use the 2nd column of the matrix, which is the <code>Count</code> column. Like above, the <code>==</code> checks if each element in the <code>Count</code> column is 0. There is nothing entered to the right of the comma, indicating that we want all the columns.</p>
-<p><strong>Challenge 2.1</strong></p>
+<p><strong>Challenge 2.3</strong></p>
 <ol style="list-style-type: decimal">
 <li>Subset the <code>genes</code> dataframe to obtain the rows where the <code>Count</code> is less than or equal to 10 and the columns <code>TXCHROM</code> and <code>Count</code>.</li>
 <li>The function <code>is.na()</code> checks if each element in a vector is <code>NA</code>:</li>
@@ -391,7 +447,7 @@ Figure 2.1: Viewing data from the ‘Environment’ tab.
 <p><em>Hint</em>: you can refer to section <a href="session-1.html#comps">1.6</a> to check how to perform different types of comparisons in R.</p>
 </div>
 <div id="in" class="section level3">
-<h3><span class="header-section-number">2.2.3</span> %in%</h3>
+<h3><span class="header-section-number">2.3.3</span> %in%</h3>
 <p>In the last challenge, we used <code>==</code> to obtain the rows where <code>TXCHROM</code> is ‘chr1’. Another way to perform ‘matching’ tasks is with the <code>%in%</code> function.</p>
 <p>The following command subsets the rows where <code>TXCHROM</code> is “chr1” or “chr2” and prints out the first 6 rows.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(
@@ -399,12 +455,12 @@ Figure 2.1: Viewing data from the ‘Environment’ tab.
   )</code></pre></div>
 <pre><code>##    EntrezID  SYMBOL TXCHROM GeneLength Count
 ## 1     11480  Acvr2a    chr2       5681   979
-## 3     12156    Bmp2    chr2       2515   932
+## 3     12156 missing    chr2       2515   932
 ## 4     12290 Cacna1e    chr1      12697     0
 ## 18    15064     Mr1    chr1       2509   893
 ## 19    15112    Hao1    chr2       2029     3
 ## 21    15939    Ier5    chr1       3270 32100</code></pre>
-<p><strong>Challenge 2.2</strong></p>
+<p><strong>Challenge 2.4</strong></p>
 <p>There is an important difference between <code>==</code> and <code>%in%</code>.</p>
 <p>Let’s start by creating a vector of numbers:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vect1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">10</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">8</span>,<span class="dv">8</span>)</code></pre></div>
@@ -422,7 +478,7 @@ Figure 2.1: Viewing data from the ‘Environment’ tab.
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vect1 <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">10</span>)</code></pre></div>
 <pre><code>## [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE</code></pre>
 <p>This output IS what we want.</p>
-<p>Take a look at the code above and see if you can understand what <code>==</code> does and what <code>%in%</code> does.</p>
+<p>Take a look at the code above and see if you can understand what <code>==</code> does and what <code>%in%</code> does. This challenge is designed to make you think and be difficult.</p>
 <p><em>Hint</em>: The story gets even more interesting if we try to use <code>==</code> to look for four numbers:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vect1 <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">1</span>,<span class="dv">3</span>)</code></pre></div>
 <pre><code>## Warning in vect1 == c(5, 10, 1, 3): longer object length is not a multiple
@@ -431,159 +487,146 @@ Figure 2.1: Viewing data from the ‘Environment’ tab.
 <p>This warning message may seem a bit cryptic. The ‘longer’ object it is referring to is <code>vect1</code> which has 6 elements. The shorter object it is referring to is <code>c(5,10,1,3)</code>, which has 4 elements. Thus, it is saying that 6 is not a multiple of 4. The reason R wants the longer object to be a multiple of the shorter one, is key to understanding what is happening when we use <code>==</code>.</p>
 </div>
 </div>
-<div id="vect" class="section level2">
-<h2><span class="header-section-number">2.3</span> Vectorisation</h2>
-<p>R is quite efficient at doing calculations or performing a functions on a vector of data.</p>
-<p>Let’s use the <code>Count</code> column from our dataframe <code>genes</code>. We can access just one column using the <code>$</code> symbol:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes<span class="op">$</span>Count</code></pre></div>
-<pre><code>##   [1]   979    15   932     0   214     2     2     0  1790    41  1033
-##  [12]   700  2075   351    22     0     0   893     3   100 32100   269
-##  [23]    34 20005  5751     0   275     9   849  7175   768   358   234
-##  [34]  5065  2096  1994   757     0  2310     0     1     0  3091   810
-##  [45]    30   816   817     1   580    33     0   941  1445   522     2
-##  [56]  2346   572   431  5797     2    70  1236   966   235     2  3009
-##  [67]   431   452  2602  3481    99 11857    35  1952     0   706  1317
-##  [78]  1130    92     0   871   730  3892  3772    20     7     0   756
-##  [89]     1   210   101    17    21   537  1240   930     1     1     0
-## [100]   221  1599     0    67     1     0   315     0     0   739     0
-## [111]     0   976     1   715 18636   289  1396     0   101   285  1665
-## [122]    47     2  4483     2   363   169   135     0     2     0    11
-## [133]  4088  1082    92     0  3888    17     0     0     0     0     0
-## [144]     0     0     0     0     0  2442    30  1610     0     0     0
-## [155]    16     1     2     0    47     0  1118     0     1     0     2
-## [166]     3    22     0     0     0     0     0     0     0   431     0
-## [177]     0    16     0     1     0     4     0     0     1     0     0
-## [188]     0     0   301     0     0     0     0     0     0     0     0
-## [199]     0    59</code></pre>
-<p>What do you think will happen if we do this?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes<span class="op">$</span>Count <span class="op">+</span><span class="st"> </span><span class="dv">10</span></code></pre></div>
-<pre><code>##   [1]   989    25   942    10   224    12    12    10  1800    51  1043
-##  [12]   710  2085   361    32    10    10   903    13   110 32110   279
-##  [23]    44 20015  5761    10   285    19   859  7185   778   368   244
-##  [34]  5075  2106  2004   767    10  2320    10    11    10  3101   820
-##  [45]    40   826   827    11   590    43    10   951  1455   532    12
-##  [56]  2356   582   441  5807    12    80  1246   976   245    12  3019
-##  [67]   441   462  2612  3491   109 11867    45  1962    10   716  1327
-##  [78]  1140   102    10   881   740  3902  3782    30    17    10   766
-##  [89]    11   220   111    27    31   547  1250   940    11    11    10
-## [100]   231  1609    10    77    11    10   325    10    10   749    10
-## [111]    10   986    11   725 18646   299  1406    10   111   295  1675
-## [122]    57    12  4493    12   373   179   145    10    12    10    21
-## [133]  4098  1092   102    10  3898    27    10    10    10    10    10
-## [144]    10    10    10    10    10  2452    40  1620    10    10    10
-## [155]    26    11    12    10    57    10  1128    10    11    10    12
-## [166]    13    32    10    10    10    10    10    10    10   441    10
-## [177]    10    26    10    11    10    14    10    10    11    10    10
-## [188]    10    10   311    10    10    10    10    10    10    10    10
-## [199]    10    69</code></pre>
-<p>R will perform this calculation on all numbers in the <code>Count</code> column and return a vector.</p>
-<p>We can add this new vector to our dataframe, as a new column.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes<span class="op">$</span>Count_<span class="dv">2</span> &lt;-<span class="st"> </span>genes<span class="op">$</span>Count <span class="op">+</span><span class="st"> </span><span class="dv">10</span></code></pre></div>
-<p>There are a few things happening in the above code:</p>
-<ol style="list-style-type: decimal">
-<li>The code on the right side of <code>&lt;-</code> is evaluated first. It returns a vector as we saw above.</li>
-<li>This vector is assigned to a column in <code>genes</code> called <code>Count_2</code>. Since this column does not yet exist in the <code>genes</code> dataframe, a new column called <code>Count_2</code> is created first. (If there was already a column name <code>Count_2</code>, this command will have overwritten that column with the new vector created in the right side of <code>&lt;-</code>)</li>
-</ol>
-<p>Note that you could also REPLACE a column using the same notation. For example, if, in the command above, the left side was <code>genes$Count</code>, the old column called <code>Count</code> would be REPLACED with the new vector of numbers created on the right side.</p>
-<p><strong>Challenge 2.3</strong></p>
-<p>Create a new column called <code>Prop_Count</code> that contains each count value as a proportion of the total count value of all 10 genes in the dataframe. E.g. if <code>Count</code> was 10 and total count of all 10 genes is 100, that row in <code>Prop_Count</code> should be 0.1.</p>
-<p><em>Hint</em> use the <code>sum()</code> function.</p>
-</div>
-<div id="functions" class="section level2">
-<h2><span class="header-section-number">2.4</span> Functions</h2>
-<p>A function, as the name suggests performs a function. We have already used many functions. For example, the <code>read.delim()</code> function reads in data, the <code>sum()</code> function adds numbers up and the <code>merge()</code> function above merges two dataframes.</p>
-<p>Formally, when using a function, brackets (<code>( )</code>) are always included after the name of the function. Within the brackets is where input (technically ‘arguments’) to the function goes. You can find out what inputs an argument takes by looking at the help file.</p>
-<p>For example, let’s take a look at the <code>rnorm()</code> function help file. This function generates a random number from a normal distribution.</p>
-<div class="figure" style="text-align: center"><span id="fig:rnorm"></span>
-<img src="Images/rnorm_help.png" alt="rnorm help file." width="600px" />
+<div id="merge" class="section level2">
+<h2><span class="header-section-number">2.4</span> Merge</h2>
+<p>Two dataframes can be combined with the <code>merge()</code> function.</p>
+<p>For example, let’s say we have two dataframes (dataframe1 and dataframe2), each containing different information about 3 genes:</p>
+<div class="figure"><span id="fig:merge1"></span>
+<img src="Images/merge1.png" alt="The two dataframes to merge." width="750px" />
 <p class="caption">
-Figure 2.2: rnorm help file.
+Figure 2.3: The two dataframes to merge.
 </p>
 </div>
-<p>We can see from the help file that <code>rnorm()</code> takes in 3 arguments:</p>
-<pre><code>rnorm(n, mean = 0, sd = 1)</code></pre>
-<p>The help file also tells us what each of these arguments does:</p>
-<pre><code>n   - number of observations. If length(n) &gt; 1, the length is taken to be the number required.
-mean - vector of means.
-sd - vector of standard deviations.</code></pre>
-<p><strong>Challenge 2.3</strong></p>
-<ol style="list-style-type: decimal">
-<li>Take a look at what the <code>rnorm()</code> function outputs in the code below. Try using various different inputs to the function then, try to answer the following questions:</li>
-</ol>
-<ul>
-<li>What does <code>rnorm()</code> do when you only give it one number to the <code>mean</code> and <code>sd</code> arguments?</li>
-<li>What happens when you give either argument a vector of numbers?</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">4</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>## [1]  9.681337 11.186002  9.171499 11.728824</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="kw">c</span>(<span class="dv">100</span>,<span class="dv">0</span>), <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>## [1]  98.3128029  -0.2797005 101.2332528</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li>Take a look at the following code:</li>
-</ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">10</span>)</code></pre></div>
-<pre><code>## [1]  2.384001 12.428344  2.855490</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>,<span class="dv">1</span>,<span class="dv">3</span>)</code></pre></div>
-<pre><code>##  [1]  4.79746321 -3.29812683  3.62611797 -2.77238341 -1.09358805
-##  [6] -0.08656223  0.91493423  3.27442640  0.91552996  1.91370722</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">0</span>)</code></pre></div>
-<pre><code>## [1] 10 10 10</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dt">sd =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">n =</span> <span class="dv">3</span>)</code></pre></div>
-<pre><code>## [1]  -3.140062  -4.356232 -11.588764</code></pre>
-<p>How does the order of the arguments you input to the function affect the output? How does the order of the arguments you input affect the output, when you name each argument (along with the input)?</p>
-<p>Note: as the function generates a random number, the numbers you will get from running the function will be different to the ones generated above.</p>
+<p>We can merge these dataframes together into one dataframe that contains all the information about genes. Notice that the order of the genes is not the same in the two dataframes. During the merge we want R to match each row according to the <code>Gene</code> column in each dataframe such that the correct information is added to the correct row. The result would have 4 columns, 3 rows and the correct information along each row.</p>
+<div class="figure"><span id="fig:merge2"></span>
+<img src="Images/merge2.png" alt="The two dataframes merged." width="750px" />
+<p class="caption">
+Figure 2.4: The two dataframes merged.
+</p>
+</div>
+<p>Let’s practice merging on the files “Ses2_genes.tsv” and “Extra_geneNames.tsv”. “Ses2_genes.tsv” contains gene EntrezIDs, gene symbol, gene chromosome, gene length and their count value. “Extra_geneNames.tsv” contains gene names and their corresponding EntrezIDs.</p>
+<p>First we will read in both files:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses2_genes.tsv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
+gene_names &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Extra_geneNames.tsv&quot;</span>, 
+                         <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p>What we want to do now, is to merge the two dataframes into one dataframe with 6 columns, containing the information from both dataframes. We also want to make sure that when R merges the dataframes, the correct information is added to the correct row. You will notice that both the <code>genes</code> and <code>gene_names</code> dataframes have a column giving the EntrezIDs. This column can be used as the “index” or “ID” column to make sure the correct information is added to each row. We can do this by telling <code>merge()</code> to match rows in the two dataframes using EntrezIDs during the merge.</p>
+<p><code>merge()</code> has the following syntax:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">merge</span>(
+  <span class="dt">x =</span>    <span class="co"># name of the first dataframe to merge</span>
+  <span class="dt">y =</span>    <span class="co"># name of the second dataframe to merge</span>
+  <span class="dt">by.x =</span> <span class="co"># name of the column to match, in the first dataframe</span>
+  <span class="dt">by.y =</span> <span class="co"># name of the column to match in the second dataframe</span>
+)</code></pre></div>
+<p>Thus, to merge our two dataframes, using the EntrezID column of each dataframe to match rows, we can use:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes2 &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> genes, <span class="dt">y =</span> gene_names, 
+                <span class="dt">by.x =</span> <span class="st">&quot;EntrezID&quot;</span>, <span class="dt">by.y =</span> <span class="st">&quot;ENTREZID&quot;</span>)
+
+<span class="kw">head</span>(genes2)</code></pre></div>
+<pre><code>##   EntrezID  SYMBOL TXCHROM GeneLength Count
+## 1    11480  Acvr2a    chr2       5681   979
+## 2    11634    Aire   chr10       1929    15
+## 3    12156 missing    chr2       2515   932
+## 4    12290 Cacna1e    chr1      12697     0
+## 5    12449    Ccnf   chr17       3099   214
+## 6    12563    Cdh6   chr15       2632     2
+##                                                                                GENENAME
+## 1                                                                  activin receptor IIA
+## 2 autoimmune regulator (autoimmune polyendocrinopathy candidiasis ectodermal dystrophy)
+## 3                                                          bone morphogenetic protein 2
+## 4                          calcium channel, voltage-dependent, R type, alpha 1E subunit
+## 5                                                                              cyclin F
+## 6                                                                            cadherin 6</code></pre>
+<p>You may have noticed that there are 200 rows in the <code>genes</code> dataframe but 290 rows in the <code>gene_names</code> dataframe. This means that there are more genes in the <code>gene_names</code> dataframe than there are in the <code>genes</code> dataframe. This means that there are a few ways to merge the two dataframes. We can either keep all rows from both dataframes, keep only rows where there is a corresponding “index” value in both dataframes or keep only rows from one of the two dataframes.</p>
+<p>We can specify which rows to keep using the following additional arguments in <code>merge()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">merge</span>(
+  <span class="dt">x =</span>     <span class="co"># name of the first dataframe to merge</span>
+  <span class="dt">y =</span>     <span class="co"># name of the second dataframe to merge</span>
+  <span class="dt">by.x =</span>  <span class="co"># name of the column to match, in the first dataframe</span>
+  <span class="dt">by.y =</span>  <span class="co"># name of the column to match in the second dataframe</span>
+  <span class="dt">all.x =</span> <span class="co"># logical. If TRUE, keep all rows from the first dataframe, </span>
+          <span class="co"># even if does not have a matching row in the second dataframe</span>
+  <span class="dt">all.y =</span> <span class="co"># logical. If TRUE, keep all rows from the second dataframe, </span>
+          <span class="co"># even if does not have a matching row in the second dataframe</span>
+)</code></pre></div>
+<p>By default, <code>merge()</code> will only keep rows that have corresponding “index” values in both dataframes.</p>
+<p><strong>Challenge 2.5</strong></p>
+<p>Merge the two dataframes again, but this time keep all rows from both dataframes.</p>
 </div>
 <div id="homework-1" class="section level2">
 <h2><span class="header-section-number">2.5</span> Homework</h2>
 <ol style="list-style-type: decimal">
 <li>Subset your <code>genes</code> dataframe to obtain the rows 5 to 10, 45 and 72 and all the columns EXCEPT column 4.</li>
 <li>Subset your <code>genes</code> dataframe to obtain only rows where genes with the symbol is “Rab18”, “Ripk1” or “Xpr1” and all the columns.</li>
-<li>Read in the data file “Ses2_homework.tsv” using <code>read.delim()</code>. Create a new column called <code>Prop_GeneLength</code> that contains the <code>Count</code> value as a proportion of <code>GeneLength</code>. E.g. if the count value was 50 and the gene length was 2400, the <code>Prop_GeneLength</code> value for that row would be 0.02083333. Finally, write out this new dataframe as a file called “Ses2_homework_output.tsv”, as a tsv (tab separated values) file.</li>
-<li>We will use the Bioconductor packages ‘limma’ and ‘edgeR’ in the next session. Install these packages with the following commands:</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">requireNamespace</span>(<span class="st">&quot;BiocManager&quot;</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>))
-    <span class="kw">install.packages</span>(<span class="st">&quot;BiocManager&quot;</span>)
-BiocManager<span class="op">::</span><span class="kw">install</span>(<span class="kw">c</span>(<span class="st">&quot;edgeR&quot;</span>, <span class="st">&quot;limma&quot;</span>), <span class="dt">version =</span> <span class="st">&quot;3.8&quot;</span>)</code></pre></div>
 </div>
 <div id="answers-1" class="section level2">
 <h2><span class="header-section-number">2.6</span> Answers</h2>
 <p><strong>Challenge 2.1</strong></p>
 <ol style="list-style-type: decimal">
+<li>If you provide <code>rnorm()</code> with a vector of inputs to either the <code>mean</code> or <code>sd</code> argument, it will use each element in that vector for successive random numbers generated and recycle the vector if it is shorter than the number of random numbers required.</li>
+</ol>
+<p>Thus, the following code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="kw">c</span>(<span class="dv">100</span>,<span class="dv">0</span>), <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
+<p>will generate 3 random numbers from the following normal distributions, in order:</p>
+<pre><code>1. mean of 100 and sd of 1
+2. mean of 0 and sd of 1
+3. mean of 100 and sd of 1</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>If you do not provide the name of the argument, <code>rnorm()</code> will use the first number provided as the argument to <code>n</code>, the second number provided as the input to <code>mean</code> and the third number provided as the input to <code>sd</code>.</li>
+</ol>
+<p>Thus, <code>rnorm(3,1,10)</code> generates 3 random numbers from a normal distribution with a mean of 1 and a standard deviation of 10 and <code>rnorm(3,10,1)</code> will generate 3 random numbers from a normal distribution with a mean of 10 and a standard deviation of 1.</p>
+<p>If you give the argument name with the input, it does not matter what order you provide the inputs.</p>
+<p><strong>Challenge 2.2</strong></p>
+<ol style="list-style-type: decimal">
+<li>The <code>na.strings</code> argument.</li>
+<li></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses2_genes.tsv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>,
+                    <span class="dt">na.strings =</span> <span class="st">&quot;missing&quot;</span>)</code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses2_genes.tsv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>,
+                    <span class="dt">na.strings =</span> <span class="kw">c</span>(<span class="st">&quot;missing&quot;</span>, <span class="st">&quot;Missing&quot;</span>))</code></pre></div>
+<p>The reason you need to give <code>c(&quot;missing&quot;, &quot;Missing&quot;)</code> to the argument <code>na.strings</code> is quite complex. First, R expects only one “thing” (the technical term is “object” and we will discuss this more indepthly next session) for each argument. Notice that for the other arguments of <code>read.delim()</code>, only one “object” as been given. <code>&quot;missing&quot;, &quot;Missing&quot;</code> is interpreted as two “objects” (two character values), whereas <code>c(&quot;missing&quot;, &quot;Missing&quot;)</code> is one “object” (one vector that contains two values).</p>
+<p>The other concept to note here is that <code>,</code> has a special meaning in functions. It is used to separate each argument. Thus, the comma in <code>&quot;missing&quot;, &quot;Missing&quot;</code> causes R to interpret the <code>&quot;Missing&quot;</code> after the comma to be another argument to <code>read.delim()</code>. However, there is no argument called <code>&quot;Missing&quot;</code> and further, arguments should NEVER have quotes around them. The error you get <code>Error in !header : invalid argument type</code> is essentially saying this - arguments should not be characters.</p>
+<p><strong>Challenge 2.3</strong></p>
+<ol style="list-style-type: decimal">
 <li>This code obtains rows where <code>Count</code> is less than or equal to 10 and prints the first 6 rows using <code>head()</code>:</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(genes[genes<span class="op">$</span>Count <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>,])</code></pre></div>
-<pre><code>##    EntrezID  SYMBOL TXCHROM GeneLength Count Count_2
-## 4     12290 Cacna1e    chr1      12697     0      10
-## 6     12563    Cdh6   chr15       2632     2      12
-## 7     12565    Cdh9   chr15       2903     2      12
-## 8     12647    Chat   chr14       2810     0      10
-## 16    14800   Gria2    chr3       7749     0      10
-## 17    14843    Gsx2    chr5       1665     0      10</code></pre>
+<pre><code>##    EntrezID  SYMBOL TXCHROM GeneLength Count
+## 4     12290 Cacna1e    chr1      12697     0
+## 6     12563    Cdh6   chr15       2632     2
+## 7     12565    Cdh9   chr15       2903     2
+## 8     12647    Chat   chr14       2810     0
+## 16    14800   Gria2    chr3       7749     0
+## 17    14843    Gsx2    chr5       1665     0</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>This code removes all rows where the <code>TXCHROM</code> column has a NA value (keeping all columns) and prints the first 6 rows:</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(genes[<span class="op">!</span><span class="st"> </span><span class="kw">is.na</span>(genes<span class="op">$</span>TXCHROM),])</code></pre></div>
-<pre><code>##   EntrezID  SYMBOL TXCHROM GeneLength Count Count_2
-## 1    11480  Acvr2a    chr2       5681   979     989
-## 2    11634    Aire   chr10       1929    15      25
-## 3    12156    Bmp2    chr2       2515   932     942
-## 4    12290 Cacna1e    chr1      12697     0      10
-## 5    12449    Ccnf   chr17       3099   214     224
-## 6    12563    Cdh6   chr15       2632     2      12</code></pre>
+<pre><code>##   EntrezID  SYMBOL TXCHROM GeneLength Count
+## 1    11480  Acvr2a    chr2       5681   979
+## 2    11634    Aire   chr10       1929    15
+## 3    12156 missing    chr2       2515   932
+## 4    12290 Cacna1e    chr1      12697     0
+## 5    12449    Ccnf   chr17       3099   214
+## 6    12563    Cdh6   chr15       2632     2</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>First we save the dataframe from the above as a variable called <code>genes_noNA</code>, then we subset to get only the rows where <code>TXCHROM</code> is ‘chr1’. Again we only print the first 6 rows of this output.</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes_noNA &lt;-<span class="st"> </span>genes[<span class="op">!</span><span class="st"> </span><span class="kw">is.na</span>(genes<span class="op">$</span>TXCHROM),]
 
 <span class="kw">head</span>(genes_noNA[genes_noNA<span class="op">$</span>TXCHROM <span class="op">==</span><span class="st"> &quot;chr1&quot;</span>,])</code></pre></div>
-<pre><code>##    EntrezID  SYMBOL TXCHROM GeneLength Count Count_2
-## 4     12290 Cacna1e    chr1      12697     0      10
-## 18    15064     Mr1    chr1       2509   893     903
-## 21    15939    Ier5    chr1       3270 32100   32110
-## 31    18777  Lypla1    chr1       2433   768     778
-## 36    19775    Xpr1    chr1       7651  1994    2004
-## 38    19888     Rp1    chr1       9747     0      10</code></pre>
-<p><strong>Challenge 2.2</strong></p>
+<pre><code>##    EntrezID  SYMBOL TXCHROM GeneLength Count
+## 4     12290 Cacna1e    chr1      12697     0
+## 18    15064     Mr1    chr1       2509   893
+## 21    15939    Ier5    chr1       3270 32100
+## 31    18777  Lypla1    chr1       2433   768
+## 36    19775    Xpr1    chr1       7651  1994
+## 38    19888     Rp1    chr1       9747     0</code></pre>
+<p><strong>Challenge 2.4</strong></p>
 <p>What <code>==</code> does is compare <code>vect1</code> with <code>c(5,10)</code> one by one. Since <code>c(5,10)</code> only has two elements, R repeats this shorter vector until it is the same length as the longer vector. This is called ‘recycling’.</p>
 <p>Thus, the comparisons being made is the top row with each corresponding value in the bottom row, with the result being shown in the third row:</p>
 <pre><code>10     10    5    5     8     8
@@ -599,21 +642,10 @@ FALSE TRUE TRUE FALSE FALSE FALSE</code></pre>
 
 FALSE TRUE FALSE FALSE FALSE FALSE</code></pre>
 <p><code>%in%</code> simply performs matching and does not take order of the two vectors into consideration. It checks whether the values in <code>vect1</code> matches either number in <code>c(5,10)</code>. It thus gives us the result we expect.</p>
-<p><strong>Challenge 2.3</strong></p>
-<ol style="list-style-type: decimal">
-<li>If you provide <code>rnorm()</code> with a vector of inputs to either the <code>mean</code> or <code>sd</code> argument, it will use each element in that vector for successive random numbers generated and recycle the vector if it is shorter than the number of random numbers required.</li>
-</ol>
-<p>Thus, the following code:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="kw">c</span>(<span class="dv">100</span>,<span class="dv">0</span>), <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
-<p>will generate 3 random numbers from the following normal distributions, in order:</p>
-<pre><code>1. mean of 100 and sd of 1
-2. mean of 0 and sd of 1
-3. mean of 100 and sd of 1</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li>If you do not provide the name of the argument, <code>rnorm()</code> will use the first number provided as the argument to <code>n</code>, the second number provided as the input to <code>mean</code> and the third number provided as the input to <code>sd</code>.</li>
-</ol>
-<p>Thus, <code>rnorm(3,1,10)</code> generates 3 random numbers from a normal distribution with a mean of 1 and a standard deviation of 10 and <code>rnorm(3,10,1)</code> will generate 3 random numbers from a normal distribution with a mean of 10 and a standard deviation of 1.</p>
-<p>If you give the argument name with the input, it does not matter what order you provide the inputs.</p>
+<p><strong>Challenge 2.5</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes2 &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> genes, <span class="dt">y =</span> gene_names, 
+                <span class="dt">by.x =</span> <span class="st">&quot;EntrezID&quot;</span>, <span class="dt">by.y =</span> <span class="st">&quot;ENTREZID&quot;</span>,
+                <span class="dt">by.x =</span> <span class="ot">TRUE</span>, <span class="dt">by.y =</span> <span class="ot">TRUE</span>)</code></pre></div>
 
 </div>
 </div>
