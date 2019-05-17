@@ -25,7 +25,7 @@
 <meta name="author" content="Lucy Liu">
 
 
-<meta name="date" content="2019-05-14">
+<meta name="date" content="2019-05-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -230,21 +230,21 @@ sd - vector of standard deviations.</code></pre>
 <li>What happens when you give either argument a vector of numbers?</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">4</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>## [1]  8.520085  9.308502 10.697325 10.579907</code></pre>
+<pre><code>## [1] 7.102861 9.696134 9.515358 9.767393</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="kw">c</span>(<span class="dv">100</span>,<span class="dv">0</span>), <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>## [1]  99.3846394  -0.2472932 101.4169788</code></pre>
+<pre><code>## [1] 100.8361861  -0.8191749 100.3839867</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Take a look at the following code:</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">10</span>)</code></pre></div>
-<pre><code>## [1] -2.57112875 -0.01868724  5.84995284</code></pre>
+<pre><code>## [1] -9.761922 11.506080  4.219811</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>,<span class="dv">1</span>,<span class="dv">3</span>)</code></pre></div>
-<pre><code>##  [1]  4.8758521  0.8657375  1.8666632 -2.7538524  2.0754516  3.0948847
-##  [7]  0.6455761  1.9190934  2.7098089  2.1568969</code></pre>
+<pre><code>##  [1]  2.4758090  0.3887254  7.1287170  3.7869744 -2.8954140  0.3759754
+##  [7] -0.4436782  3.3600389  0.6535534 -1.4580912</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">0</span>)</code></pre></div>
 <pre><code>## [1] 10 10 10</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dt">sd =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">n =</span> <span class="dv">3</span>)</code></pre></div>
-<pre><code>## [1]  11.470347 -12.198650  -3.183314</code></pre>
+<pre><code>## [1]  13.579770  -3.046919 -16.181608</code></pre>
 <p>How does the order of the arguments you input to the function affect the output? How does the order of the arguments you input affect the output, when you name each argument (along with the input)?</p>
 <p>Note: as the function generates a random number, the numbers you will get from running the function will be different to the ones generated above.</p>
 </div>
@@ -507,7 +507,7 @@ Figure 2.4: The two dataframes merged.
 <p>Let’s practice merging on the files “Ses2_genes.tsv” and “Extra_geneNames.tsv”. “Ses2_genes.tsv” contains gene EntrezIDs, gene symbol, gene chromosome, gene length and their count value. “Extra_geneNames.tsv” contains gene names and their corresponding EntrezIDs.</p>
 <p>First we will read in both files:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses2_genes.tsv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
-gene_names &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Extra_geneNames.tsv&quot;</span>, 
+gene_names &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses2_geneNames.tsv&quot;</span>, 
                          <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</code></pre></div>
 <p>What we want to do now, is to merge the two dataframes into one dataframe with 6 columns, containing the information from both dataframes. We also want to make sure that when R merges the dataframes, the correct information is added to the correct row. You will notice that both the <code>genes</code> and <code>gene_names</code> dataframes have a column giving the EntrezIDs. This column can be used as the “index” or “ID” column to make sure the correct information is added to each row. We can do this by telling <code>merge()</code> to match rows in the two dataframes using EntrezIDs during the merge.</p>
 <p><code>merge()</code> has the following syntax:</p>
@@ -557,6 +557,11 @@ gene_names &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<spa
 <ol style="list-style-type: decimal">
 <li>Subset your <code>genes</code> dataframe to obtain the rows 5 to 10, 45 and 72 and all the columns EXCEPT column 4.</li>
 <li>Subset your <code>genes</code> dataframe to obtain only rows where genes with the symbol is “Rab18”, “Ripk1” or “Xpr1” and all the columns.</li>
+<li>Read in the tsv file “Ses2_PFAM.tsv” (remember to include <code>stringsAsFactors = FALSE</code>). This file gives the EntrezID next to the Pfam code for all our genes.
+<ul>
+<li>Remove all rows where the Pfam code is <code>NA</code></li>
+<li>Merge this dataframe to <code>genes</code>, keeping all rows from both dataframes</li>
+</ul></li>
 </ol>
 </div>
 <div id="answers-1" class="section level2">

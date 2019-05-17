@@ -404,7 +404,9 @@ Merge the two dataframes again, but this time keep all rows from both dataframes
 
 1. Subset your `genes` dataframe to obtain the rows 5 to 10, 45 and 72 and all the columns EXCEPT column 4.
 2. Subset your `genes` dataframe to obtain only rows where genes with the symbol is "Rab18", "Ripk1" or "Xpr1" and all the columns.
-
+3. Read in the tsv file "Ses2_PFAM.tsv" (remember to include `stringsAsFactors = FALSE`). This file gives the EntrezID next to the Pfam code for all our genes. 
+    + Remove all rows where the Pfam code is `NA`
+    + Merge this dataframe to `genes`, keeping all rows from both dataframes
 
 ## Answers
 
