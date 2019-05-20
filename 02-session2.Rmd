@@ -266,6 +266,8 @@ is.na(c(2,5, NA))
 
 Use this function to subset the `genes` dataframe so that all rows where `TXCHROM` column is `NA` is removed.
 
+(Note you do not need to use the subsetted dataframe from question 1 for this question.)
+
 3. Using the dataframe from above subset to get only the rows where the `TXCHROM` is 'chr1' and all columns. 
 
 *Hint*: you can refer to section \@ref(comps) to check how to perform different types of comparisons in R.
