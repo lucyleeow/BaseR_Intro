@@ -45,7 +45,7 @@ This will open a fourth panel on the top left.
 knitr::include_graphics("Images/RS3.png")
 ```
 
-A R Script is just a text document. You can type and run commands using a R Script and down in the Console - the difference is that you can't save the commands you run in the Console but you can save the R Script with all your commands. Note that to run a command in the Console press `Enter` key but to run a command in a R Script you must press `Cmd/Cntrl + Enter` keys.
+A R Script is just a text document. You can type and run commands using a R Script and down in the Console - the difference is that you can't save the commands you run in the Console but you can save the R Script with all your commands. Note that to run a command in the Console press `Enter` key but to run a command in a R Script you must press `Cmd/Ctrl + Enter` keys.
 
 Lastly, you can make 'comments' in your R Script. Comments are notes to yourself that are not interpreted by R and start with `#`:
 
@@ -64,12 +64,11 @@ knitr::include_graphics("Images/help.png")
 
 The other option is to run the command `?` followed by the name of the function:
 
-```{r}
+```{r, eval=FALSE}
 ?sum
 ```
 
 Help files are very useful but can be difficult to interpret at first due to the technical language used. We won't get too much practice reading help files during this course but I would encourage you to try to use them when figuring out how to use a new function.
-
 
 ## Working directory
 
@@ -123,13 +122,20 @@ You can also compare numbers in R:
 
 ```{r}
 1 == 1  # equal to.
+1 != 1 # not equal to
 2 > 1   # greater than.
 2 < 1   # less than.
 1 <= 2  # greater or equal to.
 1 >= 2  # less than or equal to.
 ```
 
-What do you think will happen if we compare words?
+The `!` sign by itself means "not" and it reverses the logical. For example, "not" TRUE is FALSE.
+
+```{r}
+!TRUE
+```
+
+You can also compare words. What do you think will happen below?
 
 ```{r}
 "cat" > "dog"

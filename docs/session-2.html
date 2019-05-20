@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Session 2 | Introduction to Base R</title>
-  <meta name="description" content="Introductory tutorial to base R, with a biological focus. In particular it will focus on analysing RNA-sequencing data with Bioconductor.">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="Introductory tutorial to base R, with a biological focus. In particular it will focus on analysing RNA-sequencing data with Bioconductor." />
+  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Session 2 | Introduction to Base R" />
   <meta property="og:type" content="book" />
@@ -22,14 +21,14 @@
   <meta name="twitter:description" content="Introductory tutorial to base R, with a biological focus. In particular it will focus on analysing RNA-sequencing data with Bioconductor." />
   
 
-<meta name="author" content="Lucy Liu">
+<meta name="author" content="Lucy Liu" />
 
 
-<meta name="date" content="2019-05-17">
+<meta name="date" content="2019-05-20" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="session-1.html">
@@ -203,6 +202,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>how functions work</li>
 <li>missing values</li>
 <li>subsetting data structures</li>
+<li>how to merge two dataframes</li>
 </ul>
 <div id="functions" class="section level2">
 <h2><span class="header-section-number">2.1</span> Functions</h2>
@@ -230,21 +230,21 @@ sd - vector of standard deviations.</code></pre>
 <li>What happens when you give either argument a vector of numbers?</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">4</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>## [1] 7.102861 9.696134 9.515358 9.767393</code></pre>
+<pre><code>## [1]  8.917963  9.400327 10.521403  9.843866</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="kw">c</span>(<span class="dv">100</span>,<span class="dv">0</span>), <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>## [1] 100.8361861  -0.8191749 100.3839867</code></pre>
+<pre><code>## [1] 99.5974894  0.0785419 98.8343615</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Take a look at the following code:</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">10</span>)</code></pre></div>
-<pre><code>## [1] -9.761922 11.506080  4.219811</code></pre>
+<pre><code>## [1] -11.006523  -1.419807  16.078320</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>,<span class="dv">1</span>,<span class="dv">3</span>)</code></pre></div>
-<pre><code>##  [1]  2.4758090  0.3887254  7.1287170  3.7869744 -2.8954140  0.3759754
-##  [7] -0.4436782  3.3600389  0.6535534 -1.4580912</code></pre>
+<pre><code>##  [1]  7.5247666 -1.0654751  3.4188095 -1.8715948 -0.2405734 -0.4738058
+##  [7]  0.2627735  4.3327174  8.4129036  0.3933648</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">0</span>)</code></pre></div>
 <pre><code>## [1] 10 10 10</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dt">sd =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">n =</span> <span class="dv">3</span>)</code></pre></div>
-<pre><code>## [1]  13.579770  -3.046919 -16.181608</code></pre>
+<pre><code>## [1]  2.747204  3.463564 -2.724307</code></pre>
 <p>How does the order of the arguments you input to the function affect the output? How does the order of the arguments you input affect the output, when you name each argument (along with the input)?</p>
 <p>Note: as the function generates a random number, the numbers you will get from running the function will be different to the ones generated above.</p>
 </div>
@@ -441,6 +441,7 @@ Figure 2.2: Viewing data from the ‘Environment’ tab.
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.na</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">5</span>, <span class="ot">NA</span>))</code></pre></div>
 <pre><code>## [1] FALSE FALSE  TRUE</code></pre>
 <p>Use this function to subset the <code>genes</code> dataframe so that all rows where <code>TXCHROM</code> column is <code>NA</code> is removed.</p>
+<p>(Note you do not need to use the subsetted dataframe from question 1 for this question.)</p>
 <ol start="3" style="list-style-type: decimal">
 <li>Using the dataframe from above subset to get only the rows where the <code>TXCHROM</code> is ‘chr1’ and all columns.</li>
 </ol>
@@ -504,7 +505,7 @@ Figure 2.3: The two dataframes to merge.
 Figure 2.4: The two dataframes merged.
 </p>
 </div>
-<p>Let’s practice merging on the files “Ses2_genes.tsv” and “Extra_geneNames.tsv”. “Ses2_genes.tsv” contains gene EntrezIDs, gene symbol, gene chromosome, gene length and their count value. “Extra_geneNames.tsv” contains gene names and their corresponding EntrezIDs.</p>
+<p>Let’s practice merging on the files “Ses2_genes.tsv” and “Ses2_geneNames.tsv”. “Ses2_genes.tsv” contains gene EntrezIDs, gene symbol, gene chromosome, gene length and their count value. “Ses2_geneNames.tsv” contains gene names and their corresponding EntrezIDs.</p>
 <p>First we will read in both files:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses2_genes.tsv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
 gene_names &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses2_geneNames.tsv&quot;</span>, 

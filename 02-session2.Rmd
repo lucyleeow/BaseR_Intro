@@ -5,6 +5,7 @@ In this session we will learn about:
 * how functions work
 * missing values
 * subsetting data structures
+* how to merge two dataframes
 
 ## Functions
 
@@ -344,7 +345,7 @@ We can merge these dataframes together into one dataframe that contains all the 
 knitr::include_graphics("Images/merge2.png")
 ```
 
-Let's practice merging on the files "Ses2_genes.tsv" and "Extra_geneNames.tsv". "Ses2_genes.tsv" contains gene EntrezIDs, gene symbol, gene chromosome, gene length and their count value. "Extra_geneNames.tsv" contains gene names and their corresponding EntrezIDs.
+Let's practice merging on the files "Ses2_genes.tsv" and "Ses2_geneNames.tsv". "Ses2_genes.tsv" contains gene EntrezIDs, gene symbol, gene chromosome, gene length and their count value. "Ses2_geneNames.tsv" contains gene names and their corresponding EntrezIDs.
 
 First we will read in both files:
 

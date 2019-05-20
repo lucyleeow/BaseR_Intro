@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 1 Session 1 | Introduction to Base R</title>
-  <meta name="description" content="Introductory tutorial to base R, with a biological focus. In particular it will focus on analysing RNA-sequencing data with Bioconductor.">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="Introductory tutorial to base R, with a biological focus. In particular it will focus on analysing RNA-sequencing data with Bioconductor." />
+  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 1 Session 1 | Introduction to Base R" />
   <meta property="og:type" content="book" />
@@ -22,14 +21,14 @@
   <meta name="twitter:description" content="Introductory tutorial to base R, with a biological focus. In particular it will focus on analysing RNA-sequencing data with Bioconductor." />
   
 
-<meta name="author" content="Lucy Liu">
+<meta name="author" content="Lucy Liu" />
 
 
-<meta name="date" content="2019-05-17">
+<meta name="date" content="2019-05-20" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="index.html">
@@ -250,7 +249,7 @@ Figure 1.2: Opening a new R Script.
 Figure 1.3: Four panels, including a R Script.
 </p>
 </div>
-<p>A R Script is just a text document. You can type and run commands using a R Script and down in the Console - the difference is that you can’t save the commands you run in the Console but you can save the R Script with all your commands. Note that to run a command in the Console press <code>Enter</code> key but to run a command in a R Script you must press <code>Cmd/Cntrl + Enter</code> keys.</p>
+<p>A R Script is just a text document. You can type and run commands using a R Script and down in the Console - the difference is that you can’t save the commands you run in the Console but you can save the R Script with all your commands. Note that to run a command in the Console press <code>Enter</code> key but to run a command in a R Script you must press <code>Cmd/Ctrl + Enter</code> keys.</p>
 <p>Lastly, you can make ‘comments’ in your R Script. Comments are notes to yourself that are not interpreted by R and start with <code>#</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># this is a note to myself</span>
 <span class="dv">1</span><span class="op">+</span><span class="dv">3</span><span class="op">-</span><span class="dv">2</span></code></pre></div>
@@ -324,6 +323,8 @@ Figure 1.7: Setting the working directory - 3.
 <p>You can also compare numbers in R:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>  <span class="co"># equal to.</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">!=</span><span class="st"> </span><span class="dv">1</span> <span class="co"># not equal to</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>   <span class="co"># greater than.</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span>   <span class="co"># less than.</span></code></pre></div>
@@ -332,7 +333,10 @@ Figure 1.7: Setting the working directory - 3.
 <pre><code>## [1] TRUE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2</span>  <span class="co"># less than or equal to.</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<p>What do you think will happen if we compare words?</p>
+<p>The <code>!</code> sign by itself means “not” and it reverses the logical. For example, “not” TRUE is FALSE.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">!</span><span class="ot">TRUE</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<p>You can also compare words. What do you think will happen below?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;cat&quot;</span> <span class="op">&gt;</span><span class="st"> &quot;dog&quot;</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p>R will use alphabetical order to determine which word is ‘greater’:</p>
