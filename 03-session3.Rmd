@@ -7,7 +7,7 @@ library(knitr)
 In this session we will learn:
 
 * lists, another data structure
-* S4 objects
+* Classes
 * the DGEList object from the package limma
 
 ## Lists
