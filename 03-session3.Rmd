@@ -357,7 +357,7 @@ knitr::include_graphics("Images/counts.png")
 
 Notice that you can use the vertical and horizontal scroll bars to view all of the data. Each row is a gene, denoted by it's EntrezID and each column is a sample. Each value in this matrix gives the counts for one gene and one sample. Recall also that `DGEList` specifies that the `counts` element of the list must be a numeric matrix. 
 
-Notice that the column names are the file names. The `DGEList` object was created using the information in the "txt" files. The function `readDGE()` has used the file name as the name of each sample because we have not told `readDGE()` what the sample names are. It has therefore simply used the filenames. This makes logical sense as each file contains the count data for one sample.
+Notice also, that the column names are the file names. The `DGEList` object was created using the information in the ".txt" files. The function `readDGE()` has used the file name as the name of each sample because we have not told `readDGE()` what the sample names are. It has therefore simply used the filenames. This makes logical sense as each file contained the count data for one sample.
 
 The `samples` dataframe can also be viewed:
 
@@ -380,7 +380,7 @@ This is a dataframe where each row is 1 sample, and details of each sample is gi
 
 This dataframe also has row names, which are currently the file names of each sample. Again, because we have not told `readDGE()` what the sample names are, it has used the file names.
 
-Let's change them to be the sample names (see Table \@ref(tab:samps)).
+Let's change the row names to be the sample names, instead of the full file name (see Table \@ref(tab:samps)).
 
 We can do this by first creating a vector of sample names. You can simply copy and paste the code below into your R script.
 

@@ -489,59 +489,121 @@ named_list3</code></pre></div>
 19888   9747    1</code></pre>
 <p>We will be looking at 9 samples (and using 9 data files) in total. Their details are shown below:</p>
 <table>
-<caption><span id="tab:samps">Table 3.1: </span>Summary of samples.</caption>
+<caption>
+<span id="tab:samps">Table 3.1: </span>Summary of samples.
+</caption>
 <thead>
-<tr class="header">
-<th align="left">File name</th>
-<th align="left">Sample name</th>
-<th align="left">Phenotype group</th>
+<tr>
+<th style="text-align:left;">
+File name
+</th>
+<th style="text-align:left;">
+Sample name
+</th>
+<th style="text-align:left;">
+Phenotype group
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">GSM1545535_10_6_5_11.txt</td>
-<td align="left">10_6_5_11</td>
-<td align="left">LP</td>
+<tr>
+<td style="text-align:left;">
+GSM1545535_10_6_5_11.txt
+</td>
+<td style="text-align:left;">
+10_6_5_11
+</td>
+<td style="text-align:left;">
+LP
+</td>
 </tr>
-<tr class="even">
-<td align="left">GSM1545536_9_6_5_11.txt</td>
-<td align="left">9_6_5_11</td>
-<td align="left">ML</td>
+<tr>
+<td style="text-align:left;">
+GSM1545536_9_6_5_11.txt
+</td>
+<td style="text-align:left;">
+9_6_5_11
+</td>
+<td style="text-align:left;">
+ML
+</td>
 </tr>
-<tr class="odd">
-<td align="left">GSM1545538_purep53.txt</td>
-<td align="left">purep53</td>
-<td align="left">Basal</td>
+<tr>
+<td style="text-align:left;">
+GSM1545538_purep53.txt
+</td>
+<td style="text-align:left;">
+purep53
+</td>
+<td style="text-align:left;">
+Basal
+</td>
 </tr>
-<tr class="even">
-<td align="left">GSM1545539_JMS8-2.txt</td>
-<td align="left">JMS8-2</td>
-<td align="left">Basal</td>
+<tr>
+<td style="text-align:left;">
+GSM1545539_JMS8-2.txt
+</td>
+<td style="text-align:left;">
+JMS8-2
+</td>
+<td style="text-align:left;">
+Basal
+</td>
 </tr>
-<tr class="odd">
-<td align="left">GSM1545540_JMS8-3.txt</td>
-<td align="left">JMS8-3</td>
-<td align="left">ML</td>
+<tr>
+<td style="text-align:left;">
+GSM1545540_JMS8-3.txt
+</td>
+<td style="text-align:left;">
+JMS8-3
+</td>
+<td style="text-align:left;">
+ML
+</td>
 </tr>
-<tr class="even">
-<td align="left">GSM1545541_JMS8-4.txt</td>
-<td align="left">JMS8-4</td>
-<td align="left">LP</td>
+<tr>
+<td style="text-align:left;">
+GSM1545541_JMS8-4.txt
+</td>
+<td style="text-align:left;">
+JMS8-4
+</td>
+<td style="text-align:left;">
+LP
+</td>
 </tr>
-<tr class="odd">
-<td align="left">GSM1545542_JMS8-5.txt</td>
-<td align="left">JMS8-5</td>
-<td align="left">Basal</td>
+<tr>
+<td style="text-align:left;">
+GSM1545542_JMS8-5.txt
+</td>
+<td style="text-align:left;">
+JMS8-5
+</td>
+<td style="text-align:left;">
+Basal
+</td>
 </tr>
-<tr class="even">
-<td align="left">GSM1545544_JMS9-P7c.txt</td>
-<td align="left">JMS9-P7c</td>
-<td align="left">ML</td>
+<tr>
+<td style="text-align:left;">
+GSM1545544_JMS9-P7c.txt
+</td>
+<td style="text-align:left;">
+JMS9-P7c
+</td>
+<td style="text-align:left;">
+ML
+</td>
 </tr>
-<tr class="odd">
-<td align="left">GSM1545545_JMS9-P8c.txt</td>
-<td align="left">JMS9-P8c</td>
-<td align="left">LP</td>
+<tr>
+<td style="text-align:left;">
+GSM1545545_JMS9-P8c.txt
+</td>
+<td style="text-align:left;">
+JMS9-P8c
+</td>
+<td style="text-align:left;">
+LP
+</td>
 </tr>
 </tbody>
 </table>
@@ -569,7 +631,7 @@ Figure 3.4: View of the count matrix from the DGEList object we created and call
 </p>
 </div>
 <p>Notice that you can use the vertical and horizontal scroll bars to view all of the data. Each row is a gene, denoted by it’s EntrezID and each column is a sample. Each value in this matrix gives the counts for one gene and one sample. Recall also that <code>DGEList</code> specifies that the <code>counts</code> element of the list must be a numeric matrix.</p>
-<p>Notice that the column names are the file names. The <code>DGEList</code> object was created using the information in the “txt” files. The function <code>readDGE()</code> has used the file name as the name of each sample because we have not told <code>readDGE()</code> what the sample names are. It has therefore simply used the filenames. This makes logical sense as each file contains the count data for one sample.</p>
+<p>Notice also, that the column names are the file names. The <code>DGEList</code> object was created using the information in the “.txt” files. The function <code>readDGE()</code> has used the file name as the name of each sample because we have not told <code>readDGE()</code> what the sample names are. It has therefore simply used the filenames. This makes logical sense as each file contained the count data for one sample.</p>
 <p>The <code>samples</code> dataframe can also be viewed:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">View</span>(x<span class="op">$</span>samples)</code></pre></div>
 <p>The output should look something like this:</p>
@@ -587,7 +649,7 @@ Figure 3.5: View of the samples dataframe from the DGEList object we created and
 <li><code>norm.factors</code> this gives the normalisation factor for each sample. As we have not calculated any normalisation factors, this is 1 for each sample.</li>
 </ul>
 <p>This dataframe also has row names, which are currently the file names of each sample. Again, because we have not told <code>readDGE()</code> what the sample names are, it has used the file names.</p>
-<p>Let’s change them to be the sample names (see Table <a href="session-3.html#tab:samps">3.1</a>).</p>
+<p>Let’s change the row names to be the sample names, instead of the full file name (see Table <a href="session-3.html#tab:samps">3.1</a>).</p>
 <p>We can do this by first creating a vector of sample names. You can simply copy and paste the code below into your R script.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">samplenames &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;10_6_5_11&quot;</span>, <span class="st">&quot;9_6_5_11&quot;</span>, <span class="st">&quot;purep53&quot;</span>, <span class="st">&quot;JMS8-2&quot;</span>, <span class="st">&quot;JMS8-3&quot;</span>,
                  <span class="st">&quot;JMS8-4&quot;</span>, <span class="st">&quot;JMS8-5&quot;</span>, <span class="st">&quot;JMS9-P7c&quot;</span>, <span class="st">&quot;JMS9-P8c&quot;</span>)</code></pre></div>
