@@ -292,8 +292,8 @@ x<span class="op">$</span>genes &lt;-<span class="st"> </span>geneAnnot</code></
 <p>This function calculates the normalisation factors for each library (sample) and puts this information in the <code>samples</code> dataframe. Note that it takes x (our <code>DGEList</code> object as input) and returns a <code>DGEList</code> object as well.</p>
 <p>Let’s take a look at our normalisation factors:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x<span class="op">$</span>samples<span class="op">$</span>norm.factors</code></pre></div>
-<pre><code>## [1] 0.8943956 1.0250186 1.0459005 1.0458455 1.0162707 0.9217132 0.9961959
-## [8] 1.0861026 0.9839203</code></pre>
+<pre><code>## [1] 0.8943956 1.0250186 1.0459005 1.0458455 1.0162707 0.9217132 0.9961959 1.0861026
+## [9] 0.9839203</code></pre>
 <p>These normalisation factors are all close to 1 for all samples, suggesting minimal difference in ‘relative RNA levels’ between samples.</p>
 </div>
 <div id="mds" class="section level2">
@@ -306,7 +306,7 @@ x<span class="op">$</span>genes &lt;-<span class="st"> </span>geneAnnot</code></
 <p>The <code>plotMDS()</code> function performs MDS on a <code>DGEList</code> object using metric MDS. The distances between each point (sample) in the resulting plot can be interpreted as the typical log2-fold-change between the samples, for the most different genes (genes that have the most different expression values between that pair of samples).</p>
 <p>Let’s take a look at the plot created from <code>x</code>, our <code>DGEList</code> object:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotMDS</span>(x)</code></pre></div>
-<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-132-1.png" width="672" /></p>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-137-1.png" width="672" /></p>
 <p>Each point on the plot represents one sample and is ‘labelled’ using the sample name.</p>
 <p>We can change the labeling to use the name of the group the sample belongs to instead. Recall <code>group</code> is a vector that, specifies the phenotype group of each sample (in the order the samples are in within <code>x</code>):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">group</code></pre></div>
@@ -314,7 +314,7 @@ x<span class="op">$</span>genes &lt;-<span class="st"> </span>geneAnnot</code></
 ## Levels: Basal LP ML</code></pre>
 <p>To change the labels we can simply use:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotMDS</span>(x, <span class="dt">labels =</span> group)</code></pre></div>
-<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-134-1.png" width="672" /></p>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-139-1.png" width="672" /></p>
 <p>This shows us that the phenotype groups tend to ‘cluster’ together, meaning that the gene expression profiles are similar for samples within a phenotype group. The ‘Basal’ type samples quite close together while the ‘LP’ (luminal progenitor) and ‘ML’ (mature luminal) type samples are further apart, signifying that their expression profiles are more variable.</p>
 <p>To make the three phenotype groups more distinct in our graph, we are going to colour samples from each group differently. To do this, we will use the <code>col</code> argument in <code>plotMDS()</code>. <code>col</code> takes in a vector the same length as the number of points in the plot (9 in our case, as there are 9 samples). Each element of the vector should be a colour name (R understands <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">over 600 colour names</a>), indicating what colour that sample should be.</p>
 <p>To make this more clear, take a look at the table below, which lists all the samples and the phenotype group they belong to:</p>
@@ -441,7 +441,7 @@ LP
 <ol style="list-style-type: decimal">
 <li>Re-create the MDS plot with the sample names as labels and the labels coloured by phenotype group - i.e. the plot below:</li>
 </ol>
-<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-140-1.png" width="672" /></p>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Add a title to your graph using the <code>main</code> argument to the <code>plotMDS()</code> function. Remember to give your title as a character.</p></li>
 <li><p>Notice that the label of sample ‘9_6_5_11’ is cut off. Amend this by changing the ‘limits’ of the x axis using the <code>xlim</code> argument to the <code>plotMDS()</code> function. <code>xlim</code> takes a numeric vector containing 2 elements, the min and max values of the x axis.</p></li>
@@ -542,7 +542,7 @@ contr.matrix</code></pre></div>
 <p>We are now ready to fit our linear models. Limma fits linear models to the data with the assumption that the underlying data is normally distributed. Count data is however, not normally distributed. We must therefore, ‘normalise’ our count data first. To do this, limma first transforms the raw count data to log-cpm using library sizes and the normalisation factors we calculated previously. The mean-variance relationship of the log-cpm data is then accommodated using precision weights. These precision weights are calculated using the <code>voom()</code> function.</p>
 <p>The <code>voom()</code> function takes as arguments, our <code>DGEList</code> object and our design matrix. It also optionally outputs a plot of the mean-variance relationship of our data, called the ‘voom-plot’. Each point on the voom plot is a gene. On the x and y axes are the log2 of the count value + 0.5 (to prevent taking the log of 0) and the square root of the standard deviation of that gene, respectively. Typically the voom plot shows ‘variance’ decreasing as expression increases. Variance will generally plateau (i.e. remain at the same level) at high expression values. In experiments with higher biological variation, this plateau will be at a higher variance level. For example, experiments using mice as biological replicates will generally have higher variation than experiments using cell lines as biological replicates. As a result, the plateau will be at a higher variance level.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v &lt;-<span class="st"> </span><span class="kw">voom</span>(x, design, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-150-1.png" width="672" /></p>
 <p>The output of <code>voom()</code> (our variable <code>v</code>) is an <code>EList</code> object which contains the following elements:</p>
 <ul>
 <li><code>E</code> - numeric matrix of normalised log-cpm values.</li>
@@ -555,21 +555,21 @@ contr.matrix</code></pre></div>
 <p>Let’s take a look at <code>E</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(v<span class="op">$</span>E)</code></pre></div>
 <pre><code>##         Samples
-## Tags     10_6_5_11  9_6_5_11    purep53     JMS8-2    JMS8-3    JMS8-4
-##   497097 -4.292165 -3.856488  2.5185849  3.2931366 -4.459730 -3.994060
-##   20671  -4.292165 -4.593453  0.3560126 -0.4073032 -1.200995 -1.943434
-##   27395   3.876089  4.413107  4.5170045  4.5617546  4.344401  3.786363
-##   18777   4.708774  5.571872  5.3964008  5.1623650  5.649355  5.081611
-##   21399   4.785541  4.754537  5.3703795  5.1220551  4.869586  4.943840
-##   58175   3.944647  3.307413 -1.7720922 -1.8891722  3.014845  3.357195
+## Tags     10_6_5_11  9_6_5_11    purep53     JMS8-2    JMS8-3    JMS8-4     JMS8-5
+##   497097 -4.292165 -3.856488  2.5185849  3.2931366 -4.459730 -3.994060  3.2869677
+##   20671  -4.292165 -4.593453  0.3560126 -0.4073032 -1.200995 -1.943434  0.8442767
+##   27395   3.876089  4.413107  4.5170045  4.5617546  4.344401  3.786363  3.8990635
+##   18777   4.708774  5.571872  5.3964008  5.1623650  5.649355  5.081611  5.0602470
+##   21399   4.785541  4.754537  5.3703795  5.1220551  4.869586  4.943840  5.1384776
+##   58175   3.944647  3.307413 -1.7720922 -1.8891722  3.014845  3.357195 -2.1339189
 ##         Samples
-## Tags         JMS8-5   JMS9-P7c  JMS9-P8c
-##   497097  3.2869677 -3.2103696 -5.295316
-##   20671   0.8442767 -0.3228444 -1.207853
-##   27395   3.8990635  4.3396075  4.124644
-##   18777   5.0602470  5.7513694  5.142436
-##   21399   5.1384776  5.0308985  4.979644
-##   58175  -2.1339189  3.1365872  3.515256</code></pre>
+## Tags       JMS9-P7c  JMS9-P8c
+##   497097 -3.2103696 -5.295316
+##   20671  -0.3228444 -1.207853
+##   27395   4.3396075  4.124644
+##   18777   5.7513694  5.142436
+##   21399   5.0308985  4.979644
+##   58175   3.1365872  3.515256</code></pre>
 <p>Each column is a sample and each row is a gene (called a ‘Tag’).</p>
 <p>We are now ready to fit our linear model with <code>lmFit()</code>, which calculates coefficients we defined in our design matrix (<code>design</code>). The resulting object, <code>vfit</code> is a <code>MArrayLM</code> object. It contains a information about our genes (the same dataframe as <code>genes</code> from our <code>EList</code> object <code>v</code> above), the design matrix and a number of statistical outputs. Of most interest to us is the coefficients, stored in an element called <code>coefficients</code>. The first rows of this matrix is shown below. Each gene is row and is labelled using the EntrezID. Each column gives coefficients for each of our phenotype groups.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vfit &lt;-<span class="st"> </span><span class="kw">lmFit</span>(v, design)
@@ -659,7 +659,7 @@ groupCol</code></pre></div>
 <pre><code>## [1] &quot;green&quot; &quot;red&quot;   &quot;blue&quot;  &quot;blue&quot;  &quot;red&quot;   &quot;green&quot; &quot;blue&quot;  &quot;red&quot;   &quot;green&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 3</span>
 <span class="kw">plotMDS</span>(x, <span class="dt">labels =</span> group, <span class="dt">col =</span> groupCol)</code></pre></div>
-<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-153-1.png" width="672" /></p>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-158-1.png" width="672" /></p>
 <p><strong>Challenge 4.2</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">groupCol &lt;-<span class="st"> </span>group
 <span class="kw">levels</span>(groupCol) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>)
@@ -668,7 +668,7 @@ groupCol &lt;-<span class="st"> </span><span class="kw">as.character</span>(grou
         <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">2.8</span>,<span class="dv">4</span>))
 <span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="dt">legend =</span> <span class="kw">levels</span>(group), 
        <span class="dt">text.col =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>))</code></pre></div>
-<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-154-1.png" width="672" /></p>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
 <p><strong>Challenge 4.3</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colnames</span>(design) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Basal&quot;</span>, <span class="st">&quot;LP&quot;</span>, <span class="st">&quot;ML&quot;</span>)</code></pre></div>
 <p><strong>Challenge 4.4</strong></p>

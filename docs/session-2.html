@@ -230,21 +230,21 @@ sd - vector of standard deviations.</code></pre>
 <li>What happens when you give either argument a vector of numbers?</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">4</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>## [1]  9.228323 10.415891 10.177350 10.706404</code></pre>
+<pre><code>## [1] 10.31669 10.01354 10.12959 10.69698</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="kw">c</span>(<span class="dv">100</span>,<span class="dv">0</span>), <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre></div>
-<pre><code>## [1]  99.31338  -1.63684 101.12688</code></pre>
+<pre><code>## [1] 100.1647745   0.7533471 100.2043910</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Take a look at the following code:</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">10</span>)</code></pre></div>
-<pre><code>## [1] -17.154817  11.381472   7.762641</code></pre>
+<pre><code>## [1] -3.043612 14.717480 -2.353476</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>,<span class="dv">1</span>,<span class="dv">3</span>)</code></pre></div>
-<pre><code>##  [1]  3.504939 -7.086054  6.293063  6.485238  3.039893  1.458439 -4.621551
-##  [8] -2.538430  5.053833  4.181819</code></pre>
+<pre><code>##  [1]  0.1662658  3.7371280 -1.8553227 -0.2082237 -0.8885012  1.7920373  1.4333793
+##  [8]  1.4976178 -1.9169389  0.5936654</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">0</span>)</code></pre></div>
 <pre><code>## [1] 10 10 10</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dt">sd =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">n =</span> <span class="dv">3</span>)</code></pre></div>
-<pre><code>## [1] -2.104873  4.406793  6.265969</code></pre>
+<pre><code>## [1] -6.196958 -8.100692  7.971791</code></pre>
 <p>How does the order of the arguments you input to the function affect the output? How does the order of the arguments you input affect the output, when you name each argument (along with the input)?</p>
 <p>Note: as the function generates a random number, the numbers you will get from running the function will be different to the ones generated above.</p>
 </div>
@@ -295,25 +295,22 @@ Figure 2.2: Viewing data from the ‘Environment’ tab.
 <h3><span class="header-section-number">2.3.1</span> Subsetting with indicies</h3>
 <p>Let’s take a look at subsetting vectors first. We can use <code>$</code> to obtain just one column from the <code>genes</code> dataframe. The output will be a vector.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes<span class="op">$</span>Count</code></pre></div>
-<pre><code>##   [1]   979    15   932     0   214     2     2     0  1790    41  1033
-##  [12]   700  2075   351    22     0     0   893     3   100 32100   269
-##  [23]    34 20005  5751     0   275     9   849  7175   768   358   234
-##  [34]  5065  2096  1994   757     0  2310     0     1     0  3091   810
-##  [45]    30   816   817     1   580    33     0   941  1445   522     2
-##  [56]  2346   572   431  5797     2    70  1236   966   235     2  3009
-##  [67]   431   452  2602  3481    99 11857    35  1952     0   706  1317
-##  [78]  1130    92     0   871   730  3892  3772    20     7     0   756
-##  [89]     1   210   101    17    21   537  1240   930     1     1     0
-## [100]   221  1599     0    67     1     0   315     0     0   739     0
-## [111]     0   976     1   715 18636   289  1396     0   101   285  1665
-## [122]    47     2  4483     2   363   169   135     0     2     0    11
-## [133]  4088  1082    92     0  3888    17     0     0     0     0     0
-## [144]     0     0     0     0     0  2442    30  1610     0     0     0
-## [155]    16     1     2     0    47     0  1118     0     1     0     2
-## [166]     3    22     0     0     0     0     0     0     0   431     0
-## [177]     0    16     0     1     0     4     0     0     1     0     0
-## [188]     0     0   301     0     0     0     0     0     0     0     0
-## [199]     0    59</code></pre>
+<pre><code>##   [1]   979    15   932     0   214     2     2     0  1790    41  1033   700  2075
+##  [14]   351    22     0     0   893     3   100 32100   269    34 20005  5751     0
+##  [27]   275     9   849  7175   768   358   234  5065  2096  1994   757     0  2310
+##  [40]     0     1     0  3091   810    30   816   817     1   580    33     0   941
+##  [53]  1445   522     2  2346   572   431  5797     2    70  1236   966   235     2
+##  [66]  3009   431   452  2602  3481    99 11857    35  1952     0   706  1317  1130
+##  [79]    92     0   871   730  3892  3772    20     7     0   756     1   210   101
+##  [92]    17    21   537  1240   930     1     1     0   221  1599     0    67     1
+## [105]     0   315     0     0   739     0     0   976     1   715 18636   289  1396
+## [118]     0   101   285  1665    47     2  4483     2   363   169   135     0     2
+## [131]     0    11  4088  1082    92     0  3888    17     0     0     0     0     0
+## [144]     0     0     0     0     0  2442    30  1610     0     0     0    16     1
+## [157]     2     0    47     0  1118     0     1     0     2     3    22     0     0
+## [170]     0     0     0     0     0   431     0     0    16     0     1     0     4
+## [183]     0     0     1     0     0     0     0   301     0     0     0     0     0
+## [196]     0     0     0     0    59</code></pre>
 <p>We will assign this to a variable called <code>Counts</code>. <code>Counts</code> is now a variable that refers to a vector containing 200 integers.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Counts &lt;-<span class="st"> </span>genes<span class="op">$</span>Count</code></pre></div>
 <p>This will give you the 3rd element of the vector <code>Counts</code>:</p>
@@ -360,34 +357,30 @@ Figure 2.2: Viewing data from the ‘Environment’ tab.
 <pre><code>## [1] TRUE</code></pre>
 <p>Comparisons are also vectorised:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes<span class="op">$</span>Count <span class="op">&lt;</span><span class="st"> </span><span class="dv">100</span></code></pre></div>
-<pre><code>##   [1] FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE
-##  [12] FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE
-##  [23]  TRUE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
-##  [34] FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE
-##  [45]  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE  TRUE
-##  [56] FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE
-##  [67] FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE
-##  [78] FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE
-##  [89]  TRUE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE  TRUE  TRUE  TRUE
-## [100] FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE FALSE  TRUE
-## [111]  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
-## [122]  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE
-## [133] FALSE FALSE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-## [144]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE
-## [155]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE
-## [166]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE
-## [177]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-## [188]  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-## [199]  TRUE  TRUE</code></pre>
+<pre><code>##   [1] FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE
+##  [14] FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE
+##  [27] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
+##  [40]  TRUE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE
+##  [53] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE  TRUE
+##  [66] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE
+##  [79]  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE
+##  [92]  TRUE  TRUE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE
+## [105]  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE
+## [118]  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE
+## [131]  TRUE  TRUE FALSE FALSE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [144]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [157]  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [170]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [183]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [196]  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
 <p>For each element in the vector <code>genes$Count</code>, R checks if it is less than 100, then returns either <code>TRUE</code> or <code>FALSE</code>. The output is a vector of logicals.</p>
 <p>This can be used to subset in R. We will start with our <code>Counts</code> vector:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Counts[Counts <span class="op">&lt;</span><span class="st"> </span><span class="dv">100</span>]</code></pre></div>
-<pre><code>##   [1] 15  0  2  2  0 41 22  0  0  3 34  0  9  0  0  1  0 30  1 33  0  2  2
-##  [24] 70  2 99 35  0 92  0 20  7  0  1 17 21  1  1  0  0 67  1  0  0  0  0
-##  [47]  0  1  0 47  2  2  0  2  0 11 92  0 17  0  0  0  0  0  0  0  0  0  0
-##  [70] 30  0  0  0 16  1  2  0 47  0  0  1  0  2  3 22  0  0  0  0  0  0  0
-##  [93]  0  0 16  0  1  0  4  0  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0
-## [116] 59</code></pre>
+<pre><code>##   [1] 15  0  2  2  0 41 22  0  0  3 34  0  9  0  0  1  0 30  1 33  0  2  2 70  2 99
+##  [27] 35  0 92  0 20  7  0  1 17 21  1  1  0  0 67  1  0  0  0  0  0  1  0 47  2  2
+##  [53]  0  2  0 11 92  0 17  0  0  0  0  0  0  0  0  0  0 30  0  0  0 16  1  2  0 47
+##  [79]  0  0  1  0  2  3 22  0  0  0  0  0  0  0  0  0 16  0  1  0  4  0  0  1  0  0
+## [105]  0  0  0  0  0  0  0  0  0  0  0 59</code></pre>
 <p><code>Counts &lt; 100</code> will return a vector of 200 logicals, which indicate which elements are less than 100. Putting this inside square brackets will subset <code>Counts</code> such that only the elements that are less than 100 (the <code>TRUE</code>’s) remain.</p>
 <p>This is done similarly in 2 dimensional data structures. The command below selects the rows where the <code>genes$Count</code> column equal to 0.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes[genes<span class="op">$</span>Count <span class="op">==</span><span class="st"> </span><span class="dv">0</span>,]</code></pre></div>
@@ -482,8 +475,8 @@ Figure 2.2: Viewing data from the ‘Environment’ tab.
 <p>Take a look at the code above and see if you can understand what <code>==</code> does and what <code>%in%</code> does. This challenge is designed to make you think and be difficult.</p>
 <p><em>Hint</em>: The story gets even more interesting if we try to use <code>==</code> to look for four numbers:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vect1 <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">1</span>,<span class="dv">3</span>)</code></pre></div>
-<pre><code>## Warning in vect1 == c(5, 10, 1, 3): longer object length is not a multiple
-## of shorter object length</code></pre>
+<pre><code>## Warning in vect1 == c(5, 10, 1, 3): longer object length is not a multiple of shorter
+## object length</code></pre>
 <pre><code>## [1] FALSE  TRUE FALSE FALSE FALSE FALSE</code></pre>
 <p>This warning message may seem a bit cryptic. The ‘longer’ object it is referring to is <code>vect1</code> which has 6 elements. The shorter object it is referring to is <code>c(5,10,1,3)</code>, which has 4 elements. Thus, it is saying that 6 is not a multiple of 4. The reason R wants the longer object to be a multiple of the shorter one, is key to understanding what is happening when we use <code>==</code>.</p>
 </div>

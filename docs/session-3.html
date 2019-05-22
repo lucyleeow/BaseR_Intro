@@ -474,15 +474,19 @@ named_list3</code></pre></div>
 <h2><span class="header-section-number">3.3</span> Packages</h2>
 <p>Last session we installed the packages limma and edgeR. This downloads the files for each package and saves them to your computer. You generally only need to do this once.</p>
 <p>To use a package you must ‘load’ them EACH time you start a new R session. You do this with the <code>library()</code> function. Let’s load both limma and edgeR:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(edgeR)</code></pre></div>
-<pre><code>## Loading required package: limma</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(limma)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(edgeR)
+<span class="kw">library</span>(limma)</code></pre></div>
 </div>
 <div id="dgelist" class="section level2">
 <h2><span class="header-section-number">3.4</span> DGEList</h2>
 <p>The RNA sequencing analysis you will be guided through is a simplified version of that performed in the article from Law <em>et al.</em> <span class="citation">(Law et al. <a href="#ref-law2016rna">2016</a>)</span>. The RNA sequencing data we will use is from Sheridan <em>et al.</em> <span class="citation">(Sheridan et al. <a href="#ref-sheridan2015pooled">2015</a>)</span>. It consists of samples from 3 cell populations; basal, luminal progenitor (LP) and mature luminal (ML), which has been sorted from the mammary glands of female virgin mice. The reads have been aligned to the mouse reference genome (mm10) and reads summarised at the gene-level (using mm10 RefSeq-based annotation) to obtain gene counts. Gene level summarisation involves counting the number of reads mapped to each gene - the resulting ‘count of reads’ is often referred to simply as ‘counts’.</p>
 <p>We are going to start our RNA-seq analysis with gene counts. The data files for this session should have been emailed to you (though you can also obtain them from <a href="https://github.com/lucyleeow/BaseR_Intro">Github</a>). Please uncompress (extract) the files and put them in your working directory.</p>
-<p>Each data file details the number of reads mapped to a gene for 1 sample. There is 1 data file for each sample. Within each data file, there are 3 columns - ‘EntrezID’, ‘GeneLength’ and ‘Count.’</p>
+<p>Each data file details the number of reads mapped to a gene for 1 sample. There is 1 data file for each sample. Within each data file, there are 3 columns - ‘EntrezID’, ‘GeneLength’ and ‘Count.’ The first few lines of one file is shown below:</p>
+<pre><code>EntrezID    GeneLength  Count
+497097  3634    2
+100503874   3259    0
+100038431   1634    0
+19888   9747    1</code></pre>
 <p>We will be looking at 9 samples (and using 9 data files) in total. Their details are shown below:</p>
 <table>
 <caption><span id="tab:samps">Table 3.1: </span>Summary of samples.</caption>
@@ -555,41 +559,26 @@ named_list3</code></pre></div>
    <span class="st">&quot;GSM1545545_JMS9-P8c.txt&quot;</span>)</code></pre></div>
 <p>Next, we will create our <code>DGEList</code> object. I have put my data files in a folder called “data” (within my working directory). Thus, I must specify <code>path = &quot;data&quot;</code>. Depending on where you have put your data files, you may need a different input to <code>path</code> or not have to include the <code>path</code> argument.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">readDGE</span>(files, <span class="dt">path =</span> <span class="st">&quot;data&quot;</span>, <span class="dt">columns =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</code></pre></div>
-<p>The object we created has 2 elements, one named <code>samples</code> and one named <code>counts</code>. Let’s take a look at each:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(x<span class="op">$</span>counts)</code></pre></div>
-<pre><code>##            Samples
-## Tags        GSM1545535_10_6_5_11 GSM1545536_9_6_5_11 GSM1545538_purep53
-##   497097                       1                   2                342
-##   100503874                    0                   0                  5
-##   100038431                    0                   0                  0
-##   19888                        0                   1                  0
-##   20671                        1                   1                 76
-##   27395                      431                 771               1368
-##            Samples
-## Tags        GSM1545539_JMS8-2 GSM1545540_JMS8-3 GSM1545541_JMS8-4
-##   497097                  526                 3                 3
-##   100503874                 6                 0                 0
-##   100038431                 0                 0                 0
-##   19888                     0                17                 2
-##   20671                    40                33                14
-##   27395                  1268              1564               769
-##            Samples
-## Tags        GSM1545542_JMS8-5 GSM1545544_JMS9-P7c GSM1545545_JMS9-P8c
-##   497097                  535                   2                   0
-##   100503874                 5                   0                   0
-##   100038431                 1                   0                   0
-##   19888                     0                   1                   0
-##   20671                    98                  18                   8
-##   27395                   818                 468                 342</code></pre>
-<p>Recall that <code>DGEList</code> specifies that the <code>counts</code> element of the list must be a numeric matrix, that stores the counts. Each row must be a gene and each column must be a sample. Note that the column names are the file names and the rownames are the EntrezID’s.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(x<span class="op">$</span>samples)</code></pre></div>
-<pre><code>##                                         files group lib.size norm.factors
-## GSM1545535_10_6_5_11 GSM1545535_10_6_5_11.txt     1 32863052            1
-## GSM1545536_9_6_5_11   GSM1545536_9_6_5_11.txt     1 35335491            1
-## GSM1545538_purep53     GSM1545538_purep53.txt     1 57160817            1
-## GSM1545539_JMS8-2       GSM1545539_JMS8-2.txt     1 51368625            1
-## GSM1545540_JMS8-3       GSM1545540_JMS8-3.txt     1 75795034            1
-## GSM1545541_JMS8-4       GSM1545541_JMS8-4.txt     1 60517657            1</code></pre>
+<p>The object we created has 2 elements, one named <code>samples</code> and one named <code>counts</code>. You can take a look at each using <code>View()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">View</span>(x<span class="op">$</span>counts)</code></pre></div>
+<p>The output should look like this:</p>
+<div class="figure" style="text-align: center"><span id="fig:dgecounts"></span>
+<img src="Images/counts.png" alt="View of the count matrix from the DGEList object we created and called x." width="700px" />
+<p class="caption">
+Figure 3.4: View of the count matrix from the DGEList object we created and called x.
+</p>
+</div>
+<p>Notice that you can use the vertical and horizontal scroll bars to view all of the data. Each row is a gene, denoted by it’s EntrezID and each column is a sample. Each value in this matrix gives the counts for one gene and one sample. Recall also that <code>DGEList</code> specifies that the <code>counts</code> element of the list must be a numeric matrix.</p>
+<p>Notice that the column names are the file names. The <code>DGEList</code> object was created using the information in the “txt” files. The function <code>readDGE()</code> has used the file name as the name of each sample because we have not told <code>readDGE()</code> what the sample names are. It has therefore simply used the filenames. This makes logical sense as each file contains the count data for one sample.</p>
+<p>The <code>samples</code> dataframe can also be viewed:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">View</span>(x<span class="op">$</span>samples)</code></pre></div>
+<p>The output should look something like this:</p>
+<div class="figure" style="text-align: center"><span id="fig:dgesamples"></span>
+<img src="Images/samplesdf.png" alt="View of the samples dataframe from the DGEList object we created and called x." width="700px" />
+<p class="caption">
+Figure 3.5: View of the samples dataframe from the DGEList object we created and called x.
+</p>
+</div>
 <p>This is a dataframe where each row is 1 sample, and details of each sample is given in the 4 columns.</p>
 <ul>
 <li><code>files</code> gives the file names.</li>
@@ -597,11 +586,12 @@ named_list3</code></pre></div>
 <li><code>lib.size</code> gives the library size. This is the total sum of all counts for that sample.</li>
 <li><code>norm.factors</code> this gives the normalisation factor for each sample. As we have not calculated any normalisation factors, this is 1 for each sample.</li>
 </ul>
-<p>This dataframe also has rownames, which are currently the file names of each sample. Let’s change them to be the sample names (see Table <a href="session-3.html#tab:samps">3.1</a>).</p>
+<p>This dataframe also has row names, which are currently the file names of each sample. Again, because we have not told <code>readDGE()</code> what the sample names are, it has used the file names.</p>
+<p>Let’s change them to be the sample names (see Table <a href="session-3.html#tab:samps">3.1</a>).</p>
 <p>We can do this by first creating a vector of sample names. You can simply copy and paste the code below into your R script.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">samplenames &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;10_6_5_11&quot;</span>, <span class="st">&quot;9_6_5_11&quot;</span>, <span class="st">&quot;purep53&quot;</span>, <span class="st">&quot;JMS8-2&quot;</span>, <span class="st">&quot;JMS8-3&quot;</span>,
                  <span class="st">&quot;JMS8-4&quot;</span>, <span class="st">&quot;JMS8-5&quot;</span>, <span class="st">&quot;JMS9-P7c&quot;</span>, <span class="st">&quot;JMS9-P8c&quot;</span>)</code></pre></div>
-<p>We can change the rownames in the <code>samples</code> dataframe using the <code>rownames()</code> function. This function will give you the row names of a data structure (a dataframe in this instance):</p>
+<p>We can change the row names in the <code>samples</code> dataframe using the <code>rownames()</code> function. This function will give you the row names of a data structure (a dataframe in this instance):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rownames</span>(x<span class="op">$</span>samples) </code></pre></div>
 <pre><code>## [1] &quot;GSM1545535_10_6_5_11&quot; &quot;GSM1545536_9_6_5_11&quot;  &quot;GSM1545538_purep53&quot;  
 ## [4] &quot;GSM1545539_JMS8-2&quot;    &quot;GSM1545540_JMS8-3&quot;    &quot;GSM1545541_JMS8-4&quot;   
@@ -611,14 +601,14 @@ named_list3</code></pre></div>
 <p>We have seen this type of notation before in session 1 (section <a href="session-1.html#vect">1.11</a>). This code assigns the <code>samplenames</code> vector as the row names of the <code>samples</code> dataframe.</p>
 <p><strong>Challenge 3.4</strong></p>
 <ol style="list-style-type: decimal">
-<li>Use the <code>colnames()</code> function to replace the column names of the count matrix from being file names to sample names.</li>
+<li>Use the <code>colnames()</code> function to replace the column names of the count matrix from being file names to sample names. We need to do this because the sample names in the <code>counts</code> matrix and the <code>samples</code> dataframe should be the same.</li>
 <li>The code below creates a factor vector (called <code>group</code>) that specifies the phenotype group each sample belongs to. It is ordered such that the first element in the vector corresponds to the first row of the <code>samples</code> dataframe.</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">group &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">c</span>(<span class="st">&quot;LP&quot;</span>, <span class="st">&quot;ML&quot;</span>, <span class="st">&quot;Basal&quot;</span>, <span class="st">&quot;Basal&quot;</span>, <span class="st">&quot;ML&quot;</span>, <span class="st">&quot;LP&quot;</span>, <span class="st">&quot;Basal&quot;</span>, <span class="st">&quot;ML&quot;</span>, <span class="st">&quot;LP&quot;</span>)) </code></pre></div>
 <p>Replace the <code>group</code> column of the <code>samples</code> dataframe with the <code>group</code> factor vector.</p>
 <p><em>Hint</em>: you will need to use the list subsetting notation we learnt at the start of this session.</p>
 <ol start="3" style="list-style-type: decimal">
-<li>Additional gene annotation information about the genes from our RNA-seq data can be found in the file “Ses3_geneAnnot.tsv”. Read this file in and add it as another element named <code>genes</code> in <code>x</code> (our <code>DGEList</code> object).</li>
+<li>Additional gene annotation information about the genes from our RNA-seq data can be found in the file “Ses3_geneAnnot.tsv”. Read this file in (specifying <code>stringsAsFactors = FALSE</code>) and add it as another element named <code>genes</code> in <code>x</code> (our <code>DGEList</code> object).</li>
 </ol>
 <p><em>Hint</em>: the command for adding an element to a list is similar to the command for adding a column to a dataframe. Take a look at Section <a href="session-1.html#vect">1.11</a> to review how to do the latter.</p>
 </div>
