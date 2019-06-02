@@ -282,11 +282,11 @@ library(limma)
 
 ## DGEList
 
-The RNA sequencing analysis you will be guided through is a simplified version of that performed in the article from Law *et al.* [@law2016rna]. The RNA sequencing data we will use is from Sheridan *et al.* [@sheridan2015pooled]. It consists of samples from 3 cell populations; basal, luminal progenitor (LP) and mature luminal (ML), which has been sorted from the mammary glands of female virgin mice. The reads have been aligned to the mouse reference genome (mm10) and reads summarised at the gene-level (using mm10 RefSeq-based annotation) to obtain gene counts. Gene level summarisation involves counting the number of reads mapped to each gene - the resulting 'count of reads' is often referred to simply as 'counts'. 
+The RNA sequencing analysis you will be guided through is a simplified version of that performed in the article from Law *et al.* [@law2016rna]. The RNA sequencing data we will use is from Sheridan *et al.* [@sheridan2015pooled]. It consists of 9 samples from 3 cell populations; basal, luminal progenitor (LP) and mature luminal (ML), which has been sorted from the mammary glands of female virgin mice. The reads have been aligned to the mouse reference genome (mm10) and reads summarised at the gene-level (using mm10 RefSeq-based annotation) to obtain gene counts. Gene level summarisation involves counting the number of reads mapped to each gene, for each sample. The resulting 'count of reads' is often referred to simply as 'counts'. 
 
 We are going to start our RNA-seq analysis with gene counts. The data files for this session should have been emailed to you (though you can also obtain them from [Github](https://github.com/lucyleeow/BaseR_Intro)). Please uncompress (extract) the files and put them in your working directory.
 
-Each data file details the number of reads mapped to a gene for 1 sample. There is 1 data file for each sample. Within each data file, there are 3 columns - 'EntrezID', 'GeneLength' and 'Count.' The first few lines of one file is shown below:
+Each data file corresponds to one sample and thus there is one data file for each sample. Each data file details the number of reads mapped to every gene for the sample corresponding to that data file. Within each data file, there are 3 columns - 'EntrezID', 'GeneLength' and 'Count.' 'EntrezID' and 'GeneLength' gives the EntrezID and gene length of one gene and 'Count' gives the number of reads mapped to that gene. The first four lines of one file (and thus one sample) is shown below:
 
 ```
 EntrezID	GeneLength	Count
@@ -337,13 +337,15 @@ files <- c("GSM1545535_10_6_5_11.txt", "GSM1545536_9_6_5_11.txt",
    "GSM1545545_JMS9-P8c.txt")
 ```
 
-Next, we will create our `DGEList` object. I have put my data files in a folder called "data" (within my working directory). Thus, I must specify `path = "data"`. Depending on where you have put your data files, you may need a different input to `path` or not have to include the `path` argument.
+Next, we will create our `DGEList` object. I have put my data files in a folder called "data" (within my working directory). Thus, I must specify `path = "data"`. Depending on where you have put your data files, you may need a different input to `path` or not have to include the `path` argument (if your data files are NOT within a folder in your working directory).
 
 ```{r}
 x <- readDGE(files, path = "data", columns = c(1,3))
 ```
 
-The object we created has 2 elements, one named `samples` and one named `counts`. You can take a look at each using `View()`:
+The `readDGE()` function uses the read counts from our 9 data files (and thus 9 samples) to create a `DGEList` object containg count information for all 9 samples and every gene included in our data files.
+
+It has 2 elements, one named `samples` and one named `counts`. You can take a look at each using `View()`:
 
 ```{r, eval=FALSE}
 View(x$counts)
@@ -355,7 +357,7 @@ The output should look like this:
 knitr::include_graphics("Images/counts.png")
 ```
 
-Notice that you can use the vertical and horizontal scroll bars to view all of the data. Each row is a gene, denoted by it's EntrezID and each column is a sample. Each value in this matrix gives the counts for one gene and one sample. Recall also that `DGEList` specifies that the `counts` element of the list must be a numeric matrix. 
+Notice that you can use the vertical and horizontal scroll bars to view all of the data. Each row is a gene, denoted by it's EntrezID and each column is a sample. Each value in this matrix gives the count value for one gene and one sample. Recall also that `DGEList` specifies that the `counts` element of the list must be a numeric matrix. 
 
 Notice also, that the column names are the file names. The `DGEList` object was created using the information in the ".txt" files. The function `readDGE()` has used the file name as the name of each sample because we have not told `readDGE()` what the sample names are. It has therefore simply used the filenames. This makes logical sense as each file contained the count data for one sample.
 

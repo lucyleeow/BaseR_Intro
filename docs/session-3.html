@@ -24,7 +24,7 @@
 <meta name="author" content="Lucy Liu" />
 
 
-<meta name="date" content="2019-05-22" />
+<meta name="date" content="2019-06-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -474,14 +474,15 @@ named_list3</code></pre></div>
 <h2><span class="header-section-number">3.3</span> Packages</h2>
 <p>Last session we installed the packages limma and edgeR. This downloads the files for each package and saves them to your computer. You generally only need to do this once.</p>
 <p>To use a package you must ‘load’ them EACH time you start a new R session. You do this with the <code>library()</code> function. Let’s load both limma and edgeR:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(edgeR)
-<span class="kw">library</span>(limma)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(edgeR)</code></pre></div>
+<pre><code>## Loading required package: limma</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(limma)</code></pre></div>
 </div>
 <div id="dgelist" class="section level2">
 <h2><span class="header-section-number">3.4</span> DGEList</h2>
-<p>The RNA sequencing analysis you will be guided through is a simplified version of that performed in the article from Law <em>et al.</em> <span class="citation">(Law et al. <a href="#ref-law2016rna">2016</a>)</span>. The RNA sequencing data we will use is from Sheridan <em>et al.</em> <span class="citation">(Sheridan et al. <a href="#ref-sheridan2015pooled">2015</a>)</span>. It consists of samples from 3 cell populations; basal, luminal progenitor (LP) and mature luminal (ML), which has been sorted from the mammary glands of female virgin mice. The reads have been aligned to the mouse reference genome (mm10) and reads summarised at the gene-level (using mm10 RefSeq-based annotation) to obtain gene counts. Gene level summarisation involves counting the number of reads mapped to each gene - the resulting ‘count of reads’ is often referred to simply as ‘counts’.</p>
+<p>The RNA sequencing analysis you will be guided through is a simplified version of that performed in the article from Law <em>et al.</em> <span class="citation">(Law et al. <a href="#ref-law2016rna">2016</a>)</span>. The RNA sequencing data we will use is from Sheridan <em>et al.</em> <span class="citation">(Sheridan et al. <a href="#ref-sheridan2015pooled">2015</a>)</span>. It consists of 9 samples from 3 cell populations; basal, luminal progenitor (LP) and mature luminal (ML), which has been sorted from the mammary glands of female virgin mice. The reads have been aligned to the mouse reference genome (mm10) and reads summarised at the gene-level (using mm10 RefSeq-based annotation) to obtain gene counts. Gene level summarisation involves counting the number of reads mapped to each gene, for each sample. The resulting ‘count of reads’ is often referred to simply as ‘counts’.</p>
 <p>We are going to start our RNA-seq analysis with gene counts. The data files for this session should have been emailed to you (though you can also obtain them from <a href="https://github.com/lucyleeow/BaseR_Intro">Github</a>). Please uncompress (extract) the files and put them in your working directory.</p>
-<p>Each data file details the number of reads mapped to a gene for 1 sample. There is 1 data file for each sample. Within each data file, there are 3 columns - ‘EntrezID’, ‘GeneLength’ and ‘Count.’ The first few lines of one file is shown below:</p>
+<p>Each data file corresponds to one sample and thus there is one data file for each sample. Each data file details the number of reads mapped to every gene for the sample corresponding to that data file. Within each data file, there are 3 columns - ‘EntrezID’, ‘GeneLength’ and ‘Count.’ ‘EntrezID’ and ‘GeneLength’ gives the EntrezID and gene length of one gene and ‘Count’ gives the number of reads mapped to that gene. The first four lines of one file (and thus one sample) is shown below:</p>
 <pre><code>EntrezID    GeneLength  Count
 497097  3634    2
 100503874   3259    0
@@ -489,121 +490,59 @@ named_list3</code></pre></div>
 19888   9747    1</code></pre>
 <p>We will be looking at 9 samples (and using 9 data files) in total. Their details are shown below:</p>
 <table>
-<caption>
-<span id="tab:samps">Table 3.1: </span>Summary of samples.
-</caption>
+<caption><span id="tab:samps">Table 3.1: </span>Summary of samples.</caption>
 <thead>
-<tr>
-<th style="text-align:left;">
-File name
-</th>
-<th style="text-align:left;">
-Sample name
-</th>
-<th style="text-align:left;">
-Phenotype group
-</th>
+<tr class="header">
+<th align="left">File name</th>
+<th align="left">Sample name</th>
+<th align="left">Phenotype group</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-GSM1545535_10_6_5_11.txt
-</td>
-<td style="text-align:left;">
-10_6_5_11
-</td>
-<td style="text-align:left;">
-LP
-</td>
+<tr class="odd">
+<td align="left">GSM1545535_10_6_5_11.txt</td>
+<td align="left">10_6_5_11</td>
+<td align="left">LP</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-GSM1545536_9_6_5_11.txt
-</td>
-<td style="text-align:left;">
-9_6_5_11
-</td>
-<td style="text-align:left;">
-ML
-</td>
+<tr class="even">
+<td align="left">GSM1545536_9_6_5_11.txt</td>
+<td align="left">9_6_5_11</td>
+<td align="left">ML</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-GSM1545538_purep53.txt
-</td>
-<td style="text-align:left;">
-purep53
-</td>
-<td style="text-align:left;">
-Basal
-</td>
+<tr class="odd">
+<td align="left">GSM1545538_purep53.txt</td>
+<td align="left">purep53</td>
+<td align="left">Basal</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-GSM1545539_JMS8-2.txt
-</td>
-<td style="text-align:left;">
-JMS8-2
-</td>
-<td style="text-align:left;">
-Basal
-</td>
+<tr class="even">
+<td align="left">GSM1545539_JMS8-2.txt</td>
+<td align="left">JMS8-2</td>
+<td align="left">Basal</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-GSM1545540_JMS8-3.txt
-</td>
-<td style="text-align:left;">
-JMS8-3
-</td>
-<td style="text-align:left;">
-ML
-</td>
+<tr class="odd">
+<td align="left">GSM1545540_JMS8-3.txt</td>
+<td align="left">JMS8-3</td>
+<td align="left">ML</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-GSM1545541_JMS8-4.txt
-</td>
-<td style="text-align:left;">
-JMS8-4
-</td>
-<td style="text-align:left;">
-LP
-</td>
+<tr class="even">
+<td align="left">GSM1545541_JMS8-4.txt</td>
+<td align="left">JMS8-4</td>
+<td align="left">LP</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-GSM1545542_JMS8-5.txt
-</td>
-<td style="text-align:left;">
-JMS8-5
-</td>
-<td style="text-align:left;">
-Basal
-</td>
+<tr class="odd">
+<td align="left">GSM1545542_JMS8-5.txt</td>
+<td align="left">JMS8-5</td>
+<td align="left">Basal</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-GSM1545544_JMS9-P7c.txt
-</td>
-<td style="text-align:left;">
-JMS9-P7c
-</td>
-<td style="text-align:left;">
-ML
-</td>
+<tr class="even">
+<td align="left">GSM1545544_JMS9-P7c.txt</td>
+<td align="left">JMS9-P7c</td>
+<td align="left">ML</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-GSM1545545_JMS9-P8c.txt
-</td>
-<td style="text-align:left;">
-JMS9-P8c
-</td>
-<td style="text-align:left;">
-LP
-</td>
+<tr class="odd">
+<td align="left">GSM1545545_JMS9-P8c.txt</td>
+<td align="left">JMS9-P8c</td>
+<td align="left">LP</td>
 </tr>
 </tbody>
 </table>
@@ -619,9 +558,10 @@ LP
    <span class="st">&quot;GSM1545540_JMS8-3.txt&quot;</span>, <span class="st">&quot;GSM1545541_JMS8-4.txt&quot;</span>, 
    <span class="st">&quot;GSM1545542_JMS8-5.txt&quot;</span>, <span class="st">&quot;GSM1545544_JMS9-P7c.txt&quot;</span>, 
    <span class="st">&quot;GSM1545545_JMS9-P8c.txt&quot;</span>)</code></pre></div>
-<p>Next, we will create our <code>DGEList</code> object. I have put my data files in a folder called “data” (within my working directory). Thus, I must specify <code>path = &quot;data&quot;</code>. Depending on where you have put your data files, you may need a different input to <code>path</code> or not have to include the <code>path</code> argument.</p>
+<p>Next, we will create our <code>DGEList</code> object. I have put my data files in a folder called “data” (within my working directory). Thus, I must specify <code>path = &quot;data&quot;</code>. Depending on where you have put your data files, you may need a different input to <code>path</code> or not have to include the <code>path</code> argument (if your data files are NOT within a folder in your working directory).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">readDGE</span>(files, <span class="dt">path =</span> <span class="st">&quot;data&quot;</span>, <span class="dt">columns =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</code></pre></div>
-<p>The object we created has 2 elements, one named <code>samples</code> and one named <code>counts</code>. You can take a look at each using <code>View()</code>:</p>
+<p>The <code>readDGE()</code> function uses the read counts from our 9 data files (and thus 9 samples) to create a <code>DGEList</code> object containg count information for all 9 samples and every gene included in our data files.</p>
+<p>It has 2 elements, one named <code>samples</code> and one named <code>counts</code>. You can take a look at each using <code>View()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">View</span>(x<span class="op">$</span>counts)</code></pre></div>
 <p>The output should look like this:</p>
 <div class="figure" style="text-align: center"><span id="fig:dgecounts"></span>
@@ -630,7 +570,7 @@ LP
 Figure 3.4: View of the count matrix from the DGEList object we created and called x.
 </p>
 </div>
-<p>Notice that you can use the vertical and horizontal scroll bars to view all of the data. Each row is a gene, denoted by it’s EntrezID and each column is a sample. Each value in this matrix gives the counts for one gene and one sample. Recall also that <code>DGEList</code> specifies that the <code>counts</code> element of the list must be a numeric matrix.</p>
+<p>Notice that you can use the vertical and horizontal scroll bars to view all of the data. Each row is a gene, denoted by it’s EntrezID and each column is a sample. Each value in this matrix gives the count value for one gene and one sample. Recall also that <code>DGEList</code> specifies that the <code>counts</code> element of the list must be a numeric matrix.</p>
 <p>Notice also, that the column names are the file names. The <code>DGEList</code> object was created using the information in the “.txt” files. The function <code>readDGE()</code> has used the file name as the name of each sample because we have not told <code>readDGE()</code> what the sample names are. It has therefore simply used the filenames. This makes logical sense as each file contained the count data for one sample.</p>
 <p>The <code>samples</code> dataframe can also be viewed:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">View</span>(x<span class="op">$</span>samples)</code></pre></div>
