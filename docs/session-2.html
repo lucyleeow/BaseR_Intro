@@ -187,19 +187,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.6" data-path="session-3.html"><a href="session-3.html#answers-2"><i class="fa fa-check"></i><b>3.6</b> Answers</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="session-4.html"><a href="session-4.html"><i class="fa fa-check"></i><b>4</b> Session 4</a><ul>
-<li class="chapter" data-level="4.1" data-path="session-4.html"><a href="session-4.html#filtering"><i class="fa fa-check"></i><b>4.1</b> Filtering</a></li>
-<li class="chapter" data-level="4.2" data-path="session-4.html"><a href="session-4.html#normalisation"><i class="fa fa-check"></i><b>4.2</b> Normalisation</a></li>
-<li class="chapter" data-level="4.3" data-path="session-4.html"><a href="session-4.html#mds"><i class="fa fa-check"></i><b>4.3</b> MDS</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="session-4.html"><a href="session-4.html#plotting"><i class="fa fa-check"></i><b>4.3.1</b> Plotting</a></li>
+<li class="chapter" data-level="4.1" data-path="session-4.html"><a href="session-4.html#dgelist-1"><i class="fa fa-check"></i><b>4.1</b> DGEList</a></li>
+<li class="chapter" data-level="4.2" data-path="session-4.html"><a href="session-4.html#filtering"><i class="fa fa-check"></i><b>4.2</b> Filtering</a></li>
+<li class="chapter" data-level="4.3" data-path="session-4.html"><a href="session-4.html#normalisation"><i class="fa fa-check"></i><b>4.3</b> Normalisation</a></li>
+<li class="chapter" data-level="4.4" data-path="session-4.html"><a href="session-4.html#mds"><i class="fa fa-check"></i><b>4.4</b> MDS</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="session-4.html"><a href="session-4.html#plotting"><i class="fa fa-check"></i><b>4.4.1</b> Plotting</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="session-4.html"><a href="session-4.html#saving-plots"><i class="fa fa-check"></i><b>4.4</b> Saving plots</a></li>
-<li class="chapter" data-level="4.5" data-path="session-4.html"><a href="session-4.html#linear-modelling"><i class="fa fa-check"></i><b>4.5</b> Linear modelling</a><ul>
-<li class="chapter" data-level="4.5.1" data-path="session-4.html"><a href="session-4.html#design-matrix"><i class="fa fa-check"></i><b>4.5.1</b> Design matrix</a></li>
-<li class="chapter" data-level="4.5.2" data-path="session-4.html"><a href="session-4.html#contrasts"><i class="fa fa-check"></i><b>4.5.2</b> Contrasts</a></li>
-<li class="chapter" data-level="4.5.3" data-path="session-4.html"><a href="session-4.html#linear-model-fitting"><i class="fa fa-check"></i><b>4.5.3</b> Linear model fitting</a></li>
+<li class="chapter" data-level="4.5" data-path="session-4.html"><a href="session-4.html#saving-plots"><i class="fa fa-check"></i><b>4.5</b> Saving plots</a></li>
+<li class="chapter" data-level="4.6" data-path="session-4.html"><a href="session-4.html#linear-modelling"><i class="fa fa-check"></i><b>4.6</b> Linear modelling</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="session-4.html"><a href="session-4.html#design-matrix"><i class="fa fa-check"></i><b>4.6.1</b> Design matrix</a></li>
+<li class="chapter" data-level="4.6.2" data-path="session-4.html"><a href="session-4.html#contrasts"><i class="fa fa-check"></i><b>4.6.2</b> Contrasts</a></li>
+<li class="chapter" data-level="4.6.3" data-path="session-4.html"><a href="session-4.html#linear-model-fitting"><i class="fa fa-check"></i><b>4.6.3</b> Linear model fitting</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="session-4.html"><a href="session-4.html#statistical-testing"><i class="fa fa-check"></i><b>4.6</b> Statistical testing</a></li>
-<li class="chapter" data-level="4.7" data-path="session-4.html"><a href="session-4.html#answers-3"><i class="fa fa-check"></i><b>4.7</b> Answers</a></li>
+<li class="chapter" data-level="4.7" data-path="session-4.html"><a href="session-4.html#statistical-testing"><i class="fa fa-check"></i><b>4.7</b> Statistical testing</a></li>
+<li class="chapter" data-level="4.8" data-path="session-4.html"><a href="session-4.html#answers-3"><i class="fa fa-check"></i><b>4.8</b> Answers</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -257,21 +258,21 @@ sd - vector of standard deviations.</code></pre>
 <li>What happens when you give either argument a vector of numbers?</li>
 </ul>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">4</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre>
-<pre><code>## [1] 11.319716  9.518808  9.203597  9.138959</code></pre>
+<pre><code>## [1] 10.630061 11.198764  9.521584  8.768833</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="kw">c</span>(<span class="dv">100</span>,<span class="dv">0</span>), <span class="dt">sd =</span> <span class="dv">1</span>)</code></pre>
-<pre><code>## [1] 101.01255866   0.04503757 100.68882143</code></pre>
+<pre><code>## [1]  99.7151687  -0.9332818 100.4449787</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Take a look at the following code:</li>
 </ol>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">10</span>)</code></pre>
-<pre><code>## [1]  -6.391144  -7.468127 -17.252141</code></pre>
+<pre><code>## [1]  9.438640  6.198895 19.857116</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>,<span class="dv">1</span>,<span class="dv">3</span>)</code></pre>
-<pre><code>##  [1]  2.7897274 -1.1946075  7.5129939  0.1730801  2.9721207  1.3342081
-##  [7] -1.6677572  1.2418961 -0.4312556  3.3672639</code></pre>
+<pre><code>##  [1]  5.0067230  3.0310921 -2.1057360  3.6426711  6.1402215 -0.4100198
+##  [7] -3.0149629  2.6849195  3.8117157 -0.7729955</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">0</span>)</code></pre>
 <pre><code>## [1] 10 10 10</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dt">sd =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">n =</span> <span class="dv">3</span>)</code></pre>
-<pre><code>## [1] -12.186335  -3.986664  -7.348534</code></pre>
+<pre><code>## [1] -2.388429 -3.804495  5.370365</code></pre>
 <p>How does the order of the arguments you input to the function affect the output? How does the order of the arguments you input affect the output, when you name each argument (along with the input)?</p>
 <p>Note: as the function generates a random number, the numbers you will get from running the function will be different to the ones generated above.</p>
 </div>
