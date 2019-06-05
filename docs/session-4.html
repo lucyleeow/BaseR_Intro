@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html >
+
 <head>
 
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Chapter 4 Session 4 | Introduction to Base R</title>
-  <meta name="description" content="Introductory tutorial to base R, with a biological focus. In particular it will focus on analysing RNA-sequencing data with Bioconductor." />
-  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
+  <meta name="description" content="Introductory tutorial to base R, with a biological focus. In particular it will focus on analysing RNA-sequencing data with Bioconductor.">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
   <meta property="og:title" content="Chapter 4 Session 4 | Introduction to Base R" />
   <meta property="og:type" content="book" />
@@ -21,14 +22,14 @@
   <meta name="twitter:description" content="Introductory tutorial to base R, with a biological focus. In particular it will focus on analysing RNA-sequencing data with Bioconductor." />
   
 
-<meta name="author" content="Lucy Liu" />
+<meta name="author" content="Lucy Liu">
 
 
-<meta name="date" content="2019-06-02" />
+<meta name="date" content="2019-06-05">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
 <link rel="prev" href="session-3.html">
@@ -51,41 +52,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -210,7 +237,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="filtering" class="section level2">
 <h2><span class="header-section-number">4.1</span> Filtering</h2>
 <p>Let’s start by re-creating our <code>DGEList</code> object:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load required packages</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load required packages</span>
 <span class="kw">library</span>(edgeR)
 <span class="kw">library</span>(limma)
 
@@ -238,7 +265,7 @@ x<span class="op">$</span>samples<span class="op">$</span>group &lt;-<span class
 
 <span class="co"># add gene annotation information</span>
 geneAnnot &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses3_geneAnnot.tsv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
-x<span class="op">$</span>genes &lt;-<span class="st"> </span>geneAnnot</code></pre></div>
+x<span class="op">$</span>genes &lt;-<span class="st"> </span>geneAnnot</code></pre>
 <p>The first step is to filter out lowly expressed genes. There are two main problems with low abundant genes:</p>
 <ul>
 <li>Technical variation is more problematic for low abundance genes. This variation is thought to be due to two factors; insufficient mixing and low sampling fraction <span class="citation">(McIntyre et al. <a href="#ref-mcintyre2011rna">2011</a>)</span>.
@@ -254,12 +281,12 @@ x<span class="op">$</span>genes &lt;-<span class="st"> </span>geneAnnot</code></
 <p>By default, it keeps genes with a count of 10 or more in a minimum number of samples. This minimum number of samples is the smallest phenotype group. In our experiment, there are 3 phenotype groups each with 3 samples. Filtering is therefore performed such that genes with a count of 10 in at least 3 samples are kept and the rest filtered.</p>
 <p>Note that the actual filtering is done using counts per million (NOT the raw count value). This is to prevent bias against samples with small library sizes.</p>
 <p>The output of this function is a vector of logicals, indicating which rows (genes) should be kept and which filtered.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">keep &lt;-<span class="st"> </span><span class="kw">filterByExpr</span>(x, <span class="dt">group =</span> group)
-<span class="kw">head</span>(keep)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">keep &lt;-<span class="st"> </span><span class="kw">filterByExpr</span>(x, <span class="dt">group =</span> group)
+<span class="kw">head</span>(keep)</code></pre>
 <pre><code>##    497097 100503874 100038431     19888     20671     27395 
 ##      TRUE     FALSE     FALSE     FALSE      TRUE      TRUE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span>x[keep,, keep.lib.sizes=<span class="ot">FALSE</span>]
-<span class="kw">str</span>(x<span class="op">$</span>counts)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span>x[keep,, keep.lib.sizes=<span class="ot">FALSE</span>]
+<span class="kw">str</span>(x<span class="op">$</span>counts)</code></pre>
 <pre><code>##  num [1:16624, 1:9] 1 1 431 768 810 ...
 ##  - attr(*, &quot;dimnames&quot;)=List of 2
 ##   ..$ Tags   : chr [1:16624] &quot;497097&quot; &quot;20671&quot; &quot;27395&quot; &quot;18777&quot; ...
@@ -288,10 +315,10 @@ x<span class="op">$</span>genes &lt;-<span class="st"> </span>geneAnnot</code></
 <p>TMM, like most normalisation methods, assumes that the majority of genes are NOT differentially expressed.</p>
 <p>Subsequent steps in this analysis will use log-cpm values, calculated using the normalisation factors, which ‘scale’ each library size.</p>
 <p>We can calculate the normalisation factors, specifying that we want to use the <code>&quot;TMM&quot;</code> method:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">calcNormFactors</span>(x, <span class="dt">method =</span> <span class="st">&quot;TMM&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">calcNormFactors</span>(x, <span class="dt">method =</span> <span class="st">&quot;TMM&quot;</span>)</code></pre>
 <p>This function calculates the normalisation factors for each library (sample) and puts this information in the <code>samples</code> dataframe. Note that it takes x (our <code>DGEList</code> object as input) and returns a <code>DGEList</code> object as well.</p>
 <p>Let’s take a look at our normalisation factors:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x<span class="op">$</span>samples<span class="op">$</span>norm.factors</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">x<span class="op">$</span>samples<span class="op">$</span>norm.factors</code></pre>
 <pre><code>## [1] 0.8943956 1.0250186 1.0459005 1.0458455 1.0162707 0.9217132 0.9961959
 ## [8] 1.0861026 0.9839203</code></pre>
 <p>These normalisation factors are all close to 1 for all samples, suggesting minimal difference in ‘relative RNA levels’ between samples.</p>
@@ -305,15 +332,15 @@ x<span class="op">$</span>genes &lt;-<span class="st"> </span>geneAnnot</code></
 </blockquote>
 <p>The <code>plotMDS()</code> function performs MDS on a <code>DGEList</code> object using metric MDS. The distances between each point (sample) in the resulting plot can be interpreted as the typical log2-fold-change between the samples, for the most different genes (genes that have the most different expression values between that pair of samples).</p>
 <p>Let’s take a look at the plot created from <code>x</code>, our <code>DGEList</code> object:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotMDS</span>(x)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotMDS</span>(x)</code></pre>
 <p><img src="IntroBaseR_files/figure-html/unnamed-chunk-132-1.png" width="672" /></p>
 <p>Each point on the plot represents one sample and is ‘labelled’ using the sample name.</p>
 <p>We can change the labeling to use the name of the group the sample belongs to instead. Recall <code>group</code> is a vector that, specifies the phenotype group of each sample (in the order the samples are in within <code>x</code>):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">group</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">group</code></pre>
 <pre><code>## [1] LP    ML    Basal Basal ML    LP    Basal ML    LP   
 ## Levels: Basal LP ML</code></pre>
 <p>To change the labels we can simply use:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotMDS</span>(x, <span class="dt">labels =</span> group)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotMDS</span>(x, <span class="dt">labels =</span> group)</code></pre>
 <p><img src="IntroBaseR_files/figure-html/unnamed-chunk-134-1.png" width="672" /></p>
 <p>This shows us that the phenotype groups tend to ‘cluster’ together, meaning that the gene expression profiles are similar for samples within a phenotype group. The ‘Basal’ type samples quite close together while the ‘LP’ (luminal progenitor) and ‘ML’ (mature luminal) type samples are further apart, signifying that their expression profiles are more variable.</p>
 <p>To make the three phenotype groups more distinct in our graph, we are going to colour samples from each group differently. To do this, we will use the <code>col</code> argument in <code>plotMDS()</code>. <code>col</code> takes in a vector the same length as the number of points in the plot (9 in our case, as there are 9 samples). Each element of the vector should be a colour name (R understands <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">over 600 colour names</a>), indicating what colour that sample should be.</p>
@@ -408,17 +435,17 @@ LP
 <pre><code>## [1] &quot;green&quot; &quot;red&quot;   &quot;blue&quot;  &quot;blue&quot;  &quot;red&quot;   &quot;green&quot; &quot;blue&quot;  &quot;red&quot;   &quot;green&quot;</code></pre>
 <p>Of course, we don’t want to type out this vector ourselves. We want to make R do this. This is less tedious and error prone.</p>
 <p>We can do this using the <code>group</code> vector. Recall this factor vector gives the phenotype groups of each sample (in the same order as the samples are in within <code>x</code>, our <code>DGEList</code> object).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">group</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">group</code></pre>
 <pre><code>## [1] LP    ML    Basal Basal ML    LP    Basal ML    LP   
 ## Levels: Basal LP ML</code></pre>
 <p>We don’t want to change this vector, so we will ‘copy’ the vector <code>group</code> to a new variable called <code>groupCol</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">groupCol &lt;-<span class="st"> </span>group</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">groupCol &lt;-<span class="st"> </span>group</code></pre>
 <p>We can now create our character vector. I will guide you through this in the next challenge.</p>
 <p><strong>Challenge 4.1</strong></p>
 <ol style="list-style-type: decimal">
 <li>The <code>levels</code> function gives all the ‘categories’ of a factor vector. If we run it on <code>groupCol</code>, it will give our 3 phenotypes:</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">levels</span>(groupCol)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">levels</span>(groupCol)</code></pre>
 <pre><code>## [1] &quot;Basal&quot; &quot;LP&quot;    &quot;ML&quot;</code></pre>
 <p>Replace the current levels (categories) of <code>groupCol</code> with a character vector containing 3 colour names of your choosing. Inspect the resulting <code>groupCol</code> vector to make sure it has done what you expected it to.</p>
 <p><em>Hint</em>: the notation for this is similar to creating and replacing a new column - see Section <a href="session-1.html#vect">1.11</a> for details.</p>
@@ -448,7 +475,8 @@ LP
 <li><p>Add a legend to your plot using the <code>legend()</code> function. This function adds to an existing plot and thus should be run after the <code>plotMDS()</code> function. Useful arguments to <code>legend()</code> include:</p></li>
 </ol>
 <ul>
-<li><code>x</code> - the position of the legend. It can be one of: “bottomright”, “bottom”, “bottomleft”, “left”, “topleft”, “top”, “topright”, “right” or “center”. (technically you could also specify the position of the legend using <code>x</code> and <code>y</code> coordinates but we will not do this in the course)</li>
+<li><code>x</code> - the position of the legend. It can be one of: “bottomright”, “bottom”, “bottomleft”, “left”, “topleft”, “top”, “topright”, “right” or “center”.
+(technically you could also specify the position of the legend using <code>x</code> and <code>y</code> coordinates but we will not do this in the course)</li>
 <li><code>legend</code> - a character vector specifying the text to display in the legend. Here it would be the names of the phenotype groups.</li>
 </ul>
 <p><em>Hint</em>: you can use function <code>levels()</code>, which provides categories of a factor vector.</p>
@@ -492,8 +520,8 @@ Figure 4.2: Specifying the file type, dimensions and name of the plot.
 <div id="design-matrix" class="section level3">
 <h3><span class="header-section-number">4.5.1</span> Design matrix</h3>
 <p>A design matrix provides your linear model with information about each sample in your experiment. Thus, in our experiment a design matrix would specify which of the 3 cell type ‘groups’ each sample belongs to. Take a look at the design matrix below:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">design &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(<span class="op">~</span><span class="dv">0</span> <span class="op">+</span><span class="st"> </span>group)
-design</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">design &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(<span class="op">~</span><span class="dv">0</span> <span class="op">+</span><span class="st"> </span>group)
+design</code></pre>
 <pre><code>##   groupBasal groupLP groupML
 ## 1          0       1       0
 ## 2          0       0       1
@@ -511,7 +539,7 @@ design</code></pre></div>
 ## [1] &quot;contr.treatment&quot;</code></pre>
 <p>There are 9 rows, one for each sample. Along each row, a ‘1’ indicates the cell type ‘group’ the sample belongs to and ‘0’ indicates cell type groups the sample does not belong to. You can think about the ‘1’ and ‘0’ as turning a cell type group ‘on’ or ‘off’. Finally, notice how one sample only belongs to one cell type group.</p>
 <p>Let’s take a look at how to generate a design matrix. We used the function <code>model.matrix()</code>, which took the ‘expression’ <code>~0 + group</code>. Recall that <code>group</code> is a factor vector that specifies which cell type group each of the 9 samples belongs to:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">group</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">group</code></pre>
 <pre><code>## [1] LP    ML    Basal Basal ML    LP    Basal ML    LP   
 ## Levels: Basal LP ML</code></pre>
 <p>The <code>~</code> at the start tells R that we want to model the samples using the ‘expression’ to the right of the <code>~</code>. The <code>0</code> at the start tells R not to include an intercept. We have chosen not to include an intercept because it is easier to interpret but including the intercept is just as valid.</p>
@@ -524,12 +552,12 @@ design</code></pre></div>
 <p>‘Contrasts’ let us ask specific questions, for example, if we want to compare expression between two specific groups. In our experiment, we are interested in the difference between each pairwise group. A contrast matrix can be made using the <code>makeContrasts()</code> function. Within this function, we specify the name of each specific contrast and the formula for that contrast. For example, the <code>BasalvsLP</code> contrasts compares the difference between the <code>Basal</code> and <code>LP</code> groups. Note that the name of the phenotype groups must be written exactly as they are in the column names of our design matrix (see above).</p>
 <p>The final input to the <code>makeContrasts()</code> function is simply the names of each cell type group (recall from above that <code>colnames(design)</code> gives the names of each cell type group).</p>
 <p>The creation and output of our contrast matrix is shown below:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">contr.matrix &lt;-<span class="st"> </span><span class="kw">makeContrasts</span>(
+<pre class="sourceCode r"><code class="sourceCode r">contr.matrix &lt;-<span class="st"> </span><span class="kw">makeContrasts</span>(
    <span class="dt">BasalvsLP =</span> Basal <span class="op">-</span><span class="st"> </span>LP,
    <span class="dt">BasalvsML =</span> Basal <span class="op">-</span><span class="st"> </span>ML, 
    <span class="dt">LPvsML =</span> LP <span class="op">-</span><span class="st"> </span>ML,
    <span class="dt">levels =</span> <span class="kw">colnames</span>(design))
-contr.matrix</code></pre></div>
+contr.matrix</code></pre>
 <pre><code>##        Contrasts
 ## Levels  BasalvsLP BasalvsML LPvsML
 ##   Basal         1         1      0
@@ -541,7 +569,7 @@ contr.matrix</code></pre></div>
 <h3><span class="header-section-number">4.5.3</span> Linear model fitting</h3>
 <p>We are now ready to fit our linear models. Limma fits linear models to the data with the assumption that the underlying data is normally distributed. Count data is however, not normally distributed. We must therefore, ‘normalise’ our count data first. To do this, limma first transforms the raw count data to log-cpm using library sizes and the normalisation factors we calculated previously. The mean-variance relationship of the log-cpm data is then accommodated using precision weights. These precision weights are calculated using the <code>voom()</code> function.</p>
 <p>The <code>voom()</code> function takes as arguments, our <code>DGEList</code> object and our design matrix. It also optionally outputs a plot of the mean-variance relationship of our data, called the ‘voom-plot’. Each point on the voom plot is a gene. On the x and y axes are the log2 of the count value + 0.5 (to prevent taking the log of 0) and the square root of the standard deviation of that gene, respectively. Typically the voom plot shows ‘variance’ decreasing as expression increases. Variance will generally plateau (i.e. remain at the same level) at high expression values. In experiments with higher biological variation, this plateau will be at a higher variance level. For example, experiments using mice as biological replicates will generally have higher variation than experiments using cell lines as biological replicates. As a result, the plateau will be at a higher variance level.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v &lt;-<span class="st"> </span><span class="kw">voom</span>(x, design, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">v &lt;-<span class="st"> </span><span class="kw">voom</span>(x, design, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre>
 <p><img src="IntroBaseR_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
 <p>The output of <code>voom()</code> (our variable <code>v</code>) is an <code>EList</code> object which contains the following elements:</p>
 <ul>
@@ -553,7 +581,7 @@ contr.matrix</code></pre></div>
 </ul>
 <p>The <code>EList</code> object can also contain information about the voom plot, if you choose to save this plot when you ran the <code>voom()</code> function.</p>
 <p>Let’s take a look at <code>E</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(v<span class="op">$</span>E)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(v<span class="op">$</span>E)</code></pre>
 <pre><code>##         Samples
 ## Tags     10_6_5_11  9_6_5_11    purep53     JMS8-2    JMS8-3    JMS8-4
 ##   497097 -4.292165 -3.856488  2.5185849  3.2931366 -4.459730 -3.994060
@@ -572,8 +600,8 @@ contr.matrix</code></pre></div>
 ##   58175  -2.1339189  3.1365872  3.515256</code></pre>
 <p>Each column is a sample and each row is a gene (called a ‘Tag’).</p>
 <p>We are now ready to fit our linear model with <code>lmFit()</code>, which calculates coefficients we defined in our design matrix (<code>design</code>). The resulting object, <code>vfit</code> is a <code>MArrayLM</code> object. It contains a information about our genes (the same dataframe as <code>genes</code> from our <code>EList</code> object <code>v</code> above), the design matrix and a number of statistical outputs. Of most interest to us is the coefficients, stored in an element called <code>coefficients</code>. The first rows of this matrix is shown below. Each gene is row and is labelled using the EntrezID. Each column gives coefficients for each of our phenotype groups.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vfit &lt;-<span class="st"> </span><span class="kw">lmFit</span>(v, design)
-<span class="kw">head</span>(vfit<span class="op">$</span>coefficients)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">vfit &lt;-<span class="st"> </span><span class="kw">lmFit</span>(v, design)
+<span class="kw">head</span>(vfit<span class="op">$</span>coefficients)</code></pre>
 <pre><code>##             Basal        LP        ML
 ## 497097  3.0241632 -4.490392 -3.944477
 ## 20671   0.2681245 -2.488746 -2.024896
@@ -582,8 +610,8 @@ contr.matrix</code></pre></div>
 ## 21399   5.2108711  4.901842  4.876380
 ## 58175  -1.9296994  3.581328  3.133985</code></pre>
 <p>We can then use <code>contrasts.fit()</code> to calculate coefficients for each contrast (or ‘comparison’) we specified in our <code>contr.matrix</code>. The output is also an object of the class <code>MArrayLM</code> (also known as an <code>MArrayLM</code> object). When we inspect the <code>coefficients</code> element now, we can see that each column is a contrast that we specified in our contrast matrix.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vfit &lt;-<span class="st"> </span><span class="kw">contrasts.fit</span>(vfit, <span class="dt">contrasts =</span> contr.matrix)
-<span class="kw">head</span>(vfit<span class="op">$</span>coefficients)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">vfit &lt;-<span class="st"> </span><span class="kw">contrasts.fit</span>(vfit, <span class="dt">contrasts =</span> contr.matrix)
+<span class="kw">head</span>(vfit<span class="op">$</span>coefficients)</code></pre>
 <pre><code>##         Contrasts
 ##           BasalvsLP   BasalvsML      LPvsML
 ##   497097  7.5145557  6.96864007 -0.54591559
@@ -597,10 +625,10 @@ contr.matrix</code></pre></div>
 <div id="statistical-testing" class="section level2">
 <h2><span class="header-section-number">4.6</span> Statistical testing</h2>
 <p>The next step is to carry out statistical testing to determine which genes are differentially expressed. The function <code>eBayes()</code> computes moderated t-statistics, moderated F-statistics and log-odds of differential expression for each gene, given a fitted linear model. ‘Moderated’ refers to empirical Bayes moderation, which borrows information across genes to obtain more accurate measures of variability for each gene. This also increases our power to detect differentially expressed genes.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">efit &lt;-<span class="st"> </span><span class="kw">eBayes</span>(vfit)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">efit &lt;-<span class="st"> </span><span class="kw">eBayes</span>(vfit)</code></pre>
 <p>We can now look at the number of differentially expressed genes using the <code>decideTests()</code> function. The output of this function is a matrix where each column is a contrast (comparison of interest) and each row is a gene. The numbers 1, -1 and 0 mean up-regulated, down-regulated or not significantly differentially expressed, respectively.</p>
 <p>Note that <code>decideTests()</code> also accounts for multiple testing. The default method is Benjamini and Hochberg <span class="citation">(Benjamini and Hochberg <a href="#ref-benjamini1995controlling">1995</a>)</span> but several others are also available.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">decideTests</span>(efit)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">decideTests</span>(efit)</code></pre>
 <pre><code>## TestResults matrix
 ##         Contrasts
 ##          BasalvsLP BasalvsML LPvsML
@@ -611,7 +639,7 @@ contr.matrix</code></pre></div>
 ##   21399          0         1      0
 ## 16619 more rows ...</code></pre>
 <p>To obtain the total number of differentially expressed genes for each comparison, we can add the function <code>summary()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">decideTests</span>(efit))</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">decideTests</span>(efit))</code></pre>
 <pre><code>##        BasalvsLP BasalvsML LPvsML
 ## Down        4500      4850   2701
 ## NotSig      7307      6996  11821
@@ -627,7 +655,7 @@ contr.matrix</code></pre></div>
 <li><code>adj.P.Val</code> - adjusted p value.</li>
 <li><code>B</code> - log-odds that the gene is differentially expressed.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">topTable</span>(efit, <span class="dt">coef =</span> <span class="st">&quot;BasalvsLP&quot;</span>, <span class="dt">n =</span> <span class="dv">5</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">topTable</span>(efit, <span class="dt">coef =</span> <span class="st">&quot;BasalvsLP&quot;</span>, <span class="dt">n =</span> <span class="dv">5</span>)</code></pre>
 <pre><code>##        ENTREZID   SYMBOL TXCHROM     logFC  AveExpr         t      P.Value
 ## 12521     12521     Cd82    chr2 -4.095479 7.069637 -35.46821 3.383539e-12
 ## 22249     22249   Unc13b    chr4 -4.350553 5.663171 -32.38571 8.648521e-12
@@ -647,51 +675,51 @@ contr.matrix</code></pre></div>
 <div id="answers-3" class="section level2">
 <h2><span class="header-section-number">4.7</span> Answers</h2>
 <p><strong>Challenge 4.1</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#1 </span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#1 </span>
 <span class="kw">levels</span>(groupCol) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>)
-groupCol</code></pre></div>
+groupCol</code></pre>
 <pre><code>## [1] &quot;green&quot; &quot;red&quot;   &quot;blue&quot;  &quot;blue&quot;  &quot;red&quot;   &quot;green&quot; &quot;blue&quot;  &quot;red&quot;   &quot;green&quot;
 ## attr(,&quot;levels&quot;)
 ## [1] &quot;blue&quot;  &quot;green&quot; &quot;red&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 2</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 2</span>
 groupCol &lt;-<span class="st"> </span><span class="kw">as.character</span>(groupCol)
-groupCol</code></pre></div>
+groupCol</code></pre>
 <pre><code>## [1] &quot;green&quot; &quot;red&quot;   &quot;blue&quot;  &quot;blue&quot;  &quot;red&quot;   &quot;green&quot; &quot;blue&quot;  &quot;red&quot;   &quot;green&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 3</span>
-<span class="kw">plotMDS</span>(x, <span class="dt">labels =</span> group, <span class="dt">col =</span> groupCol)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 3</span>
+<span class="kw">plotMDS</span>(x, <span class="dt">labels =</span> group, <span class="dt">col =</span> groupCol)</code></pre>
 <p><img src="IntroBaseR_files/figure-html/unnamed-chunk-153-1.png" width="672" /></p>
 <p><strong>Challenge 4.2</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">groupCol &lt;-<span class="st"> </span>group
+<pre class="sourceCode r"><code class="sourceCode r">groupCol &lt;-<span class="st"> </span>group
 <span class="kw">levels</span>(groupCol) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>)
 groupCol &lt;-<span class="st"> </span><span class="kw">as.character</span>(groupCol)
 <span class="kw">plotMDS</span>(x, <span class="dt">col =</span> groupCol, <span class="dt">main =</span> <span class="st">&quot;MDS plot coloured by cell type&quot;</span>,
         <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">2.8</span>,<span class="dv">4</span>))
 <span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="dt">legend =</span> <span class="kw">levels</span>(group), 
-       <span class="dt">text.col =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>))</code></pre></div>
+       <span class="dt">text.col =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>))</code></pre>
 <p><img src="IntroBaseR_files/figure-html/unnamed-chunk-154-1.png" width="672" /></p>
 <p><strong>Challenge 4.3</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colnames</span>(design) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Basal&quot;</span>, <span class="st">&quot;LP&quot;</span>, <span class="st">&quot;ML&quot;</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colnames</span>(design) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Basal&quot;</span>, <span class="st">&quot;LP&quot;</span>, <span class="st">&quot;ML&quot;</span>)</code></pre>
 <p><strong>Challenge 4.4</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">topLPvsML &lt;-<span class="st"> </span><span class="kw">topTable</span>(efit, <span class="dt">coef =</span> <span class="st">&quot;LPvsML&quot;</span>, <span class="dt">n =</span> <span class="dv">50</span>)
+<pre class="sourceCode r"><code class="sourceCode r">topLPvsML &lt;-<span class="st"> </span><span class="kw">topTable</span>(efit, <span class="dt">coef =</span> <span class="st">&quot;LPvsML&quot;</span>, <span class="dt">n =</span> <span class="dv">50</span>)
 
 <span class="kw">write.table</span>(<span class="dt">x =</span> topLPvsML, <span class="dt">file =</span> <span class="st">&quot;LPvsML.tsv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>,
-            <span class="dt">row.names =</span> <span class="ot">FALSE</span>, <span class="dt">col.names =</span> <span class="ot">TRUE</span>)</code></pre></div>
+            <span class="dt">row.names =</span> <span class="ot">FALSE</span>, <span class="dt">col.names =</span> <span class="ot">TRUE</span>)</code></pre>
 
 </div>
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
-<div id="ref-benjamini1995controlling">
-<p>Benjamini, Yoav, and Yosef Hochberg. 1995. “Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing.” <em>Journal of the Royal Statistical Society: Series B (Methodological)</em> 57 (1). Wiley Online Library: 289–300.</p>
+<div id="ref-mcintyre2011rna">
+<p>McIntyre, Lauren M, Kenneth K Lopiano, Alison M Morse, Victor Amin, Ann L Oberg, Linda J Young, and Sergey V Nuzhdin. 2011. “RNA-Seq: Technical Variability and Sampling.” <em>BMC Genomics</em> 12 (1). BioMed Central: 293.</p>
 </div>
 <div id="ref-bourgon2010independent">
 <p>Bourgon, Richard, Robert Gentleman, and Wolfgang Huber. 2010. “Independent Filtering Increases Detection Power for High-Throughput Experiments.” <em>Proceedings of the National Academy of Sciences</em> 107 (21). National Acad Sciences: 9546–51.</p>
 </div>
-<div id="ref-mcintyre2011rna">
-<p>McIntyre, Lauren M, Kenneth K Lopiano, Alison M Morse, Victor Amin, Ann L Oberg, Linda J Young, and Sergey V Nuzhdin. 2011. “RNA-Seq: Technical Variability and Sampling.” <em>BMC Genomics</em> 12 (1). BioMed Central: 293.</p>
-</div>
 <div id="ref-robinson2010scaling">
 <p>Robinson, Mark D, and Alicia Oshlack. 2010. “A Scaling Normalization Method for Differential Expression Analysis of Rna-Seq Data.” <em>Genome Biology</em> 11 (3). BioMed Central: R25.</p>
+</div>
+<div id="ref-benjamini1995controlling">
+<p>Benjamini, Yoav, and Yosef Hochberg. 1995. “Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing.” <em>Journal of the Royal Statistical Society: Series B (Methodological)</em> 57 (1). Wiley Online Library: 289–300.</p>
 </div>
 </div>
             </section>
@@ -750,7 +778,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');
