@@ -45,7 +45,7 @@ This will open a fourth panel on the top left.
 knitr::include_graphics("Images/RS3.png")
 ```
 
-A R Script is just a text document. You can type and run commands using a R Script and down in the Console - the difference is that you can't save the commands you run in the Console but you can save the R Script with all your commands. Note that to run a command in the Console press `Enter` key but to run a command in a R Script you must press `Cmd/Cntrl + Enter` keys.
+A R Script is just a text document. You can type and run commands using a R Script and down in the Console - the difference is that you can't save the commands you run in the Console but you can save the R Script with all your commands. Note that to run a command in the Console press `Enter` key but to run a command in a R Script you must press `Cmd/Ctrl + Enter` keys.
 
 Lastly, you can make 'comments' in your R Script. Comments are notes to yourself that are not interpreted by R and start with `#`:
 
@@ -64,12 +64,11 @@ knitr::include_graphics("Images/help.png")
 
 The other option is to run the command `?` followed by the name of the function:
 
-```{r}
+```{r, eval=FALSE}
 ?sum
 ```
 
 Help files are very useful but can be difficult to interpret at first due to the technical language used. We won't get too much practice reading help files during this course but I would encourage you to try to use them when figuring out how to use a new function.
-
 
 ## Working directory
 
@@ -123,13 +122,20 @@ You can also compare numbers in R:
 
 ```{r}
 1 == 1  # equal to.
+1 != 1 # not equal to
 2 > 1   # greater than.
 2 < 1   # less than.
 1 <= 2  # greater or equal to.
 1 >= 2  # less than or equal to.
 ```
 
-What do you think will happen if we compare words?
+The `!` sign by itself means "not" and it reverses the logical. For example, "not" TRUE is FALSE.
+
+```{r}
+!TRUE
+```
+
+You can also compare words. What do you think will happen below?
 
 ```{r}
 "cat" > "dog"
@@ -233,28 +239,29 @@ A dataframe is composed of vectors, with each vector being one column. You can c
 
 ```{r}
 my_df <- data.frame(
-  name = c("bob", "amy"), # 'name' becomes the column name of this column
-  age = c(23,34)
-  
+  cats = c("Hello Kitty", "Garfield"), 
+  weight = c(4.5,7)
 )
 my_df
 ```
 
-There are a few important 
+There are a few important things to note:
 
-1. `name` and `age` become the names of the columns
-2. the `,` at the end of `name = c("bob", "amy")` is important and should not be missed
-3. each column in a dataframe is essentially a vector. Do not forget the `c()` when inputing the values within each column
+1. `name` and `age` become the names of the columns.
+2. the `,` at the end of `cats = c("Hello Kitty", "Garfield")` is important and should not be missed.
+3. each column in a dataframe is essentially a vector. Do not forget the `c()` when inputing the values within each column.
 
-Finally, you can access a column in a dataframe with the shortcut `$`. Notice that the names of all columns of the dataframe appears after typing in `my_df$`:
+You can access a column in a dataframe with the shortcut `$`. Notice that the names of all columns of the dataframe appears after typing in `my_df$`:
 
-```{r df_dollar, fig.cap="Accessing columns in a dataframe using the '$' symbol.", out.width="350px", echo=FALSE, fig.align='center'}
+```{r dfdollar, fig.cap="Accessing columns in a dataframe using the '$' symbol.", out.width="350px", echo=FALSE, fig.align='center'}
 knitr::include_graphics("Images/df_dollar.png")
 ```
 
 **Challenge 1.1**
 
-Create a dataframe called `cats` with 2 columns. The first column named "name" should be a vector with the values: "Garfield", "Hello Kitty". The second column named "weights" should be a vector with the following values: 5.5, 4.8.
+Create a dataframe called `my_df2` with 2 columns. The first column named "dogs" should be a vector with the values: "spot", "snoopy". The second column named "weight" should be a vector with the following values: 3.5, 4.8.
+
+Write this dataframe out to a .tsv file named 'Ses1_dogs.tsv'.
 
 ## Reading in data
 
@@ -457,7 +464,7 @@ str(c(1,2,3))
 
 `num` stands for numeric and is just the 'number' data types grouped together. R does this for two reasons. First, generally you don't need to know exactly what 'type' of number class your data is. Second, R will often convert between number types depending the type of calculations/function performed.
 
-**Challenge 1.2**
+**Challenge 1.3**
 
 1. What data type will the following vectors be?
 
@@ -472,6 +479,44 @@ c(4, "5")
 
 2. Create a vector called `my_vect3` that contains the following numbers: 1,1,2,3,5,8. 
     * Convert this vector into the character data type. How can you tell that the values are now characters?
+    
+## Vectorisation {#vect}
+
+R is quite efficient at doing calculations or performing a functions on a vector of data.
+
+Let's use the `Count` column from our dataframe `genes`. We can access just one column using the `$` symbol:
+
+```{r}
+genes$Count
+```
+
+What do you think will happen if we do this?
+
+```{r}
+genes$Count + 10
+```
+
+R will perform this calculation on all numbers in the `Count` column and return a vector.
+
+We can add this new vector to our dataframe, as a new column.
+
+```{r}
+genes$Count_2 <- genes$Count + 10
+```
+
+There are a few things happening in the above code: 
+
+1. The code on the right side of `<-` is evaluated first. It returns a vector as we saw above.
+2. This vector is assigned to a column in `genes` called `Count_2`. Since this column does not yet exist in the `genes` dataframe, a new column called `Count_2` is created first. (If there was already a column name `Count_2`, this command will have overwritten that column with the new vector created in the right side of `<-`)
+
+Note that you could also REPLACE a column using the same notation. For example, if, in the command above, the left side was `genes$Count`, the old column called `Count` would be REPLACED with the new vector of numbers created on the right side.
+
+**Challenge 1.2**
+
+Create a new column called `Prop_Count` that contains each count value as a proportion of the total count value of all 10 genes in the dataframe. E.g. if `Count` was 10 and total count of all 10 genes is 100, that row in `Prop_Count` should be 0.1.
+
+*Hint* use the `sum()` function.
+
 
 ## Writing out data {#write}
 
@@ -494,19 +539,20 @@ write.table(x = genes, file = "Ses1_Genes_output.tsv", sep = "\t",
 
 ## Homework
 
-Create a dataframe called 'dogs' with the columns 'names' and 'weight'. The 'names' column should contain: "Spot", "Snoopy" and the 'weight' column should contain: 5.6, 4.5.
+Read in the data file "Ses1_homework.tsv" using `read.delim()`. This file is similar to the "Ses1_genes.tsv" file but with a different 10 genes.
 
-Write this dataframe out to a .tsv file named 'Ses1_dogs.tsv'.
+Create a new column called `Prop_GeneLength` that contains the `Count` value as a proportion of `GeneLength`. E.g. if the count value was 50 and the gene length was 2400, the `Prop_GeneLength` value for that row would be 0.02083333.
+
+Finally, write out this new dataframe as a file called "Ses1_homework_output.tsv", as a tsv (tab separated values) file.
 
 ## Answers
 
 **Challenge 1.1**
 
-Create a dataframe called `cats` with 2 columns. The first column named "name" should be a vector with the values: "Garfield", "Hello Kitty". The second column named "weights" should be a vector with the following values: 5.5, 4.8.
 ```{r}
-cats <- data.frame(
-  name = c("Garfield", "Hello Kitty"),
-  weights = c(5.5,4.8)
+my_df2 <- data.frame(
+  dogs = c("Garfield", "Hello Kitty"),
+  weight = c(3.5, 4.8)
 )
 ```
 
@@ -529,6 +575,15 @@ my_vect3 <- c(1,1,2,3,5,8)
 my_vect3 <- as.character(my_vect3)
 # quotes around each value show that they are of the character type
 my_vect3 
+```
+
+**Challenge 1.3**
+
+The `sum()` function can be used to calculate the total Count of all 10 rows by giving the `genes$Count` vector as the input to `sum()`.
+
+```{r}
+genes$Prop_Count <- genes$Count / sum(genes$Count) 
+genes
 ```
 
 

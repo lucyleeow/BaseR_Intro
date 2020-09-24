@@ -21,6 +21,7 @@ In this session we will run through the basic steps for analysing a simple RNA-s
 
 The aim of this session is to give you experience with a real-world RNA-seq analysis, and making extensive use of an external library. We will not cover the statistics in any depth. In general analysis packages will want your data in some specifc format, so it's important to be able to manipulate the data to fit the package's requirements.
 
+Much of the materials here are explained in greater detail in the limma user's guide. You can view this by typing `help("limma")` and following the links.
 
 ## DGEList
 
@@ -44,7 +45,8 @@ samplenames <- c("10_6_5_11", "9_6_5_11", "purep53", "JMS8-2", "JMS8-3",
 colnames(dge) <- samplenames
 
 # add phenotype group information
-dge$samples$group <- as.factor(c("LP", "ML", "Basal", "Basal", "ML", "LP", "Basal", "ML", "LP")) 
+group <- as.factor(c("LP", "ML", "Basal", "Basal", "ML", "LP", "Basal", "ML", "LP")) 
+dge$samples$group <- group
 
 # add gene annotation information
 dge$genes <- read.delim("data/Ses3_geneAnnot.tsv", stringsAsFactors = FALSE)
@@ -61,7 +63,7 @@ The first step is to filter out lowly expressed genes. There are two main proble
 
 Additionally, genes that have a count of 0 across ALL samples are also removed, simply because they provide no useful information.
 
-Removing these highly variable, lowly expressed genes increases your 'power' to detect differentially expressed genes [@bourgon2010independent]. To test for differential expression, a statistical test must be conducted for every gene. There are a large number of genes - meaning that a large number of statistical tests must be performed. When you perform many statistical tests, many will produce small p-values by chance alone. We must account for these false positives. There are a number of methods to do this and these are broadly called 'adjusting for multiple testing'. This adjustment reduces the number of false positives but comes at the cost of reduced 'power' to detect true positives. If we filter out uninteresting, lowly expressed genes, we need to perform fewer statistical tests and reduce the impact that multiple testing adjustment has on detection power. 
+> Removing these highly variable, lowly expressed genes increases your 'power' to detect differentially expressed genes [@bourgon2010independent]. To test for differential expression, a statistical test must be conducted for every gene. There are a large number of genes - meaning that a large number of statistical tests must be performed. When you perform many statistical tests, many will produce small p-values by chance alone. We must account for these false positives. There are a number of methods to do this and these are broadly called 'adjusting for multiple testing'. This adjustment reduces the number of false positives but comes at the cost of reduced 'power' to detect true positives. If we filter out uninteresting, lowly expressed genes, we need to perform fewer statistical tests and reduce the impact that multiple testing adjustment has on detection power. 
 
 The `filterByExpr()` function provides an automatic way to filter genes.
 
@@ -72,7 +74,7 @@ Note that the actual filtering is done using counts per million (NOT the raw cou
 The output of this function is a vector of logicals, indicating which genes (rows) should be kept and which filtered.
 
 ```{r}
-keep <- filterByExpr(dge, group = dge$samples$group)
+keep <- filterByExpr(dge, group = group)
 head(keep)
 ```
 
@@ -123,13 +125,15 @@ dge$samples$norm.factors
 
 These normalisation factors are all close to 1 for all samples, suggesting minimal difference in 'relative RNA levels' between samples.
 
+At this point we have filtered and normalised data that is suitable for comparison.
+
 ## MDS
 
-MDS is a way to visualise distances between sets of objects (samples in our case). It is also a dimensionality reduction technique, like principal components analysis (PCA). Given a matrix of distances between each pair of objects (samples in our case), it tries to place each object in a lower dimensional space, usually 2 or 3 so it can be plotted, such that the distances between each data points is preserved as well as possible.
+Before we perform statistical tests, it's useful to perform some exploratory visual analysis to get an overall idea of how our data is behaving.
 
->Note on dimension reduction:
->
->Dimension reduction describes the process of converting a data with many dimensions (which can be thought of as 'variables') into data with fewer dimensions, while retaining as much information as possible. There are a number of reasons why we may want to do this. In RNA-seq experiments specifically, the main advantage of dimension reduction is to allow visualisation and exploration your data. Take for example, a gene expression experiment where the expression level of only 2 genes are measured in a number of samples. We can easily visualise this by plotting a scatter graph where gene 1 expression is on the y axis and gene 2 expression is on the x axis (or vice versa) and each point is a sample. In RNA-seq experiments however, we generally measure the expression of over 10,000 genes. It would be impossible to visualise such data as we would need to have over 10,000 axes (as we have over 10,000 genes) in our graph. What we would like to do, is to transform the high-dimensional data into data with with only 2 or 3 dimensions that conveys the same information. We could then visualise the data on a plot with 2 or 3 axes. Information is inevitably lost during the dimension reduction process, though all methodologies aim to preserve as much information as possible. 
+MDS is a way to visualise distances between sets of objects (samples in our case). It is a dimensionality reduction technique, like principal components analysis (PCA). We treat gene expression in samples as if they were coordinates in a high-dimensional coordinate system, then we can find "distances" between samples as we do between points in space. Given a matrix of distances between each pair of objects (samples in our case), it tries to place each object in a lower dimensional space, usually 2 or 3 so it can be plotted, such that the distances between each data points is preserved as well as possible.
+
+> Dimension reduction describes the process of converting a data with many dimensions (which can be thought of as 'variables') into data with fewer dimensions, while retaining as much information as possible. There are a number of reasons why we may want to do this. In RNA-seq experiments specifically, the main advantage of dimension reduction is to allow visualisation and exploration your data. Take for example, a gene expression experiment where the expression level of only 2 genes are measured in a number of samples. We can easily visualise this by plotting a scatter graph where gene 1 expression is on the y axis and gene 2 expression is on the x axis (or vice versa) and each point is a sample. In RNA-seq experiments however, we generally measure the expression of over 10,000 genes. It would be impossible to visualise such data as we would need to have over 10,000 axes (as we have over 10,000 genes) in our graph. What we would like to do, is to transform the high-dimensional data into data with with only 2 or 3 dimensions that conveys the same information. We could then visualise the data on a plot with 2 or 3 axes. Information is inevitably lost during the dimension reduction process, though all methodologies aim to preserve as much information as possible. 
 
 The `plotMDS()` function performs MDS on a `DGEList` object using metric MDS. The distances between each sample in the resulting plot can be interpreted as the typical log2-fold-change between the samples, for the most different genes (genes that have the most different expression values between that pair of samples).
 
@@ -148,7 +152,7 @@ dge$samples$group
 ```
 
 ```{r}
-plotMDS(dge, labels = dge$samples$group)
+plotMDS(dge, labels = group)
 ```
 
 This shows us that the phenotype groups tend to 'cluster' together, meaning that the gene expression profiles are similar for samples within a phenotype group. The 'Basal' type samples quite close together while the 'LP' (luminal progenitor) and 'ML' (mature luminal) type samples are further apart, signifying that their expression profiles are more variable.
@@ -159,7 +163,7 @@ To make this more clear, take a look at the table below, which lists all the sam
 
 ```{r, echo=FALSE}
 kable(
-  data.frame(Samples = rownames(dge$samples), Group = dge$samples$group)
+  data.frame(Samples = rownames(dge$samples), Group = group)
 ) %>%
   kable_styling(full_width = F)
 ```
@@ -272,9 +276,11 @@ The next step of the limma-voom analysis is to fit a linear model for each gene.
 
 $Y = \beta_{0} + \beta_{1}X_{1} + \beta_{2}X_{2}...$ 
 
-This equation is essentially saying that a response variable of interest $Y$ is equal to a constant ($\beta_{0}$), plus a parameter multiplied by a predictor variable ($\beta_{1}X_{1}$), plus a second parameter multiplied by a second predictor variable ($\beta_{2}X_{2}$), and so on until there are no more predictor variables. There are many other types of linear models, including logistic regression and analysis of variance, but all predict a response variable of interest using explanatory variable(s).
+This equation is saying that a response variable of interest $Y$ is equal to a constant ($\beta_{0}$), plus a parameter multiplied by a predictor variable ($\beta_{1}X_{1}$), plus a second parameter multiplied by a second predictor variable ($\beta_{2}X_{2}$), and so on until there are no more predictor variables. In our context Y is the level of expression of a gene and the ($X_{n}$) are relevant covariates such as experimental group, age and other factors.
 
-It is important to note that the word 'linear' in linear model does not mean 'straight line'. 'Linear' actually describes the relationship between the parameters of the model equation and the response variable (technically the response variable must be a linear combination of the parameters but this is outside the scope of this course). A linear model equation can describe a straight line but does not have to.
+The parameter estimates belonging to experimental groups is ultimately what we perform statistical tests on. This measures the magnitude of "effect" the experimental groups have on our gene expression, then differentially expressed genes between groups are genes whose expression is significantly influenced by the experimental groups.
+
+> Note that the word 'linear' in linear model does not mean 'straight line'. 'Linear' actually describes the relationship between the parameters of the model equation and the response variable (technically the response variable must be a linear combination of the parameters but this is outside the scope of this course). A linear model equation can describe a straight line but does not have to.
 
 Although our experiment has a simple design, with 3 different cell types, limma's linear model approach has the ability to accommodate very complex experimental designs. Before we can fit our linear model, information about the experimental design needs to be provided to the model. This is done using a 'design matrix'.
 
@@ -315,7 +321,6 @@ The creation and output of our contrast matrix is shown below:
 ```{r, echo=FALSE}
 colnames(design) <- c("Basal", "LP", "ML")
 ```
-
 
 ```{r}
 contr.matrix <- makeContrasts(
@@ -383,13 +388,14 @@ We can now look at the number of differentially expressed genes using the `decid
 Note that `decideTests()` also accounts for multiple testing. The default method is Benjamini and Hochberg [@benjamini1995controlling] but several others are also available.
 
 ```{r}
-decideTests(efit)
+dt <- decideTests(efit)
+dt
 ```
 
 To obtain the total number of differentially expressed genes for each comparison, we can add the function `summary()`:
 
 ```{r}
-summary(decideTests(efit))
+summary(dt)
 ```
 
 The function `topTable()` can be used to obtain more information on the differentially expressed genes for each contrast. `topTable()` takes as arguments the `MArrayLM` object output by `eBayes()` (`efit`), the contrast name of interest and the number of top differentially expressed genes to output. Note that the contrast name must be given in quotes and must be exactly as written in the contrast matrix (`contr.matrix`). 
@@ -405,9 +411,9 @@ It outputs a dataframe with the following information:
 * `B` - log-odds that the gene is differentially expressed.
 
 ```{r}
-topTable(efit, coef = "BasalvsLP", n = 5)
+top <- topTable(efit, coef = "BasalvsLP", n = 5)
+top
 ```
-
 
 **Challenge 4.4**
 
@@ -427,7 +433,7 @@ groupCol
 groupCol <- as.character(groupCol)
 groupCol
 # 3
-plotMDS(dge, labels = dge$samples$group, col = groupCol)
+plotMDS(dge, labels = group, col = groupCol)
 ```
 
 **Challenge 4.2**

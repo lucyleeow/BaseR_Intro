@@ -27,7 +27,7 @@ The data files require for this workshop are available on [Github](https://githu
 
 **Acknowledgements**
 
-* Thank you to [Shian Su](https://github.com/Shians) and [Brendan Ansell](https://github.com/bansell) for your suggestions and review of this tutorial.
+* Thank you to [Shian Su](https://github.com/Shians), [Brendan Ansell](https://github.com/bansell) and [Professor Gordon Smyth](https://github.com/gksmyth) for your suggestions and review of this tutorial.
 * This page was generated using the [bookdown](https://bookdown.org/) package by [YiHui Xie](https://yihui.name/). 
 
 
