@@ -20,20 +20,17 @@ It is intended to be delivered over four 2.5 hour workshops at the Walter and El
 
 ## Data files
 
-The data files require for this workshop are available on [Github](https://github.com/lucyleeow/BaseR_Intro/tree/master/data). To download a data file click on the file you wish to download then right click 'Raw' > 'Save Link As...':
+You can download and unzip the files using the following commands
 
-![](Images/githubdata.png)
-
+```{r}
+download.file("https://github.com/Shians/BaseR_Intro/raw/master/data/workshop_data.zip", "workshop_data.zip")
+unzip("workshop_data.zip", exdir = "data")
+unzip("data/Ses3_counts.zip", exdir = "data/counts")
+```
 
 **Acknowledgements**
 
 * Thank you to [Shian Su](https://github.com/Shians), [Brendan Ansell](https://github.com/bansell) and [Professor Gordon Smyth](https://github.com/gksmyth) for your suggestions and review of this tutorial.
 * This page was generated using the [bookdown](https://bookdown.org/) package by [YiHui Xie](https://yihui.name/). 
 
-
 The source code for this page can be found on [Github](https://github.com/lucyleeow/BaseR_Intro).
-
-
-
-
-
