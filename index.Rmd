@@ -14,7 +14,7 @@ description: "Introductory tutorial to base R, with a biological focus. In parti
 
 # Preface {-}
 
-This introduction to base R course was designed for biologists with no previous programming experience. It has a focus on analysing RNA-sequencing data using the [Bioconductor](https://www.bioconductor.org/) package [limma](https://bioconductor.org/packages/release/bioc/html/limma.html). The F1000 paper ['RNA-seq analysis is easy as 1-2-3 with limma, Glimma and edgeR'](https://f1000research.com/articles/5-1408/v3) was used as a guide for the latter sessions.
+This introduction to base R course was designed for biologists with no previous programming experience. It has a focus on analysing RNA-sequencing data using the [Bioconductor](https://www.bioconductor.org/) package [limma](https://bioconductor.org/packages/release/bioc/html/limma.html). The F1000 paper ['RNA-seq analysis is easy as 1-2-3 with limma, Glimma and edgeR'](https://f1000research.com/articles/5-1408/v3) was used as a guide for the later sessions.
 
 It is intended to be delivered over four 2.5 hour workshops at the Walter and Eliza Hall Institute of Medical Research (WEHI).
 

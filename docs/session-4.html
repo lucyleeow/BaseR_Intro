@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Session 4 | Introduction to Base R</title>
-  <meta name="description" content="Introductory tutorial to base R, with a biological focus. In particular it will focus on analysing RNA-sequencing data with Bioconductor.">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="Introductory tutorial to base R, with a biological focus. In particular it will focus on analysing RNA-sequencing data with Bioconductor." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Session 4 | Introduction to Base R" />
   <meta property="og:type" content="book" />
@@ -22,18 +21,18 @@
   <meta name="twitter:description" content="Introductory tutorial to base R, with a biological focus. In particular it will focus on analysing RNA-sequencing data with Bioconductor." />
   
 
-<meta name="author" content="Lucy Liu">
+<meta name="author" content="Lucy Liu" />
 
 
-<meta name="date" content="2019-06-05">
+<meta name="date" content="2020-09-24" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="session-3.html">
-<link rel="next" href="references.html">
+<link rel="prev" href="session-3.html"/>
+<link rel="next" href="references.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -41,6 +40,7 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -48,30 +48,37 @@
 
 
 
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +87,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -173,8 +180,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3.3" data-path="session-2.html"><a href="session-2.html#in"><i class="fa fa-check"></i><b>2.3.3</b> %in%</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="session-2.html"><a href="session-2.html#merge"><i class="fa fa-check"></i><b>2.4</b> Merge</a></li>
-<li class="chapter" data-level="2.5" data-path="session-2.html"><a href="session-2.html#homework-1"><i class="fa fa-check"></i><b>2.5</b> Homework</a></li>
-<li class="chapter" data-level="2.6" data-path="session-2.html"><a href="session-2.html#answers-1"><i class="fa fa-check"></i><b>2.6</b> Answers</a></li>
+<li class="chapter" data-level="2.5" data-path="session-1.html"><a href="session-1.html#homework"><i class="fa fa-check"></i><b>2.5</b> Homework</a></li>
+<li class="chapter" data-level="2.6" data-path="session-1.html"><a href="session-1.html#answers"><i class="fa fa-check"></i><b>2.6</b> Answers</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="session-3.html"><a href="session-3.html"><i class="fa fa-check"></i><b>3</b> Session 3</a><ul>
 <li class="chapter" data-level="3.1" data-path="session-3.html"><a href="session-3.html#lists"><i class="fa fa-check"></i><b>3.1</b> Lists</a><ul>
@@ -183,11 +190,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="session-3.html"><a href="session-3.html#classes"><i class="fa fa-check"></i><b>3.2</b> Classes</a></li>
 <li class="chapter" data-level="3.3" data-path="session-3.html"><a href="session-3.html#packages"><i class="fa fa-check"></i><b>3.3</b> Packages</a></li>
 <li class="chapter" data-level="3.4" data-path="session-3.html"><a href="session-3.html#dgelist"><i class="fa fa-check"></i><b>3.4</b> DGEList</a></li>
-<li class="chapter" data-level="3.5" data-path="session-3.html"><a href="session-3.html#homework-2"><i class="fa fa-check"></i><b>3.5</b> Homework</a></li>
-<li class="chapter" data-level="3.6" data-path="session-3.html"><a href="session-3.html#answers-2"><i class="fa fa-check"></i><b>3.6</b> Answers</a></li>
+<li class="chapter" data-level="3.5" data-path="session-1.html"><a href="session-1.html#homework"><i class="fa fa-check"></i><b>3.5</b> Homework</a></li>
+<li class="chapter" data-level="3.6" data-path="session-1.html"><a href="session-1.html#answers"><i class="fa fa-check"></i><b>3.6</b> Answers</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="session-4.html"><a href="session-4.html"><i class="fa fa-check"></i><b>4</b> Session 4</a><ul>
-<li class="chapter" data-level="4.1" data-path="session-4.html"><a href="session-4.html#dgelist-1"><i class="fa fa-check"></i><b>4.1</b> DGEList</a></li>
+<li class="chapter" data-level="4.1" data-path="session-3.html"><a href="session-3.html#dgelist"><i class="fa fa-check"></i><b>4.1</b> DGEList</a></li>
 <li class="chapter" data-level="4.2" data-path="session-4.html"><a href="session-4.html#filtering"><i class="fa fa-check"></i><b>4.2</b> Filtering</a></li>
 <li class="chapter" data-level="4.3" data-path="session-4.html"><a href="session-4.html#normalisation"><i class="fa fa-check"></i><b>4.3</b> Normalisation</a></li>
 <li class="chapter" data-level="4.4" data-path="session-4.html"><a href="session-4.html#mds"><i class="fa fa-check"></i><b>4.4</b> MDS</a><ul>
@@ -200,7 +207,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.6.3" data-path="session-4.html"><a href="session-4.html#linear-model-fitting"><i class="fa fa-check"></i><b>4.6.3</b> Linear model fitting</a></li>
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="session-4.html"><a href="session-4.html#statistical-testing"><i class="fa fa-check"></i><b>4.7</b> Statistical testing</a></li>
-<li class="chapter" data-level="4.8" data-path="session-4.html"><a href="session-4.html#answers-3"><i class="fa fa-check"></i><b>4.8</b> Answers</a></li>
+<li class="chapter" data-level="4.8" data-path="session-1.html"><a href="session-1.html#answers"><i class="fa fa-check"></i><b>4.8</b> Answers</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -235,41 +242,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>performing statistical testing for differential expression</li>
 </ul>
 <p>The aim of this session is to give you experience with a real-world RNA-seq analysis, and making extensive use of an external library. We will not cover the statistics in any depth. In general analysis packages will want your data in some specifc format, so it’s important to be able to manipulate the data to fit the package’s requirements.</p>
-<p>Much of the materials here are explained in greater detail in the limma user’s guide. You can view this by typing <code>help(&quot;limma&quot;)</code> and following the links.</p>
-<div id="dgelist-1" class="section level2">
+<p>Much of the materials here are explained in greater detail in the limma user’s guide. You can view this by typing <code>help("limma")</code> and following the links.</p>
+<div id="dgelist" class="section level2">
 <h2><span class="header-section-number">4.1</span> DGEList</h2>
 <p>Let’s start by re-creating our <code>DGEList</code> object:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load required packages</span>
-<span class="kw">library</span>(edgeR)</code></pre>
-<pre><code>## Loading required package: limma</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(limma)
-
-<span class="co"># vector of file names</span>
-files &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;GSM1545535_10_6_5_11.txt&quot;</span>, <span class="st">&quot;GSM1545536_9_6_5_11.txt&quot;</span>, <span class="st">&quot;GSM1545538_purep53.txt&quot;</span>, 
-    <span class="st">&quot;GSM1545539_JMS8-2.txt&quot;</span>, <span class="st">&quot;GSM1545540_JMS8-3.txt&quot;</span>, <span class="st">&quot;GSM1545541_JMS8-4.txt&quot;</span>, <span class="st">&quot;GSM1545542_JMS8-5.txt&quot;</span>, 
-    <span class="st">&quot;GSM1545544_JMS9-P7c.txt&quot;</span>, <span class="st">&quot;GSM1545545_JMS9-P8c.txt&quot;</span>)
-
-<span class="co"># create DGEList object</span>
-dge &lt;-<span class="st"> </span><span class="kw">readDGE</span>(files, <span class="dt">path =</span> <span class="st">&quot;data&quot;</span>, <span class="dt">columns =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))
-
-<span class="co"># add sample names</span>
-samplenames &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;10_6_5_11&quot;</span>, <span class="st">&quot;9_6_5_11&quot;</span>, <span class="st">&quot;purep53&quot;</span>, <span class="st">&quot;JMS8-2&quot;</span>, <span class="st">&quot;JMS8-3&quot;</span>, <span class="st">&quot;JMS8-4&quot;</span>, 
-    <span class="st">&quot;JMS8-5&quot;</span>, <span class="st">&quot;JMS9-P7c&quot;</span>, <span class="st">&quot;JMS9-P8c&quot;</span>)
-
-<span class="kw">colnames</span>(dge) &lt;-<span class="st"> </span>samplenames
-
-<span class="co"># add phenotype group information</span>
-group &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">c</span>(<span class="st">&quot;LP&quot;</span>, <span class="st">&quot;ML&quot;</span>, <span class="st">&quot;Basal&quot;</span>, <span class="st">&quot;Basal&quot;</span>, <span class="st">&quot;ML&quot;</span>, <span class="st">&quot;LP&quot;</span>, <span class="st">&quot;Basal&quot;</span>, <span class="st">&quot;ML&quot;</span>, <span class="st">&quot;LP&quot;</span>))
-dge<span class="op">$</span>samples<span class="op">$</span>group &lt;-<span class="st"> </span>group
-
-<span class="co"># add gene annotation information</span>
-dge<span class="op">$</span>genes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses3_geneAnnot.tsv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</code></pre>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="session-4.html#cb248-1"></a><span class="co"># load required packages</span></span>
+<span id="cb248-2"><a href="session-4.html#cb248-2"></a><span class="kw">library</span>(edgeR)</span>
+<span id="cb248-3"><a href="session-4.html#cb248-3"></a><span class="kw">library</span>(limma)</span>
+<span id="cb248-4"><a href="session-4.html#cb248-4"></a></span>
+<span id="cb248-5"><a href="session-4.html#cb248-5"></a><span class="co"># vector of file names</span></span>
+<span id="cb248-6"><a href="session-4.html#cb248-6"></a>files &lt;-<span class="st"> </span><span class="kw">dir</span>(<span class="dt">path =</span> <span class="st">&quot;data&quot;</span>, <span class="dt">pattern =</span> <span class="st">&quot;GSM&quot;</span>)</span>
+<span id="cb248-7"><a href="session-4.html#cb248-7"></a></span>
+<span id="cb248-8"><a href="session-4.html#cb248-8"></a><span class="co"># create DGEList object</span></span>
+<span id="cb248-9"><a href="session-4.html#cb248-9"></a>dge &lt;-<span class="st"> </span><span class="kw">readDGE</span>(files, <span class="dt">path =</span> <span class="st">&quot;data&quot;</span>, <span class="dt">columns =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb248-10"><a href="session-4.html#cb248-10"></a></span>
+<span id="cb248-11"><a href="session-4.html#cb248-11"></a><span class="co"># add sample names</span></span>
+<span id="cb248-12"><a href="session-4.html#cb248-12"></a>samplenames &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;10_6_5_11&quot;</span>, <span class="st">&quot;9_6_5_11&quot;</span>, <span class="st">&quot;purep53&quot;</span>, <span class="st">&quot;JMS8-2&quot;</span>, <span class="st">&quot;JMS8-3&quot;</span>, <span class="st">&quot;JMS8-4&quot;</span>, </span>
+<span id="cb248-13"><a href="session-4.html#cb248-13"></a>    <span class="st">&quot;JMS8-5&quot;</span>, <span class="st">&quot;JMS9-P7c&quot;</span>, <span class="st">&quot;JMS9-P8c&quot;</span>)</span>
+<span id="cb248-14"><a href="session-4.html#cb248-14"></a></span>
+<span id="cb248-15"><a href="session-4.html#cb248-15"></a><span class="kw">colnames</span>(dge) &lt;-<span class="st"> </span>samplenames</span>
+<span id="cb248-16"><a href="session-4.html#cb248-16"></a></span>
+<span id="cb248-17"><a href="session-4.html#cb248-17"></a><span class="co"># add phenotype group information</span></span>
+<span id="cb248-18"><a href="session-4.html#cb248-18"></a>group &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">c</span>(<span class="st">&quot;LP&quot;</span>, <span class="st">&quot;ML&quot;</span>, <span class="st">&quot;Basal&quot;</span>, <span class="st">&quot;Basal&quot;</span>, <span class="st">&quot;ML&quot;</span>, <span class="st">&quot;LP&quot;</span>, <span class="st">&quot;Basal&quot;</span>, <span class="st">&quot;ML&quot;</span>, <span class="st">&quot;LP&quot;</span>))</span>
+<span id="cb248-19"><a href="session-4.html#cb248-19"></a>dge<span class="op">$</span>samples<span class="op">$</span>group &lt;-<span class="st"> </span>group</span>
+<span id="cb248-20"><a href="session-4.html#cb248-20"></a></span>
+<span id="cb248-21"><a href="session-4.html#cb248-21"></a><span class="co"># add gene annotation information</span></span>
+<span id="cb248-22"><a href="session-4.html#cb248-22"></a>dge<span class="op">$</span>genes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses3_geneAnnot.tsv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 </div>
 <div id="filtering" class="section level2">
 <h2><span class="header-section-number">4.2</span> Filtering</h2>
 <p>The first step is to filter out lowly expressed genes. There are two main problems with low abundant genes:</p>
 <ul>
-<li>Technical variation is more problematic for low abundance genes. This variation is thought to be due to two factors; insufficient mixing and low sampling fraction <span class="citation">(McIntyre et al. <a href="#ref-mcintyre2011rna">2011</a>)</span>.
+<li>Technical variation is more problematic for low abundance genes. This variation is thought to be due to two factors; insufficient mixing and low sampling fraction <span class="citation">(McIntyre et al. <a href="#ref-mcintyre2011rna" role="doc-biblioref">2011</a>)</span>.
 <ul>
 <li>Insufficient mixing of solutions during library preparation can result in uneven distribution of reads.</li>
 <li>RNA sequencing can be thought of as sampling. Measurement errors will occur simply due to the random nature of the sampling process. This problem affects lowly abundant RNA species more because the relative error for small count values is larger than it would be for more highly abundant RNA species.</li>
@@ -278,18 +282,18 @@ dge<span class="op">$</span>genes &lt;-<span class="st"> </span><span class="kw"
 </ul>
 <p>Additionally, genes that have a count of 0 across ALL samples are also removed, simply because they provide no useful information.</p>
 <blockquote>
-<p>Removing these highly variable, lowly expressed genes increases your ‘power’ to detect differentially expressed genes <span class="citation">(Bourgon, Gentleman, and Huber <a href="#ref-bourgon2010independent">2010</a>)</span>. To test for differential expression, a statistical test must be conducted for every gene. There are a large number of genes - meaning that a large number of statistical tests must be performed. When you perform many statistical tests, many will produce small p-values by chance alone. We must account for these false positives. There are a number of methods to do this and these are broadly called ‘adjusting for multiple testing’. This adjustment reduces the number of false positives but comes at the cost of reduced ‘power’ to detect true positives. If we filter out uninteresting, lowly expressed genes, we need to perform fewer statistical tests and reduce the impact that multiple testing adjustment has on detection power.</p>
+<p>Removing these highly variable, lowly expressed genes increases your ‘power’ to detect differentially expressed genes <span class="citation">(Bourgon, Gentleman, and Huber <a href="#ref-bourgon2010independent" role="doc-biblioref">2010</a>)</span>. To test for differential expression, a statistical test must be conducted for every gene. There are a large number of genes - meaning that a large number of statistical tests must be performed. When you perform many statistical tests, many will produce small p-values by chance alone. We must account for these false positives. There are a number of methods to do this and these are broadly called ‘adjusting for multiple testing’. This adjustment reduces the number of false positives but comes at the cost of reduced ‘power’ to detect true positives. If we filter out uninteresting, lowly expressed genes, we need to perform fewer statistical tests and reduce the impact that multiple testing adjustment has on detection power.</p>
 </blockquote>
 <p>The <code>filterByExpr()</code> function provides an automatic way to filter genes.</p>
 <p>By default, it keeps genes with a count of 10 or more in a minimum number of samples. This minimum number of samples is the smallest phenotype group. In our experiment, there are 3 phenotype groups each with 3 samples. Filtering is therefore performed such that genes with a count of 10 in at least 3 samples are kept and the rest filtered.</p>
 <p>Note that the actual filtering is done using counts per million (NOT the raw count value). This is to prevent bias against samples with small library sizes.</p>
 <p>The output of this function is a vector of logicals, indicating which genes (rows) should be kept and which filtered.</p>
-<pre class="sourceCode r"><code class="sourceCode r">keep &lt;-<span class="st"> </span><span class="kw">filterByExpr</span>(dge, <span class="dt">group =</span> group)
-<span class="kw">head</span>(keep)</code></pre>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="session-4.html#cb249-1"></a>keep &lt;-<span class="st"> </span><span class="kw">filterByExpr</span>(dge, <span class="dt">group =</span> group)</span>
+<span id="cb249-2"><a href="session-4.html#cb249-2"></a><span class="kw">head</span>(keep)</span></code></pre></div>
 <pre><code>##    497097 100503874 100038431     19888     20671     27395 
 ##      TRUE     FALSE     FALSE     FALSE      TRUE      TRUE</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">dge &lt;-<span class="st"> </span>dge[keep, , keep.lib.sizes =<span class="st"> </span><span class="ot">FALSE</span>]
-<span class="kw">dim</span>(dge<span class="op">$</span>counts)</code></pre>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="session-4.html#cb251-1"></a>dge &lt;-<span class="st"> </span>dge[keep, , keep.lib.sizes =<span class="st"> </span><span class="ot">FALSE</span>]</span>
+<span id="cb251-2"><a href="session-4.html#cb251-2"></a><span class="kw">dim</span>(dge<span class="op">$</span>counts)</span></code></pre></div>
 <pre><code>## [1] 16624     9</code></pre>
 <p>We can see that we now have 16624 genes. We started with 27179 genes - meaning that ~40% of genes have been filtered out.</p>
 </div>
@@ -297,8 +301,8 @@ dge<span class="op">$</span>genes &lt;-<span class="st"> </span><span class="kw"
 <h2><span class="header-section-number">4.3</span> Normalisation</h2>
 <p>The aim of normalisation is to remove systematic technical effects. There are two main factors that need to be normalised for in RNA-seq:</p>
 <ul>
-<li>Sequencing depth/library size - technically, sequencing a sample to half the depth will give, on average, half the number of reads mapping to each gene <span class="citation">(Robinson and Oshlack <a href="#ref-robinson2010scaling">2010</a>)</span>.</li>
-<li>RNA composition - if a large number of genes are unique to, or highly expressed, in one experimental condition, the sequencing ‘read estate’ available for the remaining genes in that sample is decreased. For example, let’s say we have 2 samples, A and B. Both contain the same set of genes which are also expressed at the same level. In sample A however, there are also many genes that are not expressed in sample B. Each sample is sequenced to the same depth. The genes that are present and actually expressed equally in the two samples will have fewer sequencing reads in sample A. This is because the genes present in sample A but NOT present in sample B are taking up a portion of the sequencing ‘real estate’. As a result there is less reads ‘available’ to the other genes (the ones present in both samples). This means that the ’proportion o reads attributed to a given gene in a library depends on the expression properties of the whole sample rather than just the expression of that gene <span class="citation">(Robinson and Oshlack <a href="#ref-robinson2010scaling">2010</a>)</span>.</li>
+<li>Sequencing depth/library size - technically, sequencing a sample to half the depth will give, on average, half the number of reads mapping to each gene <span class="citation">(Robinson and Oshlack <a href="#ref-robinson2010scaling" role="doc-biblioref">2010</a>)</span>.</li>
+<li>RNA composition - if a large number of genes are unique to, or highly expressed, in one experimental condition, the sequencing ‘read estate’ available for the remaining genes in that sample is decreased. For example, let’s say we have 2 samples, A and B. Both contain the same set of genes which are also expressed at the same level. In sample A however, there are also many genes that are not expressed in sample B. Each sample is sequenced to the same depth. The genes that are present and actually expressed equally in the two samples will have fewer sequencing reads in sample A. This is because the genes present in sample A but NOT present in sample B are taking up a portion of the sequencing ‘real estate’. As a result there is less reads ‘available’ to the other genes (the ones present in both samples). This means that the ’proportion o reads attributed to a given gene in a library depends on the expression properties of the whole sample rather than just the expression of that gene <span class="citation">(Robinson and Oshlack <a href="#ref-robinson2010scaling" role="doc-biblioref">2010</a>)</span>.</li>
 </ul>
 <p>Sequencing depth is accounted for by calculating the counts per million (cpm). This metric is calculated by:</p>
 <ol style="list-style-type: decimal">
@@ -306,7 +310,7 @@ dge<span class="op">$</span>genes &lt;-<span class="st"> </span><span class="kw"
 <li>dividing this by 1,000,000 to get the ‘per million’ scaling factor,</li>
 <li>then dividing all read counts for each gene in that sample by the ‘per million’ scaling factor</li>
 </ol>
-<p>RNA composition can be accounted for by using more sophisticated normalisation methodologies. We will use ‘trimmed mean of M-values’ (TMM), which estimates relative RNA levels from RNA-seq data <span class="citation">(Robinson and Oshlack <a href="#ref-robinson2010scaling">2010</a>)</span>. TMM calculates a library size scaling factor for each library (sample). This is done using the following steps:</p>
+<p>RNA composition can be accounted for by using more sophisticated normalisation methodologies. We will use ‘trimmed mean of M-values’ (TMM), which estimates relative RNA levels from RNA-seq data <span class="citation">(Robinson and Oshlack <a href="#ref-robinson2010scaling" role="doc-biblioref">2010</a>)</span>. TMM calculates a library size scaling factor for each library (sample). This is done using the following steps:</p>
 <ol style="list-style-type: decimal">
 <li>calculate the gene expression log fold changes and absolute expression values for pair-wise samples (selecting one sample from the experiment as a reference)</li>
 <li>remove the genes with the highest and lowest fold changes and absolute expression values</li>
@@ -314,11 +318,11 @@ dge<span class="op">$</span>genes &lt;-<span class="st"> </span><span class="kw"
 </ol>
 <p>TMM, like most normalisation methods, assumes that the majority of genes are NOT differentially expressed.</p>
 <p>Subsequent steps in this analysis will use log-cpm values, calculated using the normalisation factors, which ‘scale’ each library size.</p>
-<p>We can calculate the normalisation factors, specifying that we want to use the <code>&quot;TMM&quot;</code> method:</p>
-<pre class="sourceCode r"><code class="sourceCode r">dge &lt;-<span class="st"> </span><span class="kw">calcNormFactors</span>(dge, <span class="dt">method =</span> <span class="st">&quot;TMM&quot;</span>)</code></pre>
+<p>We can calculate the normalisation factors, specifying that we want to use the <code>"TMM"</code> method:</p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="session-4.html#cb253-1"></a>dge &lt;-<span class="st"> </span><span class="kw">calcNormFactors</span>(dge, <span class="dt">method =</span> <span class="st">&quot;TMM&quot;</span>)</span></code></pre></div>
 <p>This function calculates the normalisation factors for each library (sample) and puts this information in the <code>samples</code> dataframe. Note that it takes dge (our <code>DGEList</code> object as input) and returns a <code>DGEList</code> object as well.</p>
 <p>Let’s take a look at our normalisation factors:</p>
-<pre class="sourceCode r"><code class="sourceCode r">dge<span class="op">$</span>samples<span class="op">$</span>norm.factors</code></pre>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="session-4.html#cb254-1"></a>dge<span class="op">$</span>samples<span class="op">$</span>norm.factors</span></code></pre></div>
 <pre><code>## [1] 0.8943956 1.0250186 1.0459005 1.0458455 1.0162707 0.9217132 0.9961959
 ## [8] 1.0861026 0.9839203</code></pre>
 <p>These normalisation factors are all close to 1 for all samples, suggesting minimal difference in ‘relative RNA levels’ between samples.</p>
@@ -333,15 +337,15 @@ dge<span class="op">$</span>genes &lt;-<span class="st"> </span><span class="kw"
 </blockquote>
 <p>The <code>plotMDS()</code> function performs MDS on a <code>DGEList</code> object using metric MDS. The distances between each sample in the resulting plot can be interpreted as the typical log2-fold-change between the samples, for the most different genes (genes that have the most different expression values between that pair of samples).</p>
 <p>Let’s take a look at the plot created from <code>dge</code>, our <code>DGEList</code> object:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotMDS</span>(dge)</code></pre>
-<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="session-4.html#cb256-1"></a><span class="kw">plotMDS</span>(dge)</span></code></pre></div>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-133-1.png" width="672" /></p>
 <p>Each point on the plot represents one sample and is ‘labelled’ using the sample name.</p>
 <p>We can change the labelling to use the name of the group the sample belongs to instead:</p>
-<pre class="sourceCode r"><code class="sourceCode r">group</code></pre>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="session-4.html#cb257-1"></a>dge<span class="op">$</span>samples<span class="op">$</span>group</span></code></pre></div>
 <pre><code>## [1] LP    ML    Basal Basal ML    LP    Basal ML    LP   
 ## Levels: Basal LP ML</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plotMDS</span>(dge, <span class="dt">labels =</span> group)</code></pre>
-<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="session-4.html#cb259-1"></a><span class="kw">plotMDS</span>(dge, <span class="dt">labels =</span> group)</span></code></pre></div>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-135-1.png" width="672" /></p>
 <p>This shows us that the phenotype groups tend to ‘cluster’ together, meaning that the gene expression profiles are similar for samples within a phenotype group. The ‘Basal’ type samples quite close together while the ‘LP’ (luminal progenitor) and ‘ML’ (mature luminal) type samples are further apart, signifying that their expression profiles are more variable.</p>
 <p>To make the three phenotype groups more distinct in our graph, we are going to colour samples from each group differently. To do this, we will use the <code>col</code> argument in <code>plotMDS()</code>. <code>col</code> takes in a vector the same length as the number of points in the plot (9 in our case, as there are 9 samples). Each element of the vector should be a colour name (R understands <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">over 600 colour names</a>), indicating what colour that sample should be.</p>
 <p>To make this more clear, take a look at the table below, which lists all the samples and the phenotype group they belong to:</p>
@@ -435,17 +439,17 @@ LP
 <pre><code>## [1] &quot;green&quot; &quot;red&quot;   &quot;blue&quot;  &quot;blue&quot;  &quot;red&quot;   &quot;green&quot; &quot;blue&quot;  &quot;red&quot;   &quot;green&quot;</code></pre>
 <p>Of course, we don’t want to type out this vector ourselves. We want to make R do this. This is less tedious and error prone.</p>
 <p>We can do this using the <code>group</code> vector. Recall this factor vector gives the phenotype groups of each sample (in the same order as the samples are in within <code>dge</code>, our <code>DGEList</code> object).</p>
-<pre class="sourceCode r"><code class="sourceCode r">group</code></pre>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="session-4.html#cb261-1"></a>dge<span class="op">$</span>samples<span class="op">$</span>group</span></code></pre></div>
 <pre><code>## [1] LP    ML    Basal Basal ML    LP    Basal ML    LP   
 ## Levels: Basal LP ML</code></pre>
 <p>We don’t want to change this vector, so we will ‘copy’ the vector <code>group</code> to a new variable called <code>groupCol</code>:</p>
-<pre class="sourceCode r"><code class="sourceCode r">groupCol &lt;-<span class="st"> </span>group</code></pre>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="session-4.html#cb263-1"></a>groupCol &lt;-<span class="st"> </span>dge<span class="op">$</span>samples<span class="op">$</span>group</span></code></pre></div>
 <p>We can now create our character vector. I will guide you through this in the next challenge.</p>
 <p><strong>Challenge 4.1</strong></p>
 <ol style="list-style-type: decimal">
 <li>The <code>levels</code> function gives all the ‘categories’ of a factor vector. If we run it on <code>groupCol</code>, it will give our 3 phenotypes:</li>
 </ol>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">levels</span>(groupCol)</code></pre>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="session-4.html#cb264-1"></a><span class="kw">levels</span>(groupCol)</span></code></pre></div>
 <pre><code>## [1] &quot;Basal&quot; &quot;LP&quot;    &quot;ML&quot;</code></pre>
 <p>Replace the current levels (categories) of <code>groupCol</code> with a character vector containing 3 colour names of your choosing. Inspect the resulting <code>groupCol</code> vector to make sure it has done what you expected it to.</p>
 <p><em>Hint</em>: the notation for this is similar to creating and replacing a new column - see Section <a href="session-1.html#vect">1.11</a> for details.</p>
@@ -468,7 +472,7 @@ LP
 <ol style="list-style-type: decimal">
 <li>Re-create the MDS plot with the sample names as labels and the labels coloured by phenotype group - i.e. the plot below:</li>
 </ol>
-<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-141-1.png" width="672" /></p>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Add a title to your graph using the <code>main</code> argument to the <code>plotMDS()</code> function. Remember to give your title as a character.</p></li>
 <li><p>Notice that the label of sample ‘9_6_5_11’ is cut off. Amend this by changing the ‘limits’ of the x axis using the <code>xlim</code> argument to the <code>plotMDS()</code> function. <code>xlim</code> takes a numeric vector containing 2 elements, the min and max values of the x axis.</p></li>
@@ -523,18 +527,18 @@ Figure 4.2: Specifying the file type, dimensions and name of the plot.
 <div id="design-matrix" class="section level3">
 <h3><span class="header-section-number">4.6.1</span> Design matrix</h3>
 <p>A design matrix provides your linear model with information about each sample in your experiment. Thus, in our experiment a design matrix would specify which of the 3 cell type ‘groups’ each sample belongs to. Take a look at the design matrix below:</p>
-<pre class="sourceCode r"><code class="sourceCode r">design &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(<span class="op">~</span><span class="dv">0</span> <span class="op">+</span><span class="st"> </span>group)
-design</code></pre>
-<pre><code>##   groupBasal groupLP groupML
-## 1          0       1       0
-## 2          0       0       1
-## 3          1       0       0
-## 4          1       0       0
-## 5          0       0       1
-## 6          0       1       0
-## 7          1       0       0
-## 8          0       0       1
-## 9          0       1       0
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="session-4.html#cb266-1"></a>design &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(<span class="op">~</span><span class="dv">0</span> <span class="op">+</span><span class="st"> </span>dge<span class="op">$</span>samples<span class="op">$</span>group)</span>
+<span id="cb266-2"><a href="session-4.html#cb266-2"></a>design</span></code></pre></div>
+<pre><code>##   dge$samples$groupBasal dge$samples$groupLP dge$samples$groupML
+## 1                      0                   1                   0
+## 2                      0                   0                   1
+## 3                      1                   0                   0
+## 4                      1                   0                   0
+## 5                      0                   0                   1
+## 6                      0                   1                   0
+## 7                      1                   0                   0
+## 8                      0                   0                   1
+## 9                      0                   1                   0
 ## attr(,&quot;assign&quot;)
 ## [1] 1 1 1
 ## attr(,&quot;contrasts&quot;)
@@ -542,7 +546,7 @@ design</code></pre>
 ## [1] &quot;contr.treatment&quot;</code></pre>
 <p>There are 9 rows, one for each sample. Along each row, a ‘1’ indicates the cell type ‘group’ the sample belongs to and ‘0’ indicates cell type groups the sample does not belong to. You can think about the ‘1’ and ‘0’ as turning a cell type group ‘on’ or ‘off’. Finally, notice how one sample only belongs to one cell type group.</p>
 <p>Let’s take a look at how to generate a design matrix. We used the function <code>model.matrix()</code>, which took the ‘expression’ <code>~0 + group</code>. Recall that <code>group</code> is a factor vector that specifies which cell type group each of the 9 samples belongs to:</p>
-<pre class="sourceCode r"><code class="sourceCode r">group</code></pre>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="session-4.html#cb268-1"></a>dge<span class="op">$</span>samples<span class="op">$</span>group</span></code></pre></div>
 <pre><code>## [1] LP    ML    Basal Basal ML    LP    Basal ML    LP   
 ## Levels: Basal LP ML</code></pre>
 <p>The <code>~</code> at the start tells R that we want to model the samples using the ‘expression’ to the right of the <code>~</code>. The <code>0</code> at the start tells R not to include an intercept. We have chosen not to include an intercept because it is easier to interpret but including the intercept is just as valid.</p>
@@ -555,9 +559,9 @@ design</code></pre>
 <p>‘Contrasts’ let us ask specific questions, for example, if we want to compare expression between two specific groups. In our experiment, we are interested in the difference between each pairwise group. A contrast matrix can be made using the <code>makeContrasts()</code> function. Within this function, we specify the name of each specific contrast and the formula for that contrast. For example, the <code>BasalvsLP</code> contrasts compares the difference between the <code>Basal</code> and <code>LP</code> groups. Note that the name of the phenotype groups must be written exactly as they are in the column names of our design matrix (see above).</p>
 <p>The final input to the <code>makeContrasts()</code> function is simply the names of each cell type group (recall from above that <code>colnames(design)</code> gives the names of each cell type group).</p>
 <p>The creation and output of our contrast matrix is shown below:</p>
-<pre class="sourceCode r"><code class="sourceCode r">contr.matrix &lt;-<span class="st"> </span><span class="kw">makeContrasts</span>(<span class="dt">BasalvsLP =</span> Basal <span class="op">-</span><span class="st"> </span>LP, <span class="dt">BasalvsML =</span> Basal <span class="op">-</span><span class="st"> </span>ML, <span class="dt">LPvsML =</span> LP <span class="op">-</span><span class="st"> </span>
-<span class="st">    </span>ML, <span class="dt">levels =</span> <span class="kw">colnames</span>(design))
-contr.matrix</code></pre>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="session-4.html#cb270-1"></a>contr.matrix &lt;-<span class="st"> </span><span class="kw">makeContrasts</span>(<span class="dt">BasalvsLP =</span> Basal <span class="op">-</span><span class="st"> </span>LP, <span class="dt">BasalvsML =</span> Basal <span class="op">-</span><span class="st"> </span>ML, <span class="dt">LPvsML =</span> LP <span class="op">-</span><span class="st"> </span></span>
+<span id="cb270-2"><a href="session-4.html#cb270-2"></a><span class="st">    </span>ML, <span class="dt">levels =</span> <span class="kw">colnames</span>(design))</span>
+<span id="cb270-3"><a href="session-4.html#cb270-3"></a>contr.matrix</span></code></pre></div>
 <pre><code>##        Contrasts
 ## Levels  BasalvsLP BasalvsML LPvsML
 ##   Basal         1         1      0
@@ -569,8 +573,8 @@ contr.matrix</code></pre>
 <h3><span class="header-section-number">4.6.3</span> Linear model fitting</h3>
 <p>We are now ready to fit our linear models. Limma fits linear models to the data with the assumption that the underlying data is normally distributed. Count data is however, not normally distributed. We must therefore, ‘normalise’ our count data first. To do this, limma first transforms the raw count data to log-cpm using library sizes and the normalisation factors we calculated previously. The mean-variance relationship of the log-cpm data is then accommodated using precision weights. These precision weights are calculated using the <code>voom()</code> function.</p>
 <p>The <code>voom()</code> function takes as arguments, our <code>DGEList</code> object and our design matrix. It also optionally outputs a plot of the mean-variance relationship of our data, called the ‘voom-plot’. Each point on the voom plot is a gene. On the x and y axes are the log2 of the count value + 0.5 (to prevent taking the log of 0) and the square root of the standard deviation of that gene, respectively. Typically the voom plot shows ‘variance’ decreasing as expression increases. Variance will generally plateau (i.e. remain at the same level) at high expression values. In experiments with higher biological variation, this plateau will be at a higher variance level. For example, experiments using mice as biological replicates will generally have higher variation than experiments using cell lines as biological replicates. As a result, the plateau will be at a higher variance level.</p>
-<pre class="sourceCode r"><code class="sourceCode r">v &lt;-<span class="st"> </span><span class="kw">voom</span>(dge, design, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre>
-<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="session-4.html#cb272-1"></a>v &lt;-<span class="st"> </span><span class="kw">voom</span>(dge, design, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-146-1.png" width="672" /></p>
 <p>The output of <code>voom()</code> (our variable <code>v</code>) is an <code>EList</code> object which contains the following elements:</p>
 <ul>
 <li><code>E</code> - numeric matrix of normalised log-cpm values.</li>
@@ -581,7 +585,7 @@ contr.matrix</code></pre>
 </ul>
 <p>The <code>EList</code> object can also contain information about the voom plot, if you choose to save this plot when you ran the <code>voom()</code> function.</p>
 <p>Let’s take a look at <code>E</code>:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(v<span class="op">$</span>E)</code></pre>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="session-4.html#cb273-1"></a><span class="kw">head</span>(v<span class="op">$</span>E)</span></code></pre></div>
 <pre><code>##         Samples
 ## Tags     10_6_5_11  9_6_5_11    purep53     JMS8-2    JMS8-3    JMS8-4
 ##   497097 -4.292165 -3.856488  2.5185849  3.2931366 -4.459730 -3.994060
@@ -600,8 +604,8 @@ contr.matrix</code></pre>
 ##   58175  -2.1339189  3.1365872  3.515256</code></pre>
 <p>Each column is a sample and each row is a gene (called a ‘Tag’).</p>
 <p>We are now ready to fit our linear model with <code>lmFit()</code>, which calculates coefficients we defined in our design matrix (<code>design</code>). The resulting object, <code>vfit</code> is a <code>MArrayLM</code> object. It contains a information about our genes (the same dataframe as <code>genes</code> from our <code>EList</code> object <code>v</code> above), the design matrix and a number of statistical outputs. Of most interest to us is the coefficients, stored in an element called <code>coefficients</code>. The first rows of this matrix is shown below. Each gene is row and is labelled using the EntrezID. Each column gives coefficients for each of our phenotype groups.</p>
-<pre class="sourceCode r"><code class="sourceCode r">vfit &lt;-<span class="st"> </span><span class="kw">lmFit</span>(v, design)
-<span class="kw">head</span>(vfit<span class="op">$</span>coefficients)</code></pre>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="session-4.html#cb275-1"></a>vfit &lt;-<span class="st"> </span><span class="kw">lmFit</span>(v, design)</span>
+<span id="cb275-2"><a href="session-4.html#cb275-2"></a><span class="kw">head</span>(vfit<span class="op">$</span>coefficients)</span></code></pre></div>
 <pre><code>##             Basal        LP        ML
 ## 497097  3.0241632 -4.490392 -3.944477
 ## 20671   0.2681245 -2.488746 -2.024896
@@ -610,8 +614,8 @@ contr.matrix</code></pre>
 ## 21399   5.2108711  4.901842  4.876380
 ## 58175  -1.9296994  3.581328  3.133985</code></pre>
 <p>We can then use <code>contrasts.fit()</code> to calculate coefficients for each contrast (or ‘comparison’) we specified in our <code>contr.matrix</code>. The output is also an object of the class <code>MArrayLM</code> (also known as an <code>MArrayLM</code> object). When we inspect the <code>coefficients</code> element now, we can see that each column is a contrast that we specified in our contrast matrix.</p>
-<pre class="sourceCode r"><code class="sourceCode r">vfit &lt;-<span class="st"> </span><span class="kw">contrasts.fit</span>(vfit, <span class="dt">contrasts =</span> contr.matrix)
-<span class="kw">head</span>(vfit<span class="op">$</span>coefficients)</code></pre>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="session-4.html#cb277-1"></a>vfit &lt;-<span class="st"> </span><span class="kw">contrasts.fit</span>(vfit, <span class="dt">contrasts =</span> contr.matrix)</span>
+<span id="cb277-2"><a href="session-4.html#cb277-2"></a><span class="kw">head</span>(vfit<span class="op">$</span>coefficients)</span></code></pre></div>
 <pre><code>##         Contrasts
 ##           BasalvsLP   BasalvsML      LPvsML
 ##   497097  7.5145557  6.96864007 -0.54591559
@@ -625,11 +629,11 @@ contr.matrix</code></pre>
 <div id="statistical-testing" class="section level2">
 <h2><span class="header-section-number">4.7</span> Statistical testing</h2>
 <p>The next step is to carry out statistical testing to determine which genes are differentially expressed. The function <code>eBayes()</code> computes moderated t-statistics, moderated F-statistics and log-odds of differential expression for each gene, given a fitted linear model. ‘Moderated’ refers to empirical Bayes moderation, which borrows information across genes to obtain more accurate measures of variability for each gene. This also increases our power to detect differentially expressed genes.</p>
-<pre class="sourceCode r"><code class="sourceCode r">efit &lt;-<span class="st"> </span><span class="kw">eBayes</span>(vfit)</code></pre>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="session-4.html#cb279-1"></a>efit &lt;-<span class="st"> </span><span class="kw">eBayes</span>(vfit)</span></code></pre></div>
 <p>We can now look at the number of differentially expressed genes using the <code>decideTests()</code> function. The output of this function is a matrix where each column is a contrast (comparison of interest) and each row is a gene. The numbers 1, -1 and 0 mean up-regulated, down-regulated or not significantly differentially expressed, respectively.</p>
-<p>Note that <code>decideTests()</code> also accounts for multiple testing. The default method is Benjamini and Hochberg <span class="citation">(Benjamini and Hochberg <a href="#ref-benjamini1995controlling">1995</a>)</span> but several others are also available.</p>
-<pre class="sourceCode r"><code class="sourceCode r">dt &lt;-<span class="st"> </span><span class="kw">decideTests</span>(efit)
-dt</code></pre>
+<p>Note that <code>decideTests()</code> also accounts for multiple testing. The default method is Benjamini and Hochberg <span class="citation">(Benjamini and Hochberg <a href="#ref-benjamini1995controlling" role="doc-biblioref">1995</a>)</span> but several others are also available.</p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="session-4.html#cb280-1"></a>dt &lt;-<span class="st"> </span><span class="kw">decideTests</span>(efit)</span>
+<span id="cb280-2"><a href="session-4.html#cb280-2"></a>dt</span></code></pre></div>
 <pre><code>## TestResults matrix
 ##         Contrasts
 ##          BasalvsLP BasalvsML LPvsML
@@ -640,7 +644,7 @@ dt</code></pre>
 ##   21399          0         1      0
 ## 16619 more rows ...</code></pre>
 <p>To obtain the total number of differentially expressed genes for each comparison, we can add the function <code>summary()</code>:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(dt)</code></pre>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="session-4.html#cb282-1"></a><span class="kw">summary</span>(dt)</span></code></pre></div>
 <pre><code>##        BasalvsLP BasalvsML LPvsML
 ## Down        4500      4850   2701
 ## NotSig      7307      6996  11821
@@ -656,8 +660,8 @@ dt</code></pre>
 <li><code>adj.P.Val</code> - adjusted p value.</li>
 <li><code>B</code> - log-odds that the gene is differentially expressed.</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r">top &lt;-<span class="st"> </span><span class="kw">topTable</span>(efit, <span class="dt">coef =</span> <span class="st">&quot;BasalvsLP&quot;</span>, <span class="dt">n =</span> <span class="dv">5</span>)
-top</code></pre>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="session-4.html#cb284-1"></a>top &lt;-<span class="st"> </span><span class="kw">topTable</span>(efit, <span class="dt">coef =</span> <span class="st">&quot;BasalvsLP&quot;</span>, <span class="dt">n =</span> <span class="dv">5</span>)</span>
+<span id="cb284-2"><a href="session-4.html#cb284-2"></a>top</span></code></pre></div>
 <pre><code>##        ENTREZID   SYMBOL TXCHROM     logFC  AveExpr         t      P.Value
 ## 12521     12521     Cd82    chr2 -4.095479 7.069637 -35.46821 3.383539e-12
 ## 22249     22249   Unc13b    chr4 -4.350553 5.663171 -32.38571 8.648521e-12
@@ -674,52 +678,53 @@ top</code></pre>
 <p>Using <code>topTable()</code>, output a dataframe with the top 100 genes for the LP vs ML comparison and write this out to a tsv file called “LPvsML.tsv”.</p>
 <p><strong>Hint</strong>: we did this in the first session in Section <a href="session-1.html#write">1.12</a>.</p>
 </div>
-<div id="answers-3" class="section level2">
+<div id="answers" class="section level2">
 <h2><span class="header-section-number">4.8</span> Answers</h2>
 <p><strong>Challenge 4.1</strong></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 1</span>
-<span class="kw">levels</span>(groupCol) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>)
-groupCol</code></pre>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="session-4.html#cb286-1"></a><span class="co"># 1</span></span>
+<span id="cb286-2"><a href="session-4.html#cb286-2"></a><span class="kw">levels</span>(groupCol) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb286-3"><a href="session-4.html#cb286-3"></a>groupCol</span></code></pre></div>
 <pre><code>## [1] &quot;green&quot; &quot;red&quot;   &quot;blue&quot;  &quot;blue&quot;  &quot;red&quot;   &quot;green&quot; &quot;blue&quot;  &quot;red&quot;   &quot;green&quot;
 ## attr(,&quot;levels&quot;)
 ## [1] &quot;blue&quot;  &quot;green&quot; &quot;red&quot;</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 2</span>
-groupCol &lt;-<span class="st"> </span><span class="kw">as.character</span>(groupCol)
-groupCol</code></pre>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="session-4.html#cb288-1"></a><span class="co"># 2</span></span>
+<span id="cb288-2"><a href="session-4.html#cb288-2"></a>groupCol &lt;-<span class="st"> </span><span class="kw">as.character</span>(groupCol)</span>
+<span id="cb288-3"><a href="session-4.html#cb288-3"></a>groupCol</span></code></pre></div>
 <pre><code>## [1] &quot;green&quot; &quot;red&quot;   &quot;blue&quot;  &quot;blue&quot;  &quot;red&quot;   &quot;green&quot; &quot;blue&quot;  &quot;red&quot;   &quot;green&quot;</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 3</span>
-<span class="kw">plotMDS</span>(dge, <span class="dt">labels =</span> group, <span class="dt">col =</span> groupCol)</code></pre>
-<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="session-4.html#cb290-1"></a><span class="co"># 3</span></span>
+<span id="cb290-2"><a href="session-4.html#cb290-2"></a><span class="kw">plotMDS</span>(dge, <span class="dt">labels =</span> group, <span class="dt">col =</span> groupCol)</span></code></pre></div>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-154-1.png" width="672" /></p>
 <p><strong>Challenge 4.2</strong></p>
-<pre class="sourceCode r"><code class="sourceCode r">groupCol &lt;-<span class="st"> </span>group
-<span class="kw">levels</span>(groupCol) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>)
-groupCol &lt;-<span class="st"> </span><span class="kw">as.character</span>(groupCol)
-<span class="kw">plotMDS</span>(dge, <span class="dt">col =</span> groupCol, <span class="dt">main =</span> <span class="st">&quot;MDS plot coloured by cell type&quot;</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">2.8</span>, 
-    <span class="dv">4</span>))
-<span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="dt">legend =</span> <span class="kw">levels</span>(group), <span class="dt">text.col =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>))</code></pre>
-<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="session-4.html#cb291-1"></a>groupCol &lt;-<span class="st"> </span>dge<span class="op">$</span>samples<span class="op">$</span>group</span>
+<span id="cb291-2"><a href="session-4.html#cb291-2"></a><span class="kw">levels</span>(groupCol) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb291-3"><a href="session-4.html#cb291-3"></a>groupCol &lt;-<span class="st"> </span><span class="kw">as.character</span>(groupCol)</span>
+<span id="cb291-4"><a href="session-4.html#cb291-4"></a><span class="kw">plotMDS</span>(dge, <span class="dt">col =</span> groupCol, <span class="dt">main =</span> <span class="st">&quot;MDS plot coloured by cell type&quot;</span>, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">2.8</span>, </span>
+<span id="cb291-5"><a href="session-4.html#cb291-5"></a>    <span class="dv">4</span>))</span>
+<span id="cb291-6"><a href="session-4.html#cb291-6"></a><span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="dt">legend =</span> <span class="kw">levels</span>(dge<span class="op">$</span>samples<span class="op">$</span>group), <span class="dt">text.col =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>, </span>
+<span id="cb291-7"><a href="session-4.html#cb291-7"></a>    <span class="st">&quot;red&quot;</span>))</span></code></pre></div>
+<p><img src="IntroBaseR_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
 <p><strong>Challenge 4.3</strong></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colnames</span>(design) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Basal&quot;</span>, <span class="st">&quot;LP&quot;</span>, <span class="st">&quot;ML&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="session-4.html#cb292-1"></a><span class="kw">colnames</span>(design) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Basal&quot;</span>, <span class="st">&quot;LP&quot;</span>, <span class="st">&quot;ML&quot;</span>)</span></code></pre></div>
 <p><strong>Challenge 4.4</strong></p>
-<pre class="sourceCode r"><code class="sourceCode r">topLPvsML &lt;-<span class="st"> </span><span class="kw">topTable</span>(efit, <span class="dt">coef =</span> <span class="st">&quot;LPvsML&quot;</span>, <span class="dt">n =</span> <span class="dv">50</span>)
-
-<span class="kw">write.table</span>(<span class="dt">x =</span> topLPvsML, <span class="dt">file =</span> <span class="st">&quot;LPvsML.tsv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>, <span class="dt">col.names =</span> <span class="ot">TRUE</span>)</code></pre>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="session-4.html#cb293-1"></a>topLPvsML &lt;-<span class="st"> </span><span class="kw">topTable</span>(efit, <span class="dt">coef =</span> <span class="st">&quot;LPvsML&quot;</span>, <span class="dt">n =</span> <span class="dv">50</span>)</span>
+<span id="cb293-2"><a href="session-4.html#cb293-2"></a></span>
+<span id="cb293-3"><a href="session-4.html#cb293-3"></a><span class="kw">write.table</span>(<span class="dt">x =</span> topLPvsML, <span class="dt">file =</span> <span class="st">&quot;LPvsML.tsv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>, <span class="dt">col.names =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 
 </div>
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
-<div id="ref-mcintyre2011rna">
-<p>McIntyre, Lauren M, Kenneth K Lopiano, Alison M Morse, Victor Amin, Ann L Oberg, Linda J Young, and Sergey V Nuzhdin. 2011. “RNA-Seq: Technical Variability and Sampling.” <em>BMC Genomics</em> 12 (1). BioMed Central: 293.</p>
+<div id="ref-benjamini1995controlling">
+<p>Benjamini, Yoav, and Yosef Hochberg. 1995. “Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing.” <em>Journal of the Royal Statistical Society: Series B (Methodological)</em> 57 (1): 289–300.</p>
 </div>
 <div id="ref-bourgon2010independent">
-<p>Bourgon, Richard, Robert Gentleman, and Wolfgang Huber. 2010. “Independent Filtering Increases Detection Power for High-Throughput Experiments.” <em>Proceedings of the National Academy of Sciences</em> 107 (21). National Acad Sciences: 9546–51.</p>
+<p>Bourgon, Richard, Robert Gentleman, and Wolfgang Huber. 2010. “Independent Filtering Increases Detection Power for High-Throughput Experiments.” <em>Proceedings of the National Academy of Sciences</em> 107 (21): 9546–51.</p>
+</div>
+<div id="ref-mcintyre2011rna">
+<p>McIntyre, Lauren M, Kenneth K Lopiano, Alison M Morse, Victor Amin, Ann L Oberg, Linda J Young, and Sergey V Nuzhdin. 2011. “RNA-Seq: Technical Variability and Sampling.” <em>BMC Genomics</em> 12 (1): 293.</p>
 </div>
 <div id="ref-robinson2010scaling">
-<p>Robinson, Mark D, and Alicia Oshlack. 2010. “A Scaling Normalization Method for Differential Expression Analysis of Rna-Seq Data.” <em>Genome Biology</em> 11 (3). BioMed Central: R25.</p>
-</div>
-<div id="ref-benjamini1995controlling">
-<p>Benjamini, Yoav, and Yosef Hochberg. 1995. “Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing.” <em>Journal of the Royal Statistical Society: Series B (Methodological)</em> 57 (1). Wiley Online Library: 289–300.</p>
+<p>Robinson, Mark D, and Alicia Oshlack. 2010. “A Scaling Normalization Method for Differential Expression Analysis of Rna-Seq Data.” <em>Genome Biology</em> 11 (3): R25.</p>
 </div>
 </div>
             </section>
@@ -733,11 +738,13 @@ groupCol &lt;-<span class="st"> </span><span class="kw">as.character</span>(grou
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -745,12 +752,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -762,6 +768,10 @@ gitbook.start({
 "text": "Edit"
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
@@ -780,8 +790,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
