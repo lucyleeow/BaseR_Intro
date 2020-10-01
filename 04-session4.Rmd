@@ -33,10 +33,10 @@ library(edgeR)
 library(limma)
 
 # vector of file names
-files <- dir(path = "data", pattern = "GSM")
+files <- dir(path = "data/counts", pattern = "GSM")
 
 # create DGEList object
-dge <- readDGE(files, path = "data", columns = c(1,3))
+dge <- readDGE(files, path = "data/counts", columns = c(1,3))
 
 # add sample names
 samplenames <- c("10_6_5_11", "9_6_5_11", "purep53", "JMS8-2", "JMS8-3",

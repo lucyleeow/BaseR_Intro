@@ -24,7 +24,7 @@
 <meta name="author" content="Lucy Liu" />
 
 
-<meta name="date" content="2020-09-24" />
+<meta name="date" content="2020-10-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -235,15 +235,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this first session we will learn about:</p>
 <ul>
 <li>R and RStudio</li>
-<li>data types and data structures</li>
-<li>vectorisation</li>
-<li>how to read in and write out data</li>
+<li>Data types and data structures</li>
+<li>Vectorised operations</li>
+<li>Data input and output</li>
 </ul>
 <div id="r-and-rstudio" class="section level2">
 <h2><span class="header-section-number">1.1</span> R and RStudio</h2>
 <p>R is a free and open source statistical programming language, great for performing data analysis. RStudio is a free and open source R integrated development environment (IDE) which makes it easier for you to write code. It does this by providing you with auto-completion (of variable names, function names, file paths etc.), helping with formatting and keeping track of your variables.</p>
 <p>You can think of R as the engine in a car and RStudio as the body &amp; controls. R is doing all the calculations/computations but RStudio makes it easier for you to use R.</p>
-<p>When you first open RStudio, there will be three panels - see Figure <a href="session-1.html#fig:RS1">1.1</a> (don’t worry if your RStudio does not have the same colours/appearance - different versions of RStudio look slightly different and the text colour I use is not the default one.)</p>
+<p>When you first open RStudio, there will be three panels - see Figure <a href="session-1.html#fig:RS1">1.1</a> (don’t worry if your RStudio does not have the same colours/appearance - different versions of RStudio look slightly different, and the colour here is not the default one.)</p>
 <div class="figure"><span id="fig:RS1"></span>
 <img src="Images/RS1.png" alt="Three panels in RStudio." width="700px" />
 <p class="caption">
@@ -270,7 +270,7 @@ Figure 1.1: Three panels in RStudio.
 </div>
 <div id="r-scripts" class="section level2">
 <h2><span class="header-section-number">1.2</span> R scripts</h2>
-<p>To open a R script, go to File &gt; New File &gt; R Script.</p>
+<p>To open an R script, go to File &gt; New File &gt; R Script.</p>
 <div class="figure"><span id="fig:RS2"></span>
 <img src="Images/RS2.png" alt="Opening a new R Script." width="700px" />
 <p class="caption">
@@ -284,15 +284,15 @@ Figure 1.2: Opening a new R Script.
 Figure 1.3: Four panels, including a R Script.
 </p>
 </div>
-<p>A R Script is just a text document. You can type and run commands using a R Script and down in the Console - the difference is that you can’t save the commands you run in the Console but you can save the R Script with all your commands. Note that to run a command in the Console press <code>Enter</code> key but to run a command in a R Script you must press <code>Cmd/Ctrl + Enter</code> keys.</p>
-<p>Lastly, you can make ‘comments’ in your R Script. Comments are notes to yourself that are not interpreted by R and start with <code>#</code>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="session-1.html#cb1-1"></a><span class="co"># this is a note to myself</span></span>
-<span id="cb1-2"><a href="session-1.html#cb1-2"></a><span class="dv">1</span><span class="op">+</span><span class="dv">3-2</span></span></code></pre></div>
+<p>An R Script is a text document where can type and run commands. You can also run commands in the console but the code run in the console is not saved. Note that to run a command in the Console press <code>Enter</code> key but to run a command in a R Script you must press <code>Cmd/Ctrl + Enter</code> keys.</p>
+<p>Lastly, you add ‘comments’ in your R Script. Comments are notes regarding the code that are not interpreted by R, they begin with <code>#</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="session-1.html#cb2-1"></a><span class="co"># this is a note to myself</span></span>
+<span id="cb2-2"><a href="session-1.html#cb2-2"></a><span class="dv">1</span><span class="op">+</span><span class="dv">3-2</span></span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 </div>
 <div id="help" class="section level2">
 <h2><span class="header-section-number">1.3</span> Help</h2>
-<p>There are two ways to access help files in RStudio. You can type in the name of the function you want help with, in the top right of help tab (indicated with a red arrow):</p>
+<p>There are two ways to access help files in RStudio. One way is to type the name of the function into the top right of help tab:</p>
 <div class="figure" style="text-align: center"><span id="fig:help"></span>
 <img src="Images/help.png" alt="Accessing help files via 'help' tab." width="500px" />
 <p class="caption">
@@ -300,13 +300,13 @@ Figure 1.4: Accessing help files via ‘help’ tab.
 </p>
 </div>
 <p>The other option is to run the command <code>?</code> followed by the name of the function:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="session-1.html#cb3-1"></a>?sum</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="session-1.html#cb4-1"></a>?sum</span></code></pre></div>
 <p>Help files are very useful but can be difficult to interpret at first due to the technical language used. We won’t get too much practice reading help files during this course but I would encourage you to try to use them when figuring out how to use a new function.</p>
 </div>
 <div id="working-directory" class="section level2">
 <h2><span class="header-section-number">1.4</span> Working directory</h2>
 <p>Every file on your computer is located in a specific location. This location can be referred to by a path. In Mac, paths look something like this: <code>/Users/Lucy/Documents/</code>. In Windows, paths look something like this: <code>C:\Users\Lucy\Documents\</code>.</p>
-<p>When you open a R session, it launches from a specific location. You can find out where this is using the command <code>getwd()</code>. This location called the ‘working directory’. R will, by default, look in this directory when reading in data and write out files/plots to this directory. It is often useful to have your data and R Scripts in the same directory and set this as your working directory.</p>
+<p>When you open an R session, it launches from a specific location. You can find out where this is using the command <code>getwd()</code>. This location is called the ‘working directory’. By default, R will look in this directory when reading in data and write out files/plots to this directory. It is often useful to have your data and R Scripts in the same directory and set this as your working directory.</p>
 <p>You can set your working directory to be anywhere you like and we will now do this:</p>
 <ol style="list-style-type: decimal">
 <li>Make a folder for this course, somewhere sensible on your computer that you will be able to easily find.</li>
@@ -350,51 +350,51 @@ Figure 1.7: Setting the working directory - 3.
 <li><code>-</code> - subtract</li>
 </ul>
 <p>Another useful function is modulus (<code>%%</code>), which gives the remainder after dividing:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="session-1.html#cb4-1"></a><span class="dv">8</span><span class="op">%%</span><span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="session-1.html#cb5-1"></a><span class="dv">8</span><span class="op">%%</span><span class="dv">3</span></span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 </div>
 <div id="comps" class="section level2">
 <h2><span class="header-section-number">1.6</span> Comparisons</h2>
 <p>You can also compare numbers in R:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="session-1.html#cb6-1"></a><span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>  <span class="co"># equal to.</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="session-1.html#cb7-1"></a><span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>  <span class="co"># equal to.</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="session-1.html#cb8-1"></a><span class="dv">1</span> <span class="op">!=</span><span class="st"> </span><span class="dv">1</span> <span class="co"># not equal to</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="session-1.html#cb9-1"></a><span class="dv">1</span> <span class="op">!=</span><span class="st"> </span><span class="dv">1</span> <span class="co"># not equal to</span></span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="session-1.html#cb10-1"></a><span class="dv">2</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>   <span class="co"># greater than.</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="session-1.html#cb11-1"></a><span class="dv">2</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>   <span class="co"># greater than.</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="session-1.html#cb12-1"></a><span class="dv">2</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span>   <span class="co"># less than.</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="session-1.html#cb13-1"></a><span class="dv">2</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span>   <span class="co"># less than.</span></span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="session-1.html#cb14-1"></a><span class="dv">1</span> <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span>  <span class="co"># greater or equal to.</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="session-1.html#cb15-1"></a><span class="dv">1</span> <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span>  <span class="co"># greater or equal to.</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="session-1.html#cb16-1"></a><span class="dv">1</span> <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2</span>  <span class="co"># less than or equal to.</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="session-1.html#cb17-1"></a><span class="dv">1</span> <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2</span>  <span class="co"># less than or equal to.</span></span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p>The <code>!</code> sign by itself means “not” and it reverses the logical. For example, “not” TRUE is FALSE.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="session-1.html#cb18-1"></a><span class="op">!</span><span class="ot">TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="session-1.html#cb19-1"></a><span class="op">!</span><span class="ot">TRUE</span></span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p>You can also compare words. What do you think will happen below?</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="session-1.html#cb20-1"></a><span class="st">&quot;cat&quot;</span> <span class="op">&gt;</span><span class="st"> &quot;dog&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="session-1.html#cb21-1"></a><span class="st">&quot;cat&quot;</span> <span class="op">&gt;</span><span class="st"> &quot;dog&quot;</span></span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p>R will use alphabetical order to determine which word is ‘greater’:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="session-1.html#cb22-1"></a><span class="st">&quot;a&quot;</span> <span class="op">&lt;</span><span class="st"> &quot;b&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="session-1.html#cb23-1"></a><span class="st">&quot;a&quot;</span> <span class="op">&lt;</span><span class="st"> &quot;b&quot;</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 <div id="variables" class="section level2">
 <h2><span class="header-section-number">1.7</span> Variables</h2>
 <p>A variable in R is just a name which refers to an ‘thing’ (more technically an ‘object’ in R).</p>
 <p>For example, I can do some maths:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="session-1.html#cb24-1"></a><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">6</span> <span class="op">*</span><span class="st"> </span><span class="dv">7</span><span class="op">**</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="session-1.html#cb25-1"></a><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">6</span> <span class="op">*</span><span class="st"> </span><span class="dv">7</span><span class="op">**</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 296</code></pre>
 <p>R outputs the result. However, if I want to ‘save’ this result to use later, I need to ‘assign’ the output to a variable. This can be thought of as giving it a name, so that we can refer to it later.</p>
 <p>You can this with <code>&lt;-</code> (shortcut = <code>alt + -</code>) in R. (You can also use <code>=</code>, however stylistically <code>&lt;-</code> is preferred.)</p>
 <p>Here R performs the calculation on the right of <code>&lt;-</code> and then saves the result as a variable called <code>my_num</code>.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="session-1.html#cb26-1"></a>my_num &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">6</span> <span class="op">*</span><span class="st"> </span><span class="dv">7</span><span class="op">**</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="session-1.html#cb27-1"></a>my_num &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">6</span> <span class="op">*</span><span class="st"> </span><span class="dv">7</span><span class="op">**</span><span class="dv">2</span></span></code></pre></div>
 <p>Now if I run the command <code>my_num</code>, I see the number I stored earlier:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="session-1.html#cb27-1"></a>my_num</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="session-1.html#cb28-1"></a>my_num</span></code></pre></div>
 <pre><code>## [1] 296</code></pre>
 <p>You can also ‘overwrite’ variables:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="session-1.html#cb29-1"></a>my_num &lt;-<span class="st"> </span><span class="dv">3</span> <span class="op">*</span><span class="st"> </span><span class="dv">4</span></span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="session-1.html#cb30-1"></a>my_num &lt;-<span class="st"> </span><span class="dv">3</span> <span class="op">*</span><span class="st"> </span><span class="dv">4</span></span></code></pre></div>
 <p>The above code evaluates <code>3 * 4</code> and assigns the output to the variable <code>my_num</code> - effectively ‘overwritting’ the previous value assigned to it.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="session-1.html#cb30-1"></a>my_num</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="session-1.html#cb31-1"></a>my_num</span></code></pre></div>
 <pre><code>## [1] 12</code></pre>
 <p>R is particular about variable names. Variable names cannot:</p>
 <ul>
@@ -402,7 +402,7 @@ Figure 1.7: Setting the working directory - 3.
 <li>contain any spaces</li>
 </ul>
 <p>If we try to create a variable that starts with a number, R will return an error:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="session-1.html#cb32-1"></a>2myvar &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">6</span> <span class="op">*</span><span class="st"> </span><span class="dv">7</span><span class="op">**</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="session-1.html#cb33-1"></a>2myvar &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">6</span> <span class="op">*</span><span class="st"> </span><span class="dv">7</span><span class="op">**</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## Error: &lt;text&gt;:1:2: unexpected symbol
 ## 1: 2myvar
 ##      ^</code></pre>
@@ -428,8 +428,8 @@ Figure 1.8: Data structures. Source: <a href="http://libguides.wellesley.edu" cl
 <h3><span class="header-section-number">1.8.1</span> Vector</h3>
 <p>You can think of a vector like a row or column in excel. You can only store one <em>type</em> of data in a vector - e.g. all numbers or all text.</p>
 <p>You can create vectors with the <code>c()</code> function (‘c’ for ‘combine’):</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="session-1.html#cb34-1"></a>my_vect1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
-<span id="cb34-2"><a href="session-1.html#cb34-2"></a>my_vect2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="session-1.html#cb35-1"></a>my_vect1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb35-2"><a href="session-1.html#cb35-2"></a>my_vect2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)</span></code></pre></div>
 </div>
 <div id="matrix" class="section level3">
 <h3><span class="header-section-number">1.8.2</span> Matrix</h3>
@@ -439,11 +439,11 @@ Figure 1.8: Data structures. Source: <a href="http://libguides.wellesley.edu" cl
 <h3><span class="header-section-number">1.8.3</span> Dataframe</h3>
 <p>Dataframes are also two dimensional (has both rows and columns) however, you can store different types of data in a dataframe. The only restriction is that all the data within one column must be of the same type.</p>
 <p>A dataframe is composed of vectors, with each vector being one column. You can create a dataframe using the <code>data.frame()</code> function:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="session-1.html#cb35-1"></a>my_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
-<span id="cb35-2"><a href="session-1.html#cb35-2"></a>  <span class="dt">cats =</span> <span class="kw">c</span>(<span class="st">&quot;Hello Kitty&quot;</span>, <span class="st">&quot;Garfield&quot;</span>), </span>
-<span id="cb35-3"><a href="session-1.html#cb35-3"></a>  <span class="dt">weight =</span> <span class="kw">c</span>(<span class="fl">4.5</span>,<span class="dv">7</span>)</span>
-<span id="cb35-4"><a href="session-1.html#cb35-4"></a>)</span>
-<span id="cb35-5"><a href="session-1.html#cb35-5"></a>my_df</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="session-1.html#cb36-1"></a>my_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb36-2"><a href="session-1.html#cb36-2"></a>  <span class="dt">cats =</span> <span class="kw">c</span>(<span class="st">&quot;Hello Kitty&quot;</span>, <span class="st">&quot;Garfield&quot;</span>), </span>
+<span id="cb36-3"><a href="session-1.html#cb36-3"></a>  <span class="dt">weight =</span> <span class="kw">c</span>(<span class="fl">4.5</span>,<span class="dv">7</span>)</span>
+<span id="cb36-4"><a href="session-1.html#cb36-4"></a>)</span>
+<span id="cb36-5"><a href="session-1.html#cb36-5"></a>my_df</span></code></pre></div>
 <pre><code>##          cats weight
 ## 1 Hello Kitty    4.5
 ## 2    Garfield    7.0</code></pre>
@@ -473,7 +473,7 @@ Figure 1.9: Accessing columns in a dataframe using the ‘$’ symbol.
 <p>The file we want to read in is named ‘Ses1_genes.tsv’.</p>
 <p>I have put all my data files in a directory called ‘data’ - thus the path to the file (relative to my working directory) is ‘data/Ses1_genes.tsv’. Depending on where you have put your data (in your working directory or in another file in your working directory), the path to your file ‘Ses1_genes.tsv’ may be different.</p>
 <p>Read in your data by typing in the path to your ‘Ses1_genes.tsv’ file (relative to your working directory), within the brackets <code>( )</code>:</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="session-1.html#cb37-1"></a><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses1_genes.tsv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="session-1.html#cb38-1"></a><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses1_genes.tsv&quot;</span>)</span></code></pre></div>
 <pre><code>##     SYMBOL GeneLength Count
 ## 1  Gm10568       1634     0
 ## 2  Gm19860        799     4
@@ -496,11 +496,11 @@ Andy  10
 Bob   8</code></pre>
 <p>Notice in the above two examples the values are separated by different ‘characters’.</p>
 <p>You can specify what ‘character’ separates each value by using the <code>sep</code> input in <code>read.delim()</code>. E.g. if your file was a csv, you can read it in using:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="session-1.html#cb41-1"></a><span class="kw">read.delim</span>(<span class="st">&quot;file.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="session-1.html#cb42-1"></a><span class="kw">read.delim</span>(<span class="st">&quot;file.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
 <p>We don’t need to specify the <code>sep</code> for our file, which is a tsv, as the default separator <code>read.delim()</code> assumes is tab. Thus we only need to specify when we are reading in a file NOT separated by tabs.</p>
 <p>Above, we have read in our data as a dataframe and printed it. However, we can’t refer to this dataframe again and manipulate it because we haven’t assigned it to a variable.</p>
 <p>Let’s assign our dataframe to a variable called <code>genes</code>:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="session-1.html#cb42-1"></a>genes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses1_genes.tsv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="session-1.html#cb43-1"></a>genes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses1_genes.tsv&quot;</span>)</span></code></pre></div>
 <p>Notice how <code>genes</code> now appears in our ‘Environment’ tab:</p>
 <div class="figure" style="text-align: center"><span id="fig:import"></span>
 <img src="Images/import.png" alt="Variable in 'Environment' tab." width="500px" />
@@ -512,7 +512,7 @@ Figure 1.10: Variable in ‘Environment’ tab.
 <div id="summary" class="section level3">
 <h3><span class="header-section-number">1.9.1</span> Summary</h3>
 <p>A useful function for investigating your data is <code>summary()</code>. Running this function on our <code>genes</code> dataframe provides us with summary statistics on all the numeric columns. For the columns that don’t contain numbers, the output simply states the length of that column.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="session-1.html#cb43-1"></a><span class="kw">summary</span>(genes)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="session-1.html#cb44-1"></a><span class="kw">summary</span>(genes)</span></code></pre></div>
 <pre><code>##     SYMBOL            GeneLength       Count       
 ##  Length:10          Min.   : 799   Min.   :  0.00  
 ##  Class :character   1st Qu.:2289   1st Qu.:  0.25  
@@ -524,7 +524,7 @@ Figure 1.10: Variable in ‘Environment’ tab.
 <div id="structure" class="section level3">
 <h3><span class="header-section-number">1.9.2</span> Structure</h3>
 <p>A useful function for understanding how our data is stored in R is <code>str()</code> (structure).</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="session-1.html#cb45-1"></a><span class="kw">str</span>(genes)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="session-1.html#cb46-1"></a><span class="kw">str</span>(genes)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:	10 obs. of  3 variables:
 ##  $ SYMBOL    : chr  &quot;Gm10568&quot; &quot;Gm19860&quot; &quot;Gm19938&quot; &quot;Lypla1&quot; ...
 ##  $ GeneLength: int  1634 799 3259 2433 9747 3130 2847 4203 3634 2241
@@ -537,10 +537,10 @@ Figure 1.10: Variable in ‘Environment’ tab.
 <p>Every bit of data in R has a ‘data type label’. The label doesn’t change the data in any way - it just tells R what kind of data it is and thus what it can and can’t do with the data.</p>
 <p>For example, it makes sense to perform mathematical functions on numbers but not on words. It makes sense to look for a certain term, like a gene name, in words but not in numbers.</p>
 <p>For example, you can’t add words so the code belwo doesn’t work. Note that quotes (<code>" "</code> or <code>' '</code>) ALWAYS surround values that are of the ‘character’ data type:</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="session-1.html#cb47-1"></a><span class="st">&quot;one&quot;</span> <span class="op">+</span><span class="st"> &quot;two&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="session-1.html#cb48-1"></a><span class="st">&quot;one&quot;</span> <span class="op">+</span><span class="st"> &quot;two&quot;</span></span></code></pre></div>
 <pre><code>## Error in &quot;one&quot; + &quot;two&quot;: non-numeric argument to binary operator</code></pre>
 <p>This does work because they are numbers:</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="session-1.html#cb49-1"></a><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="session-1.html#cb50-1"></a><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <p>There are five basic types of data in R:</p>
 <ul>
@@ -564,10 +564,10 @@ Figure 1.10: Variable in ‘Environment’ tab.
 2 = blue
 3 = green</code></pre>
 <p>Factors can be difficult to work with, so we don’t want our gene symbols to be ‘labelled’ as factors. We can do this by specifying this when reading our data in:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="session-1.html#cb54-1"></a>genes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses1_genes.tsv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="session-1.html#cb55-1"></a>genes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;data/Ses1_genes.tsv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <p>By default, R will label all word (‘character’) data as a ‘factor’. Setting <code>stringsAsFactors</code> to be <code>FALSE</code>, tells R that you DON’T want it to do this.</p>
 <p>We can check the structure again:</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="session-1.html#cb55-1"></a><span class="kw">str</span>(genes)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="session-1.html#cb56-1"></a><span class="kw">str</span>(genes)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:	10 obs. of  3 variables:
 ##  $ SYMBOL    : chr  &quot;Gm10568&quot; &quot;Gm19860&quot; &quot;Gm19938&quot; &quot;Lypla1&quot; ...
 ##  $ GeneLength: int  1634 799 3259 2433 9747 3130 2847 4203 3634 2241
@@ -582,16 +582,16 @@ Figure 1.10: Variable in ‘Environment’ tab.
 <li><code>as.character()</code></li>
 </ul>
 <p>For example, this will turn a integer vector into a character vector:</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="session-1.html#cb57-1"></a><span class="kw">as.character</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="session-1.html#cb58-1"></a><span class="kw">as.character</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span></code></pre></div>
 <pre><code>## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot;</code></pre>
 </div>
 <div id="type-coercion" class="section level3">
 <h3><span class="header-section-number">1.10.2</span> Type coercion</h3>
 <p>In some circumstances, R will change the data type label of your data. This is called ‘type coercion’. A common scenario in which this will happen is with vector (and dataframe column) labelling.</p>
 <p>All elements within a vector (and within a column of a dataframe) must have the same data type label. Thus, if you create a vector like the one below, the whole vector will be labelled as one data type. Which data type do you think it will be?</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="session-1.html#cb59-1"></a>my_vect3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&quot;a&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="session-1.html#cb60-1"></a>my_vect3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&quot;a&quot;</span>)</span></code></pre></div>
 <p>We can find out with <code>str()</code>:</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="session-1.html#cb60-1"></a><span class="kw">str</span>(my_vect3)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="session-1.html#cb61-1"></a><span class="kw">str</span>(my_vect3)</span></code></pre></div>
 <pre><code>##  chr [1:3] &quot;1&quot; &quot;2&quot; &quot;a&quot;</code></pre>
 <p>It has labelled the whole vector as characters. This is because the letter <code>"a"</code> cannot be “expressed” as a number but numbers can be “expressed” as characters - thus R will always pick the data type label that does not result in any loss of information. Recall that data type labels NEVER change the data - only the label changes.</p>
 <p>There is an order to which data label R will label a vector as. Of all the data types that exist in the vector, the data type of the element that is furthermost right, will be the “final” data type label for the vector.</p>
@@ -606,19 +606,19 @@ Figure 1.10: Variable in ‘Environment’ tab.
 <li>as we saw above, numbers can easily be represented as a character</li>
 </ul>
 <p>The last thing to note is that you may see the type <code>num</code>:</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="session-1.html#cb62-1"></a><span class="kw">str</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="session-1.html#cb63-1"></a><span class="kw">str</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span></code></pre></div>
 <pre><code>##  num [1:3] 1 2 3</code></pre>
 <p><code>num</code> stands for numeric and is just the ‘number’ data types grouped together. R does this for two reasons. First, generally you don’t need to know exactly what ‘type’ of number class your data is. Second, R will often convert between number types depending the type of calculations/function performed.</p>
 <p><strong>Challenge 1.3</strong></p>
 <ol style="list-style-type: decimal">
 <li>What data type will the following vectors be?</li>
 </ol>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="session-1.html#cb64-1"></a><span class="co"># 1</span></span>
-<span id="cb64-2"><a href="session-1.html#cb64-2"></a><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
-<span id="cb64-3"><a href="session-1.html#cb64-3"></a><span class="co"># 2 </span></span>
-<span id="cb64-4"><a href="session-1.html#cb64-4"></a><span class="kw">c</span>(<span class="st">&quot;hello&quot;</span>, <span class="ot">TRUE</span>, <span class="dv">4</span>)</span>
-<span id="cb64-5"><a href="session-1.html#cb64-5"></a><span class="co"># 3</span></span>
-<span id="cb64-6"><a href="session-1.html#cb64-6"></a><span class="kw">c</span>(<span class="dv">4</span>, <span class="st">&quot;5&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="session-1.html#cb65-1"></a><span class="co"># 1</span></span>
+<span id="cb65-2"><a href="session-1.html#cb65-2"></a><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb65-3"><a href="session-1.html#cb65-3"></a><span class="co"># 2 </span></span>
+<span id="cb65-4"><a href="session-1.html#cb65-4"></a><span class="kw">c</span>(<span class="st">&quot;hello&quot;</span>, <span class="ot">TRUE</span>, <span class="dv">4</span>)</span>
+<span id="cb65-5"><a href="session-1.html#cb65-5"></a><span class="co"># 3</span></span>
+<span id="cb65-6"><a href="session-1.html#cb65-6"></a><span class="kw">c</span>(<span class="dv">4</span>, <span class="st">&quot;5&quot;</span>)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Create a vector called <code>my_vect3</code> that contains the following numbers: 1,1,2,3,5,8.
 <ul>
@@ -631,14 +631,14 @@ Figure 1.10: Variable in ‘Environment’ tab.
 <h2><span class="header-section-number">1.11</span> Vectorisation</h2>
 <p>R is quite efficient at doing calculations or performing a functions on a vector of data.</p>
 <p>Let’s use the <code>Count</code> column from our dataframe <code>genes</code>. We can access just one column using the <code>$</code> symbol:</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="session-1.html#cb65-1"></a>genes<span class="op">$</span>Count</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="session-1.html#cb66-1"></a>genes<span class="op">$</span>Count</span></code></pre></div>
 <pre><code>##  [1]   0   4   0 768   0   1 810 431   1 452</code></pre>
 <p>What do you think will happen if we do this?</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="session-1.html#cb67-1"></a>genes<span class="op">$</span>Count <span class="op">+</span><span class="st"> </span><span class="dv">10</span></span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="session-1.html#cb68-1"></a>genes<span class="op">$</span>Count <span class="op">+</span><span class="st"> </span><span class="dv">10</span></span></code></pre></div>
 <pre><code>##  [1]  10  14  10 778  10  11 820 441  11 462</code></pre>
 <p>R will perform this calculation on all numbers in the <code>Count</code> column and return a vector.</p>
 <p>We can add this new vector to our dataframe, as a new column.</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="session-1.html#cb69-1"></a>genes<span class="op">$</span>Count_<span class="dv">2</span> &lt;-<span class="st"> </span>genes<span class="op">$</span>Count <span class="op">+</span><span class="st"> </span><span class="dv">10</span></span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="session-1.html#cb70-1"></a>genes<span class="op">$</span>Count_<span class="dv">2</span> &lt;-<span class="st"> </span>genes<span class="op">$</span>Count <span class="op">+</span><span class="st"> </span><span class="dv">10</span></span></code></pre></div>
 <p>There are a few things happening in the above code:</p>
 <ol style="list-style-type: decimal">
 <li>The code on the right side of <code>&lt;-</code> is evaluated first. It returns a vector as we saw above.</li>
@@ -661,8 +661,8 @@ Figure 1.10: Variable in ‘Environment’ tab.
 <li><code>col.names</code> - this is also either <code>TRUE</code> or <code>FALSE</code>, and let’s you specify whether you want to write out column names. If your dataframe has column names, put <code>TRUE</code>.</li>
 </ul>
 <p>We can write out our <code>genes</code> dataframe into a .tsv file using the command below:</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="session-1.html#cb70-1"></a><span class="kw">write.table</span>(<span class="dt">x =</span> genes, <span class="dt">file =</span> <span class="st">&quot;Ses1_Genes_output.tsv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>,</span>
-<span id="cb70-2"><a href="session-1.html#cb70-2"></a>            <span class="dt">row.names =</span> <span class="ot">FALSE</span>, <span class="dt">col.names =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="session-1.html#cb71-1"></a><span class="kw">write.table</span>(<span class="dt">x =</span> genes, <span class="dt">file =</span> <span class="st">&quot;Ses1_Genes_output.tsv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>,</span>
+<span id="cb71-2"><a href="session-1.html#cb71-2"></a>            <span class="dt">row.names =</span> <span class="ot">FALSE</span>, <span class="dt">col.names =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 </div>
 <div id="homework" class="section level2">
 <h2><span class="header-section-number">1.13</span> Homework</h2>
@@ -673,33 +673,33 @@ Figure 1.10: Variable in ‘Environment’ tab.
 <div id="answers" class="section level2">
 <h2><span class="header-section-number">1.14</span> Answers</h2>
 <p><strong>Challenge 1.1</strong></p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="session-1.html#cb71-1"></a>my_df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
-<span id="cb71-2"><a href="session-1.html#cb71-2"></a>  <span class="dt">dogs =</span> <span class="kw">c</span>(<span class="st">&quot;Garfield&quot;</span>, <span class="st">&quot;Hello Kitty&quot;</span>),</span>
-<span id="cb71-3"><a href="session-1.html#cb71-3"></a>  <span class="dt">weight =</span> <span class="kw">c</span>(<span class="fl">3.5</span>, <span class="fl">4.8</span>)</span>
-<span id="cb71-4"><a href="session-1.html#cb71-4"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="session-1.html#cb72-1"></a>my_df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb72-2"><a href="session-1.html#cb72-2"></a>  <span class="dt">dogs =</span> <span class="kw">c</span>(<span class="st">&quot;Garfield&quot;</span>, <span class="st">&quot;Hello Kitty&quot;</span>),</span>
+<span id="cb72-3"><a href="session-1.html#cb72-3"></a>  <span class="dt">weight =</span> <span class="kw">c</span>(<span class="fl">3.5</span>, <span class="fl">4.8</span>)</span>
+<span id="cb72-4"><a href="session-1.html#cb72-4"></a>)</span></code></pre></div>
 <p><strong>Challenge 1.2</strong></p>
 <ol style="list-style-type: decimal">
 <li></li>
 </ol>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="session-1.html#cb72-1"></a><span class="kw">str</span>(<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="dv">3</span>, <span class="dv">4</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="session-1.html#cb73-1"></a><span class="kw">str</span>(<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="dv">3</span>, <span class="dv">4</span>))</span></code></pre></div>
 <pre><code>##  num [1:3] 1 3 4</code></pre>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="session-1.html#cb74-1"></a><span class="kw">str</span>(<span class="kw">c</span>(<span class="st">&quot;hello&quot;</span>, <span class="ot">TRUE</span>, <span class="dv">4</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="session-1.html#cb75-1"></a><span class="kw">str</span>(<span class="kw">c</span>(<span class="st">&quot;hello&quot;</span>, <span class="ot">TRUE</span>, <span class="dv">4</span>))</span></code></pre></div>
 <pre><code>##  chr [1:3] &quot;hello&quot; &quot;TRUE&quot; &quot;4&quot;</code></pre>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="session-1.html#cb76-1"></a><span class="kw">str</span>(<span class="kw">c</span>(<span class="dv">4</span>, <span class="st">&quot;5&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="session-1.html#cb77-1"></a><span class="kw">str</span>(<span class="kw">c</span>(<span class="dv">4</span>, <span class="st">&quot;5&quot;</span>))</span></code></pre></div>
 <pre><code>##  chr [1:2] &quot;4&quot; &quot;5&quot;</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li></li>
 </ol>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="session-1.html#cb78-1"></a>my_vect3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">8</span>)</span>
-<span id="cb78-2"><a href="session-1.html#cb78-2"></a><span class="co"># convert to character</span></span>
-<span id="cb78-3"><a href="session-1.html#cb78-3"></a>my_vect3 &lt;-<span class="st"> </span><span class="kw">as.character</span>(my_vect3)</span>
-<span id="cb78-4"><a href="session-1.html#cb78-4"></a><span class="co"># quotes around each value show that they are of the character type</span></span>
-<span id="cb78-5"><a href="session-1.html#cb78-5"></a>my_vect3 </span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="session-1.html#cb79-1"></a>my_vect3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">8</span>)</span>
+<span id="cb79-2"><a href="session-1.html#cb79-2"></a><span class="co"># convert to character</span></span>
+<span id="cb79-3"><a href="session-1.html#cb79-3"></a>my_vect3 &lt;-<span class="st"> </span><span class="kw">as.character</span>(my_vect3)</span>
+<span id="cb79-4"><a href="session-1.html#cb79-4"></a><span class="co"># quotes around each value show that they are of the character type</span></span>
+<span id="cb79-5"><a href="session-1.html#cb79-5"></a>my_vect3 </span></code></pre></div>
 <pre><code>## [1] &quot;1&quot; &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;5&quot; &quot;8&quot;</code></pre>
 <p><strong>Challenge 1.3</strong></p>
 <p>The <code>sum()</code> function can be used to calculate the total Count of all 10 rows by giving the <code>genes$Count</code> vector as the input to <code>sum()</code>.</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="session-1.html#cb80-1"></a>genes<span class="op">$</span>Prop_Count &lt;-<span class="st"> </span>genes<span class="op">$</span>Count <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(genes<span class="op">$</span>Count) </span>
-<span id="cb80-2"><a href="session-1.html#cb80-2"></a>genes</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="session-1.html#cb81-1"></a>genes<span class="op">$</span>Prop_Count &lt;-<span class="st"> </span>genes<span class="op">$</span>Count <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(genes<span class="op">$</span>Count) </span>
+<span id="cb81-2"><a href="session-1.html#cb81-2"></a>genes</span></code></pre></div>
 <pre><code>##     SYMBOL GeneLength Count Count_2   Prop_Count
 ## 1  Gm10568       1634     0      10 0.0000000000
 ## 2  Gm19860        799     4      14 0.0016214025
