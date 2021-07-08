@@ -3,9 +3,9 @@
 In this first session we will learn about:
 
 * R and RStudio
-* data types and data structures
-* vectorisation
-* how to read in and write out data
+* Data types and data structures
+* Vectorised operations
+* Data input and output
 
 ## R and RStudio
 
@@ -13,7 +13,7 @@ R is a free and open source statistical programming language, great for performi
 
 You can think of R as the engine in a car and RStudio as the body & controls. R is doing all the calculations/computations but RStudio makes it easier for you to use R.
 
-When you first open RStudio, there will be three panels - see Figure \@ref(fig:RS1) (don't worry if your RStudio does not have the same colours/appearance - different versions of RStudio look slightly different and the text colour I use is not the default one.)
+When you first open RStudio, there will be three panels - see Figure \@ref(fig:RS1) (don't worry if your RStudio does not have the same colours/appearance - different versions of RStudio look slightly different, and the colour here is not the default one.)
 
 ```{r RS1, fig.cap='Three panels in RStudio.', out.width="700px", echo=FALSE}
 knitr::include_graphics("Images/RS1.png")
@@ -33,7 +33,7 @@ knitr::include_graphics("Images/RS1.png")
     
 ## R scripts
 
-To open a R script, go to File > New File > R Script.
+To open an R script, go to File > New File > R Script.
 
 ```{r RS2, fig.cap='Opening a new R Script.', out.width="700px", echo=FALSE}
 knitr::include_graphics("Images/RS2.png")
@@ -45,9 +45,9 @@ This will open a fourth panel on the top left.
 knitr::include_graphics("Images/RS3.png")
 ```
 
-A R Script is just a text document. You can type and run commands using a R Script and down in the Console - the difference is that you can't save the commands you run in the Console but you can save the R Script with all your commands. Note that to run a command in the Console press `Enter` key but to run a command in a R Script you must press `Cmd/Ctrl + Enter` keys.
+An R Script is a text document where can type and run commands. You can also run commands in the console but the code run in the console is not saved. Note that to run a command in the Console press `Enter` key but to run a command in a R Script you must press `Cmd/Ctrl + Enter` keys.
 
-Lastly, you can make 'comments' in your R Script. Comments are notes to yourself that are not interpreted by R and start with `#`:
+Lastly, you add 'comments' in your R Script. Comments are notes regarding the code that are not interpreted by R, they begin with `#`:
 
 ```{r}
 # this is a note to myself
@@ -56,7 +56,7 @@ Lastly, you can make 'comments' in your R Script. Comments are notes to yourself
 
 ## Help
 
-There are two ways to access help files in RStudio. You can type in the name of the function you want help with, in the top right of help tab (indicated with a red arrow):
+There are two ways to access help files in RStudio. One way is to type the name of the function into the top right of help tab:
 
 ```{r help, fig.cap="Accessing help files via 'help' tab.", out.width="500px", fig.align='center', echo=FALSE}
 knitr::include_graphics("Images/help.png")
@@ -74,7 +74,7 @@ Help files are very useful but can be difficult to interpret at first due to the
 
 Every file on your computer is located in a specific location. This location can be referred to by a path. In Mac, paths look something like this: `/Users/Lucy/Documents/`. In Windows, paths look something like this: `C:\Users\Lucy\Documents\`. 
 
-When you open a R session, it launches from a specific location. You can find out where this is using the command `getwd()`. This location called the 'working directory'. R will, by default, look in this directory when reading in data and write out files/plots to this directory. It is often useful to have your data and R Scripts in the same directory and set this as your working directory.
+When you open an R session, it launches from a specific location. You can find out where this is using the command `getwd()`. This location is called the 'working directory'. By default, R will look in this directory when reading in data and write out files/plots to this directory. It is often useful to have your data and R Scripts in the same directory and set this as your working directory.
 
 You can set your working directory to be anywhere you like and we will now do this:
 
@@ -118,21 +118,20 @@ Another useful function is modulus (`%%`), which gives the remainder after divid
 
 ## Comparisons {#comps}
 
-You can also compare numbers in R:
+R can perform comparisons:
+
+* `==` equal to.
+* `!=` not equal to.
+* `>` greater than.
+* `>=` greater or equal to.
+* `<` less than.
+* `<=` less than or equal to.
+
+These operations return a `TRUE` or a `FALSE` value. This can be used to quickly summarise data or perform indexing as we will see later.
 
 ```{r}
-1 == 1  # equal to.
-1 != 1 # not equal to
-2 > 1   # greater than.
-2 < 1   # less than.
-1 <= 2  # greater or equal to.
-1 >= 2  # less than or equal to.
-```
-
-The `!` sign by itself means "not" and it reverses the logical. For example, "not" TRUE is FALSE.
-
-```{r}
-!TRUE
+10 > 10 # FALSE
+10 >= 10 # TRUE
 ```
 
 You can also compare words. What do you think will happen below?
@@ -141,7 +140,7 @@ You can also compare words. What do you think will happen below?
 "cat" > "dog"
 ```
 
-R will use alphabetical order to determine which word is 'greater':
+R will use dictionary order to determine which word is 'greater':
 
 ```{r}
 "a" < "b"
@@ -149,56 +148,50 @@ R will use alphabetical order to determine which word is 'greater':
 
 ## Variables
 
-A variable in R is just a name which refers to an 'thing' (more technically an 'object' in R).
+A variable in R is an identifier to keep track of values. We assign values to variables so that we can refer to the variable later.
 
 For example, I can do some maths:
 
 ```{r}
-2 + 6 * 7**2
+2 + 6 * 7^2
 ```
 
-R outputs the result. However, if I want to 'save' this result to use later, I need to 'assign' the output to a variable. This can be thought of as giving it a name, so that we can refer to it later.
+R outputs simply the result. To use this value later, I would need to assign the output to a variable. 
 
-You can this with `<-` (shortcut = `alt + -`) in R. (You can also use `=`, however stylistically `<-` is preferred.)
+You can this with `<-` (shortcut = `alt + -`) in R. (You can also use `=`, however, stylistically `<-` is preferred.)
 
-Here R performs the calculation on the right of `<-` and then saves the result as a variable called `my_num`.
+Here R first performs the calculation on the right of `<-` and then saves the result as a variable called `my_num`.
 
 ```{r}
-my_num <- 2 + 6 * 7**2
+my_num <- 2 + 6 * 7^2
+my_num # 296
 ```
 
-Now if I run the command `my_num`, I see the number I stored earlier:
-
-```{r}
-my_num
-```
-
-You can also 'overwrite' variables:
+You can also 'overwrite' variables by assigning to them again:
 
 ```{r}
 my_num <- 3 * 4
+my_num # 12
 ```
 
-The above code evaluates `3 * 4` and assigns the output to the variable `my_num` - effectively 'overwritting' the previous value assigned to it.
+Because the right hand side is evaluated first, you can also assign to a variable a calculation that involves itself.
 
 ```{r}
-my_num
+my_num <- my_num + 5
+my_num # 17
 ```
 
-R is particular about variable names. Variable names cannot:
-
-* start with a number 
-* contain any spaces
+R has rules on valid variable names. Variable names can only contain letters, numbers, the dot or underline characters. They can only start with a letter or the dot followed by a letter.
 
 If we try to create a variable that starts with a number, R will return an error:
 
 ```{r, error=TRUE}
-2myvar <- 2 + 6 * 7**2
+2myvar <- 2 + 6 * 7^2 # not a valid name as it start with number
 ```
 
 ### Errors and warnings
 
-This is a good time to talk about 'errors' and 'warnings' in R.
+This is a good time to talk about errors and warnings in R.
 
 An *error* is R telling you that it couldn't do what you told it to do. Do not be disheartened at seeing an error message - it happens to everyone, including experienced programmers, all the time. DO read the error message, it is often very useful and tells you what you need to do to fix the error.
 
@@ -305,7 +298,7 @@ You can specify what 'character' separates each value by using the `sep` input i
 read.delim("file.csv", sep = ",")
 ```
 
-We don't need to specify the `sep` for our file, which is a tsv, as the default separater `read.delim()` is tab. We only need to specify the separater character when we are reading in a file NOT separated by tabs.
+We don't need to specify the `sep` for our file, which is a tsv, as the default separator `read.delim()` assumes is tab. Thus we only need to specify when we are reading in a file NOT separated by tabs.
 
 Above, we have read in our data as a dataframe and printed it. However, we can't refer to this dataframe again and manipulate it because we haven't assigned it to a variable.
 
@@ -429,7 +422,7 @@ as.character(c(1,2,3))
 
 ### Type coercion
 
-In some circumstances, R will change the data type label of your data. This is called 'type coercion'. A common scenario in which this will happen is with vector (and dataframe column) labeling.
+In some circumstances, R will change the data type label of your data. This is called 'type coercion'. A common scenario in which this will happen is with vector (and dataframe column) labelling.
 
 All elements within a vector (and within a column of a dataframe) must have the same data type label. Thus, if you create a vector like the one below, the whole vector will be labelled as one data type. Which data type do you think it will be?
 

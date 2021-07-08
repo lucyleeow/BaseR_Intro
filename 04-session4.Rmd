@@ -33,14 +33,10 @@ library(edgeR)
 library(limma)
 
 # vector of file names
-files <- c("GSM1545535_10_6_5_11.txt", "GSM1545536_9_6_5_11.txt", 
-   "GSM1545538_purep53.txt", "GSM1545539_JMS8-2.txt", 
-   "GSM1545540_JMS8-3.txt", "GSM1545541_JMS8-4.txt", 
-   "GSM1545542_JMS8-5.txt", "GSM1545544_JMS9-P7c.txt", 
-   "GSM1545545_JMS9-P8c.txt")
+files <- dir(path = "data/counts", pattern = "GSM")
 
 # create DGEList object
-dge <- readDGE(files, path = "data", columns = c(1,3))
+dge <- readDGE(files, path = "data/counts", columns = c(1,3))
 
 # add sample names
 samplenames <- c("10_6_5_11", "9_6_5_11", "purep53", "JMS8-2", "JMS8-3",
@@ -152,7 +148,7 @@ Each point on the plot represents one sample and is 'labelled' using the sample 
 We can change the labelling to use the name of the group the sample belongs to instead:
 
 ```{r}
-group
+dge$samples$group
 ```
 
 ```{r}
@@ -175,7 +171,7 @@ kable(
 For example, let's say we wanted LP samples to be coloured green, ML samples to be coloured red and Basal samples to be coloured blue. The `col` argument would then require a vector that looks like this:
 
 ```{r, echo=FALSE, eval=TRUE}
-groupCol <- group
+groupCol <- dge$samples$group
 levels(groupCol) <- c("blue", "green", "red")
 groupCol <- as.character(groupCol)
 groupCol
@@ -186,13 +182,13 @@ Of course, we don't want to type out this vector ourselves. We want to make R do
 We can do this using the `group` vector. Recall this factor vector gives the phenotype groups of each sample (in the same order as the samples are in within `dge`, our `DGEList` object).
 
 ```{r}
-group
+dge$samples$group
 ```
 
 We don't want to change this vector, so we will 'copy' the vector `group` to a new variable called `groupCol`:
 
 ```{r}
-groupCol <- group
+groupCol <- dge$samples$group
 ```
 
 We can now create our character vector. I will guide you through this in the next challenge.
@@ -229,7 +225,7 @@ We will explore adding base R plot annotation in the following challenge.
 1. Re-create the MDS plot with the sample names as labels and the labels coloured by phenotype group - i.e. the plot below:
 
 ```{r, echo=FALSE}
-groupCol <- group
+groupCol <- dge$samples$group
 levels(groupCol) <- c("blue", "green", "red")
 groupCol <- as.character(groupCol)
 plotMDS(dge, col = groupCol)
@@ -293,7 +289,7 @@ Although our experiment has a simple design, with 3 different cell types, limma'
 A design matrix provides your linear model with information about each sample in your experiment. Thus, in our experiment a design matrix would specify which of the 3 cell type 'groups' each sample belongs to. Take a look at the design matrix below: 
 
 ```{r}
-design <- model.matrix(~0 + group)
+design <- model.matrix(~0 + dge$samples$group)
 design
 ```
 
@@ -302,7 +298,7 @@ There are 9 rows, one for each sample. Along each row, a '1' indicates the cell 
 Let's take a look at how to generate a design matrix. We used the function `model.matrix()`, which took the 'expression' `~0 + group`. Recall that `group` is a factor vector that specifies which cell type group each of the 9 samples belongs to:
 
 ```{r}
-group
+dge$samples$group
 ```
 
 The `~` at the start tells R that we want to model the samples using the 'expression' to the right of the `~`. The `0` at the start tells R not to include an intercept. We have chosen not to include an intercept because it is easier to interpret but including the intercept is just as valid. 
@@ -443,12 +439,12 @@ plotMDS(dge, labels = group, col = groupCol)
 **Challenge 4.2**
 
 ```{r}
-groupCol <- group
+groupCol <- dge$samples$group
 levels(groupCol) <- c("blue", "green", "red")
 groupCol <- as.character(groupCol)
 plotMDS(dge, col = groupCol, main = "MDS plot coloured by cell type",
         xlim = c(-2.8,4))
-legend("topright", legend = levels(group), 
+legend("topright", legend = levels(dge$samples$group), 
        text.col = c("blue", "green", "red"))
 ```
 
